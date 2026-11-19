@@ -32,10 +32,11 @@
     return '<a href="' + SOC.tiktok + '" target="_blank" rel="noopener">TikTok</a><a href="' + SOC.instagram + '" target="_blank" rel="noopener">Instagram</a><a href="' + SOC.facebook + '" target="_blank" rel="noopener">Facebook</a>';
   }
 
-  function row(s, noDek) {
-    return '<a class="row" href="' + link(s) + '"><span class="cat">' + esc(catLabel(s.cat)) + '</span>' +
+  function art(s, cls) { return '<img class="' + cls + '" src="assets/art/' + s.id + '.webp" alt="" loading="lazy" onerror="this.remove()">'; }
+  function row(s, noDek, pic) {
+    return '<a class="row' + (pic ? ' pic' : '') + '" href="' + link(s) + '">' + (pic === "top" ? art(s, "row-top") : '') + '<span class="row-txt"><span class="cat">' + esc(catLabel(s.cat)) + '</span>' +
       '<h3>' + esc(s.title) + '</h3>' + (noDek ? '' : '<p>' + esc(s.dek) + '</p>') +
-      '<time>' + fmt(s.date) + (s.city ? ' · ' + esc(s.city) : '') + '</time></a>';
+      '<time>' + fmt(s.date) + (s.city ? ' · ' + esc(s.city) : '') + '</time></span>' + (pic === "side" ? art(s, "row-side") : '') + '</a>';
   }
 
   function header(active) {
@@ -66,14 +67,14 @@
     var lead = top[0], rest = top.slice(1);
     var h = '<section class="home-hero"><div class="wrap"><h1>Central Texas Is Growing. <span>Stay Ahead of What\'s Next.</span></h1>' +
       '<p>Business, growth, government and Friday nights across the 254.</p>' +
-      '<div class="top-grid"><a class="lead" href="' + link(lead) + '"><span class="cat">' + esc(catLabel(lead.cat)) + '</span><h2>' + esc(lead.title) + '</h2><p>' + esc(lead.dek) + '</p><time>' + fmt(lead.date) + ' · ' + esc(lead.city) + '</time></a>' +
-      '<div class="rows">' + rest.map(function (s) { return row(s, true); }).join("") + '</div></div></div></section>';
+      '<div class="top-grid"><a class="lead" href="' + link(lead) + '">' + art(lead, "lead-img") + '<span class="cat">' + esc(catLabel(lead.cat)) + '</span><h2>' + esc(lead.title) + '</h2><p>' + esc(lead.dek) + '</p><time>' + fmt(lead.date) + ' · ' + esc(lead.city) + '</time></a>' +
+      '<div class="rows">' + rest.map(function (s) { return row(s, true, "side"); }).join("") + '</div></div></div></section>';
     var latest = '<section class="block"><div class="wrap"><div class="section-head"><h2>Latest <span>News</span></h2><a href="' + secLink("latest") + '">All latest →</a></div><div class="rows two">' +
-      ALL.slice(0, 8).map(function (s) { return row(s); }).join("") + '</div></div></section>';
+      ALL.slice(0, 8).map(function (s) { return row(s, false, "side"); }).join("") + '</div></div></section>';
     var mods = ["business", "markets", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate"].map(function (k) {
       var list = inCat(k).slice(0, 3);
       if (!list.length) return "";
-      return '<div class="module"><h2><a href="' + secLink(k) + '">' + esc(SEC[k].name) + '</a></h2>' + list.map(function (s) { return row(s, true); }).join("") +
+      return '<div class="module"><h2><a href="' + secLink(k) + '">' + esc(SEC[k].name) + '</a></h2>' + list.map(function (s, i) { return row(s, true, i === 0 ? "top" : null); }).join("") +
         '<a class="more" href="' + secLink(k) + '">More ' + esc(SEC[k].short) + ' →</a></div>';
     }).join("");
     document.getElementById("home-top").innerHTML = h + latest;
@@ -102,7 +103,7 @@
     var sec = SEC[k] || SEC.latest;
     var list = sec.key === "latest" ? ALL : inCat(sec.key);
     document.title = sec.name + " | 254 Texas Insider";
-    var body = list.length ? '<div class="rows">' + list.map(function (s) { return row(s); }).join("") + '</div>' :
+    var body = list.length ? '<div class="rows">' + list.map(function (s) { return row(s, false, "side"); }).join("") + '</div>' :
       '<p class="empty">' + (sec.key === "podcast" ? 'New episodes are on the way. Want to be a guest? <a href="contact.html?topic=podcast">Pitch us</a>.' : 'Stories are on the way. Have a tip? <a href="contact.html">Send it in</a>.') + '</p>';
     document.getElementById("app").innerHTML = '<div class="page-hero"><div class="wrap"><span class="kicker">Section</span><h1>' + esc(sec.name) + '</h1><p>' + esc(sec.desc) + '</p></div></div>' +
       '<section class="block"><div class="wrap narrow">' + body + '</div></section>';
@@ -122,11 +123,11 @@
     if (more.length < 3) more = more.concat(ALL.filter(function (x) { return x.cat !== s.cat && x.id !== s.id; }).slice(0, 3 - more.length));
     el.innerHTML = '<article class="article"><a class="cat" href="' + secLink(s.cat) + '">' + esc(SEC[s.cat] ? SEC[s.cat].name : s.cat) + '</a>' +
       '<h1>' + esc(s.title) + '</h1><p class="dek">' + esc(s.dek) + '</p>' +
-      '<div class="art-meta">By 254 Texas Insider Staff · ' + fmt(s.date) + (s.city ? ' · ' + esc(s.city) : '') + '</div>' +
+      '<div class="art-meta">By 254 Texas Insider Staff · ' + fmt(s.date) + (s.city ? ' · ' + esc(s.city) : '') + '</div>' + art(s, "hero-img") +
       '<div class="body">' + s.body.map(function (p) { return p.indexOf("<ul") === 0 ? p : '<p>' + p + '</p>'; }).join("") + '</div>' +
       (src ? '<div class="sources"><b>Sources</b><ul>' + src + '</ul><small>254 Texas Insider summarizes reporting and public records. Read the original sources for full details.</small></div>' : '') +
       '<div class="share"><a class="btn" href="index.html#newsletter">Get stories like this free</a></div>' +
-      '<div class="module related"><h2>Keep reading</h2>' + more.map(function (x) { return row(x, true); }).join("") + '</div></article>';
+      '<div class="module related"><h2>Keep reading</h2>' + more.map(function (x) { return row(x, true, "side"); }).join("") + '</div></article>';
     return s.cat;
   }
 
