@@ -241,3 +241,4 @@ section.block { padding: 36px 0; }
   .site-header .btn { padding: 9px 12px; font-size: 14px; }
   .brand-text span { display: none; }
 }
+.market-widget { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 8px; margin-bottom: 24px; min-height: 200px; }

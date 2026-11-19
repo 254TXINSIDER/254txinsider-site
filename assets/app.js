@@ -2,6 +2,7 @@
   var SECTIONS = [
     ["latest", "Latest", "Latest News", "Everything new across the 254."],
     ["business", "Business", "Business & Economic Development", "Companies, jobs and deals shaping Central Texas."],
+    ["markets", "Markets", "Markets & Rates", "Stocks, interest rates and the numbers that move your wallet."],
     ["growth", "Growth", "Growth & Development", "Roads, construction and the projects changing the map."],
     ["real-estate", "Real Estate", "Real Estate & Housing", "What homes cost and where the building is happening."],
     ["education", "Education", "Education & Workforce", "Schools, colleges and the talent pipeline."],
@@ -69,7 +70,7 @@
       '<div class="rows">' + rest.map(function (s) { return row(s, true); }).join("") + '</div></div></div></section>';
     var latest = '<section class="block"><div class="wrap"><div class="section-head"><h2>Latest <span>News</span></h2><a href="' + secLink("latest") + '">All latest →</a></div><div class="rows two">' +
       ALL.slice(0, 8).map(function (s) { return row(s); }).join("") + '</div></div></section>';
-    var mods = ["business", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate"].map(function (k) {
+    var mods = ["business", "markets", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate"].map(function (k) {
       var list = inCat(k).slice(0, 3);
       if (!list.length) return "";
       return '<div class="module"><h2><a href="' + secLink(k) + '">' + esc(SEC[k].name) + '</a></h2>' + list.map(function (s) { return row(s, true); }).join("") +
@@ -77,6 +78,23 @@
     }).join("");
     document.getElementById("home-top").innerHTML = h + latest;
     document.getElementById("home-modules").innerHTML = '<section class="block"><div class="wrap"><div class="modules">' + mods + '</div></div></section>';
+  }
+
+  function marketWidget(target) {
+    if (!target) return;
+    var w = document.createElement("div");
+    w.className = "tradingview-widget-container market-widget";
+    w.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
+    var sc = document.createElement("script");
+    sc.src = "https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js";
+    sc.async = true;
+    sc.text = JSON.stringify({ width: "100%", height: 460, colorTheme: "light", isTransparent: true, locale: "en",
+      symbolsGroups: [
+        { name: "Indices", symbols: [{ name: "FOREXCOM:SPXUSD", displayName: "S&P 500" }, { name: "FOREXCOM:NSXUSD", displayName: "Nasdaq 100" }, { name: "FOREXCOM:DJI", displayName: "Dow 30" }] },
+        { name: "Rates & Commodities", symbols: [{ name: "TVC:US10Y", displayName: "10-Yr Treasury" }, { name: "TVC:US02Y", displayName: "2-Yr Treasury" }, { name: "TVC:USOIL", displayName: "WTI Crude" }, { name: "TVC:GOLD", displayName: "Gold" }] }
+      ] });
+    w.appendChild(sc);
+    target.insertBefore(w, target.firstChild);
   }
 
   function section() {
@@ -88,6 +106,7 @@
       '<p class="empty">' + (sec.key === "podcast" ? 'New episodes are on the way. Want to be a guest? <a href="contact.html?topic=podcast">Pitch us</a>.' : 'Stories are on the way. Have a tip? <a href="contact.html">Send it in</a>.') + '</p>';
     document.getElementById("app").innerHTML = '<div class="page-hero"><div class="wrap"><span class="kicker">Section</span><h1>' + esc(sec.name) + '</h1><p>' + esc(sec.desc) + '</p></div></div>' +
       '<section class="block"><div class="wrap narrow">' + body + '</div></section>';
+    if (sec.key === "markets") marketWidget(document.querySelector("#app .block .wrap"));
     return sec.key;
   }
 

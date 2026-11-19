@@ -164,5 +164,37 @@ window.STORIES = [
   "<strong>What to give:</strong> new socks, blankets, scarves, large-piece jigsaw puzzles, large-print crossword and word-find books, plus small practical items like bandages, calendars, notepads, pens, boxed tissues, magnifying glasses, jar openers and small mirrors.",
   "<strong>Where:</strong> Belton Police Department, the Belton Area Chamber of Commerce or Planet Fitness in Belton, through Dec. 1.",
   "Officers and volunteers will deliver the bags later in December. Seniors can sign up for RU OK at beltontexas.gov/ruok or 254-933-5840."],
- sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1448.php"]]}
+ sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1448.php"]]},
+
+{id:"nasdaq-correction-chip-selloff", cat:"markets", top:1, city:"Wall Street", date:"2026-11-17",
+ title:"Nasdaq slides into correction as chip stocks sink ahead of Nvidia earnings",
+ dek:"The tech-heavy index is now more than 10% below its Oct. 6 record.",
+ body:[
+  "A two-day selloff led by semiconductor stocks pushed the Nasdaq Composite into correction territory this week, meaning it closed more than 10% below its record high.",
+  "<strong>Monday:</strong> the Nasdaq fell 2.49%, or 626.51 points, to 24,509.76. Its record close was 27,599.89 on Oct. 6.",
+  "<strong>Tuesday:</strong> selling spread across Wall Street. The Dow dropped 1.6%, the S&P 500 lost 1% and the Nasdaq slipped another 0.7% to 24,328.38, its lowest level in about seven months. Falling stocks outnumbered rising ones by nearly 3 to 1.",
+  "Traders were bracing for Nvidia's quarterly report, which came out after Tuesday's close, along with pressure from new U.S. export controls on AI chips.",
+  "<strong>Why it matters here:</strong> most 401(k)s and retirement plans hold big tech stocks through index funds, so a correction shows up in Central Texas account balances even if you don't trade."],
+ sources:[["Washington Post / AP","https://www.washingtonpost.com/business/2026/11/17/wall-street-stocks-dow-nasdaq/9f975f00-e2cf-11f1-a99e-b3e3805c6b8b_story.html"],["CNBC","https://www.cnbc.com/2026/11/16/stock-market-today-live-updates.html"],["Mint via TradingView","https://www.tradingview.com/news/moodys:c9b294671702c:0-stock-market-outlook-today-17-nov-sensex-nifty-prediction-djia-s-p-nasdaq-gift-nifty-kospi-nikkei-taiwan-cues/"]]},
+
+{id:"fed-december-rate-hike", cat:"markets", top:1, city:"Washington", date:"2026-11-18",
+ title:"Fed minutes point to a December rate hike, and some officials want a big one",
+ dek:"Hot October inflation has markets expecting the Fed to raise rates at its Dec. 8-9 meeting.",
+ body:[
+  "The Federal Reserve looks set to raise interest rates again next month, and the debate is now over how much.",
+  "<strong>What changed:</strong> consumer prices rose 0.4% in October, more than forecast. Treasury yields jumped after the report, with the 10-year yield back around 5%.",
+  "<strong>The minutes:</strong> notes from the Fed's October meeting, released Wednesday, said almost all officials judged further rate increases would likely be appropriate to bring inflation back to 2%.",
+  "<strong>How big:</strong> markets have mostly priced in a quarter-point hike at the Dec. 8-9 meeting. Fed Governor Christopher Waller has said a half-point increase should be considered, which would be the Fed's largest hike since 2022.",
+  "<strong>What it means for the 254:</strong> higher Fed rates typically push up credit card, auto loan and business line-of-credit rates, and can keep mortgage rates elevated."],
+ sources:[["U.S. News & World Report","https://www.usnews.com/news/economy/articles/2026-11-18/fed-poised-to-raise-rates-further-to-stem-inflation"],["The National","https://www.thenationalnews.com/business/economy/2026/11/10/federal-reserve-inflation-interest-rates-december/"],["Forbes","https://www.forbes.com/sites/simonmoore/2026/11/13/waller-floats-prospect-of-larger-december-interest-rate-hike/"]]},
+
+{id:"mortgage-rates-711", cat:"markets", city:"National", date:"2026-11-12",
+ title:"Mortgage rates fall for a fourth straight week to 7.11%",
+ dek:"Rates are at a seven-week low but still almost a full point higher than a year ago.",
+ body:[
+  "The average 30-year fixed mortgage rate dropped to 7.11% in Freddie Mac's weekly survey released Nov. 12, down from 7.18% the week before. It was the fourth weekly decline in a row and the lowest level in seven weeks.",
+  "The 15-year fixed rate fell to 6.45% from 6.57%.",
+  "A year ago, the 30-year rate averaged 6.24% and the 15-year averaged 5.49%, so borrowing is still noticeably more expensive than in 2025.",
+  "<strong>For 254 buyers:</strong> with new-home prices in Bell County averaging roughly $274,000 in Temple to $332,000 in Killeen, even small rate moves change monthly payments. Freddie Mac publishes its next survey Thursday."],
+ sources:[["Freddie Mac","https://www.freddiemac.com/pmms"]]}
 ];
