@@ -253,6 +253,8 @@ pages["_redirects"] = [
   "/thanks.html /thanks/ 301!"
 ].join("\n") + "\n";
 
+pages["google87e94f914aca1841.html"] = "google-site-verification: google87e94f914aca1841.html";
+
 // ---------- write ----------
 fs.rmSync(OUT, { recursive: true, force: true });
 for (const [f, c] of Object.entries(pages)) { const p = path.join(OUT, f); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, c); }
