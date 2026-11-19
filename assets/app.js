@@ -7,7 +7,6 @@
     ["education", "Education", "Education & Workforce", "Schools, colleges and the talent pipeline."],
     ["government", "Government", "Government & Politics", "City halls, commissioners courts and the ballot."],
     ["we-the-people", "We the People", "We the People", "Plain-English explainers on how local government works in the 254."],
-    ["way-back", "Way Back 254", "Way Back 254", "Local history from Waco to Killeen."],
     ["sports", "Sports & Community", "Sports & Community", "Friday nights, neighbors and good causes."],
     ["things-to-do", "Things to Do", "Things to Do", "Where to go and what to see this week."],
     ["podcast", "Podcast", "254 Texas Insider Podcast", "Conversations with the people building Central Texas."]
@@ -70,7 +69,7 @@
       '<div class="rows">' + rest.map(function (s) { return row(s, true); }).join("") + '</div></div></div></section>';
     var latest = '<section class="block"><div class="wrap"><div class="section-head"><h2>Latest <span>News</span></h2><a href="' + secLink("latest") + '">All latest →</a></div><div class="rows two">' +
       ALL.slice(0, 8).map(function (s) { return row(s); }).join("") + '</div></div></section>';
-    var mods = ["business", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate", "way-back"].map(function (k) {
+    var mods = ["business", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate"].map(function (k) {
       var list = inCat(k).slice(0, 3);
       if (!list.length) return "";
       return '<div class="module"><h2><a href="' + secLink(k) + '">' + esc(SEC[k].name) + '</a></h2>' + list.map(function (s) { return row(s, true); }).join("") +

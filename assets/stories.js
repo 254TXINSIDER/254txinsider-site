@@ -164,16 +164,5 @@ window.STORIES = [
   "<strong>What to give:</strong> new socks, blankets, scarves, large-piece jigsaw puzzles, large-print crossword and word-find books, plus small practical items like bandages, calendars, notepads, pens, boxed tissues, magnifying glasses, jar openers and small mirrors.",
   "<strong>Where:</strong> Belton Police Department, the Belton Area Chamber of Commerce or Planet Fitness in Belton, through Dec. 1.",
   "Officers and volunteers will deliver the bags later in December. Seniors can sign up for RU OK at beltontexas.gov/ruok or 254-933-5840."],
- sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1448.php"]]},
-
-{id:"way-back-temple-mud-town", cat:"way-back", top:1, city:"Temple", date:"2026-11-18",
- title:"Way Back 254: How 'Mud Town' became Temple",
- dek:"Before it was a medical and manufacturing hub, Temple was a railroad construction camp with an unflattering nickname.",
- body:[
-  "In 1880, landowner Jonathan E. Moore sold land to the Gulf, Colorado and Santa Fe Railway for a construction camp where its lines would meet. The railroad called the spot Temple Junction, after its chief engineer, Bernard Moore Temple.",
-  "The people living there had other names for it. Muddy streets earned the camp the nicknames Mud Town and Tanglefoot.",
-  "When a post office opened in January 1881, the name became simply Temple. On June 29, 1881, the railroad auctioned off town lots, and that date is still celebrated as Temple's birthday. The town incorporated in 1882.",
-  "The railroad shaped everything that followed. Santa Fe made Temple a division point, and in 1891 it opened a hospital for its workers, the seed of the medical community that defines the city today. The brick Santa Fe depot, finished in 1911, now houses the Temple Railroad and Heritage Museum.",
-  "Bernard Moore Temple himself is buried in Galveston, where a state historical marker tells his story."],
- sources:[["Historical Marker Database: Temple","https://www.hmdb.org/m.asp?m=207086"],["City of Temple: Rooted in rail","https://www.templetx.gov/news_detail_T13_R231.php"],["Historical Marker Database: Santa Fe Depot","https://www.hmdb.org/m.asp?m=304769"]]}
+ sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1448.php"]]}
 ];
