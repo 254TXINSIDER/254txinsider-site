@@ -42,7 +42,7 @@ h1, h2, h3, h4 { font-family: var(--head); text-transform: uppercase; letter-spa
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 12px; padding-bottom: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--navy); }
 .brand:hover { text-decoration: none; }
-.brand img { width: 52px; height: 52px; flex: none; }
+.brand img { width: 64px; height: 64px; flex: none; }
 .brand-text { font-family: var(--head); text-transform: uppercase; line-height: 1; }
 .brand-text strong { display: block; font-size: 26px; letter-spacing: .03em; }
 .brand-text span { display: block; font-size: 13px; color: var(--orange); letter-spacing: .18em; margin-top: 4px; }
