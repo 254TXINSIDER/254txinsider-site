@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="254 Texas Insider">
+  <circle cx="50" cy="50" r="48" fill="#0f2340"/>
+  <circle cx="50" cy="50" r="43" fill="none" stroke="#c8561b" stroke-width="3"/>
+  <path d="M28 30 Q50 22 72 30 Q74 52 66 66 Q58 78 50 82 Q42 78 34 66 Q26 52 28 30 Z" fill="#ffffff"/>
+  <path d="M30 32 Q50 25 70 32 L69.5 39 L30.5 39 Z" fill="#c8561b"/>
+  <text x="50" y="66" text-anchor="middle" font-family="Oswald, Arial Narrow, Impact, sans-serif" font-weight="700" font-size="24" fill="#0f2340">254</text>
+</svg>
