@@ -14,7 +14,7 @@ const SECTIONS = [
   ["education", "Education", "Education & Workforce", "Central Texas schools, colleges and the workforce pipeline in Killeen, Temple, Belton and Waco."],
   ["government", "Government", "Government & Politics", "Bell County and McLennan County government: city councils, commissioners courts and elections."],
   ["we-the-people", "We the People", "We the People", "Plain-English explainers on how local government works in Waco, Temple, Killeen and Belton."],
-  ["sports", "Sports & Community", "Sports & Community", "Central Texas high school football, community news and good causes across the 254."],
+  ["sports", "Sports", "Sports & Community", "High school and college sports across the 254, including Baylor, UMHB and Tarleton State, plus community news and good causes."],
   ["things-to-do", "Things to Do", "Things to Do", "Things to do in Waco, Temple, Killeen and Belton this week: events, festivals and holiday fun."],
   ["podcast", "Podcast", "254 Texas Insider Podcast", "Conversations with the business owners, builders and leaders shaping Central Texas."]
 ];
@@ -103,12 +103,12 @@ function row(s, noDek, pic) {
 }
 const TICKER = `<div class="ticker"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FOREXCOM:NSXUSD","title":"Nasdaq 100"},{"proName":"FOREXCOM:DJI","title":"Dow 30"},{"proName":"TVC:US10Y","title":"10-Yr Treasury"},{"proName":"TVC:USOIL","title":"WTI Crude"},{"proName":"TVC:GOLD","title":"Gold"}],"showSymbolLogo":true,"colorTheme":"dark","isTransparent":true,"displayMode":"adaptive","locale":"en"}
+{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FOREXCOM:NSXUSD","title":"Nasdaq 100"},{"proName":"FOREXCOM:DJI","title":"Dow 30"},{"proName":"TVC:USOIL","title":"WTI Crude"},{"proName":"TVC:GOLD","title":"Gold"},{"proName":"TVC:SILVER","title":"Silver"},{"proName":"BITSTAMP:BTCUSD","title":"Bitcoin"}],"showSymbolLogo":true,"colorTheme":"dark","isTransparent":true,"displayMode":"adaptive","locale":"en"}
 </script></div></div>
 `;
 const MARKET_WIDGET = `<div class="tradingview-widget-container market-widget"><div class="tradingview-widget-container__widget"></div>
 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-{"width":"100%","height":460,"colorTheme":"light","isTransparent":true,"locale":"en","symbolsGroups":[{"name":"Indices","symbols":[{"name":"FOREXCOM:SPXUSD","displayName":"S&P 500"},{"name":"FOREXCOM:NSXUSD","displayName":"Nasdaq 100"},{"name":"FOREXCOM:DJI","displayName":"Dow 30"}]},{"name":"Rates & Commodities","symbols":[{"name":"TVC:US10Y","displayName":"10-Yr Treasury"},{"name":"TVC:US02Y","displayName":"2-Yr Treasury"},{"name":"TVC:USOIL","displayName":"WTI Crude"},{"name":"TVC:GOLD","displayName":"Gold"}]}]}
+{"width":"100%","height":460,"colorTheme":"light","isTransparent":true,"locale":"en","symbolsGroups":[{"name":"Indices","symbols":[{"name":"FOREXCOM:SPXUSD","displayName":"S&P 500"},{"name":"FOREXCOM:NSXUSD","displayName":"Nasdaq 100"},{"name":"FOREXCOM:DJI","displayName":"Dow 30"}]},{"name":"Commodities & Crypto","symbols":[{"name":"TVC:USOIL","displayName":"WTI Crude"},{"name":"TVC:GOLD","displayName":"Gold"},{"name":"TVC:SILVER","displayName":"Silver"},{"name":"BITSTAMP:BTCUSD","displayName":"Bitcoin"}]}]}
 </script></div>
 `;
 const SIGNUP = (h = "h2") => `<section class="block" id="newsletter"><div class="wrap"><div class="signup">
