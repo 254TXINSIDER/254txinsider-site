@@ -10,7 +10,7 @@ const SECTIONS = [
   ["business", "Business", "Business & Economic Development", "The business journal for the 254: openings, expansions, jobs, deals and development across Waco, Temple, Killeen, Belton, Harker Heights, Copperas Cove and all of Central Texas."],
   ["markets", "Markets", "Markets & Rates", "Stocks, interest rates, mortgage rates and the numbers that move Central Texas wallets."],
   ["growth", "Growth", "Growth & Development", "Central Texas growth and development: roads, construction and the projects changing the 254."],
-  ["real-estate", "Real Estate", "Real Estate & Housing", "Central Texas real estate: home prices, new construction and housing across Bell and McLennan counties."],
+  ["real-estate", "Real Estate", "Real Estate & Housing", "Today's mortgage rates, home prices and inventory for Killeen-Temple, Waco and Austin, what it means for 254 buyers, sellers and homeowners, plus commercial land and development news."],
   ["education", "Education", "Education & Workforce", "Central Texas schools, colleges and the workforce pipeline in Killeen, Temple, Belton and Waco."],
   ["government", "Government", "Government & Politics", "Bell County and McLennan County government: city councils, commissioners courts and elections."],
   ["we-the-people", "We the People", "We the People", "Plain-English explainers on how local government works in Waco, Temple, Killeen and Belton."],
@@ -27,7 +27,32 @@ const hasArt = id => fs.existsSync(path.join(ROOT, "assets/art", id + ".webp"));
 ALL.forEach(s => { s.url = "/news/" + s.id + "/"; s.art = hasArt(s.id) ? "/assets/art/" + s.id + ".webp" : null; });
 const BIZ = ["business", "growth", "real-estate"];
 const inCat = k => ALL.filter(s => s.cat === k);
-const inSec = k => k === "business" ? ALL.filter(s => BIZ.includes(s.cat)) : inCat(k);
+const inSec = k => k === "business" ? ALL.filter(s => BIZ.includes(s.cat))
+  : k === "real-estate" ? ALL.filter(s => s.cat === "real-estate" || s.cat === "growth" || (s.also || []).includes("real-estate"))
+  : inCat(k);
+// ---------- housing dashboard ----------
+const msb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/market.js"), "utf8"), msb);
+const MK = msb.window.MARKET;
+const fmtN = (v, u) => typeof v === "string" ? v : u === "$" ? "$" + Math.round(v).toLocaleString("en-US") : (Number.isInteger(v) ? v.toLocaleString("en-US") : String(v));
+const chg = (p, note) => p === null || p === undefined ? (note ? `<small>${esc(note)}</small>` : "") : `<small class="${p < 0 ? "dn" : "up"}">${p > 0 ? "▲" : p < 0 ? "▼" : ""} ${Math.abs(p).toFixed(1)}% vs. last year${note ? " · " + esc(note) : ""}</small>`;
+const srcA = s => `<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a>`;
+function rateCards() {
+  const R = MK.rates, c = r => `<div class="rcard"><span class="lbl">${esc(r.label)}</span><b>${r.v.toFixed(2)}%</b>${r.prev !== undefined ? `<small class="${r.v > r.prev ? "up" : "dn"}">${r.v > r.prev ? "▲" : "▼"} from ${r.prev.toFixed(2)}% last week · ${r.yearAgo.toFixed(2)}% a year ago</small>` : `<small class="${r.chg > 0 ? "up" : "dn"}">${r.chg > 0 ? "▲" : r.chg < 0 ? "▼" : "•"} ${Math.abs(r.chg).toFixed(2)} from prior day</small>`}<span class="asof">${esc(r.asOf)} · ${srcA(r.src)}</span></div>`;
+  return `<div class="rates">${[R.daily, R.weekly, R.daily15, R.weekly15].map(c).join("")}</div>`;
+}
+function marketDash() {
+  const stat = s => `<div class="stat"><span class="lbl">${esc(s[0])}</span><b>${fmtN(s[1], s[2])}</b>${chg(s[3], s[4])}</div>`;
+  const area = a => `<div class="area"><h3>${esc(a.name)}</h3><p class="sub">${esc(a.sub)} · ${esc(a.month)}</p><div class="astats">${a.stats.map(stat).join("")}</div><p class="src">Source: ${srcA(a.src)}</p></div>`;
+  const T = MK.takeaways;
+  return `<div class="dash" id="housing-dashboard"><div class="dash-head"><h2>254 Housing <span>Dashboard</span></h2><span class="upd">Updated ${esc(new Date(MK.updated + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }))}</span></div>
+<h3 class="dsub">Today's mortgage rates</h3>${rateCards()}
+<div class="calc" id="pay-calc"><h3>What would my payment be?</h3><div class="calc-row"><label>Home price <input type="number" id="pc-price" value="${MK.calc.price}" step="5000" min="0"></label><label>Down payment % <input type="number" id="pc-down" value="${MK.calc.downPct}" step="1" min="0" max="100"></label><label>Rate % <input type="number" id="pc-rate" value="${MK.rates.weekly.v}" step="0.01" min="0"></label><label>Term <select id="pc-term"><option value="30">30 years</option><option value="15">15 years</option></select></label></div><p class="calc-out">Principal & interest: <b id="pc-out">—</b>/month <small>Property taxes, insurance and any HOA dues are extra. Texas property taxes alone can add several hundred dollars a month.</small></p></div>
+<h3 class="dsub">Local market</h3><div class="areas">${MK.local.map(area).join("")}</div>
+<h3 class="dsub">National market</h3><div class="areas one"><div class="area"><p class="sub">U.S. existing homes · ${esc(MK.national.month)}</p><div class="nat">${MK.national.stats.map(stat).join("")}</div><p class="src">Source: ${srcA(MK.national.src)}</p></div></div>
+<h3 class="dsub">What it means for you</h3><div class="takes"><div><b>Buying</b><p>${esc(T.buyers)}</p></div><div><b>Selling</b><p>${esc(T.sellers)}</p></div><div><b>Own a home</b><p>${esc(T.owners)}</p></div></div>
+<p class="disc">General information, not financial advice. Rates are national averages for top-tier borrowers; your rate depends on credit, down payment and loan type. Talk with a lender or Realtor about your situation.</p></div>
+<h2 class="list-head">Housing, land & development <span>news</span></h2>`;
+}
 
 // ---------- helpers ----------
 const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -164,7 +189,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }]
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? MARKET_WIDGET : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
