@@ -7,7 +7,7 @@ const DESC = "Central Texas news for Waco, Temple, Killeen and Belton: business,
 const SOC = { tiktok: "https://www.tiktok.com/@254.texas.insider", instagram: "https://www.instagram.com/254texasinsider", facebook: "https://www.facebook.com/search/top?q=254%20Texas%20Insider" };
 const SECTIONS = [
   ["latest", "Latest", "Latest News", "Everything new across the 254: Waco, Temple, Killeen, Belton and the rest of Central Texas."],
-  ["business", "Business", "Business & Economic Development", "Central Texas business news: companies, jobs, expansions and deals shaping Waco, Temple, Killeen and Belton."],
+  ["business", "Business", "Business & Economic Development", "The business journal for the 254: openings, expansions, jobs, deals and development across Waco, Temple, Killeen, Belton, Harker Heights, Copperas Cove and all of Central Texas."],
   ["markets", "Markets", "Markets & Rates", "Stocks, interest rates, mortgage rates and the numbers that move Central Texas wallets."],
   ["growth", "Growth", "Growth & Development", "Central Texas growth and development: roads, construction and the projects changing the 254."],
   ["real-estate", "Real Estate", "Real Estate & Housing", "Central Texas real estate: home prices, new construction and housing across Bell and McLennan counties."],
@@ -25,7 +25,9 @@ const sandbox = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROO
 const ALL = sandbox.window.STORIES.slice().sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 const hasArt = id => fs.existsSync(path.join(ROOT, "assets/art", id + ".webp"));
 ALL.forEach(s => { s.url = "/news/" + s.id + "/"; s.art = hasArt(s.id) ? "/assets/art/" + s.id + ".webp" : null; });
+const BIZ = ["business", "growth", "real-estate"];
 const inCat = k => ALL.filter(s => s.cat === k);
+const inSec = k => k === "business" ? ALL.filter(s => BIZ.includes(s.cat)) : inCat(k);
 
 // ---------- helpers ----------
 const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -151,7 +153,7 @@ ${WATCH}</main>
 }
 // sections
 SECTIONS.forEach(([k]) => {
-  const sec = SEC[k], list = k === "latest" ? ALL : inCat(k), url = secUrl(k);
+  const sec = SEC[k], list = k === "latest" ? ALL : inSec(k), url = secUrl(k);
   const body = list.length ? `<div class="rows">${list.map(s => row(s, false, "side")).join("")}</div>` :
     `<p class="empty">${k === "podcast" ? 'New episodes are on the way. Want to be a guest? <a href="/contact/?topic=podcast">Pitch us</a>.' : 'Stories are on the way. Have a tip? <a href="/contact/">Send it in</a>.'}</p>`;
   const crumbs = [["Home", "/"], [sec.name, url]];
