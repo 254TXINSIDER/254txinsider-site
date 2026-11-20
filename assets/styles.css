@@ -352,3 +352,28 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 .calc label.chk { flex-direction:row; align-items:center; gap:8px; font-size:13px; color:#fff; grid-column:span 2; }
 .calc label.chk input { width:18px; height:18px; flex:none; }
 #pc-note { color:#f3d9c6; font-size:13px; margin-bottom:6px; }
+
+/* v8 apartment finder + senior living */
+.senior { margin:22px 0 6px; padding:18px; border-radius:12px; background:#f4f6fa; border:1px solid #dfe4ee; }
+.senior h2 { font-family:"Oswald",sans-serif; text-transform:uppercase; margin:0 0 12px; color:#13213c; font-size:24px; }
+.sl-cols { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.sl-box { background:#fff; border-radius:10px; padding:14px 16px; border:1px solid #e3e7ef; }
+.sl-box h3 { margin:0 0 10px; font-family:"Oswald",sans-serif; text-transform:uppercase; font-size:17px; color:#13213c; }
+.sl-box .hs-btns .btn { font-size:14px; padding:9px 14px; }
+.sl-p { font-size:14px; margin:0 0 10px; color:#333; }
+.sl-help { list-style:none; margin:0; padding:0; }
+.sl-help li { padding:7px 0; border-top:1px solid #eee; font-size:14px; display:flex; flex-direction:column; gap:2px; }
+.sl-help li span { color:#666; font-size:13px; }
+.sl-help a { color:#c75b26; }
+.sl-filter { margin-bottom:10px; }
+.sl-filter label { max-width:260px; }
+.sl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.sl-card { background:#fff; border:1px solid #e3e7ef; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:4px; font-size:13px; color:#555; }
+.sl-card b { color:#13213c; font-size:15px; }
+.sl-tag { align-self:flex-start; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:3px 7px; border-radius:4px; }
+.sl-tag.hud { background:#e3f1e6; color:#22693a; }
+.sl-tag.tc { background:#fdeee3; color:#a14716; }
+.sl-links { display:flex; gap:14px; margin-top:4px; }
+.sl-links a { color:#c75b26; font-weight:600; }
+@media (max-width:860px) { .sl-cols { grid-template-columns:1fr; } .sl-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:520px) { .sl-grid { grid-template-columns:1fr; } .senior { padding:12px; } }

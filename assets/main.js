@@ -79,3 +79,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   upd();
 })();
+
+// Apartment finder + senior living (Real Estate page)
+(function () {
+  var A = window.HS_AREAS; if (!A) return;
+  var g = function (id) { return document.getElementById(id); };
+  var apt = g("apt-area");
+  if (apt) apt.addEventListener("change", function () { var a = A[+apt.value];
+    g("apt-acom").href = "https://www.apartments.com/" + a[2] + "/"; g("apt-zillow").href = "https://www.zillow.com/" + a[2] + "/rentals/"; g("apt-realtor").href = "https://www.realtor.com/apartments/" + a[1]; });
+  var sl = g("sl-area");
+  if (sl) sl.addEventListener("change", function () { g("sl-acom").href = "https://www.apartments.com/" + A[+sl.value][2] + "/senior-housing/"; });
+  var c = g("sl-county");
+  if (c) c.addEventListener("change", function () { [].forEach.call(document.querySelectorAll(".sl-card"), function (el) { el.style.display = !c.value || el.getAttribute("data-county") === c.value ? "" : "none"; }); });
+})();
