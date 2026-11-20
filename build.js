@@ -97,6 +97,46 @@ function localPros() {
 <form class="pros-form" id="pros-form" name="sponsor" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="sponsor"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
 <h3>Claim a spot or ask about rates</h3><div class="pf-row"><label>Your name <input name="name" required></label><label>Business name <input name="business" required></label><label>Category <select name="category" id="pf-cat">${cats.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label><label>Website <input name="website" placeholder="optional"></label></div><label class="pf-msg">Anything we should know? <textarea name="message" rows="3" placeholder="Areas you serve, what you'd like to promote..."></textarea></label><button class="btn" type="submit">Send, we'll call you</button><p class="hs-note">Sponsored listings are marked "Sponsored." ${NAME} does not endorse any business.</p></form></div>`;
 }
+// ---------- 254 Home Pros (residential lead hub) ----------
+const HOME_TRADES = [["AC & Heating", "❄️"], ["Plumbing", "🚰"], ["Electrical", "⚡"], ["Roofing", "🏠"], ["Foundation Repair", "🧱"], ["Pest Control", "🐜"], ["Garage Doors", "🚪"], ["Fencing", "🪵"], ["Landscaping & Lawn", "🌳"], ["Tree Service", "🪓"], ["Pools & Spas", "🏊"], ["Handyman", "🔧"], ["Gutters", "🌧️"], ["Remodeling", "🛠️"], ["Painting", "🎨"], ["Cleaning", "🧽"]];
+const HOME_PROMO = `<a class="bld-promo" href="/home-pros/"><b>Need a pro at the house?</b><span>AC, plumbing, roofing, foundation and more. One trusted local pro per trade, not a bidding war. →</span></a>`;
+const BUILD_PROMO = `<a class="bld-promo" href="/build/"><b>Commercial project in the 254?</b><span>HVAC, plumbing, electrical, roofing, construction and more. Get connected with local commercial pros. →</span></a>`;
+function homeHub() {
+  const needs = HOME_TRADES.map(t => t[0]);
+  const cities = ["Temple", "Belton", "Killeen", "Harker Heights", "Nolanville", "Copperas Cove", "Salado", "Waco", "Hewitt / Woodway", "Robinson", "Gatesville", "Lampasas", "Other 254"];
+  return `<div class="page-hero bld-hero"><div class="wrap"><span class="kicker">Homeowners</span><h1>254 Home <span>Pros</span></h1><p>Need work done at the house? Tell us what's going on and we'll pass it to one trusted local pro in that trade. No bidding war, no sharing your number with five companies.</p><div class="btn-row"><a class="btn" href="#request">Request a pro</a><a class="btn ghost" href="#home-vendors">I'm a local pro</a></div></div></div>
+<section class="block"><div class="wrap">
+<div class="bld-grid"><div class="bld-main">
+<form class="pros-form bld-form" id="request" name="home-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="home-request"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h2>Request a home pro</h2><p class="bld-sub">Free for homeowners. Your request goes to one local partner in each trade you pick.</p>
+<div class="pf-row"><label>Your name <input name="name" required></label><label>Phone <input name="phone" type="tel" required></label><label>Email <input name="email" type="email" required></label>
+<label>City <select name="city">${cities.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>How soon? <select name="urgency"><option>Today / urgent</option><option>This week</option><option>This month</option><option>Just getting quotes</option></select></label><label>Own or rent? <select name="own_rent"><option>Own</option><option>Rent (I have the owner's OK)</option><option>Property manager / landlord</option></select></label></div>
+<fieldset class="bld-needs"><legend>What do you need? (pick all that apply)</legend>${needs.map(n => `<label><input type="checkbox" name="needs[]" value="${esc(n)}"> ${esc(n)}</label>`).join("")}</fieldset>
+<label class="pf-msg">What's going on? <textarea name="details" rows="4" placeholder="Upstairs AC blowing warm, water heater leaking, hail hit the roof, cracks over the doors..."></textarea></label>
+<label class="bld-consent"><input type="checkbox" name="consent" value="yes" required> OK to share my request with one local partner per trade I picked so they can contact me.</label>
+<button class="btn" type="submit">Send my request</button><p class="hs-note">Smell gas? Leave the house and call 911 or your gas company. Sparks or burning smell? Call 911. ${NAME} is not a contractor; partners are independent businesses. Always check that a pro is licensed and insured for their trade.</p></form>
+
+<div class="pros" id="home-vendors"><div class="pros-head"><h2>Featured Home Pros</h2><span>Founding spots open</span></div>
+<p class="pros-sub">One featured pro per trade. Homeowner requests in your trade come to you only, not to a list of competitors, and you're featured next to the local news 254 homeowners read.</p>
+<div class="pros-grid">${HOME_TRADES.map(t => `<div class="pro-slot"><span class="pro-ico">${t[1]}</span><b>${esc(t[0])}</b><span>Your company here</span><a class="btn" href="#home-vendor-form" data-htrade="${esc(t[0])}">Claim this spot</a></div>`).join("")}</div>
+<form class="pros-form" id="home-vendor-form" name="home-pro" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="home-pro"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h3>Local pros: claim your trade</h3><div class="pf-row"><label>Your name <input name="name" required></label><label>Company <input name="company" required></label><label>Trade <select name="trade" id="hv-trade">${needs.concat(["Other"]).map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label><label>Website <input name="website" placeholder="optional"></label></div>
+<div class="pf-row"><label>Cities you serve <input name="cities" placeholder="Temple, Belton, Killeen..."></label><label>Licensed / insured? <select name="licensed"><option>Yes</option><option>In progress</option><option>Not required for my trade</option></select></label><label>Years in business <input name="years" placeholder="optional"></label></div>
+<label class="pf-msg">Anything else? <textarea name="message" rows="3" placeholder="Specialties, service area, emergency service..."></textarea></label><button class="btn" type="submit">Send, we'll call you</button><p class="hs-note">Featured listings are marked "Sponsored." ${NAME} does not endorse any business.</p></form></div>
+</div>
+<aside class="bld-side">
+<div class="bld-box"><h3>Season checklist</h3><ul>
+<li><b>Before a freeze.</b> Know where your main water shutoff is, wrap outdoor faucets and exposed pipes, and drip faucets on outside walls on the coldest nights.</li>
+<li><b>Before summer.</b> Change the air filter, rinse the outdoor AC unit, and get a tune-up in spring before every company is booked.</li>
+<li><b>After hail.</b> Photograph the roof, gutters and vents from the ground, call your insurance company, and be wary of storm chasers knocking on doors.</li>
+<li><b>Doors sticking, new cracks?</b> Central Texas clay soil shifts with drought and rain. Have foundation movement checked early; it's cheaper.</li></ul></div>
+<div class="bld-box"><h3>Hiring tips</h3><ul>
+<li>Get two or three quotes for big jobs, in writing.</li>
+<li>Ask for proof of insurance, and a license where your trade requires one. You can look up Texas AC, electrical and plumbing licenses on the state's <a href="https://www.tdlr.texas.gov/LicenseSearch/" target="_blank" rel="noopener">TDLR license search</a>.</li>
+<li>Don't pay in full up front. A reasonable deposit is normal; the rest when the work is done.</li></ul></div>
+<div class="bld-box"><h3>More for homeowners</h3><ul><li><a href="/real-estate/#property-tax-guide">Lower your property taxes</a></li><li><a href="/real-estate/#housing-dashboard">254 Housing Dashboard</a></li><li><a href="/build/">Commercial building? 254 Build &amp; Facilities</a></li></ul></div>
+</aside></div></div></section>`;
+}
 function taxGuide() {
   const cad = [["Bell County", "Tax Appraisal District of Bell County", "https://bellcad.org/", "254-939-5841", "https://portal.bellcad.org/"], ["McLennan County", "McLennan Central Appraisal District", "https://mclennancad.org/", "254-752-9864", "https://mclennancad.org/"], ["Coryell County", "Coryell Central Appraisal District", "https://coryellcad.org/", "", "https://coryellcad.org/"]];
   return `<div class="taxg" id="property-tax-guide"><h2>Lower your property taxes</h2>
@@ -217,7 +257,7 @@ function header(active) {
   const nav = SECTIONS.map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("");
   return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; Waco · Temple · Killeen · Belton</span></span><span class="socials">${social()}</span></div></div>
 <header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><a class="btn" href="/#newsletter">Subscribe Free</a></div></header>
-<nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a href="/build/"${active === "build" ? ' class="active" aria-current="page"' : ""}>Build &amp; Facilities</a></div></nav>
+<nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a href="/home-pros/"${active === "home-pros" ? ' class="active" aria-current="page"' : ""}>Home Pros</a><a href="/build/"${active === "build" ? ' class="active" aria-current="page"' : ""}>Build &amp; Facilities</a></div></nav>
 `;
 }
 function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopener">TikTok</a><a href="${SOC.instagram}" target="_blank" rel="noopener">Instagram</a><a href="${SOC.facebook}" target="_blank" rel="noopener">Facebook</a>`; }
@@ -226,7 +266,7 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
@@ -284,6 +324,7 @@ const pages = {};
 <p>Business, growth, government and Friday nights across the 254: Waco, Temple, Killeen, Belton and everywhere in between.</p>
 <div class="top-grid"><a class="lead" href="${lead.url}">${art(lead, "lead-img", true)}<span class="cat">${esc(catLabel(lead.cat))}</span><h2>${esc(lead.title)}</h2><p>${esc(lead.dek)}</p><time datetime="${lead.date}">${fmt(lead.date)} · ${esc(lead.city)}</time></a>
 <div class="rows">${rest.map(s => row(s, true, "side")).join("")}</div></div></div></section>
+<section class="block"><div class="wrap"><div class="home-pros-row">${HOME_PROMO}${BUILD_PROMO}</div></div></section>
 <section class="block"><div class="wrap"><div class="section-head"><h2>Latest <span>News</span></h2><a href="/latest/">All latest →</a></div><div class="rows two">${ALL.slice(0, 8).map(s => row(s, false, "side")).join("")}</div></div></section>
 ${SIGNUP()}<section class="block"><div class="wrap"><div class="modules">${mods}</div></div></section>
 ${WATCH}</main>
@@ -300,7 +341,6 @@ const BIDS = [
   ["State of Texas", "Electronic State Business Daily (state agency, TxDOT and university bids)", "https://www.txsmartbuy.com/esbd"],
   ["TDLR (TABS)", "Search commercial projects registered with the state by city, owner or designer", "https://tdlr.texas.gov/TABS/Search"]
 ];
-const BUILD_PROMO = `<a class="bld-promo" href="/build/"><b>Commercial project in the 254?</b><span>HVAC, plumbing, electrical, roofing, construction and more. Get connected with local commercial pros. →</span></a>`;
 function buildHub() {
   const needs = TRADES.map(t => t[0]);
   const projects = ALL.filter(s => s.cat === "growth" || (s.also || []).includes("real-estate") || (s.cat === "business" && /build|construct|develop|plant|facility|expan|warehouse|data center|groundbreak/i.test(s.title))).slice(0, 8);
@@ -347,7 +387,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }]
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -402,6 +442,7 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
+simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros");
 simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build");
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
   `<div class="page-hero"><div class="wrap"><h1>Thank <span>You</span></h1><p>Got it. We'll be in touch. In the meantime, catch the latest on the homepage.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
@@ -411,7 +452,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 // ---------- feeds, sitemaps, robots, redirects ----------
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
