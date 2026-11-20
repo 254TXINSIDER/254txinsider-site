@@ -268,3 +268,6 @@ section.block { padding: 36px 0; }
 @media (max-width: 600px) {
   .lead:has(.lead-img)::before { background: linear-gradient(to top, rgba(15,35,64,.97) 0%, rgba(15,35,64,.9) 55%, rgba(15,35,64,.15) 85%); }
 }
+/* ---- v5: keep thumbnails in proportion ---- */
+.row-side, .row-top, .hero-img { height: auto; }
+.row.pic { align-items: start; }

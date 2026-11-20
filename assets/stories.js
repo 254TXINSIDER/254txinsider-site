@@ -196,5 +196,53 @@ window.STORIES = [
   "The 15-year fixed rate fell to 6.45% from 6.57%.",
   "A year ago, the 30-year rate averaged 6.24% and the 15-year averaged 5.49%, so borrowing is still noticeably more expensive than in 2025.",
   "<strong>For 254 buyers:</strong> with new-home prices in Bell County averaging roughly $274,000 in Temple to $332,000 in Killeen, even small rate moves change monthly payments. Freddie Mac publishes its next survey Thursday."],
- sources:[["Freddie Mac","https://www.freddiemac.com/pmms"]]}
+ sources:[["Freddie Mac","https://www.freddiemac.com/pmms"]]},
+
+{id:"baylor-football-texas-tech-senior-day", cat:"sports", top:1, city:"Waco", date:"2026-11-19",
+ title:"Baylor hosts No. 10 Texas Tech on Senior Day after loss at BYU",
+ dek:"The Bears (6-4) close their home schedule Saturday at McLane Stadium, then finish at Houston on Nov. 28.",
+ body:[
+  "Baylor football plays its final home game of 2026 on Saturday, Nov. 21, when the Bears host No. 10 Texas Tech on Senior Day. Kickoff is set for 2:30 p.m. Central.",
+  "<strong>Where Baylor stands:</strong> the Bears are 6-4 overall and 4-3 in the Big 12. They beat Iowa State 42-31 on Nov. 7, then fell 28-7 at No. 10 BYU on Nov. 14.",
+  "<strong>What's next:</strong> Baylor closes the regular season at No. 21 Houston on Saturday, Nov. 28. That game kicks off at 8:30 p.m. on ESPN2.",
+  "Houston won last year's meeting in Waco 31-24, so the finale doubles as a rivalry rematch."],
+ sources:[["Baylor Athletics: Football","https://baylorbears.com/sports/football"],["Baylor Athletics: Houston kickoff time","https://baylorbears.com/news/2026/11/16/football-baylor-at-houston-set-for-8-30-pm-on-espn2"],["Wikipedia: Baylor–Houston rivalry","https://en.wikipedia.org/wiki/Baylor%E2%80%93Houston_football_rivalry"]]},
+
+{id:"umhb-asc-title-playoff-bye", cat:"sports", top:1, city:"Belton", date:"2026-11-16",
+ title:"UMHB wins 20th ASC title, earns first-round playoff bye",
+ dek:"The Crusaders (9-1) will host No. 15 Trinity on Nov. 28 in the second round of the Division III playoffs.",
+ body:[
+  "Mary Hardin-Baylor clinched the American Southwest Conference championship outright on Saturday, Nov. 14, with a 13-3 defensive win over rival Hardin-Simmons at Crusader Stadium in Belton. It is the program's 20th ASC title.",
+  "The win moved the Crusaders to 9-1 overall and 5-0 in conference play.",
+  "<strong>Playoff path:</strong> No. 13 UMHB received a first-round bye in the 40-team NCAA Division III bracket released Sunday. The Cru will host No. 15 Trinity (9-1) in the second round on Saturday, Nov. 28, at 1 p.m.",
+  "The Division III national championship, the Stagg Bowl, is set for Jan. 3 in Salem, Virginia."],
+ sources:[["KWTX / UMHB Football","https://www.kwtx.com/2026/11/15/umhb-shuts-down-hardin-simmons-outright-asc-title/"],["Killeen Daily Herald","https://kdhnews.com/kdhpressbox/umhb-embracing-tough-playoff-path/article_eb9ba71f-63ce-4699-b389-6dbe1b691bca.html"],["Southern Athletic Association","https://saa-sports.com/news/2026/11/16/trinity-football-to-play-umhb-in-second-round-of-ncaa-playoffs.aspx"]]},
+
+{id:"baylor-mens-basketball-players-era", cat:"sports", city:"Waco", date:"2026-11-19",
+ title:"Baylor men's basketball routs Jackson State, heads to Las Vegas next week",
+ dek:"The Bears bounced back from a three-point loss to No. 7 Texas and open the Players Era tournament against Alabama on Nov. 24.",
+ body:[
+  "Baylor men's basketball beat Jackson State 104-55 at Foster Pavilion on Wednesday, Nov. 18.",
+  "The win came three days after a 75-72 loss to No. 7 Texas on Nov. 15, when freshman Kayden Mingo scored 23 points. Baylor also beat Northwestern State, Arkansas-Pine Bluff and Yale to open the season.",
+  "<strong>Next up:</strong> the Bears play in the Players Era 16 Championship in Las Vegas, Nov. 24-28, opening against Alabama on Tuesday, Nov. 24.",
+  "Coach Scott Drew's team is trying to rebound from a 17-17 season in 2025-26."],
+ sources:[["Baylor Athletics","https://baylorbears.com/"],["Baylor Athletics: Men's Basketball","https://baylorbears.com/sports/mens-basketball"],["Baylor Athletics: Players Era","https://baylorbears.com/news/2026/5/21/mens-basketball-mbb-to-compete-in-2026-players-era-mens-championship-nov-24-28"]]},
+
+{id:"baylor-womens-basketball-usc", cat:"sports", city:"Waco", date:"2026-11-19",
+ title:"Baylor women's basketball faces No. 4 USC Friday night",
+ dek:"The Lady Bears have scored 100 or more points twice already this season.",
+ body:[
+  "Baylor women's basketball takes on No. 4 Southern California on Friday, Nov. 20, at 10 p.m. Central, then returns home to face Northern Kentucky on Sunday, Nov. 22, at 2 p.m.",
+  "Coach Nicki Collen's team has opened strong, including a 112-40 win over Texas A&M-Corpus Christi on 254 Day (Nov. 8) and a 100-66 win over East Texas A&M on Nov. 15.",
+  "<strong>Also on campus:</strong> Baylor volleyball won a five-set match at Colorado on Nov. 15."],
+ sources:[["Baylor Athletics","https://baylorbears.com/"],["Baylor Athletics: Women's Basketball schedule","https://baylorbears.com/sports/womens-basketball/schedule"]]},
+
+{id:"tarleton-state-no1-fcs", cat:"sports", city:"Stephenville", date:"2026-11-19",
+ title:"Tarleton State is 11-0 and ranked No. 1 in the FCS heading into the playoffs",
+ dek:"The Texans won the United Athletic Conference title in Stephenville, at the west edge of the 254.",
+ body:[
+  "Tarleton State football is unbeaten at 11-0 (6-0 in the United Athletic Conference) and ranked No. 1 in both the STATS FCS poll and the FCS Coaches poll, as of Nov. 15.",
+  "The Texans won the UAC championship and are headed to the FCS playoffs under head coach Todd Whitten, now in his 17th season.",
+  "Stephenville sits in the 254 area code, making the Texans one of the area's top college football stories this fall."],
+ sources:[["Wikipedia: 2026 Tarleton State Texans football","https://en.wikipedia.org/wiki/2026_Tarleton_State_Texans_football_team"]]}
 ];
