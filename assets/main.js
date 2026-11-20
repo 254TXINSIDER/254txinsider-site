@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Sponsor spots, tax deadline countdown (Real Estate page)
 (function () {
+  var vft = document.getElementById("vf-trade");
+  [].forEach.call(document.querySelectorAll("[data-trade]"), function (a) {
+    a.addEventListener("click", function () { if (vft) vft.value = a.getAttribute("data-trade"); });
+  });
   var cat = document.getElementById("pf-cat");
   [].forEach.call(document.querySelectorAll("[data-cat]"), function (a) {
     a.addEventListener("click", function () { if (cat) cat.value = a.getAttribute("data-cat"); });

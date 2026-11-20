@@ -465,3 +465,26 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 .fig-cap { font-size:12px; color:#777; padding:6px 2px 0; line-height:1.4; }
 .fig-cap a { color:#777; text-decoration:underline; }
 .fig-tag { display:inline-block; background:#13213c; color:#fff; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:2px 6px; border-radius:3px; margin-right:4px; }
+
+/* v12 Build & Facilities */
+.bld-promo { display:block; margin:14px 0; padding:14px 16px; background:#13213c; color:#fff; border-left:6px solid #c75b26; border-radius:8px; text-decoration:none; }
+.bld-promo b { display:block; font-family:"Oswald",sans-serif; text-transform:uppercase; font-size:18px; }
+.bld-promo span { font-size:14px; color:#d9dde6; }
+.bld-hero .btn-row { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+.btn.ghost { background:transparent; border:2px solid #fff; color:#fff; }
+.bld-grid { display:grid; grid-template-columns:2fr 1fr; gap:22px; align-items:start; }
+.bld-form { border:2px solid #13213c; margin-top:0; }
+.bld-form h2 { font-family:"Oswald",sans-serif; text-transform:uppercase; margin:0 0 4px; font-size:24px; }
+.bld-sub { margin:0 0 12px; font-size:15px; color:#444; }
+.bld-needs { border:1px solid #d8cfc2; border-radius:8px; margin:12px 0; padding:10px 12px; display:grid; grid-template-columns:repeat(2,1fr); gap:6px 14px; }
+.bld-needs legend { font-size:13px; font-weight:700; padding:0 4px; }
+.bld-needs label, .bld-consent { flex-direction:row !important; align-items:center; gap:8px !important; font-size:14px !important; color:#13213c !important; }
+.bld-consent { display:flex; margin:6px 0 12px; }
+.bld-side { display:flex; flex-direction:column; gap:16px; }
+.bld-box { background:#fff; border:1px solid #e3dbcf; border-top:4px solid #c75b26; border-radius:8px; padding:14px 16px; }
+.bld-box h3 { font-family:"Oswald",sans-serif; text-transform:uppercase; margin:0 0 6px; font-size:19px; }
+.bld-box p { font-size:14px; margin:0 0 8px; color:#555; }
+.bld-box ul { margin:0; padding-left:18px; }
+.bld-box li { font-size:14px; margin-bottom:8px; line-height:1.45; }
+@media (max-width:860px) { .bld-grid { grid-template-columns:1fr; } .bld-needs { grid-template-columns:1fr; } }
+.pros h2 { color:#fff; }
