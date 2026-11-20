@@ -92,3 +92,20 @@ document.addEventListener("DOMContentLoaded", function () {
   var c = g("sl-county");
   if (c) c.addEventListener("change", function () { [].forEach.call(document.querySelectorAll(".sl-card"), function (el) { el.style.display = !c.value || el.getAttribute("data-county") === c.value ? "" : "none"; }); });
 })();
+
+// Sponsor spots, tax deadline countdown (Real Estate page)
+(function () {
+  var cat = document.getElementById("pf-cat");
+  [].forEach.call(document.querySelectorAll("[data-cat]"), function (a) {
+    a.addEventListener("click", function () { if (cat) cat.value = a.getAttribute("data-cat"); });
+  });
+  function cd(id, mo, day) {
+    var el = document.getElementById(id); if (!el) return;
+    var now = new Date(), t = new Date(now.getFullYear(), mo, day, 23, 59);
+    if (t < now) t = new Date(now.getFullYear() + 1, mo, day, 23, 59);
+    var d = Math.ceil((t - now) / 864e5);
+    el.textContent = t.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+    var s = document.getElementById(id + "-d"); if (s) s.textContent = d + " days away";
+  }
+  cd("tg-hs", 3, 30); cd("tg-pr", 4, 15);
+})();
