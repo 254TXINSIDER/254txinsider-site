@@ -244,5 +244,25 @@ window.STORIES = [
   "Tarleton State football is unbeaten at 11-0 (6-0 in the United Athletic Conference) and ranked No. 1 in both the STATS FCS poll and the FCS Coaches poll, as of Nov. 15.",
   "The Texans won the UAC championship and are headed to the FCS playoffs under head coach Todd Whitten, now in his 17th season.",
   "Stephenville sits in the 254 area code, making the Texans one of the area's top college football stories this fall."],
- sources:[["Wikipedia: 2026 Tarleton State Texans football","https://en.wikipedia.org/wiki/2026_Tarleton_State_Texans_football_team"]]}
+ sources:[["Wikipedia: 2026 Tarleton State Texans football","https://en.wikipedia.org/wiki/2026_Tarleton_State_Texans_football_team"]]},
+
+{id:"temple-college-leopards-basketball", cat:"sports", city:"Temple", date:"2026-11-19",
+ title:"Temple College Leopards basketball: men split home week, women win in overtime",
+ dek:"Both TC teams are on the road this week as nonconference play wraps up before conference play.",
+ body:[
+  "<strong>Men:</strong> the Temple College Leopards outlasted Dallas College-Mountain View 103-88 after a 75-68 home loss to nationally ranked Angelina, which pulled away late. The Leopards then traveled to Hobbs, New Mexico, for two Region V games.",
+  "<strong>Women:</strong> the Lady Leopards rallied to force overtime and won on a game-winner against Blinn. They played at the TJC Classic in Tyler against Tyler Junior College (Nov. 13) and Butler Community College (Nov. 14), and open the WTC Classic in Snyder against Western Texas College on Nov. 19.",
+  "The women opened the season at home on Kirby Johnson Court on Oct. 31 against Palo Alto College, with a sophomore-heavy roster led by returning guards Korina Garcia and Raniyah Hunt.",
+  "Home games stream on the Temple College PlaySight channel."],
+ sources:[["Temple College Athletics","https://tcleopards.com/"],["Temple College: Women's basketball season opener","https://www.tcleopards.com/sports/wbkb/2026-27/releases/20261030dw37d8"]]},
+
+{id:"college-theatre-254-season", cat:"things-to-do", city:"Waco", date:"2026-11-19",
+ title:"College theatre in the 254: what's next at Baylor and Temple College",
+ dek:"Baylor Theatre just closed Big Love. Next up: a Shakespeare comedy in February and Mean Girls the musical in the spring.",
+ body:[
+  "Baylor Theatre wrapped its fall run of <em>Big Love</em>, Charles Mee's comic retelling of an ancient Greek play, on Nov. 15 in Waco. Earlier this fall the department staged <em>Sense & Sensibility</em> and <em>Earth and Sky</em>.",
+  "<strong>Coming up at Baylor:</strong> <em>The Complete Works of William Shakespeare (Abridged)</em> runs Feb. 23-28, 2027, and the <em>Mean Girls</em> musical runs April 21 to May 2, 2027.",
+  "<strong>Temple College:</strong> TC Theatre gave a free fall musical theatre showcase in October in the Jackson-Graeter Backstage Theatre, inside the Mary Alice Marshall Performing Arts Center. It previewed scenes from upcoming shows.",
+  "Baylor's School of Music also holds student recitals and ensemble concerts during the semester. Check the Baylor events calendar for dates."],
+ sources:[["Baylor Theatre","https://theatre.artsandsciences.baylor.edu/"],["Central Texas Live Theatre: Baylor productions","https://ctxlivetheatre.com/local_theatres/baylor-university-theatre/productions/"],["Baylor events calendar","https://calendar.web.baylor.edu/?category=All"],["Temple College: Musical Theatre Showcase","https://www.templecollege.edu/events/2026/10/musical-theatre-showcase.html"]]}
 ];

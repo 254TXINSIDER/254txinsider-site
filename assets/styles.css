@@ -271,3 +271,9 @@ section.block { padding: 36px 0; }
 /* ---- v5: keep thumbnails in proportion ---- */
 .row-side, .row-top, .hero-img { height: auto; }
 .row.pic { align-items: start; }
+@media (max-width: 760px) {
+  .lead:has(.lead-img) { min-height: 0; padding: 0 0 22px; }
+  .lead:has(.lead-img)::before { display: none; }
+  .lead .lead-img { position: static; height: auto; aspect-ratio: 16/9; margin-bottom: 16px; }
+  .lead:has(.lead-img) > *:not(.lead-img) { margin-left: 22px; margin-right: 22px; }
+}
