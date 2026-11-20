@@ -109,3 +109,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   cd("tg-hs", 3, 30); cd("tg-pr", 4, 15);
 })();
+
+// Things to Do filters (Things to Do page)
+(function () {
+  var hub = document.getElementById("things-hub"); if (!hub) return;
+  var cat = "all", city = "all", today = new Date(); today.setHours(0, 0, 0, 0);
+  var iso = today.getFullYear() + "-" + ("0" + (today.getMonth() + 1)).slice(-2) + "-" + ("0" + today.getDate()).slice(-2);
+  function apply() {
+    var shown = 0;
+    [].forEach.call(hub.querySelectorAll(".ev"), function (el) {
+      var ok = el.getAttribute("data-end") >= iso && (cat === "all" || el.getAttribute("data-cats").split(" ").indexOf(cat) > -1) && (city === "all" || el.getAttribute("data-city") === city);
+      el.hidden = !ok; if (ok) { shown++; var lb = el.querySelector(".ev-now"); if (!lb && el.getAttribute("data-start") <= iso) { var s = document.createElement("span"); s.className = "ev-now"; s.textContent = "Happening now"; el.querySelector(".ev-date").appendChild(s); } }
+    });
+    document.getElementById("ev-empty").hidden = shown > 0;
+    [].forEach.call(hub.querySelectorAll(".spot"), function (el) {
+      el.hidden = !((cat === "all" || el.getAttribute("data-cats").split(" ").indexOf(cat) > -1) && (city === "all" || el.getAttribute("data-city") === city));
+    });
+  }
+  function chips(id, set) {
+    var box = document.getElementById(id);
+    box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return;
+      [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.toggle("on", x === b); }); set(b.getAttribute("data-v")); apply(); });
+  }
+  chips("tdo-cat", function (v) { cat = v; }); chips("tdo-city", function (v) { city = v; });
+  var h = (location.hash || "").replace("#", ""); if (["kids", "date", "night", "free"].indexOf(h) > -1) { var b = hub.querySelector('#tdo-cat [data-v="' + h + '"]'); if (b) b.click(); }
+  apply();
+})();
