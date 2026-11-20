@@ -130,7 +130,7 @@ const crumbsHtml = list => `<nav class="crumbs" aria-label="Breadcrumb">${list.m
 const pages = {};
 // home
 {
-  const top = ALL.filter(s => s.top).slice(0, 5), lead = top[0], rest = top.slice(1);
+  const tops = ALL.filter(s => s.top), lead = tops.find(s => s.art) || tops[0], rest = tops.filter(s => s !== lead).slice(0, 4);
   const mods = ["business", "markets", "growth", "government", "we-the-people", "sports", "things-to-do", "education", "real-estate"].map(k => {
     const list = inCat(k).slice(0, 3); if (!list.length) return "";
     return `<div class="module"><h2><a href="${secUrl(k)}">${esc(SEC[k].name)}</a></h2>${list.map((s, i) => row(s, true, i === 0 ? "top" : null)).join("")}<a class="more" href="${secUrl(k)}">More ${esc(SEC[k].short)} →</a></div>`;
