@@ -264,5 +264,27 @@ window.STORIES = [
   "<strong>Coming up at Baylor:</strong> <em>The Complete Works of William Shakespeare (Abridged)</em> runs Feb. 23-28, 2027, and the <em>Mean Girls</em> musical runs April 21 to May 2, 2027.",
   "<strong>Temple College:</strong> TC Theatre gave a free fall musical theatre showcase in October in the Jackson-Graeter Backstage Theatre, inside the Mary Alice Marshall Performing Arts Center. It previewed scenes from upcoming shows.",
   "Baylor's School of Music also holds student recitals and ensemble concerts during the semester. Check the Baylor events calendar for dates."],
- sources:[["Baylor Theatre","https://theatre.artsandsciences.baylor.edu/"],["Central Texas Live Theatre: Baylor productions","https://ctxlivetheatre.com/local_theatres/baylor-university-theatre/productions/"],["Baylor events calendar","https://calendar.web.baylor.edu/?category=All"],["Temple College: Musical Theatre Showcase","https://www.templecollege.edu/events/2026/10/musical-theatre-showcase.html"]]}
+ sources:[["Baylor Theatre","https://theatre.artsandsciences.baylor.edu/"],["Central Texas Live Theatre: Baylor productions","https://ctxlivetheatre.com/local_theatres/baylor-university-theatre/productions/"],["Baylor events calendar","https://calendar.web.baylor.edu/?category=All"],["Temple College: Musical Theatre Showcase","https://www.templecollege.edu/events/2026/10/musical-theatre-showcase.html"]]},
+
+{id:"waco-business-roundup-nov-2026", cat:"business", top:1, city:"Waco", date:"2026-11-19",
+ title:"Waco business roundup: 7 Brew, Capitol Bearing, The Chateau and a $169M riverfront build",
+ dek:"A busy November of ribbon cuttings across Waco, plus what the Barron's Branch construction means for drivers.",
+ body:[
+  "<strong>Openings:</strong> the Greater Waco Chamber held ribbon cuttings this month for 7 Brew Coffee's newest Waco location at New Road and Franklin Avenue (Nov. 2), an expansion of Anytime Fitness Waco (Nov. 4), Capitol Bearing & Hydraulics (Nov. 6), Pivotal Pathway Massage Therapy & Wellness Center (Nov. 13) and The Chateau Waco (Nov. 17).",
+  "<strong>Woodway:</strong> Swim Waco, which started as lessons in a backyard pool, celebrated the grand opening of its new swim facility in Woodway.",
+  "<strong>Riverfront:</strong> construction is underway on the $169 million Barron's Branch project along the Brazos. Related road closures, including on University Parks Drive, are affecting drivers and local race routes.",
+  "<strong>Restaurants:</strong> Waco Restaurant Week ran Nov. 6-14. Restaurants kept all of their sales, and registration fees went to Keep Waco Beautiful.",
+  "Have a Waco opening, expansion or closing to share? <a href=\"/contact/\">Send us a tip.</a>"],
+ sources:[["Greater Waco Chamber: Member calendar","https://business.wacochamber.com/membercalendar"],["Greater Waco Chamber: Calendar","https://business.wacochamber.com/events"],["KWTX","https://www.kwtx.com/"],["Westland: Waco this fall","https://westlandrg.com/blog/fall-in-waco-whats-opened-whats-coming-and-where-to-actually-go-this-season"]]},
+
+{id:"killeen-cove-heights-business-roundup-nov-2026", cat:"business", city:"Killeen", date:"2026-11-19",
+ title:"Killeen, Harker Heights and Copperas Cove business roundup: The Pickle, HOTWORX and big-box buzz",
+ dek:"New spots to play, work out and get a haircut in Killeen, while Copperas Cove waits on two possible big-box stores.",
+ body:[
+  "<strong>Killeen:</strong> The Pickle has soft-opened at 2830 E. Veterans Memorial Blvd. It's a sports bar with pickleball, brick-oven pizza, cornhole and shuffleboard, aimed at families and military members. Owner Ray Constancio says a grand opening is still to come.",
+  "HOTWORX gets a ribbon cutting from the Greater Killeen Chamber at 10 a.m. Friday, Nov. 20. Roses & Razors Barber Co., owned by Tyson Skinner, held its grand opening Nov. 3 and is taking appointments.",
+  "<strong>Harker Heights:</strong> a 40,000-square-foot Crunch Fitness has been under construction near I-14, part of a wave of new fitness, dining and retail projects between Killeen and Harker Heights.",
+  "<strong>Copperas Cove:</strong> two big-box stores may be headed to the Shops at Five Hills on Robert Griffin III Boulevard. Local reports point to Hobby Lobby and Academy Sports, but the city EDC hasn't confirmed the names. Sober Sips, a non-alcoholic bar run by two veterans, is also preparing to open in Cove.",
+  "Know about a Bell County opening or closing? <a href=\"/contact/\">Send us a tip.</a>"],
+ sources:[["Killeen Daily Herald: The Pickle","https://kdhnews.com/business/the-pickle-brings-pickleball-pizza-and-family-entertainment-to-killeen/article_662a9230-e864-49e6-8869-e711ce8e2c03.html"],["Killeen Daily Herald: Business Briefs","https://kdhnews.com/business/business-briefs/article_3de40525-deaa-4212-86d2-e9ee6ee01928.html"],["Killeen Daily Herald: Roses & Razors","https://kdhnews.com/news/local/new-barbershop-opens-in-killeen-area/article_9d72e6b9-6025-4d0b-9fb7-70bbfd79ac2f.html"],["KXXV: Development boom","https://www.kxxv.com/news/local-news/in-your-neighborhood/development-boom-brings-new-businesses-to-killeen-and-harker-heights"],["Killeen Daily Herald: Five Hills","https://kdhnews.com/news/local/cove-eyeing-new-big-box-stores-in-five-hills-shopping-center/article_74b153a2-e2e4-4e17-bfa6-4f4127eb0e98.html"],["Killeen Daily Herald: Sober Sips","https://kdhnews.com/news/local/geared-towards-veterans-a-new-non-alcoholic-bar-will-soon-open-in-copperas-cove/article_00953b5d-dca3-43a4-9a8b-7fc7591e5cac.html"]]}
 ];
