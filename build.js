@@ -217,7 +217,7 @@ function header(active) {
   const nav = SECTIONS.map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("");
   return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; Waco · Temple · Killeen · Belton</span></span><span class="socials">${social()}</span></div></div>
 <header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><a class="btn" href="/#newsletter">Subscribe Free</a></div></header>
-<nav class="secnav" aria-label="Sections"><div class="wrap">${nav}</div></nav>
+<nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a href="/build/"${active === "build" ? ' class="active" aria-current="page"' : ""}>Build &amp; Facilities</a></div></nav>
 `;
 }
 function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopener">TikTok</a><a href="${SOC.instagram}" target="_blank" rel="noopener">Instagram</a><a href="${SOC.facebook}" target="_blank" rel="noopener">Facebook</a>`; }
@@ -226,7 +226,7 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
@@ -289,6 +289,53 @@ ${SIGNUP()}<section class="block"><div class="wrap"><div class="modules">${mods}
 ${WATCH}</main>
 ` + footer();
 }
+// ---------- 254 Build & Facilities (commercial lead hub) ----------
+const TRADES = [["HVAC & Mechanical", "❄️"], ["Plumbing", "🚰"], ["Electrical", "⚡"], ["Roofing", "🏠"], ["General Contractor", "🏗️"], ["Controls & Building Automation", "🎛️"], ["Fire Protection & Life Safety", "🧯"], ["Concrete & Site Work", "🚧"], ["Paving & Parking Lots", "🅿️"], ["Generators & Backup Power", "🔋"], ["Low Voltage, Security & Access", "🔐"], ["Commercial Cleaning & Janitorial", "🧽"], ["Landscaping & Grounds", "🌳"], ["Architecture & Engineering", "📐"], ["Commercial Real Estate & Leasing", "🏢"], ["Equipment & Supply", "🧰"]];
+const BIDS = [
+  ["City of Temple", "Purchasing: current bids and how to register", "https://www.templetx.gov/departments/city_departments/purchasing/"],
+  ["City of Killeen", "Purchasing (bids posted on OpenGov)", "https://killeentexas.gov/414/Purchasing"],
+  ["City of Waco", "Open bid opportunities", "https://www.waco-texas.com/Departments/Purchasing/Open-Bid-Opportunities"],
+  ["City of Belton", "Bid postings", "https://www.beltontexas.gov/government/city_clerk/bid_postings/"],
+  ["Killeen ISD", "Doing business with KISD (bids on IonWave)", "https://tx02205734.schoolwires.net/Page/17312"],
+  ["State of Texas", "Electronic State Business Daily (state agency, TxDOT and university bids)", "https://www.txsmartbuy.com/esbd"],
+  ["TDLR (TABS)", "Search commercial projects registered with the state by city, owner or designer", "https://tdlr.texas.gov/TABS/Search"]
+];
+const BUILD_PROMO = `<a class="bld-promo" href="/build/"><b>Commercial project in the 254?</b><span>HVAC, plumbing, electrical, roofing, construction and more. Get connected with local commercial pros. →</span></a>`;
+function buildHub() {
+  const needs = TRADES.map(t => t[0]);
+  const projects = ALL.filter(s => s.cat === "growth" || (s.also || []).includes("real-estate") || (s.cat === "business" && /build|construct|develop|plant|facility|expan|warehouse|data center|groundbreak/i.test(s.title))).slice(0, 8);
+  return `<div class="page-hero bld-hero"><div class="wrap"><span class="kicker">Commercial</span><h1>254 Build <span>&amp; Facilities</span></h1><p>The Central Texas hub for commercial buildings: who's building what, open public bids, and local commercial pros for HVAC, plumbing, electrical, roofing, construction and everything in between.</p><div class="btn-row"><a class="btn" href="#request">Request help with a project</a><a class="btn ghost" href="#vendors">I'm a vendor</a></div></div></div>
+<section class="block"><div class="wrap">
+<div class="bld-grid"><div class="bld-main">
+<form class="pros-form bld-form" id="request" name="project-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="project-request"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h2>Get help with a commercial project</h2><p class="bld-sub">Facility managers, owners, developers and property managers: tell us what you need and we'll connect you with vetted local commercial pros. Free, no obligation.</p>
+<div class="pf-row"><label>Your name <input name="name" required></label><label>Company / building <input name="company" required></label><label>Your role <select name="role"><option>Facility manager</option><option>Owner</option><option>Developer</option><option>Property manager</option><option>General contractor</option><option>Other</option></select></label>
+<label>Building type <select name="building_type"><option>Office</option><option>Retail / restaurant</option><option>Industrial / warehouse</option><option>Healthcare</option><option>School / church</option><option>Multifamily</option><option>Hotel</option><option>Government</option><option>Data center</option><option>Other</option></select></label><label>City <select name="city"><option>Temple</option><option>Belton</option><option>Killeen</option><option>Harker Heights</option><option>Copperas Cove</option><option>Waco</option><option>Hewitt / Woodway</option><option>Salado</option><option>Gatesville</option><option>Lampasas</option><option>Other 254</option></select></label><label>Timeline <select name="timeline"><option>Emergency / ASAP</option><option>Within 30 days</option><option>1-3 months</option><option>3-12 months</option><option>Planning / budgeting</option></select></label></div>
+<fieldset class="bld-needs"><legend>What do you need? (pick all that apply)</legend>${needs.map(n => `<label><input type="checkbox" name="needs[]" value="${esc(n)}"> ${esc(n)}</label>`).join("")}</fieldset>
+<div class="pf-row"><label>Approx. size <input name="size" placeholder="sq ft or # of units (optional)"></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label></div>
+<label class="pf-msg">Project details <textarea name="details" rows="4" placeholder="Replace two rooftop units, new restaurant buildout, roof leak, preventive maintenance contract..."></textarea></label>
+<label class="bld-consent"><input type="checkbox" name="consent" value="yes" required> OK to share my request with up to 3 vetted local partners in the trades I picked so they can contact me.</label>
+<button class="btn" type="submit">Send my request</button><p class="hs-note">For a true emergency (gas smell, flooding, no power), call 911 or your utility first. ${NAME} is not a contractor and does not perform work; partners are independent businesses.</p></form>
+
+<div class="pros" id="vendors"><div class="pros-head"><h2>Featured Commercial Pros</h2><span>Founding spots open</span></div>
+<p class="pros-sub">One featured spot per trade. Featured partners get first look at project requests in their trade from 254 facility managers, owners and developers, plus placement here and in our business coverage.</p>
+<div class="pros-grid">${TRADES.map(t => `<div class="pro-slot"><span class="pro-ico">${t[1]}</span><b>${esc(t[0])}</b><span>Your company here</span><a class="btn" href="#vendor-form" data-trade="${esc(t[0])}">Claim this spot</a></div>`).join("")}</div>
+<form class="pros-form" id="vendor-form" name="vendor" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="vendor"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h3>Vendors, contractors and suppliers: get in front of 254 buyers</h3><div class="pf-row"><label>Your name <input name="name" required></label><label>Company <input name="company" required></label><label>Trade <select name="trade" id="vf-trade">${needs.concat(["Other"]).map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Interested in <select name="interest"><option>Featured trade spot (project requests)</option><option>Sponsoring 254 Build &amp; Facilities</option><option>Advertising in business news</option><option>Just get me on the vendor list</option></select></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label></div>
+<div class="pf-row"><label>Website <input name="website" placeholder="optional"></label><label>Cities you serve <input name="cities" placeholder="Temple, Killeen, Waco..."></label><label>Licensed / insured? <select name="licensed"><option>Yes</option><option>In progress</option><option>Not required for my trade</option></select></label></div>
+<label class="pf-msg">Anything else? <textarea name="message" rows="3" placeholder="Specialties, brands you carry, project size you like..."></textarea></label><button class="btn" type="submit">Send, we'll call you</button><p class="hs-note">Featured listings are marked "Sponsored." ${NAME} does not endorse any business.</p></form></div>
+</div>
+<aside class="bld-side">
+<div class="bld-box"><h3>254 Bid Board</h3><p>Where local governments post commercial work. Check these weekly.</p><ul>${BIDS.map(b => `<li><a href="${b[2]}" target="_blank" rel="noopener"><b>${esc(b[0])}</b> ${esc(b[1])} ↗</a></li>`).join("")}</ul></div>
+<div class="bld-box"><h3>Facility manager toolkit</h3><ul>
+<li><b>Utility rebates.</b> If your building is on Oncor's lines, high-efficiency HVAC can qualify for <a href="https://www.oncor.com/takealoadofftexas/pages/commercial-midstream" target="_blank" rel="noopener">instant discounts through participating distributors</a>, and rural sites have a <a href="https://www.oncor.com/content/oncorwww/talot/en/home/business/rural.html" target="_blank" rel="noopener">separate program</a>. Ask your contractor to price it in.</li>
+<li><b>Refrigerant changes.</b> New HVAC equipment has moved to lower-GWP refrigerants (like R-454B and R-32), and EPA updated its rules again in 2026. Existing systems can keep running. Before you replace or repair, ask your contractor which refrigerant and dates apply. <a href="https://www.epa.gov/climate-hfcs-reduction/regulatory-actions-technology-transitions" target="_blank" rel="noopener">EPA rule updates</a></li>
+<li><b>Accessibility (TDLR).</b> Commercial projects of $50,000 or more generally must be registered with the state for accessibility review. <a href="https://www.tdlr.texas.gov/ab/" target="_blank" rel="noopener">TDLR program</a></li>
+<li><b>Planning a replacement?</b> Get at least two quotes, ask for equipment lead times in writing, and budget for the crane, curb adapters and controls, not just the unit.</li></ul></div>
+</aside></div>
+${projects.length ? `<h2 class="list-head">What's being <span>built</span></h2><div class="rows two">${projects.map(s => row(s, false, "side")).join("")}</div><p class="src"><a href="/growth/">All growth news →</a></p>` : ""}
+</div></section>`;
+}
 // sections
 SECTIONS.forEach(([k]) => {
   const sec = SEC[k], list = k === "latest" ? ALL : inSec(k), url = secUrl(k);
@@ -300,7 +347,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }]
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -333,7 +380,7 @@ ${SIGNUP("h2")}</main>
 ` + footer();
 });
 // static pages
-const simple = (file, url, title, desc, inner, noindex) => pages[file] = head({ title, desc, url, noindex }) + header(null) + "<main>" + inner + "</main>\n" + footer();
+const simple = (file, url, title, desc, inner, noindex, active) => pages[file] = head({ title, desc, url, noindex }) + header(active || null) + "<main>" + inner + "</main>\n" + footer();
 simple("about/index.html", "/about/", `About ${NAME} | Central Texas News`, `${NAME} covers business, growth, government and community news across Waco, Temple, Killeen and Belton.`,
   `<div class="page-hero"><div class="wrap"><span class="kicker">About</span><h1>The Pulse of <span>the 254</span></h1><p>Central Texas is growing fast. ${NAME} keeps you ahead of it.</p></div></div>
 <section class="block"><div class="wrap prose"><h2>What we cover</h2><p>Business and development news from Waco, Temple, Killeen, Belton and everywhere in between: the new builds, the openings, the land deals and the decisions at City Hall that shape where the 254 is headed. Plus markets and interest rates, schools, high school sports, things to do and plain-English explainers on how local government works.</p>
@@ -355,6 +402,7 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
+simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build");
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
   `<div class="page-hero"><div class="wrap"><h1>Thank <span>You</span></h1><p>Got it. We'll be in touch. In the meantime, catch the latest on the homepage.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
@@ -363,7 +411,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 // ---------- feeds, sitemaps, robots, redirects ----------
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
