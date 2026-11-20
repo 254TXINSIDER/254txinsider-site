@@ -28,5 +28,16 @@ window.MARKET = {
     sellers: "More competition and longer market times mean pricing right on day one matters. List prices in Killeen-Temple are down about 7% from a year ago. Expect buyers to ask for concessions.",
     owners: "Values have flattened, not crashed. If you locked a rate under 5%, there is little reason to refinance now. Watch your 2027 appraisal notice in the spring and protest if it's out of line with nearby sales."
   },
-  calc: { price: 275000, downPct: 10 }
+  calc: { price: 275000, downPct: 10 },
+  // Average effective property tax rate = median tax paid / median home value (Census ACS 2020-2024 5-year).
+  counties: { src: ["U.S. Census Bureau ACS 2020-2024 via WhereMyTaxesGo", "https://www.wheremytaxesgo.com/property-tax/texas/"], list: [
+    ["Bell (Temple, Killeen, Belton)", 1.44],
+    ["McLennan (Waco)", 1.42],
+    ["Coryell (Copperas Cove)", 1.36],
+    ["Falls (Marlin)", 1.37],
+    ["Lampasas", 1.17],
+    ["Erath (Stephenville)", 1.07],
+    ["Milam (Cameron)", 0.99],
+    ["Bosque (Clifton)", 0.98]
+  ] }
 };

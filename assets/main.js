@@ -30,8 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function calc() {
     var P = (+g("pc-price").value || 0) * (1 - (+g("pc-down").value || 0) / 100), r = (+g("pc-rate").value || 0) / 1200, n = (+g("pc-term").value || 30) * 12;
     var m = r ? P * r / (1 - Math.pow(1 + r, -n)) : P / n;
-    out.textContent = "$" + Math.round(m).toLocaleString("en-US");
+    var f = function (v) { return "$" + Math.round(v).toLocaleString("en-US"); };
+    var tax = (+g("pc-price").value || 0) * (+g("pc-county").value || 0) / 100 / 12, ins = (+g("pc-ins").value || 0) / 12;
+    out.textContent = f(m); g("pc-tax").textContent = f(tax); g("pc-insm").textContent = f(ins); g("pc-total").textContent = f(m + tax + ins);
   }
-  ["pc-price", "pc-down", "pc-rate", "pc-term"].forEach(function (id) { g(id).addEventListener("input", calc); });
+  ["pc-price", "pc-down", "pc-rate", "pc-term", "pc-county", "pc-ins"].forEach(function (id) { g(id).addEventListener("input", calc); });
   calc();
 })();

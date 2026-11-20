@@ -327,3 +327,10 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
   .astats .stat b { font-size:18px; }
   .astats .stat .lbl, .astats .stat small { font-size:10.5px; }
 }
+.calc label.wide { grid-column: span 2; }
+.calc-break { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px; font-size:14px; color:#d9dde6; align-items:baseline; }
+.calc-break b { font-family:"Oswald",sans-serif; font-size:20px; color:#fff; margin-left:4px; }
+.calc-break .tot b { font-size:28px; color:#f0a36f; }
+.calc-break .tot { flex-basis:100%; font-size:15px; color:#fff; }
+.calc-out a { color:#f0a36f; }
+@media (max-width: 860px) { .calc label.wide { grid-column: span 2; } }
