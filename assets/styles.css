@@ -488,3 +488,7 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 .bld-box li { font-size:14px; margin-bottom:8px; line-height:1.45; }
 @media (max-width:860px) { .bld-grid { grid-template-columns:1fr; } .bld-needs { grid-template-columns:1fr; } }
 .pros h2 { color:#fff; }
+/* v13 Home Pros */
+.home-pros-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.home-pros-row .bld-promo { margin:0; }
+@media (max-width:860px) { .home-pros-row { grid-template-columns:1fr; } }
