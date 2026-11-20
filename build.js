@@ -15,7 +15,7 @@ const SECTIONS = [
   ["government", "Government", "Government & Politics", "Bell County and McLennan County government: city councils, commissioners courts and elections."],
   ["we-the-people", "We the People", "We the People", "Plain-English explainers on how local government works in Waco, Temple, Killeen and Belton."],
   ["sports", "Sports", "Sports & Community", "High school and college sports across the 254, including Baylor, UMHB and Tarleton State, plus community news and good causes."],
-  ["things-to-do", "Things to Do", "Things to Do", "Things to do in Waco, Temple, Killeen and Belton this week: events, festivals and holiday fun."],
+  ["things-to-do", "Things to Do", "Things to Do", "The go-to guide for Temple, Belton, Salado and Waco: events this week, things to do with kids, date night ideas and nightlife."],
   ["podcast", "Podcast", "254 Texas Insider Podcast", "Conversations with the business owners, builders and leaders shaping Central Texas."]
 ];
 const SEC = {}; SECTIONS.forEach(s => SEC[s[0]] = { key: s[0], short: s[1], name: s[2], desc: s[3] });
@@ -33,6 +33,8 @@ const inSec = k => k === "business" ? ALL.filter(s => BIZ.includes(s.cat))
 // ---------- housing dashboard ----------
 const msb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/market.js"), "utf8"), msb);
 const MK = msb.window.MARKET;
+const esb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/events.js"), "utf8"), esb);
+const EV = esb.window.EVENTS;
 const fmtN = (v, u) => typeof v === "string" ? v : u === "$" ? "$" + Math.round(v).toLocaleString("en-US") : (Number.isInteger(v) ? v.toLocaleString("en-US") : String(v));
 const chg = (p, note) => p === null || p === undefined ? (note ? `<small>${esc(note)}</small>` : "") : `<small class="${p < 0 ? "dn" : "up"}">${p > 0 ? "▲" : p < 0 ? "▼" : ""} ${Math.abs(p).toFixed(1)}% vs. last year${note ? " · " + esc(note) : ""}</small>`;
 const srcA = s => `<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a>`;
@@ -124,6 +126,20 @@ ${militaryCorner()}
 <h3 class="dsub">Reduced-rate senior apartments</h3><div class="hs-row sl-filter"><label>County <select id="sl-county"><option value="">All counties</option>${counties.map(c => `<option>${esc(c)}</option>`).join("")}</select></label></div>
 <div class="sl-grid">${SENIOR_AFF.map(card).join("")}</div>
 <p class="hs-note">From HUD's subsidized and tax-credit housing databases (January 2026). "Rent based on income" means HUD-assisted units where rent is usually about 30% of income; "reduced rent" means tax-credit communities with lower rents for renters under the income limit. Most have waiting lists, so call ahead and get on several. Know a place we missed? Email us.</p></div>`;
+}
+const TCATS = [["all", "Everything"], ["kids", "With kids"], ["date", "Date night"], ["night", "Nightlife"], ["free", "Free"]];
+const TCITIES = ["Temple", "Belton", "Salado", "Waco"];
+const fmtD = d => { const x = new Date(d + "T12:00:00"); return x.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }); };
+const catTag = { kids: "👨‍👩‍👧 Kids", date: "❤️ Date night", night: "🌙 Nightlife", free: "Free" };
+function thingsHub() {
+  const evs = EV.events.slice().sort((a, b) => a.s.localeCompare(b.s) || a.e.localeCompare(b.e));
+  const ev = x => `<div class="ev" data-city="${esc(x.city)}" data-cats="${x.cats.join(" ")}" data-end="${x.e}" data-start="${x.s}"><div class="ev-date"><b>${fmtD(x.s)}</b>${x.e !== x.s ? `<span>through ${fmtD(x.e)}</span>` : ""}</div><div class="ev-body"><span class="ev-city">${esc(x.city)}</span><h3>${x.url ? `<a href="${x.url}" target="_blank" rel="noopener">${esc(x.t)}</a>` : esc(x.t)}</h3><p>${esc(x.d)}</p><p class="ev-meta">🕒 ${esc(x.time)} · 📍 ${esc(x.where)}</p><div class="ev-tags">${x.cats.map(c => `<span class="tag-${c}">${catTag[c]}</span>`).join("")}</div></div></div>`;
+  const spot = x => `<div class="spot" data-city="${esc(x.city)}" data-cats="${x.cats.join(" ")}"><b>${esc(x.n)}</b><p>${esc(x.d)}</p><div class="ev-tags">${x.cats.map(c => `<span class="tag-${c}">${catTag[c]}</span>`).join("")}</div><a class="spot-map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.n + ", " + x.city + ", TX")}" target="_blank" rel="noopener">Map ↗</a></div>`;
+  return `<div class="tdo" id="things-hub"><div class="tdo-head"><h2>The 254 weekend guide</h2><p>Temple, Belton, Salado and Waco. Updated every morning.</p></div>
+<div class="tdo-filters"><div class="tdo-chips" id="tdo-cat">${TCATS.map((c, i) => `<button type="button" data-v="${c[0]}"${i ? "" : ' class="on"'}>${c[1]}</button>`).join("")}</div><div class="tdo-chips" id="tdo-city"><button type="button" data-v="all" class="on">All cities</button>${TCITIES.map(c => `<button type="button" data-v="${c}">${c}</button>`).join("")}</div></div>
+<h3 class="dsub">Coming up</h3><div class="ev-list" id="ev-list">${evs.map(ev).join("")}</div><p class="tdo-empty" id="ev-empty" hidden>Nothing matches yet. Try another filter, or check back tomorrow.</p>
+<h3 class="dsub">Go-to spots any weekend</h3><div class="spot-grid" id="spot-grid">${EV.spots.map(spot).join("")}</div>
+<p class="hs-note">Times and prices change, so check with organizers before you go. Hosting an event in the 254? <a href="/contact/?topic=tip">Send it to us</a> and we'll add it.</p></div>`;
 }
 function marketDash() {
   const stat = s => `<div class="stat"><span class="lbl">${esc(s[0])}</span><b>${fmtN(s[1], s[2])}</b>${chg(s[3], s[4])}</div>`;
@@ -276,7 +292,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }]
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
