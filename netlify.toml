@@ -1,5 +1,5 @@
 [build]
-  command = "node build.js"
+  command = "node art.js; node build.js"
   publish = "dist"
 
 [[headers]]

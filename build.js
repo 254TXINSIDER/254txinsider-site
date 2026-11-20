@@ -24,7 +24,11 @@ const SEC = {}; SECTIONS.forEach(s => SEC[s[0]] = { key: s[0], short: s[1], name
 const sandbox = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/stories.js"), "utf8"), sandbox);
 const ALL = sandbox.window.STORIES.slice().sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 const hasArt = id => fs.existsSync(path.join(ROOT, "assets/art", id + ".webp"));
-ALL.forEach(s => { s.url = "/news/" + s.id + "/"; s.art = hasArt(s.id) ? "/assets/art/" + s.id + ".webp" : null; });
+// Generated art from art.js (photos with credits and graphic cards) lives in .art-cache
+const ACACHE = path.join(ROOT, ".art-cache");
+const AMAN = fs.existsSync(path.join(ACACHE, "manifest.json")) ? JSON.parse(fs.readFileSync(path.join(ACACHE, "manifest.json"), "utf8")) : {};
+const hasGen = id => AMAN[id] && fs.existsSync(path.join(ACACHE, id + ".webp"));
+ALL.forEach(s => { s.url = "/news/" + s.id + "/"; s.art = hasArt(s.id) || hasGen(s.id) ? "/assets/art/" + s.id + ".webp" : null; s.artInfo = hasArt(s.id) ? { kind: "illustration" } : (AMAN[s.id] || null); });
 const BIZ = ["business", "growth", "real-estate"];
 const inCat = k => ALL.filter(s => s.cat === k);
 const inSec = k => k === "business" ? ALL.filter(s => BIZ.includes(s.cat))
@@ -229,6 +233,10 @@ function footer() {
 </html>
 `;
 }
+const figCap = s => { const a = s.artInfo; if (!a) return "";
+  if (a.kind === "illustration") return `<figcaption class="fig-cap"><span class="fig-tag">Illustration</span> ${esc(NAME)}</figcaption>`;
+  if (a.kind === "photo") return `<figcaption class="fig-cap">Photo: ${a.page ? `<a href="${a.page}" target="_blank" rel="noopener">${esc(a.by || "file photo")}</a>` : esc(a.by || "file photo")}${a.lic ? ` / ${a.licUrl ? `<a href="${a.licUrl}" target="_blank" rel="noopener">${esc(a.lic)}</a>` : esc(a.lic)}` : ""}${a.via ? ` via ${esc(a.via)}` : ""}. File photo.</figcaption>`;
+  return ""; };
 const art = (s, cls, eager) => s.art ? `<img class="${cls}" src="${s.art}" alt="${esc(s.title)}" width="1200" height="675"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}>` : "";
 function row(s, noDek, pic) {
   return `<a class="row${pic && s.art ? " pic" : ""}" href="${s.url}">${pic === "top" ? art(s, "row-top") : ""}<span class="row-txt"><span class="cat">${esc(catLabel(s.cat))}</span><h3>${esc(s.title)}</h3>${noDek ? "" : `<p>${esc(s.dek)}</p>`}<time datetime="${s.date}">${fmt(s.date)}${s.city ? " · " + esc(s.city) : ""}</time></span>${pic === "side" ? art(s, "row-side") : ""}</a>`;
@@ -315,7 +323,7 @@ ALL.forEach(s => {
   }) + header(s.cat) + `<main><article class="article">${crumbsHtml(crumbs.slice(0, 2))}
 <h1>${esc(s.title)}</h1><p class="dek">${esc(s.dek)}</p>
 <div class="art-meta">By ${NAME} Staff · <time datetime="${iso(s.date)}">${fmt(s.date)}</time>${s.city ? " · " + esc(s.city) : ""}<span class="views" data-views hidden></span></div>
-${s.art ? `<figure class="hero-fig">${art(s, "hero-img", true)}</figure>` : ""}
+${s.art ? `<figure class="hero-fig">${art(s, "hero-img", true)}${figCap(s)}</figure>` : ""}
 <div class="body">${s.body.map(p => p.indexOf("<ul") === 0 ? p : "<p>" + p + "</p>").join("")}</div>
 ${src ? `<aside class="sources"><b>Sources</b><ul>${src}</ul><small>${NAME} summarizes reporting and public records. Read the original sources for full details.</small></aside>` : ""}
 <div class="share">Share: <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">Facebook</a> · <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(abs(s.url))}&text=${encodeURIComponent(s.title)}" target="_blank" rel="noopener">X</a> · <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:?subject=${encodeURIComponent(s.title)}&body=${encodeURIComponent(abs(s.url))}">Email</a></div>
@@ -399,4 +407,5 @@ pages["google87e94f914aca1841.html"] = "google-site-verification: google87e94f91
 fs.rmSync(OUT, { recursive: true, force: true });
 for (const [f, c] of Object.entries(pages)) { const p = path.join(OUT, f); fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, c); }
 fs.cpSync(path.join(ROOT, "assets"), path.join(OUT, "assets"), { recursive: true });
+for (const id of Object.keys(AMAN)) { const f = path.join(ACACHE, id + ".webp"); if (fs.existsSync(f) && !hasArt(id)) fs.copyFileSync(f, path.join(OUT, "assets/art", id + ".webp")); }
 console.log("Built", Object.keys(pages).length, "files,", ALL.length, "stories");
