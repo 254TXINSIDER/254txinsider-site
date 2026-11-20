@@ -73,6 +73,8 @@ ${o.extraMeta || ""}<link rel="icon" href="/assets/logo.webp" type="image/webp">
 ${o.preload ? `<link rel="preload" as="image" href="${o.preload}">\n` : ""}${FONTS}
 <link rel="stylesheet" href="/assets/styles.css">
 <script src="/assets/main.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TK59H04YNZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-TK59H04YNZ");</script>
 ${(o.ld || []).map(ld).join("\n")}
 </head>
 <body>
@@ -92,9 +94,9 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Follow</h4>${social()}</div>
-</div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
+</div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
 </html>
 `;
@@ -184,7 +186,7 @@ ALL.forEach(s => {
       citation: (s.sources || []).map(x => ({ "@type": "CreativeWork", name: x[0], url: x[1] })) }]
   }) + header(s.cat) + `<main><article class="article">${crumbsHtml(crumbs.slice(0, 2))}
 <h1>${esc(s.title)}</h1><p class="dek">${esc(s.dek)}</p>
-<div class="art-meta">By ${NAME} Staff · <time datetime="${iso(s.date)}">${fmt(s.date)}</time>${s.city ? " · " + esc(s.city) : ""}</div>
+<div class="art-meta">By ${NAME} Staff · <time datetime="${iso(s.date)}">${fmt(s.date)}</time>${s.city ? " · " + esc(s.city) : ""}<span class="views" data-views hidden></span></div>
 ${s.art ? `<figure class="hero-fig">${art(s, "hero-img", true)}</figure>` : ""}
 <div class="body">${s.body.map(p => p.indexOf("<ul") === 0 ? p : "<p>" + p + "</p>").join("")}</div>
 ${src ? `<aside class="sources"><b>Sources</b><ul>${src}</ul><small>${NAME} summarizes reporting and public records. Read the original sources for full details.</small></aside>` : ""}
@@ -209,6 +211,14 @@ simple("contact/index.html", "/contact/", `Contact & News Tips | ${NAME}`, `Send
 <label>Name <input name="name" required></label><label>Email <input type="email" name="email" required></label>
 <label>Topic <select name="topic" id="topic"><option value="tip">News tip</option><option value="podcast">Podcast guest</option><option value="advertise">Advertising</option><option value="other">Something else</option></select></label>
 <label>Message <textarea name="message" required></textarea></label><div><button class="btn" type="submit">Send</button></div></form></div></section>`);
+simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAME} handles visitor data, newsletter signups and analytics.`,
+  `<div class="page-hero"><div class="wrap"><span class="kicker">Legal</span><h1>Privacy <span>Policy</span></h1><p>Last updated November 19, 2026.</p></div></div>
+<section class="block"><div class="wrap prose"><h2>What we collect</h2><p>When you sign up for our newsletter or send us a message, we collect what you enter, such as your name and email address. We use it only to send you ${NAME} updates or to reply to you. We do not sell your information.</p>
+<h2>Analytics</h2><p>We use Google Analytics to understand how many people visit the site and which stories they read. Google Analytics uses cookies and collects information such as pages viewed, approximate location and device type. You can learn more at <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google's partner sites policy</a> or opt out with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out add-on</a>.</p>
+<h2>View counts</h2><p>We keep simple, anonymous counts of how many times each page is viewed. These counts do not identify you.</p>
+<h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
+<h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
+<h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
   `<div class="page-hero"><div class="wrap"><h1>Thank <span>You</span></h1><p>Got it. We'll be in touch. In the meantime, catch the latest on the homepage.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
