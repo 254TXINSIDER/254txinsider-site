@@ -61,7 +61,7 @@ window.STORIES = [
   "Each rolling closure is expected to last about 20 to 30 minutes. Work earlier in November slipped a day because of weather, so check TxDOT updates before you drive."],
  sources:[["FOX 44 via Yahoo News","https://www.yahoo.com/news/articles/twin-bridges-rolling-closures-resume-214656733.html"]]},
 
-{id:"temple-industrial-park-2026", cat:"business", top:1, city:"Temple", date:"2026-11-18",
+{id:"temple-industrial-park-2026", cat:"business", also:["real-estate"], top:1, city:"Temple", date:"2026-11-18",
  title:"Temple's industrial park keeps adding up: where East Penn, Sesajal and SeAH stand",
  dek:"Three manufacturers have committed $250 million and about 200 jobs to Temple since 2024.",
  body:[
@@ -199,10 +199,10 @@ window.STORIES = [
  sources:[["Freddie Mac","https://www.freddiemac.com/pmms"]]},
 
 {id:"baylor-football-texas-tech-senior-day", cat:"sports", top:1, city:"Waco", date:"2026-11-19",
- title:"Baylor hosts No. 10 Texas Tech on Senior Day after loss at BYU",
+ title:"Baylor hosts ranked Texas Tech on Senior Day after loss at BYU",
  dek:"The Bears (6-4) close their home schedule Saturday at McLane Stadium, then finish at Houston on Nov. 28.",
  body:[
-  "Baylor football plays its final home game of 2026 on Saturday, Nov. 21, when the Bears host No. 10 Texas Tech on Senior Day. Kickoff is set for 2:30 p.m. Central.",
+  "Baylor football plays its final home game of 2026 on Saturday, Nov. 21, when the Bears host nationally ranked Texas Tech on Senior Day. Kickoff is set for 2:30 p.m. Central.",
   "<strong>Where Baylor stands:</strong> the Bears are 6-4 overall and 4-3 in the Big 12. They beat Iowa State 42-31 on Nov. 7, then fell 28-7 at No. 10 BYU on Nov. 14.",
   "<strong>What's next:</strong> Baylor closes the regular season at No. 21 Houston on Saturday, Nov. 28. That game kicks off at 8:30 p.m. on ESPN2.",
   "Houston won last year's meeting in Waco 31-24, so the finale doubles as a rivalry rematch."],
@@ -286,5 +286,131 @@ window.STORIES = [
   "<strong>Harker Heights:</strong> a 40,000-square-foot Crunch Fitness has been under construction near I-14, part of a wave of new fitness, dining and retail projects between Killeen and Harker Heights.",
   "<strong>Copperas Cove:</strong> two big-box stores may be headed to the Shops at Five Hills on Robert Griffin III Boulevard. Local reports point to Hobby Lobby and Academy Sports, but the city EDC hasn't confirmed the names. Sober Sips, a non-alcoholic bar run by two veterans, is also preparing to open in Cove.",
   "Know about a Bell County opening or closing? <a href=\"/contact/\">Send us a tip.</a>"],
- sources:[["Killeen Daily Herald: The Pickle","https://kdhnews.com/business/the-pickle-brings-pickleball-pizza-and-family-entertainment-to-killeen/article_662a9230-e864-49e6-8869-e711ce8e2c03.html"],["Killeen Daily Herald: Business Briefs","https://kdhnews.com/business/business-briefs/article_3de40525-deaa-4212-86d2-e9ee6ee01928.html"],["Killeen Daily Herald: Roses & Razors","https://kdhnews.com/news/local/new-barbershop-opens-in-killeen-area/article_9d72e6b9-6025-4d0b-9fb7-70bbfd79ac2f.html"],["KXXV: Development boom","https://www.kxxv.com/news/local-news/in-your-neighborhood/development-boom-brings-new-businesses-to-killeen-and-harker-heights"],["Killeen Daily Herald: Five Hills","https://kdhnews.com/news/local/cove-eyeing-new-big-box-stores-in-five-hills-shopping-center/article_74b153a2-e2e4-4e17-bfa6-4f4127eb0e98.html"],["Killeen Daily Herald: Sober Sips","https://kdhnews.com/news/local/geared-towards-veterans-a-new-non-alcoholic-bar-will-soon-open-in-copperas-cove/article_00953b5d-dca3-43a4-9a8b-7fc7591e5cac.html"]]}
+ sources:[["Killeen Daily Herald: The Pickle","https://kdhnews.com/business/the-pickle-brings-pickleball-pizza-and-family-entertainment-to-killeen/article_662a9230-e864-49e6-8869-e711ce8e2c03.html"],["Killeen Daily Herald: Business Briefs","https://kdhnews.com/business/business-briefs/article_3de40525-deaa-4212-86d2-e9ee6ee01928.html"],["Killeen Daily Herald: Roses & Razors","https://kdhnews.com/news/local/new-barbershop-opens-in-killeen-area/article_9d72e6b9-6025-4d0b-9fb7-70bbfd79ac2f.html"],["KXXV: Development boom","https://www.kxxv.com/news/local-news/in-your-neighborhood/development-boom-brings-new-businesses-to-killeen-and-harker-heights"],["Killeen Daily Herald: Five Hills","https://kdhnews.com/news/local/cove-eyeing-new-big-box-stores-in-five-hills-shopping-center/article_74b153a2-e2e4-4e17-bfa6-4f4127eb0e98.html"],["Killeen Daily Herald: Sober Sips","https://kdhnews.com/news/local/geared-towards-veterans-a-new-non-alcoholic-bar-will-soon-open-in-copperas-cove/article_00953b5d-dca3-43a4-9a8b-7fc7591e5cac.html"]]},
+
+{id:"copperas-cove-academy-hobby-lobby-confirmed", cat:"business", also:["real-estate"], top:1, city:"Copperas Cove", date:"2026-11-20",
+ title:"It's official: Academy Sports and Hobby Lobby are coming to Copperas Cove in a $21.3 million build",
+ dek:"The city confirmed both stores for a 12-acre site on Robert Griffin III Boulevard, with openings targeted for fall 2027.",
+ body:[
+  "The big-box rumors in Copperas Cove are now confirmed. City development services director Bobby Lewis told the Killeen Daily Herald that a new Hobby Lobby and an Academy Sports + Outdoors will be built at 276 Robert Griffin III Boulevard, near RGIII Boulevard and MLK Drive, just south of the Shops at Five Hills.",
+  "<strong>The money:</strong> a filing by Broadstone Net Lease puts the investment at about $12.96 million for Academy and about $8.33 million for Hobby Lobby, roughly $21.3 million combined. Both stores are listed on 15-year leases, with work starting this month and a target of November 2027 for the projects to be fully up and running.",
+  "<strong>The developer:</strong> Collett Properties of Charlotte, N.C., signed a development agreement with the Copperas Cove Economic Development Corp. for the 12.065-acre tract. The EDC is putting in a $350,000 grant, paid in two installments, to reimburse stormwater drainage work. Runoff from about 55 acres of undeveloped land has to cross the site, which had held it back.",
+  "<strong>The buildings:</strong> state filings describe a single-story Academy store of about 55,870 square feet, with construction scheduled from March to August 2027. Plans for the roughly 15.9-acre subdivision show two retail buildings of about 55,000 square feet each, around 450 parking spaces, a detention pond and a 2.29-acre outparcel for a future tenant. Collett is advertising fall 2027 openings.",
+  "<strong>Why it matters:</strong> Cove shoppers now drive to Killeen or Harker Heights for both chains. The new stores add sales tax revenue on the city's west side and could pull more retail to the open outparcel."],
+ sources:[["Killeen Daily Herald","https://kdhnews.com/business/academy-sports-hobby-lobby-coming-to-copperas-cove-as-21-3m-retail-development-moves-forward/article_37f92cac-78eb-46bd-96b3-992119fae124.html"]]},
+
+{id:"killeen-isd-optimization-ellison-town-hall", cat:"education", top:1, city:"Killeen", date:"2026-11-20",
+ title:"485 people pack Ellison High as Killeen ISD weighs closing the 48-year-old campus",
+ dek:"The district's final Optimization 2.0 town hall drew its biggest crowd yet. Trustees review feedback Dec. 8 and expect to finalize a plan Dec. 15.",
+ body:[
+  "More than 485 people filled the Ellison High School auditorium this week for Killeen ISD's third and final town hall on its Optimization 2.0 plan, a two-hour meeting about possible school closures, relocations and rezoning. Earlier sessions drew about 80 people at Shoemaker High and about 165 at Killeen High.",
+  "<strong>Why the district is doing this:</strong> enrollment has fallen by more than 5,000 students since the 2022-23 school year, and the district projects losing about $31 million in federal Impact Aid over five years. KISD is weighing 11 different scenarios.",
+  "<strong>What could happen to Ellison:</strong> one option, labeled scenario 6c, would close Ellison at the end of the 2027-28 school year and rezone its students to Chaparral, Killeen and Shoemaker high schools. The district estimates that would save $22.6 million in operating costs over five years and avoid $8.1 million in heating, air conditioning and roof work. Ellison opened in 1978.",
+  "Another option would move the Early College High School from Fort Hood into Ellison as a school-within-a-school.",
+  "<strong>What's next:</strong> no decision has been made. Trustees will review community feedback at a Dec. 8 workshop, and the district expects to finalize the plan at the Dec. 15 board meeting. Any change requires a board vote.",
+  "<strong>Also in KISD news:</strong> 17 Killeen ISD seniors earned Academic All-State honors from the Texas High School Coaches Association, and Ellison soprano Alaina Corder was chosen to sing with an international honor choir at Carnegie Hall on Feb. 7."],
+ sources:[["Killeen Daily Herald","https://kdhnews.com/news/education/killeen-isd-hosts-final-town-hall-on-proposed-optimization-2-0-plan/article_6024e563-5d12-4a85-8fd6-0097d4feee7e.html"],["KWTX: Good News Friday","https://www.kwtx.com/2026/11/20/good-news-friday-11202026/"]]},
+
+{id:"ctc-army-additive-manufacturing-contract", cat:"education", city:"Killeen", date:"2026-11-20",
+ title:"Central Texas College wins Army contract to teach Fort Hood soldiers 3D manufacturing",
+ dek:"A six-week, five-course program will train III Armored Corps soldiers with no prior experience in design and additive manufacturing.",
+ body:[
+  "Central Texas College has landed an Army contract to provide additive manufacturing instruction, better known as industrial 3D printing, to soldiers supporting III Armored Corps at Fort Hood. The work ties into the Army Transformation Initiative.",
+  "<strong>What soldiers will learn:</strong> the program runs five courses over six weeks, covering engineering design, computer-aided design, reverse engineering, materials science and the Defense Department's qualification standards for additive manufacturing, ending with a capstone project. It is built for soldiers with no prior experience.",
+  "<strong>Who's involved:</strong> CTC Chancellor Michele J. Carter, Sam Jackson of the college's engineering and drafting program, and the Phantom X Nexus Advanced Manufacturing Lab at Fort Hood.",
+  "<strong>Why it matters:</strong> the ability to print replacement parts in the field can cut repair times, and the skills carry over to civilian manufacturing jobs, a growing sector along the I-14 corridor. The contract's dollar value and start date were not reported."],
+ sources:[["Killeen Daily Herald","https://kdhnews.com/news/education/ctc-lands-army-contract-training-soldiers-on-manufacturing-technology/article_f7dadb6c-98bf-48d2-8ca6-0d1054d103b9.html"]]},
+
+{id:"texas-gas-prices-thanksgiving-2026", cat:"markets", city:"Central Texas", date:"2026-11-20",
+ title:"Gas is falling, but Texas is still headed for its priciest Thanksgiving at the pump since 2021",
+ dek:"The Texas average is $3.20 a gallon, about 50 cents more than last Thanksgiving. Nearly 73 million Americans are expected to drive for the holiday.",
+ body:[
+  "Prices are dropping ahead of Thanksgiving travel, but not enough to erase the jump from last year. AAA Texas put the statewide average for regular unleaded at $3.20 a gallon on Thursday, Nov. 19. AAA Texas says that could make this the most expensive Thanksgiving for Texas drivers since 2021.",
+  "<strong>Compared with past years:</strong> Texans paid an average of $2.70 a gallon last Thanksgiving, $2.65 in 2024 and $2.74 in 2023.",
+  "<strong>Nationally:</strong> the U.S. average fell 18 cents in a week to about $3.72, down from $4.30 a month ago but still more than 60 cents above a year ago. AAA says the national average could drop another 15 cents by Thanksgiving Day and avoid topping the record of $3.58 set in 2022. West Texas Intermediate crude settled at $83.26 a barrel on Wednesday.",
+  "<strong>Texas is still cheap by comparison:</strong> only North Carolina and Indiana had lower averages. California and Hawaii are above $5.50.",
+  "<strong>For 254 travelers:</strong> AAA projects nearly 73 million people will take road trips over the holiday."],
+ sources:[["KAUZ NewsChannel 6 / AAA Texas","https://www.newschannel6now.com/2026/11/19/aaa-texas-reports-gas-prices-continue-falling-thanksgiving-approaches/"],["AAA: Gas prices keep dropping","https://gasprices.aaa.com/gas-prices-keep-dropping-as-thanksgiving-approaches/"]]},
+
+{id:"waco-school-leaders-legislature-wish-list", cat:"government", city:"Waco", date:"2026-11-20",
+ title:"What Waco, Midway and Connally ISD want from the Legislature in January",
+ dek:"Local school leaders are asking for more state money, funding based on enrollment and more control over local decisions.",
+ body:[
+  "With the Texas Legislature set to meet in January, three McLennan County districts are laying out their asks, according to The Waco Bridge.",
+  "<strong>Waco ISD:</strong> Chief of Staff Elizabeth Cox said the district wants funding based on enrollment instead of average daily attendance, and wants the per-student basic allotment tied to inflation. She pointed to rising energy, diesel and health care costs.",
+  "<strong>Connally ISD:</strong> state-appointed Superintendent Josie Gutierrez said academic gains require more state funding and noted that the state takeover did not come with new money. An after-school enrichment hour added this fall cost $300,000, part of a $1.7 million shortfall in the district's $26.9 million budget.",
+  "<strong>Midway ISD:</strong> Superintendent Chris Allen presented draft priorities to the school board Tuesday, including local control over instructional materials and programs, fewer limits on financial decisions and more state money for mandates such as the 2023 armed-officer requirement.",
+  "<strong>The backdrop:</strong> the basic allotment went unchanged for six years before lawmakers raised it by $55 in 2025, to $6,215 per student. House Democrats have filed a bill to raise it to $7,500 and index it to inflation. Gov.-elect Gina Hinojosa has said she wants to unwind state takeovers of school districts. Any change to the accountability law would also need to pass the Republican-led Senate."],
+ sources:[["The Waco Bridge","https://wacobridge.org/2026/11/19/texas-legislature-public-schools-waco-connally-midway/"]]},
+
+{id:"bell-county-councils-roundup-nov-20", cat:"government", city:"Bell County", date:"2026-11-20",
+ title:"Bell County council roundup: Killeen holds off on water fees, Cove rejects MUD petition, Nolanville gets a new mayor",
+ dek:"A busy week at city halls from Killeen to Copperas Cove, plus a Killeen council seat that will soon need filling.",
+ body:[
+  "<strong>Killeen:</strong> the City Council tabled proposed water impact fees this week after members raised concerns about the details and about input from stakeholders. Impact fees are one-time charges on new development that help pay for water lines and plants.",
+  "<strong>Killeen council seat:</strong> Mayor Pro Tem Jessica Gonzalez, who won a Bell County justice of the peace seat this month, turned in her resignation from the District 1 council seat. She plans to stay on until a replacement is chosen.",
+  "<strong>Killeen communication:</strong> council members agreed to take up a protocol next month for how city staff notify the council about significant city business. Gonzalez said she wants timely, consistent notice from the city manager's office, city secretary and assistant city manager.",
+  "<strong>Copperas Cove:</strong> the council rejected a petition tied to the proposed Church Mountain municipal utility district and called a runoff election. A candidate later withdrew from the Place 7 runoff, settling that seat.",
+  "<strong>Harker Heights:</strong> the council turned down a rezoning request that would have allowed manufactured homes.",
+  "<strong>Nolanville:</strong> the city honored longtime Mayor Andy Williams and welcomed new Mayor James Bilberry."],
+ sources:[["Killeen Daily Herald: Water impact fees","https://kdhnews.com/news/local/killeen-council-tables-water-impact-fees-after-concerns-over-details-and-stakeholder-input/article_475a0a0f-53e0-4dd1-bec9-b9abe89d684e.html"],["Killeen Daily Herald: Gonzalez resignation","https://kdhnews.com/government/gonzalez-turns-in-resignation-intends-to-stay-on-killeen-council-until-replacement-selected/article_0263ac4c-1ad0-4cf3-af25-ef6c69f315eb.html"],["Killeen Daily Herald: Council protocol","https://kdhnews.com/news/local/killeen-council-agrees-to-bring-up-protocol-for-communication-to-council-next-month/article_dcb61d61-7762-4a22-956a-a2c1996119cf.html"],["Killeen Daily Herald: Cove MUD petition","https://kdhnews.com/news/local/copperas-cove-council-rejects-church-mountain-mud-petition-calls-runoff-election/article_7320dc46-881e-400e-960a-3890321afc6f.html"],["Killeen Daily Herald: Cove Place 7","https://kdhnews.com/copperas_cove_herald/cove-council-place-7-seat-set-after-candidate-withdraws/article_b44b22a4-e9cc-4375-abeb-f9a29dccbe6e.html"],["Killeen Daily Herald: Heights rezoning","https://kdhnews.com/news/local/heights-council-turns-down-rezoning-request-that-would-have-allowed-manufactured-homes/article_8741dbeb-46d4-443b-88c1-7cb88c9dfeec.html"],["Killeen Daily Herald: Nolanville mayor","https://kdhnews.com/news/local/nolanville-honors-longtime-mayor-andy-williams-welcomes-new-mayor-james-bilberry/article_428c07ee-fd93-4860-8aa0-dc53022a672f.html"]]},
+
+{id:"baylor-athletics-200-million-fueling-greatness", cat:"sports", city:"Waco", date:"2026-11-20",
+ title:"Baylor launches $200 million 'Fueling Greatness' push for athletics",
+ dek:"Athletic director Doug McNamee laid out a four-year fundraising initiative covering coaches, scholarships, facilities and faith programs.",
+ body:[
+  "Baylor Athletics is starting a four-year, $200 million initiative called Fueling Greatness, athletic director Doug McNamee announced in a letter to supporters on Thursday, according to The Baylor Lariat.",
+  "<strong>Where the money would go:</strong> four priorities. Resourcing championships (coaching staffs, equipment and travel), scholarships, capital projects such as new facilities and game-day upgrades, and faith and formation programs including chaplaincy and leadership development.",
+  "McNamee wrote that supporters \"must lean in together to fund our ambitions for all our teams.\"",
+  "<strong>The context:</strong> the Lariat noted that Baylor's estimated football roster spending of $20 million to $23 million trails in-state rivals including Texas, Texas Tech and TCU in the revenue-sharing era. University President Linda Livingstone recently disclosed a projected $30 million operating deficit for fiscal 2027.",
+  "<strong>On the field this weekend:</strong> Baylor (6-4) hosts ranked Texas Tech on Senior Day Saturday at McLane Stadium."],
+ sources:[["The Baylor Lariat","https://baylorlariat.com/2026/11/20/mcnamee-announces-4-year-200-million-athletics-initiative-in-recent-letter/"],["Fox Sports: Texas Tech at Baylor","https://www.foxsports.com/college-football/texas-tech-red-raiders-vs-baylor-bears-nov-21-2026-game-boxscore-44300"]]},
+
+{id:"area-round-thursday-results-friday-slate", cat:"sports", city:"Central Texas", date:"2026-11-20",
+ title:"Belton's season ends against South Oak Cliff; Bremond rolls 71-21 as area round continues tonight",
+ dek:"Thursday's results and every 254 team playing Friday night.",
+ body:[
+  "<strong>Belton:</strong> the Tigers' season ended Thursday night at Waco ISD Stadium with a 57-14 loss to Dallas South Oak Cliff in the Class 5A Division II area round. South Oak Cliff returned two punts for touchdowns, covering 77 and 64 yards. Belton finishes 8-4.",
+  "<strong>Bremond:</strong> the unbeaten Tigers routed Three Rivers 71-21 in the 2A Division II area round to move to 12-0.",
+  "<strong>Axtell:</strong> the Longhorns' perfect season ended with a 28-16 loss to De Leon in the 2A Division I area round in Dublin.",
+  "<strong>Tonight's 254 games (Friday, Nov. 20):</strong> La Vega (11-0) vs. Geronimo Navarro at UMHB's Crusader Stadium in Belton; Robinson vs. Rockport-Fulton in San Antonio; Lorena vs. Diboll in Madisonville; China Spring vs. Stafford in Giddings; Cameron Yoe vs. Orangefield in Houston; Rosebud-Lott vs. Flatonia in Manor; Crawford vs. Wellington in Graham; Goldthwaite (11-0) vs. Haskell in San Angelo; San Saba vs. Muenster in Granbury; Aquilla (11-0) vs. Medina in Priddy; Oglesby vs. Union Hill in Oakwood; and Mount Calm vs. Runge in Bartlett. Most kick off at 7 or 7:30 p.m.",
+  "<strong>State title on the line:</strong> Waco's Valor Prep plays Keller Harvest for the TAPPS 6-man Division II championship tonight at 7 at Rocket Field in Robinson."],
+ sources:[["Dallas Morning News via Yahoo Sports","https://sports.yahoo.com/articles/photos-south-oak-cliff-rolls-084438695.html"],["High School Football America: area-round scores","https://highschoolfootballamerica.com/final-scores-from-2nd-round-of-uil-texas-high-school-football-playoff-games-played-november-19-21-2026/"],["KWTX: Area round pairings","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"]]},
+
+{id:"bell-county-weekend-nov-20-22", cat:"things-to-do", city:"Bell County", date:"2026-11-20",
+ title:"Weekend in Bell County: Eli Young Band, a holiday market, a chili cook-off and Polar Express pajama night",
+ dek:"Plans for Friday through Sunday in Temple, Belton, Killeen and Harker Heights before Thanksgiving week.",
+ body:[
+  "<strong>Friday, Nov. 20:</strong> Pajama Night with a Polar Express screening at the Mayborn Science Theater at Central Texas College, 7 p.m., $8 per person. Free music bingo at Papa's Cafe in Harker Heights, 7 to 9 p.m. Borderline plays Bo's Barn Dancehall in Temple, 8 p.m., $10 cover.",
+  "<strong>Saturday, Nov. 21:</strong> the Eli Young Band plays Temple's Cultural Arts Center at 7:30 p.m. Belton Market Days brings a holiday market with vendors, food trucks and live music to 121 N. East St., 9 a.m. to 4 p.m. Belton's Wake and Brew hosts its second annual chili cook-off starting at 9 a.m. with pony rides and a bounce house. Bold Republic Brewing in Temple holds its family-friendly Mustache Bash, 1 to 5 p.m. Armor of God Outreach hosts a 5K Run and Walk for the Unhoused at Lions Club Park in Killeen starting at 8 a.m.",
+  "<strong>Sunday, Nov. 22:</strong> the seventh annual Giving Thanks and Share Your Blessings event at Killeen's E Center, 3 to 7 p.m. Martian Folk plays Fire Street Pizza in Belton at noon.",
+  "<strong>Saturday markets:</strong> Belton Farmers Market (7 a.m. to noon), Harker Heights Farmers Market (9 a.m. to 1 p.m., running through Dec. 12) and the Lampasas Farmers Market on the courthouse square (9 a.m. to 2 p.m.).",
+  "Times and prices can change, so check with organizers before you go. Hosting an event? <a href=\"/contact/\">Send it to us.</a>"],
+ sources:[["Killeen Daily Herald: Out and About","https://kdhnews.com/news/local/out-and-about-multiple-events-upcoming-in-the-central-texas-area/article_d2b0c076-9522-4922-9e2d-8512a177e9ae.html"]]},
+
+{id:"mortgage-rates-jump-728-254-payment", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
+ title:"Mortgage rates jump back to 7.28%. Here's what that does to a payment on a typical 254 home",
+ dek:"Freddie Mac's weekly average snapped a four-week slide. Daily rates are closer to 7.45%, more than a full point above a year ago.",
+ body:[
+  "Mortgage rates are climbing again. Freddie Mac's weekly survey put the average 30-year fixed rate at 7.28% on Thursday, Nov. 19, up from 7.11% a week earlier and 6.26% a year ago. The 15-year average rose to 6.66% from 6.45%.",
+  "Mortgage News Daily, which tracks rates every weekday, had the average top-tier 30-year rate at 7.45% on Nov. 19, after briefly topping 7.5% earlier in the week.",
+  "<strong>What it means for a 254 buyer:</strong> the median listing price in the Killeen-Temple metro was $275,000 in October, according to Realtor.com. With 10% down, principal and interest at 7.28% comes to about $1,693 a month. At last year's 6.26%, the same loan would have been about $1,526, a difference of roughly $167 a month, or about $2,000 a year. Property taxes and insurance are on top of that.",
+  "<strong>The upside for buyers:</strong> prices have softened. Killeen-Temple list prices were down about 7% from a year earlier and Waco's were down about 4%, and homes are taking 77 to 79 days to sell. That gives buyers more room to negotiate on price, repairs or a rate buydown paid by the seller.",
+  "<strong>Try your own numbers</strong> with the payment calculator on our <a href=\"/real-estate/#housing-dashboard\">254 Housing Dashboard</a>, which tracks rates and local market data and is updated daily."],
+ sources:[["Freddie Mac PMMS","https://www.freddiemac.com/pmms"],["Mortgage News Daily: Daily rate index","https://www.mortgagenewsdaily.com/mortgage-rates/mnd"],["Realtor.com via FRED: Killeen-Temple median list price","https://fred.stlouisfed.org/series/MEDLISPRI28660"]]},
+
+{id:"254-housing-market-october-2026", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
+ title:"254 housing report: Prices are slipping and homes are sitting longer. What it means for buyers, sellers and owners",
+ dek:"October numbers for Killeen-Temple, Waco and the Austin metro next door, plus the national picture.",
+ body:[
+  "Central Texas housing cooled further in October as mortgage rates stayed above 7%. Here's where the 254 stands, using Realtor.com listing data for local metros, Unlock MLS and the Austin Board of REALTORS for the Austin metro, and the National Association of REALTORS for the nation.",
+  "<strong>Killeen-Temple metro:</strong> the median listing price was $275,000, down from $297,000 a year earlier. Active listings slipped to 2,448 from 2,524, and the median home spent 77 days on the market, compared with 80 a year ago.",
+  "<strong>Waco metro:</strong> the median listing price was about $303,500, down from $315,000 a year earlier. Active listings rose slightly to 1,659, and the median home spent 79 days on the market, down from 100 a year ago.",
+  "<strong>Austin metro, next door:</strong> closed sales fell 11.4% from a year earlier to 2,114, and the median sold price dropped 6.9% to about $404,800, according to Unlock MLS. Williamson County's median fell 9.2% to $375,250. Months of inventory rose to 6.2. Falling Austin prices can pull some buyers who might have moved north to the 254 back toward Austin.",
+  "<strong>Nationally:</strong> existing-home sales fell 5.5% in October to an annual pace of 3.75 million, the slowest since August 2010, NAR reported. The national median price was $416,700, up just 0.4% from a year earlier, with 5.1 months of supply.",
+  "<strong>If you're buying:</strong> you have time and leverage. Ask for repairs, closing-cost help or a seller-paid rate buydown, and compare at least three lenders.",
+  "<strong>If you're selling:</strong> price it right on day one. Overpriced homes are the ones sitting past 90 days and taking cuts.",
+  "<strong>If you own:</strong> values have flattened, not crashed. Watch for your 2027 appraisal notice in the spring and compare it with recent nearby sales before deciding whether to protest.",
+  "Track rates and these numbers on our <a href=\"/real-estate/#housing-dashboard\">254 Housing Dashboard</a>. This is general information, not financial advice."],
+ sources:[["Realtor.com via FRED: Killeen-Temple","https://fred.stlouisfed.org/series/MEDLISPRI28660"],["Realtor.com via FRED: Waco","https://fred.stlouisfed.org/series/MEDLISPRI47380"],["Unlock MLS: October 2026 Central Texas Housing Report","https://www.unlockmls.com/news/october-2026-central-texas-housing-report"],["NAR: October existing-home sales","https://www.nar.realtor/newsroom/existing-home-sales-decreased-5-5-percent-october-nar-report"]]}
 ];

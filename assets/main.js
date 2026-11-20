@@ -22,3 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }).catch(function () {});
 })();
 
+
+// Mortgage payment calculator (Real Estate page)
+(function () {
+  var out = document.getElementById("pc-out"); if (!out) return;
+  var g = function (id) { return document.getElementById(id); };
+  function calc() {
+    var P = (+g("pc-price").value || 0) * (1 - (+g("pc-down").value || 0) / 100), r = (+g("pc-rate").value || 0) / 1200, n = (+g("pc-term").value || 30) * 12;
+    var m = r ? P * r / (1 - Math.pow(1 + r, -n)) : P / n;
+    out.textContent = "$" + Math.round(m).toLocaleString("en-US");
+  }
+  ["pc-price", "pc-down", "pc-rate", "pc-term"].forEach(function (id) { g(id).addEventListener("input", calc); });
+  calc();
+})();
