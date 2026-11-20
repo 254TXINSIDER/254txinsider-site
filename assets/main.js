@@ -37,3 +37,25 @@ document.addEventListener("DOMContentLoaded", function () {
   ["pc-price", "pc-down", "pc-rate", "pc-term", "pc-county", "pc-ins"].forEach(function (id) { g(id).addEventListener("input", calc); });
   calc();
 })();
+
+// Home search links (Real Estate page)
+(function () {
+  var sel = document.getElementById("hs-area"); if (!sel || !window.HS_AREAS) return;
+  var mode = "buy", r = document.getElementById("hs-realtor"), z = document.getElementById("hs-zillow");
+  function upd() {
+    var a = window.HS_AREAS[+sel.value];
+    r.href = mode === "rent" ? "https://www.realtor.com/apartments/" + a[1] : "https://www.realtor.com/realestateandhomes-search/" + a[1];
+    z.href = mode === "rent" ? "https://www.zillow.com/" + a[2] + "/rentals/" : "https://www.zillow.com/" + a[2] + "/";
+    r.textContent = (mode === "rent" ? "Rentals" : "Homes for sale") + " on Realtor.com ↗";
+    z.textContent = (mode === "rent" ? "Rentals" : "Homes for sale") + " on Zillow ↗";
+  }
+  sel.addEventListener("change", upd);
+  [].forEach.call(document.querySelectorAll(".hs-mode button"), function (btn) {
+    btn.addEventListener("click", function () {
+      mode = btn.getAttribute("data-mode");
+      [].forEach.call(document.querySelectorAll(".hs-mode button"), function (x) { x.classList.toggle("on", x === btn); });
+      upd();
+    });
+  });
+  upd();
+})();
