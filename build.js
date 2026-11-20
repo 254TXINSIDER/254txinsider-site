@@ -4,7 +4,7 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const ROOT = __dirname, OUT = path.join(ROOT, "dist");
 const SITE = "https://254txinsider.com", NAME = "254 Texas Insider", TAG = "The Pulse of the 254";
 const DESC = "Central Texas news for Waco, Temple, Killeen and Belton: business, growth, real estate, markets, government, schools, sports and things to do.";
-const SOC = { tiktok: "https://www.tiktok.com/@254.texas.insider", instagram: "https://www.instagram.com/254texasinsider", facebook: "https://www.facebook.com/search/top?q=254%20Texas%20Insider" };
+const SOC = { tiktok: "https://www.tiktok.com/@254.texas.insider", instagram: "https://www.instagram.com/254texasinsider", facebook: "https://www.facebook.com/profile.php?id=61594348517050" };
 const SECTIONS = [
   ["latest", "Latest", "Latest News", "Everything new across the 254: Waco, Temple, Killeen, Belton and the rest of Central Texas."],
   ["business", "Business", "Business & Economic Development", "The business journal for the 254: openings, expansions, jobs, deals and development across Waco, Temple, Killeen, Belton, Harker Heights, Copperas Cove and all of Central Texas."],
