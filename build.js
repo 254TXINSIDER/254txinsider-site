@@ -97,6 +97,29 @@ function localPros() {
 <form class="pros-form" id="pros-form" name="sponsor" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="sponsor"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
 <h3>Claim a spot or ask about rates</h3><div class="pf-row"><label>Your name <input name="name" required></label><label>Business name <input name="business" required></label><label>Category <select name="category" id="pf-cat">${cats.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label><label>Website <input name="website" placeholder="optional"></label></div><label class="pf-msg">Anything we should know? <textarea name="message" rows="3" placeholder="Areas you serve, what you'd like to promote..."></textarea></label><button class="btn" type="submit">Send, we'll call you</button><p class="hs-note">Sponsored listings are marked "Sponsored." ${NAME} does not endorse any business.</p></form></div>`;
 }
+// ---------- FAQ + service markup helpers (SEO / AEO) ----------
+const AREAS = ["Bell County, TX", "McLennan County, TX", "Coryell County, TX", "Lampasas County, TX", "Temple, TX", "Killeen, TX", "Waco, TX", "Belton, TX", "Harker Heights, TX", "Copperas Cove, TX"];
+const faqHtml = (title, items) => `<section class="faq"><h2 class="list-head">${title}</h2>${items.map(q => `<details><summary>${esc(q[0])}</summary><p>${q[1]}</p></details>`).join("")}</section>`;
+const faqLd = items => ({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items.map(q => ({ "@type": "Question", name: q[0], acceptedAnswer: { "@type": "Answer", text: strip(q[1]) } })) });
+const serviceLd = (name, desc, url, types) => ({ "@context": "https://schema.org", "@type": "Service", name, description: desc, url: abs(url), provider: { "@id": SITE + "/#org" }, areaServed: AREAS.map(a => ({ "@type": "Place", name: a })), serviceType: types });
+const TAX_FAQ = [
+  ["When is the homestead exemption deadline in Texas?", "File by <b>April 30</b> with your county appraisal district (Bell, McLennan or Coryell). It's free. If you missed it, you can file late, up to two years after the tax bill's delinquency date, and get a refund."],
+  ["How much does the Texas homestead exemption save?", "It takes <b>$140,000 off your home's value for school taxes</b>, and some cities and counties take off more. It also caps how fast your taxable value can rise to 10% a year, starting the year after you qualify."],
+  ["What is the deadline to protest my property appraisal?", "<b>May 15</b>, or 30 days after your notice of appraised value is mailed, whichever is later. If the deadline falls on a weekend or holiday, it moves to the next business day."],
+  ["Do I need to pay a company to file my homestead exemption?", "No. Filing is free with your county appraisal district, online or with the state's Form 50-114. Ignore mailers that charge a fee to do it for you."]
+];
+const HOME_FAQ = [
+  ["Is 254 Home Pros free for homeowners?", "Yes. Requesting a pro is free and there's no obligation."],
+  ["How many companies get my request?", "One local partner per trade you pick. We don't sell your request to a list of competing companies."],
+  ["How do I check that a Texas contractor is licensed?", "AC and electrical licenses can be checked with the <a href=\"https://www.tdlr.texas.gov/LicenseSearch/\" target=\"_blank\" rel=\"noopener\">TDLR license search</a>. Plumbers are licensed by the <a href=\"https://tsbpe.texas.gov/\" target=\"_blank\" rel=\"noopener\">Texas State Board of Plumbing Examiners</a>. Always ask for proof of insurance too."],
+  ["What areas does 254 Home Pros cover?", "Bell, McLennan, Coryell and Lampasas counties, including Temple, Belton, Killeen, Harker Heights, Copperas Cove, Salado, Waco, Hewitt, Woodway, Gatesville and Lampasas."]
+];
+const BUILD_FAQ = [
+  ["How do I find a commercial HVAC, plumbing or roofing contractor in Central Texas?", "Send a free project request through 254 Build &amp; Facilities. Pick the trades you need and we connect you with vetted local commercial partners in Bell, McLennan and Coryell counties."],
+  ["Where do Temple, Killeen, Waco and Belton post public bids?", "Each city posts bids on its purchasing page; Killeen uses OpenGov and Killeen ISD uses IonWave. State agency, TxDOT and university bids are on the Texas Electronic State Business Daily. Links are in the 254 Bid Board on this page."],
+  ["Do commercial projects in Texas need TDLR accessibility registration?", "Generally, yes, for projects with a total estimated cost of $50,000 or more. See the <a href=\"https://www.tdlr.texas.gov/ab/\" target=\"_blank\" rel=\"noopener\">TDLR Architectural Barriers program</a>."],
+  ["Are there utility rebates for commercial HVAC in Central Texas?", "If your building is on Oncor's lines, high-efficiency HVAC can qualify for instant discounts through participating distributors, and rural sites have a separate program. Ask your contractor to include them in the quote."]
+];
 // ---------- 254 Home Pros (residential lead hub) ----------
 const HOME_TRADES = [["AC & Heating", "❄️"], ["Plumbing", "🚰"], ["Electrical", "⚡"], ["Roofing", "🏠"], ["Foundation Repair", "🧱"], ["Pest Control", "🐜"], ["Garage Doors", "🚪"], ["Fencing", "🪵"], ["Landscaping & Lawn", "🌳"], ["Tree Service", "🪓"], ["Pools & Spas", "🏊"], ["Handyman", "🔧"], ["Gutters", "🌧️"], ["Remodeling", "🛠️"], ["Painting", "🎨"], ["Cleaning", "🧽"]];
 const HOME_PROMO = `<a class="bld-promo" href="/home-pros/"><b>Need a pro at the house?</b><span>AC, plumbing, roofing, foundation and more. One trusted local pro per trade, not a bidding war. →</span></a>`;
@@ -132,10 +155,10 @@ function homeHub() {
 <li><b>Doors sticking, new cracks?</b> Central Texas clay soil shifts with drought and rain. Have foundation movement checked early; it's cheaper.</li></ul></div>
 <div class="bld-box"><h3>Hiring tips</h3><ul>
 <li>Get two or three quotes for big jobs, in writing.</li>
-<li>Ask for proof of insurance, and a license where your trade requires one. You can look up Texas AC, electrical and plumbing licenses on the state's <a href="https://www.tdlr.texas.gov/LicenseSearch/" target="_blank" rel="noopener">TDLR license search</a>.</li>
+<li>Ask for proof of insurance, and a license where your trade requires one. Look up AC and electrical licenses on the state's <a href="https://www.tdlr.texas.gov/LicenseSearch/" target="_blank" rel="noopener">TDLR license search</a> and plumbers with the <a href="https://tsbpe.texas.gov/" target="_blank" rel="noopener">Texas State Board of Plumbing Examiners</a>.</li>
 <li>Don't pay in full up front. A reasonable deposit is normal; the rest when the work is done.</li></ul></div>
 <div class="bld-box"><h3>More for homeowners</h3><ul><li><a href="/real-estate/#property-tax-guide">Lower your property taxes</a></li><li><a href="/real-estate/#housing-dashboard">254 Housing Dashboard</a></li><li><a href="/build/">Commercial building? 254 Build &amp; Facilities</a></li></ul></div>
-</aside></div></div></section>`;
+</aside></div>${faqHtml("Common <span>questions</span>", HOME_FAQ)}</div></section>`;
 }
 function taxGuide() {
   const cad = [["Bell County", "Tax Appraisal District of Bell County", "https://bellcad.org/", "254-939-5841", "https://portal.bellcad.org/"], ["McLennan County", "McLennan Central Appraisal District", "https://mclennancad.org/", "254-752-9864", "https://mclennancad.org/"], ["Coryell County", "Coryell Central Appraisal District", "https://coryellcad.org/", "", "https://coryellcad.org/"]];
@@ -210,7 +233,7 @@ const catLabel = k => SEC[k] ? SEC[k].short : k;
 const secUrl = k => "/" + k + "/";
 const abs = u => SITE + u;
 const ld = o => '<script type="application/ld+json">' + JSON.stringify(o).replace(/</g, "\x5cu003c") + "</script>";
-const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.tiktok, SOC.instagram], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX"] };
+const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.tiktok, SOC.instagram], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/about/", correctionsPolicy: SITE + "/about/", email: "jake.ruse@254txinsider.com" };
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">';
 
 function head(o) {
@@ -374,6 +397,7 @@ function buildHub() {
 <li><b>Planning a replacement?</b> Get at least two quotes, ask for equipment lead times in writing, and budget for the crane, curb adapters and controls, not just the unit.</li></ul></div>
 </aside></div>
 ${projects.length ? `<h2 class="list-head">What's being <span>built</span></h2><div class="rows two">${projects.map(s => row(s, false, "side")).join("")}</div><p class="src"><a href="/growth/">All growth news →</a></p>` : ""}
+${faqHtml("Common <span>questions</span>", BUILD_FAQ)}
 </div></section>`;
 }
 // sections
@@ -385,9 +409,9 @@ SECTIONS.forEach(([k]) => {
   pages[k + "/index.html"] = head({
     title: `${sec.name} | Central Texas News | ${NAME}`, ogTitle: `${sec.name} | ${NAME}`, desc: sec.desc, url, noindex: !list.length,
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
-      mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }]
+      mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -420,13 +444,17 @@ ${SIGNUP("h2")}</main>
 ` + footer();
 });
 // static pages
-const simple = (file, url, title, desc, inner, noindex, active) => pages[file] = head({ title, desc, url, noindex }) + header(active || null) + "<main>" + inner + "</main>\n" + footer();
-simple("about/index.html", "/about/", `About ${NAME} | Central Texas News`, `${NAME} covers business, growth, government and community news across Waco, Temple, Killeen and Belton.`,
+const simple = (file, url, title, desc, inner, noindex, active, ld) => pages[file] = head({ title, desc, url, noindex, ld }) + header(active || null) + "<main>" + inner + "</main>\n" + footer();
+simple("about/index.html", "/about/", `About ${NAME} | Central Texas News for Waco, Temple, Killeen and Belton`, `${NAME} is an independent Central Texas news site covering business, growth, government, schools and community news across Bell, McLennan and Coryell counties.`,
   `<div class="page-hero"><div class="wrap"><span class="kicker">About</span><h1>The Pulse of <span>the 254</span></h1><p>Central Texas is growing fast. ${NAME} keeps you ahead of it.</p></div></div>
-<section class="block"><div class="wrap prose"><h2>What we cover</h2><p>Business and development news from Waco, Temple, Killeen, Belton and everywhere in between: the new builds, the openings, the land deals and the decisions at City Hall that shape where the 254 is headed. Plus markets and interest rates, schools, high school sports, things to do and plain-English explainers on how local government works.</p>
-<h2>How we report</h2><p>We read the city agendas, county filings, school district announcements and local outlets so you don't have to, then explain what it means for you. Every story credits and links to the original reporting and public records it draws on.</p>
-<h2>Who we are</h2><p>${NAME} was founded by Jake, a Temple-based business professional who works with facility and business leaders across Central Texas every day. It started as daily videos on TikTok, Instagram and Facebook and has grown into a full news site and podcast.</p>
-<h2>Get in touch</h2><p>Have a news tip, want to be on the podcast, or interested in advertising? <a href="/contact/">Contact us</a>.</p></div></section>`);
+<section class="block"><div class="wrap prose">
+<h2>Who we are</h2><p>${NAME} is an independent, locally owned news site for the 254 area code: Bell, McLennan, Coryell and Lampasas counties. It was founded in Temple by Jake, a local business professional who works with facility and business leaders across Central Texas every day. It started as daily videos on TikTok, Instagram and Facebook and has grown into a daily news site and podcast.</p>
+<h2>What we cover</h2><ul><li><b>Business and growth:</b> openings, closings, expansions, land deals, data centers, roads and the projects reshaping the region.</li><li><b>Real estate:</b> the 254 Housing Dashboard, mortgage rates, local home prices and property tax guides.</li><li><b>Government and schools:</b> city councils, commissioners courts and school boards in plain English, plus our weekly We the People civic explainers.</li><li><b>Sports and things to do:</b> Baylor, UMHB, Temple College, high school playoffs and a weekend guide for Temple, Belton, Salado and Waco.</li></ul>
+<p>Our coverage area includes Temple, Belton, Killeen, Harker Heights, Nolanville, Copperas Cove, Salado, Waco, Woodway, Hewitt, Robinson, McGregor, Lorena, Gatesville, Lampasas and Fort Cavazos.</p>
+<h2>How we report</h2><ul><li>We read city and county agendas, public filings, school district announcements, state records and local reporting, then explain what it means for you.</li><li>Every story links to the original reporting and public records it draws on, listed under "Sources."</li><li>We write in our own words and don't copy other outlets' stories.</li><li>Government and election coverage is neutral and factual. We don't endorse candidates or ballot measures.</li><li>We mark unconfirmed reports as unconfirmed.</li></ul>
+<h2>Corrections</h2><p>If we get something wrong, we fix it and note the change. Spot an error? <a href="/contact/">Tell us</a>.</p>
+<h2>Sponsors and advertising</h2><p>Sponsored listings on 254 Home Pros, 254 Build &amp; Facilities and the Real Estate section are clearly marked "Sponsored." Sponsors don't influence our news coverage or story selection, and a listing isn't an endorsement.</p>
+<h2>Get in touch</h2><p>News tips, podcast guests and advertising: <a href="/contact/">contact us</a> or email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`, false, null, [crumbsLd([["Home", "/"], ["About", "/about/"]]), { "@context": "https://schema.org", "@type": "AboutPage", url: SITE + "/about/", name: "About " + NAME, about: { "@id": SITE + "/#org" } }]);
 simple("contact/index.html", "/contact/", `Contact & News Tips | ${NAME}`, `Send a news tip, pitch a podcast guest, or ask about advertising with ${NAME}.`,
   `<div class="page-hero"><div class="wrap"><span class="kicker">Contact</span><h1>Send Us a <span>Tip</span></h1><p>News tips, podcast guests, advertising: it all comes here.</p></div></div>
 <section class="block"><div class="wrap" style="max-width:760px"><form class="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/">
@@ -442,8 +470,8 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
-simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros");
-simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build");
+simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros", [crumbsLd([["Home", "/"], ["254 Home Pros", "/home-pros/"]]), faqLd(HOME_FAQ), serviceLd("254 Home Pros", "Free homeowner requests matched to one local pro per trade: AC and heating, plumbing, electrical, roofing, foundation repair and more.", "/home-pros/", HOME_TRADES.map(t => t[0]))]);
+simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build", [crumbsLd([["Home", "/"], ["254 Build & Facilities", "/build/"]]), faqLd(BUILD_FAQ), serviceLd("254 Build & Facilities", "Commercial project requests matched to vetted local contractors and suppliers, plus a public bid board for Central Texas.", "/build/", TRADES.map(t => t[0]))]);
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
   `<div class="page-hero"><div class="wrap"><h1>Thank <span>You</span></h1><p>Got it. We'll be in touch. In the meantime, catch the latest on the homepage.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
@@ -472,6 +500,24 @@ pages["rss.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <image><url>${SITE}/assets/logo.webp</url><title>${NAME}</title><link>${SITE}/</link></image>
 ${ALL.map(s => `<item><title>${esc(s.title)}</title><link>${abs(s.url)}</link><guid isPermaLink="true">${abs(s.url)}</guid><pubDate>${rfc(s.date)}</pubDate><category>${esc(SEC[s.cat].name)}</category><description>${esc(s.dek)}</description>${s.art ? `<media:content url="${abs(s.art)}" medium="image" width="1200" height="675"/>` : ""}</item>`).join("\n")}
 </channel></rss>
+`;
+pages["llms.txt"] = `# ${NAME}
+
+> Independent local news for Central Texas (the 254 area code): Bell, McLennan, Coryell and Lampasas counties, including Temple, Belton, Killeen, Harker Heights, Copperas Cove, Salado, Waco and Fort Cavazos. Updated daily. Every story links to its sources.
+
+## Key pages
+- [Latest news](${SITE}/latest/): newest stories across all sections
+- [Business](${SITE}/business/) and [Growth](${SITE}/growth/): openings, expansions, development and infrastructure in Central Texas
+- [Real Estate](${SITE}/real-estate/): 254 Housing Dashboard (mortgage rates, Killeen-Temple and Waco home prices), payment calculator, property tax and homestead guide
+- [Government](${SITE}/government/) and [We the People](${SITE}/we-the-people/): city, county and school board news and plain-English civic explainers
+- [Sports](${SITE}/sports/): Baylor, UMHB, Temple College, Tarleton and high school sports
+- [Things to Do](${SITE}/things-to-do/): weekend events and go-to spots in Temple, Belton, Salado and Waco
+- [254 Home Pros](${SITE}/home-pros/): request a local home service pro (AC, plumbing, roofing, foundation and more)
+- [254 Build & Facilities](${SITE}/build/): commercial project requests, public bid board and facility manager resources
+- [About](${SITE}/about/): who we are and how we report
+
+## Recent stories
+${ALL.slice(0, 25).map(s => `- [${s.title}](${abs(s.url)}): ${s.dek}`).join("\n")}
 `;
 pages["robots.txt"] = `User-agent: *
 Allow: /
