@@ -7,3 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
   var t = new URLSearchParams(location.search).get("topic"), sel = document.getElementById("topic");
   if (t && sel) sel.value = t;
 });
+
+// Public view counts (shown once numbers are meaningful)
+(function () {
+  var MIN_PAGE = 25, MIN_MONTH = 250;
+  var p = location.pathname, key = "v:" + p, hit = "1";
+  try { if (sessionStorage.getItem(key)) hit = "0"; sessionStorage.setItem(key, "1"); } catch (e) {}
+  fetch("/api/views?hit=" + hit + "&p=" + encodeURIComponent(p)).then(function (r) { return r.json(); }).then(function (d) {
+    var f = function (n) { return Number(n).toLocaleString("en-US"); };
+    var el = document.querySelector("[data-views]");
+    if (el && d.page >= MIN_PAGE) { el.textContent = " · \uD83D\uDC41 " + f(d.page) + " views"; el.hidden = false; }
+    var s = document.querySelector("[data-site-views]");
+    if (s && d.month >= MIN_MONTH) { s.textContent = f(d.month) + " readers this month"; s.hidden = false; }
+  }).catch(function () {});
+})();
+
