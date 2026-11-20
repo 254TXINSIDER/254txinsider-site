@@ -25,16 +25,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Mortgage payment calculator (Real Estate page)
 (function () {
-  var out = document.getElementById("pc-out"); if (!out) return;
+  var box = document.getElementById("pay-calc"); if (!box) return;
   var g = function (id) { return document.getElementById(id); };
+  var A = JSON.parse(box.getAttribute("data-areas")), L = JSON.parse(box.getAttribute("data-loans"));
+  var f = function (v) { return "$" + Math.round(v).toLocaleString("en-US"); };
+  var tier = function (t, d) { var v = t[0][1]; for (var i = 0; i < t.length; i++) if (d >= t[i][0]) v = t[i][1]; return v; };
   function calc() {
-    var P = (+g("pc-price").value || 0) * (1 - (+g("pc-down").value || 0) / 100), r = (+g("pc-rate").value || 0) / 1200, n = (+g("pc-term").value || 30) * 12;
+    var price = +g("pc-price").value || 0, down = +g("pc-down").value || 0, loan = g("pc-loan").value, note = [];
+    if (loan === "fha" && down < 3.5) { down = 3.5; note.push("FHA needs at least 3.5% down, so we used 3.5%."); }
+    if (loan === "conv" && down < 3) { down = 3; note.push("Conventional loans need at least 3% down, so we used 3%."); }
+    var base = price * (1 - down / 100), P = base, mi = 0;
+    if (loan === "fha") { P = base * (1 + L.fhaUpfront / 100); mi = base * (down >= 5 ? L.fhaAnnualLow : L.fhaAnnual) / 100 / 12; note.push("Loan includes the " + L.fhaUpfront + "% FHA upfront fee (" + f(P - base) + ")."); }
+    else if (loan === "va") { var fee = tier(L.vaFee, down); P = base * (1 + fee / 100); note.push("Loan includes the " + fee + "% VA funding fee (" + f(P - base) + "); exempt if you have a VA disability rating."); }
+    else if (down < 20) { mi = base * tier(L.pmi, down) / 100 / 12; note.push("PMI is an estimate and drops off once you reach 20% equity."); }
+    var r = (+g("pc-rate").value || 0) / 1200, n = (+g("pc-term").value || 30) * 12;
     var m = r ? P * r / (1 - Math.pow(1 + r, -n)) : P / n;
-    var f = function (v) { return "$" + Math.round(v).toLocaleString("en-US"); };
-    var tax = (+g("pc-price").value || 0) * (+g("pc-county").value || 0) / 100 / 12, ins = (+g("pc-ins").value || 0) / 12;
-    out.textContent = f(m); g("pc-tax").textContent = f(tax); g("pc-insm").textContent = f(ins); g("pc-total").textContent = f(m + tax + ins);
+    var a = A[+g("pc-area").value] || A[0], first = g("pc-first").checked, taxYr = 0, rate = 0;
+    if (a.units) {
+      a.units.forEach(function (u) {
+        var v = price; rate += u[1];
+        if (!first && u[2] === "school") v = Math.max(0, price - 140000);
+        if (!first && u[2] === "pct20") v = Math.max(0, price - Math.max(price * 0.2, 5000));
+        taxYr += v * u[1] / 100;
+      });
+      note.push("Tax rate: " + rate.toFixed(2) + "% across " + a.units.length + " taxing units" + (first ? ", no exemptions (first year)." : ", with the homestead exemption (" + (price ? (taxYr / price * 100).toFixed(2) : "0") + "% effective)."));
+    } else { taxYr = price * a.avg / 100; note.push("Uses the county's average effective rate (" + a.avg + "%), which already reflects typical exemptions."); }
+    var tax = taxYr / 12, ins = (+g("pc-ins").value || 0) / 12;
+    g("pc-out").textContent = f(m); g("pc-mi").textContent = f(mi); g("pc-tax").textContent = f(tax); g("pc-insm").textContent = f(ins); g("pc-total").textContent = f(m + mi + tax + ins);
+    g("pc-note").textContent = note.join(" ");
   }
-  ["pc-price", "pc-down", "pc-rate", "pc-term", "pc-county", "pc-ins"].forEach(function (id) { g(id).addEventListener("input", calc); });
+  ["pc-price", "pc-down", "pc-rate", "pc-term", "pc-loan", "pc-area", "pc-ins", "pc-first"].forEach(function (id) { g(id).addEventListener("input", calc); g(id).addEventListener("change", calc); });
   calc();
 })();
 

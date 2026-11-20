@@ -347,3 +347,8 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 .hs-btns .btn { text-decoration:none; }
 .hs-btns .btn.alt { background:#13213c; }
 .hs-note { font-size:12px; color:#777; margin:8px 0 0; }
+
+/* v7 calculator */
+.calc label.chk { flex-direction:row; align-items:center; gap:8px; font-size:13px; color:#fff; grid-column:span 2; }
+.calc label.chk input { width:18px; height:18px; flex:none; }
+#pc-note { color:#f3d9c6; font-size:13px; margin-bottom:6px; }

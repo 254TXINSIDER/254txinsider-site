@@ -29,15 +29,29 @@ window.MARKET = {
     owners: "Values have flattened, not crashed. If you locked a rate under 5%, there is little reason to refinance now. Watch your 2027 appraisal notice in the spring and protest if it's out of line with nearby sales."
   },
   calc: { price: 275000, downPct: 10 },
-  // Average effective property tax rate = median tax paid / median home value (Census ACS 2020-2024 5-year).
-  counties: { src: ["U.S. Census Bureau ACS 2020-2024 via WhereMyTaxesGo", "https://www.wheremytaxesgo.com/property-tax/texas/"], list: [
-    ["Bell (Temple, Killeen, Belton)", 1.44],
-    ["McLennan (Waco)", 1.42],
-    ["Coryell (Copperas Cove)", 1.36],
-    ["Falls (Marlin)", 1.37],
-    ["Lampasas", 1.17],
-    ["Erath (Stephenville)", 1.07],
-    ["Milam (Cameron)", 0.99],
-    ["Bosque (Clifton)", 0.98]
-  ] }
+  // Tax areas. Each unit: [name, rate per $100, exemption] where exemption is "school" ($140,000 off for homesteads),
+  // "pct20" (20% of value, min $5,000, for homesteads) or "" (none). "avg" = county average effective rate (Census ACS 2020-2024).
+  taxAreas: [
+    { name: "Temple (Temple ISD)", year: "2026", units: [["Temple ISD", 1.0619, "school"], ["City of Temple", 0.75, "pct20"], ["Bell County", 0.2995, ""], ["Temple College", 0.2498, "pct20"], ["Bell Co. Road District", 0.0468, ""], ["Temple Health & Bio District", 0.0142, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Killeen (Killeen ISD)", year: "2026", units: [["Killeen ISD", 0.8622, "school"], ["City of Killeen", 0.7301, ""], ["Bell County", 0.2995, ""], ["Central Texas College", 0.0943, ""], ["Bell Co. Road District", 0.0468, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Belton (Belton ISD)", year: "2026", units: [["Belton ISD", 1.1177, "school"], ["City of Belton", 0.5619, ""], ["Bell County", 0.2995, ""], ["Bell Co. Road District", 0.0468, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Harker Heights (Killeen ISD)", year: "2026", units: [["Killeen ISD", 0.8622, "school"], ["City of Harker Heights", 0.53, ""], ["Bell County", 0.2995, ""], ["Central Texas College", 0.0943, ""], ["Bell Co. Road District", 0.0468, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Nolanville (Killeen ISD)", year: "2026", units: [["Killeen ISD", 0.8622, "school"], ["City of Nolanville", 0.5671, ""], ["Bell County", 0.2995, ""], ["Central Texas College", 0.0943, ""], ["Bell Co. Road District", 0.0468, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Salado (Salado ISD, in village)", year: "2026", units: [["Salado ISD", 1.1471, "school"], ["Village of Salado", 0.3797, "pct20"], ["Bell County", 0.2995, ""], ["Bell Co. Road District", 0.0468, ""], ["Clearwater UWCD", 0.0022, ""]] },
+    { name: "Waco (Waco ISD)", year: "2026", units: [["Waco ISD", 1.0346, "school"], ["City of Waco", 0.755, ""], ["McLennan County", 0.3748, "pct20"], ["McLennan Community College", 0.140772, "pct20"]] },
+    { name: "Waco (Midway ISD)", year: "2026", units: [["Midway ISD", 0.9089, "school"], ["City of Waco", 0.755, ""], ["McLennan County", 0.3748, "pct20"], ["McLennan Community College", 0.140772, "pct20"]] },
+    { name: "Hewitt (Midway ISD)", year: "2026", units: [["Midway ISD", 0.9089, "school"], ["City of Hewitt", 0.590427, ""], ["McLennan County", 0.3748, "pct20"], ["McLennan Community College", 0.140772, "pct20"]] },
+    { name: "Woodway (Midway ISD)", year: "2026", units: [["Midway ISD", 0.9089, "school"], ["City of Woodway", 0.391668, ""], ["McLennan County", 0.3748, "pct20"], ["McLennan Community College", 0.140772, "pct20"]] },
+    { name: "Robinson (Robinson ISD)", year: "2026*", units: [["Robinson ISD (2025 rate)", 0.94664, "school"], ["City of Robinson", 0.535326, ""], ["McLennan County", 0.3748, "pct20"], ["McLennan Community College", 0.140772, "pct20"]] },
+    { name: "Copperas Cove (Copperas Cove ISD)", year: "est.", units: [["Copperas Cove ISD (2025 rate)", 0.7575, "school"], ["City of Copperas Cove (2026 proposed)", 0.699, ""], ["Coryell County (2026 proposed)", 0.515, ""]] },
+    { name: "Other Lampasas County (county avg.)", avg: 1.17 },
+    { name: "Other Erath County (county avg.)", avg: 1.07 },
+    { name: "Other Falls County (county avg.)", avg: 1.37 },
+    { name: "Other Milam County (county avg.)", avg: 0.99 },
+    { name: "Other Bosque County (county avg.)", avg: 0.98 }
+  ],
+  taxSrc: [["BellCAD 2026 tax rate chart", "https://bellcad.org/wp-content/uploads/2026/10/2026_TAX_RATE_CHART.pdf"], ["McLennan County tax rate worksheets", "https://www.mclennan.gov/1088/Taxing-Entity-5-Year-Tax-Rate-Worksheet-"]],
+  // Loan rules: FHA upfront MIP 1.75% financed + annual MIP 0.55% (0.50% with 5%+ down); VA funding fee (first use) 2.15% / 1.5% / 1.25% financed, no monthly MI;
+  // Conventional with under 20% down: PMI estimate (editable).
+  loans: { fhaUpfront: 1.75, fhaAnnual: 0.55, fhaAnnualLow: 0.50, vaFee: [[0, 2.15], [5, 1.5], [10, 1.25]], pmi: [[5, 0.75], [10, 0.55], [15, 0.4], [20, 0]] }
 };
