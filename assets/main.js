@@ -209,3 +209,63 @@ document.addEventListener("click", function (e) {
   q.addEventListener("input", run);
   q.form && q.form.addEventListener("submit", function (e) { e.preventDefault(); history.replaceState(null, "", "?q=" + encodeURIComponent(q.value)); run(); });
 })();
+
+// ---------- Weather (National Weather Service, api.weather.gov) ----------
+(function () {
+  var NWS = "https://api.weather.gov", H = { headers: { Accept: "application/geo+json" } };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  function cache(key, ttl, fn) {
+    try { var c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < ttl) return Promise.resolve(c.v); } catch (e) {}
+    return fn().then(function (v) { try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} return v; });
+  }
+  function j(u) { return fetch(u, H).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  var cToF = function (c) { return c == null ? null : Math.round(c * 9 / 5 + 32); };
+  // Sitewide banner: warnings for Bell, McLennan, Coryell and Lampasas counties
+  var banner = document.getElementById("wx-banner");
+  if (banner) cache("wx-zones", 5 * 60e3, function () { return j(NWS + "/alerts/active?zone=TXC027,TXC309,TXC099,TXC281").then(function (d) { return d.features.map(function (f) { return [f.properties.event, f.properties.areaDesc, f.properties.severity]; }); }); }).then(function (a) {
+    var big = a.filter(function (x) { return /Warning/.test(x[0]) || x[2] === "Extreme" || x[2] === "Severe"; });
+    if (!big.length) return;
+    var names = []; big.forEach(function (x) { if (names.indexOf(x[0]) < 0) names.push(x[0]); });
+    banner.innerHTML = "⚠️ National Weather Service: " + esc(names.join(", ")) + " in effect for parts of the 254. <a href=\"/weather/\">Details →</a>";
+    banner.hidden = false;
+  }).catch(function () {});
+  // Topbar mini: Temple temp
+  var tw = document.getElementById("top-wx");
+  function pointData(lat, lon) { return cache("wx-pt-" + lat + "," + lon, 24 * 3600e3, function () { return j(NWS + "/points/" + lat + "," + lon).then(function (d) { return { f: d.properties.forecast, h: d.properties.forecastHourly, s: d.properties.observationStations }; }); }); }
+  if (tw) pointData(31.0982, -97.3428).then(function (p) { return cache("wx-hr-temple", 20 * 60e3, function () { return j(p.h).then(function (d) { var x = d.properties.periods[0]; return [x.temperature, x.shortForecast]; }); }); }).then(function (x) { tw.textContent = "🌤 Temple " + x[0] + "°"; tw.title = x[1]; }).catch(function () {});
+  // Weather page
+  var box = document.getElementById("wx-city"); if (!box) return;
+  var nowEl = document.getElementById("wx-now"), hrEl = document.getElementById("wx-hourly"), wkEl = document.getElementById("wx-week"), alEl = document.getElementById("wx-alerts");
+  function load(b) {
+    var lat = b.getAttribute("data-lat"), lon = b.getAttribute("data-lon"), city = b.getAttribute("data-city");
+    nowEl.innerHTML = '<p class="sb-when" style="color:#fff">Loading ' + esc(city) + '…</p>'; hrEl.innerHTML = ""; wkEl.innerHTML = ""; alEl.innerHTML = "";
+    j(NWS + "/alerts/active?point=" + lat + "," + lon).then(function (d) {
+      if (!d.features.length) { alEl.innerHTML = '<div class="wx-ok">✓ No active National Weather Service alerts for ' + esc(city) + ' right now.</div>'; return; }
+      alEl.innerHTML = d.features.map(function (f) { var p = f.properties; var minor = !/Warning/.test(p.event) && p.severity !== "Extreme" && p.severity !== "Severe";
+        return '<div class="wx-alert' + (minor ? " minor" : "") + '"><h3>⚠️ ' + esc(p.event) + '</h3><p>' + esc(p.headline || "") + '</p><details><summary>Full NWS text</summary><p>' + esc(p.description || "") + (p.instruction ? "\n\n" + esc(p.instruction) : "") + '</p></details></div>'; }).join("");
+    }).catch(function () { alEl.innerHTML = '<div class="wx-ok" style="background:#f6f1e8;color:#555">Couldn\'t reach the NWS alert feed. Check <a href="https://www.weather.gov/fwd/" target="_blank" rel="noopener">weather.gov</a>.</div>'; });
+    pointData(lat, lon).then(function (p) {
+      j(p.h).then(function (d) {
+        var per = d.properties.periods;
+        hrEl.innerHTML = per.slice(0, 12).map(function (x) { var t = new Date(x.startTime); return '<div>' + t.toLocaleTimeString("en-US", { hour: "numeric", timeZone: "America/Chicago" }) + '<img src="' + esc(x.icon) + '" alt="" loading="lazy"><b>' + x.temperature + '°</b>' + (x.probabilityOfPrecipitation && x.probabilityOfPrecipitation.value ? "💧" + x.probabilityOfPrecipitation.value + "%" : "") + '</div>'; }).join("");
+        var x = per[0];
+        nowEl.innerHTML = '<img src="' + esc(x.icon) + '" alt=""><div><span class="t">' + x.temperature + '°</span></div><div><span class="c">' + esc(city) + ': ' + esc(x.shortForecast) + '</span><small>Wind ' + esc(x.windSpeed) + ' ' + esc(x.windDirection) + (x.relativeHumidity && x.relativeHumidity.value != null ? ' · Humidity ' + x.relativeHumidity.value + '%' : "") + '</small><small id="wx-obs"></small></div>';
+        j(p.s).then(function (st) { var id = st.features[0] && st.features[0].properties.stationIdentifier; if (!id) return; return j(NWS + "/stations/" + id + "/observations/latest").then(function (o) { var q = o.properties, f = cToF(q.temperature && q.temperature.value); var el = document.getElementById("wx-obs"); if (el && f != null) el.textContent = "Observed " + f + "° at " + (st.features[0].properties.name || id) + ", " + new Date(q.timestamp).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" }); }); }).catch(function () {});
+      }).catch(function () { nowEl.innerHTML = '<p style="color:#fff">Forecast unavailable right now. Try <a style="color:#fff" href="https://www.weather.gov/fwd/" target="_blank" rel="noopener">weather.gov</a>.</p>'; });
+      j(p.f).then(function (d) {
+        wkEl.innerHTML = d.properties.periods.slice(0, 14).map(function (x) { return '<div class="wx-day"><img src="' + esc(x.icon) + '" alt="" loading="lazy"><div><b>' + esc(x.name) + '</b><br>' + (x.isDaytime ? "High " : "Low ") + x.temperature + '°</div><p>' + esc(x.detailedForecast) + '</p></div>'; }).join("");
+      }).catch(function () {});
+    }).catch(function () { nowEl.innerHTML = '<p style="color:#fff">Forecast unavailable right now.</p>'; });
+  }
+  box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); }); b.classList.add("on"); try { localStorage.setItem("wx-city", b.getAttribute("data-city")); } catch (er) {} load(b); });
+  var saved = null; try { saved = localStorage.getItem("wx-city"); } catch (e) {}
+  var start = (saved && [].find.call(box.querySelectorAll("button"), function (x) { return x.getAttribute("data-city") === saved; })) || box.querySelector("button");
+  [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.toggle("on", x === start); }); load(start);
+  setInterval(function () { var b = box.querySelector("button.on"); if (b && !document.hidden) load(b); }, 10 * 60e3);
+})();
+
+// Traffic map city switch
+(function () {
+  var box = document.getElementById("tr-city"), map = document.getElementById("tr-map"); if (!box || !map) return;
+  box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); }); b.classList.add("on"); map.src = "https://embed.waze.com/iframe?zoom=12&lat=" + b.getAttribute("data-lat") + "&lon=" + b.getAttribute("data-lon") + "&ct=livemap"; });
+})();
