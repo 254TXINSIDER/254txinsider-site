@@ -213,6 +213,46 @@ ${stories.length ? `<h2 class="list-head">${esc(sc.name)} <span>stories</span></
 <p class="src"><a href="/scoreboard/">← All 254 scores and the playoff tracker</a></p></div></section>`, crumbs };
 }
 const schoolIndex = () => `<section class="sc-index"><h2 class="list-head">Find your <span>school</span></h2><h5 class="sb-h">High schools</h5><div class="sc-grid">${SCHOOLS.filter(s => s.lv === "HS").map(s => `<a href="${s.url}">${esc(s.name.replace(/ High School$/, ""))}<span>${esc(s.city)}</span></a>`).join("")}</div><h5 class="sb-h">Colleges</h5><div class="sc-grid">${SCHOOLS.filter(s => s.lv === "College").map(s => `<a href="${s.url}">${esc(s.name)}<span>${esc(s.city)}</span></a>`).join("")}</div></section>`;
+// ---------- Coming to the 254 tracker ----------
+const csb = { window: {} }; try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/coming.js"), "utf8"), csb); } catch (e) { console.log("coming.js:", e.message); }
+const CM = csb.window.COMING || { updated: "", items: [] };
+const CM_ORDER = ["Opening soon", "Under construction", "Permit filed", "Announced", "Proposed", "Now open", "Closing", "Closed"];
+const CM_CLS = { "Opening soon": "cm-soon", "Under construction": "cm-build", "Permit filed": "cm-permit", "Announced": "cm-ann", "Proposed": "cm-prop", "Now open": "cm-open", "Closing": "cm-close", "Closed": "cm-close" };
+const cmSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const cmCard = x => `<article class="cm-card" data-city="${esc(x.city)}" data-type="${esc(x.type)}" data-st="${esc(x.status)}" data-q="${esc((x.n + " " + x.type + " " + x.city + " " + (x.where || "")).toLowerCase())}">
+<div class="cm-top"><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span><span class="cm-type">${esc(x.type)}</span></div>
+<h3>${esc(x.n)}</h3><p class="cm-where">📍 ${esc(x.city)}${x.where && x.where !== x.city ? " · " + esc(x.where) : ""}</p>${x.eta ? `<p class="cm-eta">🗓 ${esc(x.eta)}</p>` : ""}<p class="cm-d">${esc(x.d)}</p>
+<p class="cm-src">Source: <a href="${esc(x.src[1])}" target="_blank" rel="noopener">${esc(x.src[0])}</a>${x.story ? ` · <a href="${esc(x.story)}">Our story</a>` : ""}</p></article>`;
+function comingFaq() {
+  const by = {}; CM.items.filter(x => !/Closed|Closing/.test(x.status)).forEach(x => (by[x.city] = by[x.city] || []).push(x));
+  const q = [];
+  for (const c of ["Temple", "Killeen", "Waco", "Belton", "Harker Heights", "Copperas Cove"]) {
+    const l = (by[c] || []).filter(x => x.status !== "Now open"); if (!l.length) continue;
+    q.push([`What's coming to ${c}, Texas?`, `${l.slice(0, 6).map(x => `${x.n} (${x.type.toLowerCase()}, ${x.status.toLowerCase()}${x.eta && x.eta !== "TBA" ? ", " + x.eta : ""})`).join("; ")}. See the full, updated list on 254 Texas Insider's Coming to the 254 tracker.`]);
+  }
+  const food = CM.items.filter(x => x.type === "Restaurant" && !/Now open|Closed|Closing/.test(x.status));
+  if (food.length) q.push(["What new restaurants are coming to Central Texas?", `${food.map(x => `${x.n} in ${x.city}${x.eta && x.eta !== "TBA" ? " (" + x.eta + ")" : ""}`).join("; ")}.`]);
+  return q;
+}
+function comingPage() {
+  const items = CM.items.slice().sort((a, b) => (CM_ORDER.indexOf(a.status) - CM_ORDER.indexOf(b.status)) || a.city.localeCompare(b.city));
+  const upcoming = items.filter(x => !/Now open|Closing|Closed/.test(x.status)), opened = items.filter(x => x.status === "Now open"), closing = items.filter(x => /Closing|Closed/.test(x.status));
+  const cities = [...new Set(CM.items.map(x => x.city))].sort(), types = [...new Set(CM.items.map(x => x.type))].sort();
+  const faq = comingFaq();
+  return { faq, html: `<div class="page-hero"><div class="wrap"><span class="kicker">Business</span><h1>Coming to <span>the 254</span></h1><p>Every announced opening, closing and big project in Temple, Belton, Killeen, Harker Heights, Copperas Cove, Waco and the rest of Central Texas, with status and expected dates. Updated daily.</p></div></div>
+<section class="block"><div class="wrap">
+<div class="cm-stats"><div><b>${upcoming.length}</b><span>on the way</span></div><div><b>${opened.length}</b><span>recently opened</span></div><div><b>${closing.length}</b><span>closing</span></div><div><b>${cities.length}</b><span>cities</span></div></div>
+<div class="sb-filters"><input class="cm-search" id="cm-q" type="search" placeholder="Search: Chick-fil-A, Waco, coffee..."><div class="tdo-chips" id="cm-city"><button class="chip on" data-v="all">All cities</button>${cities.map(c => `<button class="chip" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div><div class="tdo-chips" id="cm-type"><button class="chip on" data-v="all">Everything</button>${types.map(t => `<button class="chip" data-v="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>
+<p class="sb-upd">Updated ${CM.updated ? sbDate(CM.updated) : ""}. "Permit filed" dates come from state construction filings and often change. Know something coming? <a href="/contact/?topic=tip">Send us a tip</a>.</p>
+<h2 class="list-head">On the <span>way</span></h2><div class="cm-grid">${upcoming.map(cmCard).join("") || '<p class="sb-when">Nothing listed yet.</p>'}</div>
+<h2 class="list-head">Recently <span>opened</span></h2><div class="cm-grid">${opened.map(cmCard).join("") || '<p class="sb-when">Nothing listed yet.</p>'}</div>
+<h2 class="list-head">Closing <span>&amp; closed</span></h2><div class="cm-grid">${closing.map(cmCard).join("") || '<p class="sb-when">No closings reported right now. Heard about one? <a href="/contact/?topic=tip">Tell us</a>.</p>'}</div>
+<p class="cm-none" id="cm-none" hidden>Nothing matches that search. Try another city or word.</p>
+${faq.length ? faqHtml("Quick <span>answers</span>", faq) : ""}
+${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business here").replace("sports. One sponsor", "business news. One sponsor").replace("/sports/#sports-sponsor", "/contact/?topic=advertise")}
+</div></section>` };
+}
+const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
 // ---------- FAQ + service markup helpers (SEO / AEO) ----------
 const AREAS = ["Bell County, TX", "McLennan County, TX", "Coryell County, TX", "Lampasas County, TX", "Temple, TX", "Killeen, TX", "Waco, TX", "Belton, TX", "Harker Heights, TX", "Copperas Cove, TX"];
 const faqHtml = (title, items) => `<section class="faq"><h2 class="list-head">${title}</h2>${items.map(q => `<details><summary>${esc(q[0])}</summary><p>${q[1]}</p></details>`).join("")}</section>`;
@@ -405,7 +445,7 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
@@ -463,7 +503,7 @@ const pages = {};
 <p>Business, growth, government and Friday nights across the 254: Waco, Temple, Killeen, Belton and everywhere in between.</p>
 <div class="top-grid"><a class="lead" href="${lead.url}">${art(lead, "lead-img", true)}<span class="cat">${esc(catLabel(lead.cat))}</span><h2>${esc(lead.title)}</h2><p>${esc(lead.dek)}</p><time datetime="${lead.date}">${fmt(lead.date)} · ${esc(lead.city)}</time></a>
 <div class="rows">${rest.map(s => row(s, true, "side")).join("")}</div></div></div></section>
-<section class="block"><div class="wrap"><div class="home-pros-row">${HOME_PROMO}${BUILD_PROMO}</div></div></section>
+<section class="block"><div class="wrap"><div class="home-pros-row">${COMING_PROMO}${HOME_PROMO}${BUILD_PROMO}</div></div></section>
 <section class="block"><div class="wrap"><div class="section-head"><h2>Latest <span>News</span></h2><a href="/latest/">All latest →</a></div><div class="rows two">${ALL.slice(0, 8).map(s => row(s, false, "side")).join("")}</div></div></section>
 ${SIGNUP()}<section class="block"><div class="wrap"><div class="modules">${mods}</div></div></section>
 ${WATCH}</main>
@@ -527,7 +567,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? COMING_PROMO + BUILD_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? COMING_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -588,6 +628,7 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
 simple("scoreboard/index.html", "/scoreboard/", `254 Scoreboard: Central Texas High School and College Scores and Playoff Tracker | ${NAME}`, "Scores, schedules and playoff tracker for Temple, Belton, Killeen, Waco and Central Texas high school and college sports: football, basketball, volleyball, soccer, baseball, softball, track, cross country and UIL band.", `<div class="page-hero"><div class="wrap"><span class="kicker">Sports</span><h1>254 <span>Scoreboard</span></h1><p>Boys and girls, high school and college. Scores, schedules and the playoff tracker for every season in Central Texas.</p></div></div><section class="block"><div class="wrap">${scoreboard(false)}</div></section>`, false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["254 Scoreboard", "/scoreboard/"]])]);
 for (const sc of SCHOOLS) { const pg = schoolPage(sc); simple("scoreboard/" + sc.slug + "/index.html", sc.url, `${sc.name} Sports: Scores, Schedule and Playoffs | ${NAME}`, `${sc.name} (${sc.city}, Texas) sports scores, schedules and playoff status for boys and girls teams, updated daily by ${NAME}.`, pg.html, pg.noindex, "sports", [crumbsLd(pg.crumbs)]); }
+{ const cp = comingPage(); simple("coming-to-the-254/index.html", "/coming-to-the-254/", `Coming to the 254: New Restaurants, Stores and Projects in Temple, Killeen, Waco and Belton | ${NAME}`, "What's coming to Central Texas: new restaurants, stores, gyms and big projects in Temple, Belton, Killeen, Harker Heights, Copperas Cove and Waco, with status and expected opening dates. Updated daily.", cp.html, false, "business", [crumbsLd([["Home", "/"], ["Business", "/business/"], ["Coming to the 254", "/coming-to-the-254/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Coming to the 254", itemListElement: CM.items.map((x, i) => ({ "@type": "ListItem", position: i + 1, name: x.n + " (" + x.city + ")" })) }].concat(cp.faq.length ? [faqLd(cp.faq)] : [])); }
 simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros", [crumbsLd([["Home", "/"], ["254 Home Pros", "/home-pros/"]]), faqLd(HOME_FAQ), serviceLd("254 Home Pros", "Free homeowner requests matched to one local pro per trade: AC and heating, plumbing, electrical, roofing, foundation repair and more.", "/home-pros/", HOME_TRADES.map(t => t[0]))]);
 simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build", [crumbsLd([["Home", "/"], ["254 Build & Facilities", "/build/"]]), faqLd(BUILD_FAQ), serviceLd("254 Build & Facilities", "Commercial project requests matched to vetted local contractors and suppliers, plus a public bid board for Central Texas.", "/build/", TRADES.map(t => t[0]))]);
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
@@ -598,7 +639,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 // ---------- feeds, sitemaps, robots, redirects ----------
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/coming-to-the-254/", latest, "daily", "0.9"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
@@ -629,6 +670,7 @@ pages["llms.txt"] = `# ${NAME}
 - [Real Estate](${SITE}/real-estate/): 254 Housing Dashboard (mortgage rates, Killeen-Temple and Waco home prices), payment calculator, property tax and homestead guide
 - [Government](${SITE}/government/) and [We the People](${SITE}/we-the-people/): city, county and school board news and plain-English civic explainers
 - [Sports](${SITE}/sports/): Baylor, UMHB, Temple College, Tarleton and high school sports
+- [Coming to the 254](${SITE}/coming-to-the-254/): every announced opening, closing and major project in Central Texas with status and expected dates
 - [254 Scoreboard](${SITE}/scoreboard/): Central Texas high school and college scores, schedules and playoff tracker for boys and girls sports
 - [Things to Do](${SITE}/things-to-do/): weekend events and go-to spots in Temple, Belton, Salado and Waco
 - [254 Home Pros](${SITE}/home-pros/): request a local home service pro (AC, plumbing, roofing, foundation and more)
