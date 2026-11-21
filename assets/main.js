@@ -181,3 +181,31 @@ document.addEventListener("DOMContentLoaded", function () {
   wire(cb, function (v) { city = v; }); wire(tb, function (v) { type = v; }); q.addEventListener("input", apply);
   var h = decodeURIComponent(location.hash.slice(1)); if (h) { var b = [].find.call(cb.querySelectorAll("button"), function (x) { return x.getAttribute("data-v").toLowerCase().replace(/\s+/g, "-") === h; }); if (b) b.click(); }
 })();
+
+// Copy link / native share
+document.addEventListener("click", function (e) {
+  var b = e.target.closest && e.target.closest(".share-copy"); if (!b) return;
+  var u = b.getAttribute("data-url"), t = b.getAttribute("data-title");
+  if (navigator.share) { navigator.share({ title: t, url: u }).catch(function () {}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { b.textContent = "Link copied"; });
+});
+
+// Site search
+(function () {
+  var q = document.getElementById("srch-q"), out = document.getElementById("srch-out"), n = document.getElementById("srch-n"); if (!q || !out) return;
+  var idx = null, esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  function run() {
+    var term = q.value.trim().toLowerCase(); if (!idx) return;
+    if (!term) { out.innerHTML = ""; n.textContent = ""; return; }
+    var words = term.split(/\s+/);
+    var hits = idx.map(function (x) { var h = (x.t + " " + x.d + " " + x.c + " " + x.k).toLowerCase(), t = x.t.toLowerCase(), s = 0;
+      for (var i = 0; i < words.length; i++) { if (h.indexOf(words[i]) < 0) return null; s += t.indexOf(words[i]) > -1 ? 3 : 1; }
+      return [s, x]; }).filter(Boolean).sort(function (a, b) { return b[0] - a[0] || (a[1].dt < b[1].dt ? 1 : -1); }).slice(0, 40);
+    n.textContent = hits.length ? hits.length + " result" + (hits.length > 1 ? "s" : "") : "No results. Try a city, business or school name.";
+    out.innerHTML = hits.map(function (h) { var x = h[1]; return '<a class="row" href="' + x.u + '"><span class="row-txt"><span class="cat">' + esc(x.k) + '</span><h3>' + esc(x.t) + '</h3><p>' + esc(x.d) + '</p>' + (x.c ? '<time>' + esc(x.c) + '</time>' : '') + '</span></a>'; }).join("");
+  }
+  var p = new URLSearchParams(location.search).get("q"); if (p) q.value = p;
+  fetch("/search-index.json").then(function (r) { return r.json(); }).then(function (d) { idx = d; run(); });
+  q.addEventListener("input", run);
+  q.form && q.form.addEventListener("submit", function (e) { e.preventDefault(); history.replaceState(null, "", "?q=" + encodeURIComponent(q.value)); run(); });
+})();
