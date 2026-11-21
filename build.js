@@ -221,7 +221,7 @@ const CM_CLS = { "Opening soon": "cm-soon", "Under construction": "cm-build", "P
 const cmSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const cmCard = x => `<article class="cm-card" data-city="${esc(x.city)}" data-type="${esc(x.type)}" data-st="${esc(x.status)}" data-q="${esc((x.n + " " + x.type + " " + x.city + " " + (x.where || "")).toLowerCase())}">
 <div class="cm-top"><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span><span class="cm-type">${esc(x.type)}</span></div>
-<h3>${esc(x.n)}</h3><p class="cm-where">📍 ${esc(x.city)}${x.where && x.where !== x.city ? " · " + esc(x.where) : ""}</p>${x.eta ? `<p class="cm-eta">🗓 ${esc(x.eta)}</p>` : ""}<p class="cm-d">${esc(x.d)}</p>
+<h3><a href="${x.url}">${esc(x.n)}</a></h3><p class="cm-where">📍 ${esc(x.city)}${x.where && x.where !== x.city ? " · " + esc(x.where) : ""}</p>${x.eta ? `<p class="cm-eta">🗓 ${esc(x.eta)}</p>` : ""}<p class="cm-d">${esc(x.d)}</p>
 <p class="cm-src">Source: <a href="${esc(x.src[1])}" target="_blank" rel="noopener">${esc(x.src[0])}</a>${x.story ? ` · <a href="${esc(x.story)}">Our story</a>` : ""}</p></article>`;
 function comingFaq() {
   const by = {}; CM.items.filter(x => !/Closed|Closing/.test(x.status)).forEach(x => (by[x.city] = by[x.city] || []).push(x));
@@ -253,6 +253,69 @@ ${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business
 </div></section>` };
 }
 const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
+// ---------- Cities, project pages, search ----------
+const CITIES = [
+  ["temple", "Temple", "Bell", /\bTemple\b/, ["Temple"], "Temple is Bell County's medical and rail hub, home to Baylor Scott & White Medical Center and a fast-growing industrial park."],
+  ["belton", "Belton", "Bell", /(?<!Lake )\bBelton\b|UMHB|Mary Hardin-Baylor|Bell County (Commissioners|Justice|Courthouse)/, ["Belton"], "Belton is the Bell County seat, home to UMHB, Lake Belton and the county courthouse."],
+  ["killeen", "Killeen", "Bell", /\bKilleen\b|Fort (Hood|Cavazos)/, ["Killeen"], "Killeen is the 254's largest city and the gateway to Fort Hood."],
+  ["harker-heights", "Harker Heights", "Bell", /Harker Heights|Nolanville/, ["Harker Heights"], "Harker Heights is a fast-growing retail and restaurant hub along I-14 between Killeen and Belton."],
+  ["copperas-cove", "Copperas Cove", "Coryell", /Copperas Cove/, ["Copperas Cove"], "Copperas Cove sits on the west side of Fort Hood in Coryell County."],
+  ["salado", "Salado", "Bell", /\bSalado\b/, ["Salado"], "Salado is the historic village on Salado Creek between Belton and Georgetown."],
+  ["waco", "Waco", "McLennan", /\bWaco\b|Woodway|Hewitt|Lacy Lakeview|Bellmead|Robinson|China Spring|McGregor|Lorena|McLennan|Baylor(?! Scott)/, ["Waco", "Woodway", "Hewitt", "Lacy Lakeview", "Bellmead", "Robinson", "McGregor", "Lorena"], "Waco is the McLennan County seat, home to Baylor University, Magnolia and a booming riverfront."]
+].map(([slug, name, county, rx, cm, blurb]) => ({ slug, name, county, rx, cm, blurb, url: "/" + slug + "/" }));
+const cityOf = name => CITIES.find(c => c.cm.includes(name) || c.name === name);
+const cityStories = c => ALL.filter(s => c.rx.test([s.city, s.title, s.dek].join(" ")));
+const cmId = x => x.id || cmSlug(x.n + " " + x.city);
+CM.items.forEach(x => { x.id = cmId(x); x.url = "/coming-to-the-254/" + x.id + "/"; x.hist = x.hist && x.hist.length ? x.hist : [[x.added || CM.updated, x.status, "Added to the Coming to the 254 tracker."]]; });
+const cmMap = x => /\d/.test(x.where || "") ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.where.split(",")[0] + ", " + x.city + ", TX")}` : "";
+function projectPage(x) {
+  const crumbs = [["Home", "/"], ["Coming to the 254", "/coming-to-the-254/"], [x.n, x.url]];
+  const c = cityOf(x.city), map = cmMap(x);
+  const more = CM.items.filter(y => y !== x && (y.city === x.city || (c && c.cm.includes(y.city)))).slice(0, 6);
+  const story = x.story ? ALL.find(s => s.url === x.story) : null;
+  const ans = `${x.n} ${x.status === "Now open" ? "is open" : x.status === "Closed" ? "has closed" : x.status === "Closing" ? "is closing" : x.status === "Announced" ? "has been announced" : "is " + x.status.toLowerCase().replace("permit filed", "in the permit stage")} in ${x.city}, Texas${x.where && x.where !== x.city ? ", at " + x.where : ""}.${x.eta && x.eta !== "TBA" ? " Expected timing: " + x.eta + "." : " No opening date has been announced."}`;
+  const q = `Is ${x.n} ${/Now open|Closed|Closing/.test(x.status) ? "open" : "coming"} to ${x.city}, Texas?`;
+  const html = `<div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span><h1>${esc(x.n)}</h1><p>${esc(x.city)}, Texas · ${esc(x.type)}</p></div></div>
+<section class="block"><div class="wrap prose">
+<p class="short-ans"><b>Short answer:</b> ${esc(ans)}</p>
+<div class="pj-facts"><div><span>Status</span><b>${esc(x.status)}</b></div><div><span>Expected</span><b>${esc(x.eta || "TBA")}</b></div><div><span>Location</span><b>${esc(x.where || x.city)}</b>${map ? ` <a href="${map}" target="_blank" rel="noopener">Map ↗</a>` : ""}</div><div><span>Type</span><b>${esc(x.type)}</b></div></div>
+<p>${esc(x.d)}</p>
+<h2>Timeline</h2><ol class="pj-hist">${x.hist.slice().reverse().map(h => `<li><time datetime="${h[0]}">${fmt(h[0])}</time><span class="cm-st ${CM_CLS[h[1]] || ""}">${esc(h[1])}</span> ${esc(h[2] || "")}</li>`).join("")}</ol>
+<p class="src">Source: <a href="${esc(x.src[1])}" target="_blank" rel="noopener">${esc(x.src[0])}</a>${story ? ` · Our story: <a href="${story.url}">${esc(story.title)}</a>` : ""}. "Permit filed" dates come from construction filings and often change. Know more? <a href="/contact/?topic=tip">Send us a tip</a>.</p>
+${more.length ? `<h2>Also coming to ${esc(c ? c.name : x.city)}</h2><div class="cm-grid">${more.map(cmCard).join("")}</div>` : ""}
+<p class="src"><a href="/coming-to-the-254/">← Everything coming to the 254</a>${c ? ` · <a href="${c.url}">${esc(c.name)} news</a>` : ""}</p>
+</div></section>`;
+  return { html, crumbs, faq: [[q, ans]] };
+}
+function cityPage(c) {
+  const st = cityStories(c), cm = CM.items.filter(x => c.cm.includes(x.city)).sort((a, b) => CM_ORDER.indexOf(a.status) - CM_ORDER.indexOf(b.status));
+  const today = new Date().toISOString().slice(0, 10);
+  const ev = (EV.events || []).filter(e => c.cm.includes(e.city) && e.e >= today).sort((a, b) => a.s.localeCompare(b.s)).slice(0, 8);
+  const sch = SCHOOLS.filter(s => c.cm.includes(s.city) || s.city === c.name);
+  const lead = st[0], rest = st.slice(1, 16);
+  const html = `<div class="page-hero"><div class="wrap">${crumbsHtml([["Home", "/"], [c.name, c.url]])}<span class="kicker">${esc(c.county)} County</span><h1>${esc(c.name)} <span>news</span></h1><p>${esc(c.blurb)} Business, growth, government, schools, sports and things to do in ${esc(c.name)}, updated daily.</p></div></div>
+<section class="block"><div class="wrap"><div class="city-nav">${CITIES.map(x => `<a href="${x.url}"${x === c ? ' class="on" aria-current="page"' : ""}>${esc(x.name)}</a>`).join("")}</div>
+<div class="city-grid"><div>
+<h2 class="list-head">Latest in <span>${esc(c.name)}</span></h2>
+${lead ? `<a class="city-lead" href="${lead.url}">${art(lead, "row-top")}<span class="cat">${esc(catLabel(lead.cat))}</span><h3>${esc(lead.title)}</h3><p>${esc(lead.dek)}</p><time datetime="${lead.date}">${fmt(lead.date)}</time></a>` : `<p class="sb-when">No ${esc(c.name)} stories yet. <a href="/contact/?topic=tip">Send us a tip</a>.</p>`}
+<div class="rows">${rest.map(s => row(s, false, "side")).join("")}</div>
+</div><aside>
+<div class="module"><h2>Coming to ${esc(c.name)}</h2>${cm.length ? `<ul class="city-list">${cm.slice(0, 10).map(x => `<li><a href="${x.url}">${esc(x.n)}</a><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span></li>`).join("")}</ul>` : "<p>Nothing announced right now.</p>"}<a class="more" href="/coming-to-the-254/#${c.slug}">Full tracker →</a></div>
+${ev.length ? `<div class="module"><h2>Things to do</h2><ul class="city-list ev-l">${ev.map(e => `<li><span>${fmtD(e.s)}</span> ${e.url ? `<a href="${e.url}" target="_blank" rel="noopener">${esc(e.t)}</a>` : esc(e.t)}</li>`).join("")}</ul><a class="more" href="/things-to-do/">Weekend guide →</a></div>` : ""}
+${sch.length ? `<div class="module"><h2>${esc(c.name)} sports</h2><ul class="city-list">${sch.map(s => `<li><a href="${s.url}">${esc(s.name)}</a></li>`).join("")}</ul><a class="more" href="/scoreboard/">254 Scoreboard →</a></div>` : ""}
+<div class="module"><h2>Around the house</h2><p>Need AC, plumbing or roofing help in ${esc(c.name)}?</p><a class="more" href="/home-pros/">254 Home Pros →</a></div>
+</aside></div></div></section>`;
+  return { html, n: st.length };
+}
+const BASIS = { original: ["Original reporting", "We gathered this ourselves: interviews, attendance or our own records requests."], records: ["Checked against public records", "Key facts confirmed in the public records linked below."], summary: ["Summary of other reporting", "This story summarizes reporting by the outlets credited below. Read them for full details."] };
+const basisHtml = s => { const b = BASIS[s.basis]; return b ? `<p class="basis basis-${s.basis}"><b>${b[0]}.</b> ${b[1]} <a href="/standards/">Our standards</a></p>` : ""; };
+function related(s) {
+  const c = CITIES.find(x => x.rx.test([s.city, s.title].join(" ")));
+  const sc = (x) => (x.cat === s.cat ? 2 : 0) + (c && c.rx.test([x.city, x.title, x.dek].join(" ")) ? 3 : 0) + (x.city && x.city === s.city ? 1 : 0);
+  const pick = ALL.filter(x => x.id !== s.id).map(x => [sc(x), x]).sort((a, b) => b[0] - a[0] || (a[1].date < b[1].date ? 1 : -1)).slice(0, 3).map(a => a[1]);
+  return { pick, c };
+}
+const nextUp = s => s.cat === "sports" ? ["/scoreboard/", "254 Scoreboard", "Scores, schedules and the playoff tracker for every 254 school."] : /business|growth|real-estate/.test(s.cat) ? ["/coming-to-the-254/", "Coming to the 254", "Every new restaurant, store and project on the way, with status and dates."] : s.cat === "things-to-do" ? ["/things-to-do/", "The 254 weekend guide", "Events in Temple, Belton, Salado and Waco, updated every morning."] : null;
 // ---------- FAQ + service markup helpers (SEO / AEO) ----------
 const AREAS = ["Bell County, TX", "McLennan County, TX", "Coryell County, TX", "Lampasas County, TX", "Temple, TX", "Killeen, TX", "Waco, TX", "Belton, TX", "Harker Heights, TX", "Copperas Cove, TX"];
 const faqHtml = (title, items) => `<section class="faq"><h2 class="list-head">${title}</h2>${items.map(q => `<details><summary>${esc(q[0])}</summary><p>${q[1]}</p></details>`).join("")}</section>`;
@@ -389,7 +452,7 @@ const catLabel = k => SEC[k] ? SEC[k].short : k;
 const secUrl = k => "/" + k + "/";
 const abs = u => SITE + u;
 const ld = o => '<script type="application/ld+json">' + JSON.stringify(o).replace(/</g, "\x5cu003c") + "</script>";
-const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.tiktok, SOC.instagram], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/about/", correctionsPolicy: SITE + "/about/", email: "jake.ruse@254txinsider.com" };
+const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.tiktok, SOC.instagram], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/standards/", correctionsPolicy: SITE + "/standards/#corrections", email: "jake.ruse@254txinsider.com" };
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">';
 
 function head(o) {
@@ -434,8 +497,8 @@ ${(o.ld || []).map(ld).join("\n")}
 
 function header(active) {
   const nav = SECTIONS.map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("");
-  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; Waco · Temple · Killeen · Belton</span></span><span class="socials">${social()}</span></div></div>
-<header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><span class="hdr-right"><a class="hdr-lead" href="/home-pros/">Find a Home Pro</a><a class="hdr-lead" href="/build/">Commercial Projects</a><a class="btn" href="/#newsletter">Subscribe Free</a></span></div></header>
+  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
+<header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><span class="hdr-right"><a class="hdr-lead" href="/home-pros/">Find a Home Pro</a><a class="hdr-lead" href="/build/">Commercial Projects</a><a class="hdr-search" href="/search/" aria-label="Search">🔍</a><a class="btn" href="/#newsletter">Subscribe Free</a></span></div></header>
 <nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a class="nav-lead${active === "home-pros" ? ' active" aria-current="page' : ""}" href="/home-pros/">Find a Home Pro</a><a class="nav-lead${active === "build" ? ' active" aria-current="page' : ""}" href="/build/">Commercial Projects</a></div></nav>
 `;
 }
@@ -445,8 +508,8 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
-<div><h4>Follow</h4>${social()}</div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Cities</h4>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h4 style="margin-top:14px">Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
 </html>
@@ -578,7 +641,8 @@ ALL.forEach(s => {
   if (more.length < 3) more = more.concat(ALL.filter(x => x.cat !== s.cat && x.id !== s.id).slice(0, 3 - more.length));
   const words = strip(s.body.join(" ")).split(" ").length;
   const tags = [s.city, "Central Texas", sec.name].filter(Boolean);
-  const src = (s.sources || []).map(x => `<li><a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a></li>`).join("");
+  const src = (s.sources || []).map(x => `<li><a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a>${x[2] === "record" ? ' <span class="src-tag">Public record</span>' : ""}</li>`).join("");
+  const rel = related(s), nx = nextUp(s);
   pages["news/" + s.id + "/index.html"] = head({
     title: `${s.title} | ${NAME}`, ogTitle: s.title, desc: s.dek, url: s.url, type: "article", image: s.art, preload: s.art,
     extraMeta: `<meta property="article:published_time" content="${iso(s.date)}">\n<meta property="article:modified_time" content="${iso(s.date)}">\n<meta property="article:section" content="${esc(sec.name)}">\n${tags.map(t => `<meta property="article:tag" content="${esc(t)}">`).join("\n")}\n`,
@@ -591,10 +655,11 @@ ALL.forEach(s => {
 <h1>${esc(s.title)}</h1><p class="dek">${esc(s.dek)}</p>
 <div class="art-meta">By ${NAME} Staff · <time datetime="${iso(s.date)}">${fmt(s.date)}</time>${s.city ? " · " + esc(s.city) : ""}<span class="views" data-views hidden></span></div>
 ${s.art ? `<figure class="hero-fig">${art(s, "hero-img", true)}${figCap(s)}</figure>` : ""}
-<div class="body">${s.body.map(p => p.indexOf("<ul") === 0 ? p : "<p>" + p + "</p>").join("")}</div>
-${src ? `<aside class="sources"><b>Sources</b><ul>${src}</ul><small>${NAME} summarizes reporting and public records. Read the original sources for full details.</small></aside>` : ""}
-<div class="share">Share: <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">Facebook</a> · <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(abs(s.url))}&text=${encodeURIComponent(s.title)}" target="_blank" rel="noopener">X</a> · <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:?subject=${encodeURIComponent(s.title)}&body=${encodeURIComponent(abs(s.url))}">Email</a></div>
-<div class="module related"><h2>Keep reading</h2>${more.map(x => row(x, true, "side")).join("")}</div>
+${basisHtml(s)}<div class="body">${s.body.map(p => p.indexOf("<ul") === 0 ? p : "<p>" + p + "</p>").join("")}</div>
+${src ? `<aside class="sources"><b>Sources</b><ul>${src}</ul><small>Links marked Public record go to the original document. <a href="/standards/">How we report and correct</a>.</small></aside>` : ""}
+<div class="share">Share: <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">Facebook</a> · <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(abs(s.url))}&text=${encodeURIComponent(s.title)}" target="_blank" rel="noopener">X</a> · <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(abs(s.url))}" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:?subject=${encodeURIComponent(s.title)}&body=${encodeURIComponent(abs(s.url))}">Email</a> · <button type="button" class="share-copy" data-url="${abs(s.url)}" data-title="${esc(s.title)}">Copy link</button></div>
+${nx ? `<a class="bld-promo next-up" href="${nx[0]}"><b>${nx[1]}</b><span>${nx[2]} →</span></a>` : ""}
+<div class="module related"><h2>Keep reading</h2>${rel.pick.map(x => row(x, true, "side")).join("")}${rel.c ? `<a class="more" href="${rel.c.url}">More ${esc(rel.c.name)} news →</a>` : ""}</div>
 </article>
 ${SIGNUP("h2")}</main>
 ` + footer();
@@ -637,9 +702,26 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
   `<div class="page-hero"><div class="wrap"><h1>Page Not <span>Found</span></h1><p>That page took a wrong exit off I-35.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 
 // ---------- feeds, sitemaps, robots, redirects ----------
+// city, project, search and standards pages
+for (const c of CITIES) { const cp = cityPage(c); simple(c.slug + "/index.html", c.url, `${c.name}, TX News: Business, Growth, Schools and Sports | ${NAME}`, `The latest ${c.name}, Texas news: new businesses, development, government, schools, sports and things to do in ${c.name} and ${c.county} County. Updated daily.`, cp.html, false, null, [crumbsLd([["Home", "/"], [c.name, c.url]]), { "@context": "https://schema.org", "@type": "CollectionPage", name: c.name + " news", url: abs(c.url), about: { "@type": "City", name: c.name + ", Texas" }, publisher: ORG }]); }
+for (const x of CM.items) { const pp = projectPage(x); simple("coming-to-the-254/" + x.id + "/index.html", x.url, `${x.n} in ${x.city}, TX: ${x.status}${x.eta && x.eta !== "TBA" ? ", " + x.eta : ""} | ${NAME}`, `${x.n} ${x.city}, Texas: ${x.status.toLowerCase()}${x.eta && x.eta !== "TBA" ? ", expected " + x.eta : ""}. ${x.d}`.slice(0, 300), pp.html, false, "business", [crumbsLd(pp.crumbs), faqLd(pp.faq)]); }
+const SIDX = ALL.map(s => ({ t: s.title, d: s.dek, c: s.city || "", k: catLabel(s.cat), u: s.url, dt: s.date })).concat(CM.items.map(x => ({ t: x.n, d: x.d, c: x.city, k: "Coming to the 254 · " + x.status, u: x.url, dt: x.hist[x.hist.length - 1][0] })), SCHOOLS.map(s => ({ t: s.name + " sports", d: "Scores, schedules and playoff status.", c: s.city, k: "Scoreboard", u: s.url, dt: "" })), CITIES.map(c => ({ t: c.name + " news", d: c.blurb, c: c.name, k: "City", u: c.url, dt: "" })));
+pages["search-index.json"] = JSON.stringify(SIDX);
+simple("search/index.html", "/search/", `Search | ${NAME}`, `Search ${NAME} stories, openings, schools and cities.`, `<div class="page-hero"><div class="wrap"><span class="kicker">Search</span><h1>Search <span>the 254</span></h1><p>Stories, new openings, schools and cities.</p></div></div>
+<section class="block"><div class="wrap"><form class="srch" action="/search/" role="search"><input id="srch-q" name="q" type="search" placeholder="Try: Chick-fil-A, Belton ISD, Temple football, mortgage rates" autofocus><button class="btn" type="submit">Search</button></form><div class="city-nav">${CITIES.map(x => `<a href="${x.url}">${esc(x.name)}</a>`).join("")}</div><p class="sb-upd" id="srch-n"></p><div class="rows" id="srch-out"></div></div></section>`, true);
+simple("standards/index.html", "/standards/", `Editorial Standards and Corrections | ${NAME}`, `How ${NAME} sources, labels and corrects its Central Texas news coverage, and how sponsorships are kept separate from news.`, `<div class="page-hero"><div class="wrap"><span class="kicker">About</span><h1>Editorial <span>standards</span></h1><p>How we report, how we label it, and how we fix mistakes.</p></div></div>
+<section class="block"><div class="wrap prose">
+<h2>Sources come first</h2><p>Every story lists its sources and links to them. Whenever a public record exists, such as a state construction filing, a city council or commissioners court agenda, a development agreement, a court record or an official announcement, we link the record itself, not just a news report about it. Links marked <span class="src-tag">Public record</span> go straight to the original document.</p>
+<h2>What our labels mean</h2><ul>${Object.values(BASIS).map(b => `<li><b>${b[0]}:</b> ${b[1]}</li>`).join("")}</ul><p>When we summarize another outlet's reporting, we name and link that outlet, use our own words, and never copy their articles.</p>
+<h2>How stories are produced</h2><p>${NAME} is a small, independent publication. We use software tools, including AI, to help research, organize and draft stories, and every story is built from the sources linked at the bottom of it. Nothing is published as fact unless a source supports it, and unconfirmed reports are labeled as unconfirmed.</p>
+<h2>Fair and nonpartisan</h2><p>We don't endorse candidates, parties or ballot measures. Government coverage sticks to what was proposed, decided and what it means for residents.</p>
+<h2 id="corrections">Corrections</h2><p>If we get something wrong, we fix it and note the correction at the bottom of the story. Spotted an error? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a> or use our <a href="/contact/">contact form</a>, and include the story link.</p>
+<h2>Sponsors and advertising</h2><p>Sponsored spots are always labeled "Sponsor spot." Sponsors never pay for coverage, never see stories before they run, and never affect what we report. Lead pages like 254 Home Pros and 254 Build &amp; Facilities are separate from our news coverage.</p>
+<h2>Photos and graphics</h2><p>Photos are freely licensed file photos, credited under each image with their license. Graphics and headline cards are made by ${NAME}. We don't publish AI-generated images made to look like real photos.</p>
+</div></section>`, false, null);
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/coming-to-the-254/", latest, "daily", "0.9"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [...CITIES.map(c => [c.url, latest, "daily", "0.9"]), ["/coming-to-the-254/", latest, "daily", "0.9"], ...CM.items.map(x => [x.url, x.hist[x.hist.length - 1][0], "weekly", "0.7"]), ["/standards/", latest, "monthly", "0.4"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
@@ -675,6 +757,8 @@ pages["llms.txt"] = `# ${NAME}
 - [Things to Do](${SITE}/things-to-do/): weekend events and go-to spots in Temple, Belton, Salado and Waco
 - [254 Home Pros](${SITE}/home-pros/): request a local home service pro (AC, plumbing, roofing, foundation and more)
 - [254 Build & Facilities](${SITE}/build/): commercial project requests, public bid board and facility manager resources
+- City pages: ${CITIES.map(c => `[${c.name}](${SITE}${c.url})`).join(", ")}
+- [Editorial standards](${SITE}/standards/): sourcing, labels and corrections
 - [About](${SITE}/about/): who we are and how we report
 
 ## Recent stories
