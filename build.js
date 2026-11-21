@@ -253,6 +253,57 @@ ${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business
 </div></section>` };
 }
 const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
+// ---------- Weather, markets 2.0, traffic ----------
+const WX_CITIES = [["Temple", 31.0982, -97.3428], ["Belton", 31.0560, -97.4645], ["Killeen", 31.1171, -97.7278], ["Harker Heights", 31.0835, -97.6597], ["Copperas Cove", 31.1241, -97.9031], ["Salado", 30.9471, -97.5386], ["Waco", 31.5493, -97.1467], ["Gatesville", 31.4352, -97.7439], ["Lampasas", 31.0638, -98.1817]];
+const cityChips = (id, first) => `<div class="tdo-chips wx-chips" id="${id}">${WX_CITIES.map((c, i) => `<button type="button" data-city="${c[0]}" data-lat="${c[1]}" data-lon="${c[2]}"${i === first ? ' class="on"' : ""}>${c[0]}</button>`).join("")}</div>`;
+function weatherPage() {
+  return `<div class="page-hero"><div class="wrap"><span class="kicker">Live</span><h1>254 Weather <span>Center</span></h1><p>Current conditions, hourly and 7-day forecasts, live radar and official National Weather Service warnings for Temple, Belton, Killeen, Waco and the rest of Central Texas.</p></div></div>
+<section class="block"><div class="wrap">
+${cityChips("wx-city", 0)}
+<div id="wx-alerts" class="wx-alerts" aria-live="polite"></div>
+<div class="wx-grid"><div>
+<div class="wx-now" id="wx-now"><p class="sb-when">Loading current conditions…</p></div>
+<h2 class="list-head">Next <span>12 hours</span></h2><div class="wx-hourly" id="wx-hourly"></div>
+<h2 class="list-head">7-day <span>forecast</span></h2><div class="wx-week" id="wx-week"></div>
+</div><aside>
+<div class="module"><h2>Live radar</h2><a href="https://radar.weather.gov/station/kgrk/standard" target="_blank" rel="noopener"><img class="wx-radar" id="wx-radar" src="https://radar.weather.gov/ridge/standard/KGRK_loop.gif" alt="National Weather Service radar loop for Central Texas (Granger, KGRK)" width="600" height="550" loading="lazy"></a><p class="hs-note">NWS radar loop from Granger (KGRK), which covers Bell, McLennan and Coryell counties. Tap for the interactive map.</p></div>
+<div class="module"><h2>Stay safe</h2><ul class="city-list"><li><a href="https://www.weather.gov/fwd/" target="_blank" rel="noopener">NWS Fort Worth office (forecasts &amp; warnings)</a></li><li><a href="https://www.weather.gov/fwd/hazards" target="_blank" rel="noopener">Hazardous weather outlook</a></li><li><a href="https://www.spc.noaa.gov/" target="_blank" rel="noopener">Storm Prediction Center outlooks</a></li><li><a href="https://www.ercot.com/" target="_blank" rel="noopener">ERCOT grid conditions</a></li><li><a href="/traffic/">254 road conditions</a></li></ul></div>
+<div class="module"><h2>Storm damage?</h2><p>Roof, AC, fence or tree damage after a storm?</p><a class="more" href="/home-pros/">254 Home Pros →</a></div>
+</aside></div>
+<p class="hs-note">Forecasts, observations and warnings come straight from the <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service</a> and update every time you open this page. Warnings are shown exactly as the NWS issues them. For life-threatening weather, follow local officials and your phone's emergency alerts.</p>
+</div></section>`;
+}
+const MARKET_WIDGET2 = `<div class="tradingview-widget-container market-widget"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+{"width":"100%","height":620,"colorTheme":"light","isTransparent":true,"locale":"en","symbolsGroups":[{"name":"Stocks","symbols":[{"name":"FOREXCOM:SPXUSD","displayName":"S&P 500"},{"name":"FOREXCOM:NSXUSD","displayName":"Nasdaq 100"},{"name":"FOREXCOM:DJI","displayName":"Dow 30"},{"name":"AMEX:IWM","displayName":"Russell 2000 (IWM ETF)"}]},{"name":"Rates","symbols":[{"name":"TVC:US10Y","displayName":"10-year Treasury yield"},{"name":"TVC:US02Y","displayName":"2-year Treasury yield"},{"name":"TVC:DXY","displayName":"U.S. dollar index"}]},{"name":"Energy & metals","symbols":[{"name":"TVC:USOIL","displayName":"WTI crude oil"},{"name":"TVC:UKOIL","displayName":"Brent crude oil"},{"name":"CAPITALCOM:NATURALGAS","displayName":"Natural gas"},{"name":"TVC:GOLD","displayName":"Gold"},{"name":"TVC:SILVER","displayName":"Silver"}]}]}
+</script></div>
+`;
+const CRYPTO_WIDGET = `<div class="tradingview-widget-container market-widget"><div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+{"width":"100%","height":420,"colorTheme":"light","isTransparent":true,"locale":"en","symbolsGroups":[{"name":"Crypto","symbols":[{"name":"BITSTAMP:BTCUSD","displayName":"Bitcoin"},{"name":"BITSTAMP:ETHUSD","displayName":"Ethereum"},{"name":"COINBASE:SOLUSD","displayName":"Solana"},{"name":"BITSTAMP:XRPUSD","displayName":"XRP"},{"name":"CRYPTOCAP:TOTAL","displayName":"Total crypto market cap"}]}]}
+</script></div>
+`;
+const marketsTop = () => `<h2 class="list-head">Live <span>markets</span></h2>${MARKET_WIDGET2}<p class="hs-note">Quotes from TradingView. Stock, bond and commodity prices may be delayed and don't move when U.S. markets are closed (nights, weekends and market holidays). Russell 2000 is shown through its biggest tracking fund, IWM.</p>
+<h2 class="list-head" id="crypto">Crypto &amp; <span>digital assets</span></h2>${CRYPTO_WIDGET}<p class="hs-note">Crypto trades 24/7, so these prices move around the clock. Prices are volatile. This is market information, not investment advice.</p>
+<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>`;
+const TRAFFIC_RX = /\bI-35\b|\bI-14\b|US 190|US 84|\bSH ?6\b|SH ?317|Loop 121|TxDOT|highway|lane closure|road (work|closure|construction|project)|intersection closed|bridges?\b|interchange|traffic/i;
+function trafficPage() {
+  const roads = ALL.filter(s => TRAFFIC_RX.test(s.title + " " + s.dek)).slice(0, 10);
+  const proj = CM.items.filter(x => x.type === "Roads" || TRAFFIC_RX.test(x.n + " " + x.d + " " + (x.eta || "")));
+  return `<div class="page-hero"><div class="wrap"><span class="kicker">Live</span><h1>254 <span>Traffic</span></h1><p>Live traffic, crashes, lane closures and road construction on I-35, I-14/US 190, US 84, SH 317 and SH 6 across Bell, McLennan and Coryell counties.</p></div></div>
+<section class="block"><div class="wrap">
+${cityChips("tr-city", 0)}
+<div class="tr-legend"><span><b>Live now:</b> crashes, slowdowns and hazards reported by drivers (Waze map)</span><span><b>Scheduled:</b> planned lane closures from TxDOT (DriveTexas)</span><span><b>Coming:</b> future construction and road projects (below)</span></div>
+<div class="tr-map"><iframe id="tr-map" title="Live traffic map" src="https://embed.waze.com/iframe?zoom=12&lat=31.0982&lon=-97.3428&ct=livemap" width="100%" height="520" allowfullscreen loading="lazy"></iframe></div>
+<p class="hs-note">Live map by Waze, based on reports from drivers. Always follow posted signs and officers on scene.</p>
+<div class="tr-btns"><a class="btn" href="https://drivetexas.org/" target="_blank" rel="noopener">Official closures: DriveTexas ↗</a><a class="btn alt" href="https://www.txdot.gov/about/districts/waco-district.html" target="_blank" rel="noopener">TxDOT Waco District ↗</a><a class="btn alt" href="https://www.txdot.gov/projects/project-tracker.html" target="_blank" rel="noopener">TxDOT project tracker ↗</a></div>
+<div class="city-grid"><div>
+<h2 class="list-head">Road <span>news</span></h2>${roads.length ? `<div class="rows">${roads.map(s => row(s, false, "side")).join("")}</div>` : '<p class="sb-when">No road stories right now.</p>'}
+</div><aside>
+<div class="module"><h2>Road projects</h2>${proj.length ? `<ul class="city-list">${proj.map(x => `<li><a href="${x.url}">${esc(x.n)}</a><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span></li>`).join("")}</ul>` : "<p>None listed.</p>"}<a class="more" href="/coming-to-the-254/">Coming to the 254 →</a></div>
+<div class="module"><h2>Weather on the roads</h2><p>Storms, flooding or ice on the way?</p><a class="more" href="/weather/">254 Weather Center →</a></div>
+</aside></div></div></section>`;
+}
 // ---------- Cities, project pages, search ----------
 const CITIES = [
   ["temple", "Temple", "Bell", /\bTemple\b/, ["Temple"], "Temple is Bell County's medical and rail hub, home to Baylor Scott & White Medical Center and a fast-growing industrial park."],
@@ -497,8 +548,9 @@ ${(o.ld || []).map(ld).join("\n")}
 
 function header(active) {
   const nav = SECTIONS.map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("");
-  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
+  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-wx" id="top-wx" href="/weather/">🌤 Weather</a><a class="top-search" href="/traffic/">🚗 Traffic</a><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
 <header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><span class="hdr-right"><a class="hdr-lead" href="/home-pros/">Find a Home Pro</a><a class="hdr-lead" href="/build/">Commercial Projects</a><a class="hdr-search" href="/search/" aria-label="Search">🔍</a><a class="btn" href="/#newsletter">Subscribe Free</a></span></div></header>
+<div class="wx-banner" id="wx-banner" hidden></div>
 <nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a class="nav-lead${active === "home-pros" ? ' active" aria-current="page' : ""}" href="/home-pros/">Find a Home Pro</a><a class="nav-lead${active === "build" ? ' active" aria-current="page' : ""}" href="/build/">Commercial Projects</a></div></nav>
 `;
 }
@@ -508,7 +560,7 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/weather/">254 Weather</a><a href="/traffic/">254 Traffic</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Cities</h4>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h4 style="margin-top:14px">Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
@@ -630,7 +682,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? COMING_PROMO + BUILD_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? COMING_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? marketsTop() : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? COMING_PROMO + BUILD_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? COMING_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -702,10 +754,13 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
   `<div class="page-hero"><div class="wrap"><h1>Page Not <span>Found</span></h1><p>That page took a wrong exit off I-35.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 
 // ---------- feeds, sitemaps, robots, redirects ----------
+// weather + traffic pages
+simple("weather/index.html", "/weather/", `Central Texas Weather: Temple, Killeen, Waco, Belton Forecast, Radar and Warnings | ${NAME}`, "Live Central Texas weather: current conditions, hourly and 7-day forecasts, radar and National Weather Service warnings for Temple, Belton, Killeen, Harker Heights, Copperas Cove, Waco and the 254.", weatherPage(), false, null, [crumbsLd([["Home", "/"], ["Weather", "/weather/"]])]);
+simple("traffic/index.html", "/traffic/", `Central Texas Traffic: I-35, I-14 and Road Closures in Temple, Killeen, Belton and Waco | ${NAME}`, "Live Central Texas traffic map, crashes and lane closures on I-35, I-14/US 190, US 84, SH 317 and SH 6, plus road construction news for Temple, Killeen, Belton and Waco.", trafficPage(), false, null, [crumbsLd([["Home", "/"], ["Traffic", "/traffic/"]])]);
 // city, project, search and standards pages
 for (const c of CITIES) { const cp = cityPage(c); simple(c.slug + "/index.html", c.url, `${c.name}, TX News: Business, Growth, Schools and Sports | ${NAME}`, `The latest ${c.name}, Texas news: new businesses, development, government, schools, sports and things to do in ${c.name} and ${c.county} County. Updated daily.`, cp.html, false, null, [crumbsLd([["Home", "/"], [c.name, c.url]]), { "@context": "https://schema.org", "@type": "CollectionPage", name: c.name + " news", url: abs(c.url), about: { "@type": "City", name: c.name + ", Texas" }, publisher: ORG }]); }
 for (const x of CM.items) { const pp = projectPage(x); simple("coming-to-the-254/" + x.id + "/index.html", x.url, `${x.n} in ${x.city}, TX: ${x.status}${x.eta && x.eta !== "TBA" ? ", " + x.eta : ""} | ${NAME}`, `${x.n} ${x.city}, Texas: ${x.status.toLowerCase()}${x.eta && x.eta !== "TBA" ? ", expected " + x.eta : ""}. ${x.d}`.slice(0, 300), pp.html, false, "business", [crumbsLd(pp.crumbs), faqLd(pp.faq)]); }
-const SIDX = ALL.map(s => ({ t: s.title, d: s.dek, c: s.city || "", k: catLabel(s.cat), u: s.url, dt: s.date })).concat(CM.items.map(x => ({ t: x.n, d: x.d, c: x.city, k: "Coming to the 254 · " + x.status, u: x.url, dt: x.hist[x.hist.length - 1][0] })), SCHOOLS.map(s => ({ t: s.name + " sports", d: "Scores, schedules and playoff status.", c: s.city, k: "Scoreboard", u: s.url, dt: "" })), CITIES.map(c => ({ t: c.name + " news", d: c.blurb, c: c.name, k: "City", u: c.url, dt: "" })));
+const SIDX = ALL.map(s => ({ t: s.title, d: s.dek, c: s.city || "", k: catLabel(s.cat), u: s.url, dt: s.date })).concat(CM.items.map(x => ({ t: x.n, d: x.d, c: x.city, k: "Coming to the 254 · " + x.status, u: x.url, dt: x.hist[x.hist.length - 1][0] })), SCHOOLS.map(s => ({ t: s.name + " sports", d: "Scores, schedules and playoff status.", c: s.city, k: "Scoreboard", u: s.url, dt: "" })), CITIES.map(c => ({ t: c.name + " news", d: c.blurb, c: c.name, k: "City", u: c.url, dt: "" })), [{ t: "254 Weather Center", d: "Forecast, radar and warnings", c: "", k: "Weather", u: "/weather/", dt: "" }, { t: "254 Traffic", d: "Live traffic map, I-35 and I-14 closures", c: "", k: "Traffic", u: "/traffic/", dt: "" }, { t: "Crypto prices", d: "Bitcoin, Ethereum, Solana, XRP", c: "", k: "Markets", u: "/markets/#crypto", dt: "" }]);
 pages["search-index.json"] = JSON.stringify(SIDX);
 simple("search/index.html", "/search/", `Search | ${NAME}`, `Search ${NAME} stories, openings, schools and cities.`, `<div class="page-hero"><div class="wrap"><span class="kicker">Search</span><h1>Search <span>the 254</span></h1><p>Stories, new openings, schools and cities.</p></div></div>
 <section class="block"><div class="wrap"><form class="srch" action="/search/" role="search"><input id="srch-q" name="q" type="search" placeholder="Try: Chick-fil-A, Belton ISD, Temple football, mortgage rates" autofocus><button class="btn" type="submit">Search</button></form><div class="city-nav">${CITIES.map(x => `<a href="${x.url}">${esc(x.name)}</a>`).join("")}</div><p class="sb-upd" id="srch-n"></p><div class="rows" id="srch-out"></div></div></section>`, true);
@@ -721,7 +776,7 @@ simple("standards/index.html", "/standards/", `Editorial Standards and Correctio
 </div></section>`, false, null);
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [...CITIES.map(c => [c.url, latest, "daily", "0.9"]), ["/coming-to-the-254/", latest, "daily", "0.9"], ...CM.items.map(x => [x.url, x.hist[x.hist.length - 1][0], "weekly", "0.7"]), ["/standards/", latest, "monthly", "0.4"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/weather/", latest, "daily", "0.9"], ["/traffic/", latest, "daily", "0.8"], ...CITIES.map(c => [c.url, latest, "daily", "0.9"]), ["/coming-to-the-254/", latest, "daily", "0.9"], ...CM.items.map(x => [x.url, x.hist[x.hist.length - 1][0], "weekly", "0.7"]), ["/standards/", latest, "monthly", "0.4"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
@@ -758,6 +813,8 @@ pages["llms.txt"] = `# ${NAME}
 - [254 Home Pros](${SITE}/home-pros/): request a local home service pro (AC, plumbing, roofing, foundation and more)
 - [254 Build & Facilities](${SITE}/build/): commercial project requests, public bid board and facility manager resources
 - City pages: ${CITIES.map(c => `[${c.name}](${SITE}${c.url})`).join(", ")}
+- [254 Weather Center](${SITE}/weather/): NWS forecasts, radar and warnings for Central Texas cities
+- [254 Traffic](${SITE}/traffic/): live traffic map, closures and road projects
 - [Editorial standards](${SITE}/standards/): sourcing, labels and corrections
 - [About](${SITE}/about/): who we are and how we report
 
