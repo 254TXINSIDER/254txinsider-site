@@ -656,3 +656,15 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .br-tag { background: #fff; color: #b23b2e !important; font-family: var(--head); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; padding: 3px 9px; border-radius: 4px; animation: brpulse 1.6s ease-in-out infinite; white-space: nowrap; }
 @keyframes brpulse { 50% { opacity: .55; } }
 @media (prefers-reduced-motion: reduce) { .br-tag { animation: none; } }
+/* v24 Sip the 254 */
+.wn-hero { background: linear-gradient(135deg, #3a1020 0%, #13213c 70%); }
+.wn-hero a { color: #f0a36f; text-decoration: underline; }
+.author-box { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid #e3dbcf; border-left: 5px solid #6e1f35; border-radius: 10px; padding: 16px 18px; margin-bottom: 18px; }
+.ab-mark { flex: 0 0 64px; height: 64px; border-radius: 50%; background: #6e1f35; color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--head); font-size: 24px; }
+.ab-name { margin: 0; font-family: var(--head); font-size: 20px; } .ab-name a { color: #13213c; } .ab-title { margin: 2px 0 6px; color: #6e1f35; font-weight: 700; font-size: 14px; } .author-box p { margin: 4px 0; }
+.wn-winery { background: #6e1f35; } .wn-tasting-room { background: #8a3b12; } .wn-meadery { background: #7a5a00; } .wn-wine-bar { background: #13213c; }
+.wn-tips span { display: inline-block; font-size: 12px; background: #f6eef0; color: #6e1f35; border-radius: 999px; padding: 2px 9px; margin: 0 4px 4px 0; font-weight: 700; }
+.wn-idx { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 10px 0; }
+.wn-i { background: #fff; border: 1px solid #e3dbcf; border-radius: 10px; padding: 14px 16px; } .wn-i h3 { margin: 0; color: #13213c; }
+.wn-row { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding: 6px 0; } .wn-row b.up { color: #1d6b2a; } .wn-row b.down { color: #b23b2e; }
+.wn-ctx li { margin-bottom: 6px; }

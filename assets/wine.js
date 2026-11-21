@@ -1,0 +1,44 @@
+// Sip the 254, by Jake Ruse. Powers https://254txinsider.com/sip-the-254/
+// places: { id, n, type (Winery | Tasting room | Meadery | Wine bar), city, where, geo ([lat, lon], optional; leave out if unsure), d (one sentence, own words), tips (array of short tags), src: [name, url] }
+// Hours change often; we don't list hours, we tell readers to check before they go.
+// market: fine-wine market snapshot from Liv-ex (update monthly when Liv-ex publishes; percentages only unless an index level is published).
+window.WINE = {
+  updated: "2026-11-21",
+  places: [
+    { id: "salado-winery", n: "Salado Winery Co. & Salado Wine Seller", type: "Winery", city: "Salado", where: "841 N. Main St.", geo: [30.9542, -97.53284], d: "Two businesses under one roof since 2005: their own wines plus bottles from dozens of other Texas wineries, with themed tasting classes most weeks.", tips: ["Tasting flights", "Classes", "Event room"], src: ["Visit Salado", "https://visitsaladotexas.com/?p=20401"] },
+    { id: "empresario-wines", n: "Empresario Wines", type: "Tasting room", city: "Salado", where: "7 N. Main St., Suite A (The Salado Inn)", geo: [30.94748, -97.53694], d: "A 100% Texas wine tasting room on Main Street that pours bottles from across the state.", tips: ["100% Texas", "Walkable Main St."], src: ["Visit Salado", "https://visitsaladotexas.com/?p=28504"] },
+    { id: "axis-winery", n: "Axis Winery", type: "Tasting room", city: "Salado", where: "1420 N. Robertson Rd.", geo: [30.95686, -97.5355], d: "Salado tasting room for Axis wines, with in-state shipping if you can't make the drive.", tips: ["Ships in Texas"], src: ["Visit Salado", "https://visitsaladotexas.com/?p=20385"] },
+    { id: "3-texans-winery", n: "3 Texans Winery", type: "Winery", city: "Temple", where: "7536 FM 2409", d: "Family-owned vineyard started in 2009 by a mother and her daughters with about 4,000 vines; known for flights and a fall grape stomp.", tips: ["Estate vineyard", "Grape stomp", "Live music"], src: ["Discover Temple", "https://www.discovertemple.com/blog/post/a-day-at-the-winery/"] },
+    { id: "moose-goose-winery", n: "Moose & Goose Winery", type: "Winery", city: "Temple", where: "6300 Middle Rd.", geo: [31.09782, -97.26776], d: "A farm winery making fruit wines, with a herd of pygmy goats on site; open on select dates, so check the calendar first.", tips: ["Fruit wines", "Select dates only"], src: ["Discover Temple", "https://www.discovertemple.com/blog/post/a-day-at-the-winery/"] },
+    { id: "dancing-bee-winery", n: "Dancing Bee Winery", type: "Meadery", city: "Rogers", where: "8060 E. US 190 (Walker Honey Farm)", d: "Central Texas' honey-wine specialist, making mead from Walker Honey Farm honey alongside a honey shop.", tips: ["Mead", "Honey shop"], src: ["AARP Local", "https://local.aarp.org/place/dancing-bee-winery-rogers-tx.html"] },
+    { id: "country-spring-vineyard", n: "Country Spring Vineyard & Wine Garden", type: "Winery", city: "Lorena", where: "1685 Country Spring Rd.", d: "A 33-acre country wine garden about 10 miles south of Waco with weekend tasting hours.", tips: ["Wine garden", "Weekends"], src: ["Destination Waco", "https://destinationwaco.org/places_categories/wineries-winery-distillery-brewery/"] },
+    { id: "waco-winery", n: "Waco Winery & Vineyards", type: "Winery", city: "Waco", where: "6826 E. State Hwy 6", d: "Waco's own winery, founded in 1997 and home of the Tehuacana Creek label; weekend tastings and a room for groups up to 50.", tips: ["Since 1997", "Group events"], src: ["Destination Waco", "https://destinationwaco.org/?p=84395"] },
+    { id: "valley-mills-vineyards", n: "Valley Mills Vineyards", type: "Winery", city: "Valley Mills", where: "Estate winery off FM 1637, west of Waco", d: "Family-run estate winery making wines from 100% Texas grapes, best known for its Tempranillo.", tips: ["Estate views", "Tempranillo"], src: ["Destination Waco", "https://destinationwaco.org/?p=353"] },
+    { id: "texas-legato-winery", n: "Texas Legato Winery", type: "Winery", city: "Lampasas", where: "2935 FM 1478", d: "Family winery southwest of Lampasas with a patio over the vineyard, run by one of the Bledsoe twins.", tips: ["Vineyard patio", "Hill Country"], src: ["Texas Co-op Power", "https://texascooppower.com/?p=4531"] },
+    { id: "pillar-bluff-vineyards", n: "Pillar Bluff Vineyards", type: "Winery", city: "Lampasas", where: "300 County Road 111", d: "Long-running Lampasas County vineyard just down the road from Texas Legato, run by the other Bledsoe twin.", tips: ["Wine trail stop"], src: ["Texas Co-op Power", "https://texascooppower.com/?p=4531"] },
+    { id: "stoneledge-winery", n: "Stoneledge Winery & Vineyard", type: "Winery", city: "Lometa", where: "518 County Road 1403, about 10 miles west of Lampasas", d: "Newer Hill Country winery pouring only Texas wine, with an 11-acre vineyard and big views.", tips: ["Hill Country views", "Texas only"], src: ["Lampasas Chamber", "https://business.lampasaschamber.org/list/member/stoneledge-winery-vineyard"] },
+    { id: "j-kowboy-wine-bar", n: "J Kowboy Wine Bar", type: "Wine bar", city: "Temple", where: "13 E. Avenue B, downtown", geo: [31.09453, -97.34175], d: "Small downtown Temple wine bar for a quiet glass with friends.", tips: ["Downtown", "Date night"], src: ["Restaurantji", "https://www.restaurantji.com/tx/belton/wine-bars/"] },
+    { id: "segovia-wine-bar", n: "Segovia Wine Bar", type: "Wine bar", city: "Waco", where: "300 S. 6th St.", geo: [31.5543, -97.13063], d: "Spanish tapas and wine bar near the Silos, with live music and a midweek wine special.", tips: ["Tapas", "Live music", "Near Magnolia"], src: ["Destination Waco", "https://destinationwaco.org/?p=135293"] },
+    { id: "the-grape-waco", n: "The Grape Wine Bar & Bistro", type: "Wine bar", city: "Waco", where: "2006 N. Valley Mills Dr.", geo: [31.53279, -97.20496], d: "Longtime Waco wine bar that puts the wine list first, with bistro food.", tips: ["Bistro", "Big list"], src: ["Restaurantji", "https://www.restaurantji.com/tx/waco/wine-bars/"] },
+    { id: "maries-wine-bar", n: "Marie's Wine Bar", type: "Wine bar", city: "Waco", where: "723 Austin Ave., downtown", geo: [31.55509, -97.13385], d: "Upscale downtown Waco wine bar on Austin Avenue.", tips: ["Downtown", "Date night"], src: ["Restaurantji", "https://www.restaurantji.com/tx/waco/wine-bars/"] },
+    { id: "tyku-killeen", n: "Tyku Wine Bar & Lounge", type: "Wine bar", city: "Killeen", where: "220 E. Avenue D, downtown", geo: [31.12022, -97.72875], d: "Downtown Killeen wine bar and lounge.", tips: ["Downtown", "Night out"], src: ["Yellow Pages", "https://www.yellowpages.com/troy-tx/wine-bars"] }
+  ],
+  market: {
+    asOf: "September 2026",
+    note: "Liv-ex is the London exchange the wine trade uses to buy and sell investment-grade wine. Its indexes are the closest thing wine has to the S&P 500.",
+    idx: [
+      { n: "Liv-ex Fine Wine 100", what: "100 of the most-traded collectible wines (the industry benchmark)", m: 1.1, ytd: 2.1, y: 4.4 },
+      { n: "Liv-ex Fine Wine 1000", what: "1,000 wines from around the world (the broad market)", m: 0.6, ytd: 1.3, y: 2.2 }
+    ],
+    context: [
+      "Trading on Liv-ex rose 27% in the third quarter, its strongest quarter since 2022, helped by U.S. buyers.",
+      "The Fine Wine 100 ended 2025 about 25% below its 2022 peak, so this year's gains are a modest recovery so far.",
+      "Over the 10 years through 2025, the Fine Wine 100 rose about 34%."
+    ],
+    src: [["Vinetur (Liv-ex Q3 report)", "https://www.vinetur.com/en/20261118111376/fine-wine-trading-rose-270-in-q3-the-strongest-quarter-since-2022.html"], ["Vinetur (Liv-ex through September)", "https://www.vinetur.com/en/20261008108617/italian-collectible-wines-led-the-fine-wine-market-through-september.html"], ["Knight Frank Luxury Investment Index", "https://www.knightfrank.com/research/article/2026/4/knight-frank-luxury-investment-index-luxury-holds-steady"], ["Decanter", "https://www.decanter.com/wine/wine-investment-fine-wine-market-stabilising/"]]
+  },
+  texas: {
+    stats: [["$24.39B", "Texas wine industry economic impact"], ["136,000+", "jobs supported"], ["617", "Texas wine producers"], ["2.64M", "wine tourist visits a year"]],
+    src: ["Texas Wine & Grape Growers Association (2025 WineAmerica study)", "https://www.txwines.org/about-texas-wine"]
+  }
+};
