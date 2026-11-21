@@ -254,6 +254,10 @@ ${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business
 </div></section>` };
 }
 const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
+// ---------- Breaking banner ----------
+const bsb = { window: {} }; try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/breaking.js"), "utf8"), bsb); } catch (e) { console.log("breaking.js:", e.message); }
+const BR = bsb.window.BREAKING || {};
+const breakingBar = () => BR.on && BR.text && Date.parse(BR.until) > Date.now() ? `<div class="br-bar" data-until="${esc(BR.until)}"><div class="wrap"><span class="br-tag">${esc(BR.label || "Breaking")}</span>${BR.url ? `<a href="${esc(BR.url)}">${esc(BR.text)} →</a>` : `<span>${esc(BR.text)}</span>`}</div></div>` : "";
 // ---------- Navigation groups + Advertise ----------
 const NAV_MAIN = ["latest", "business", "real-estate", "government", "sports", "things-to-do"];
 const NAV_MORE = [["Markets & Crypto", "/markets/"], ["Growth & Development", "/growth/"], ["Education", "/education/"], ["We the People", "/we-the-people/"], ["Podcast", "/podcast/"], ["Coming to the 254", "/coming-to-the-254/"], ["254 Scoreboard", "/scoreboard/"], ["Weather", "/weather/"], ["Traffic", "/traffic/"], ["Find a Home Pro", "/home-pros/"], ["Commercial Projects", "/build/"], ["Search", "/search/"]];
@@ -588,7 +592,7 @@ function header(active) {
   const nav = NAV_MAIN.map(k => SECTIONS.find(x => x[0] === k)).map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("") + `<details class="nav-more"><summary${moreOn ? ' class="active"' : ""}>More ▾</summary><div class="nav-drop">${NAV_MORE.map(m => `<a href="${m[1]}">${m[0]}</a>`).join("")}</div></details>`;
   return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-wx" id="top-wx" href="/weather/">🌤 Weather</a><a class="top-search top-traffic" href="/traffic/">🚗 Traffic</a><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
 <header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><span class="hdr-right"><a class="hdr-lead" href="/home-pros/">Find a Home Pro</a><a class="hdr-lead" href="/build/">Commercial Projects</a><a class="hdr-search" href="/search/" aria-label="Search">🔍</a><a class="btn" href="/#newsletter">Subscribe Free</a></span></div></header>
-<div class="wx-banner" id="wx-banner" hidden></div>
+${breakingBar()}<div class="wx-banner" id="wx-banner" hidden></div>
 <nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a class="nav-lead${active === "home-pros" ? ' active" aria-current="page' : ""}" href="/home-pros/">Find a Home Pro</a><a class="nav-lead${active === "build" ? ' active" aria-current="page' : ""}" href="/build/">Commercial Projects</a></div></nav>
 `;
 }
