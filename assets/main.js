@@ -269,3 +269,34 @@ document.addEventListener("click", function (e) {
   var box = document.getElementById("tr-city"), map = document.getElementById("tr-map"); if (!box || !map) return;
   box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); }); b.classList.add("on"); map.src = "https://embed.waze.com/iframe?zoom=12&lat=" + b.getAttribute("data-lat") + "&lon=" + b.getAttribute("data-lon") + "&ct=livemap"; });
 })();
+
+// Tracker map (Leaflet + OpenStreetMap), follows the tracker filters
+(function () {
+  var el = document.getElementById("cm-map"); if (!el) return;
+  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e" };
+  var css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
+  var js = document.createElement("script"); js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; js.onload = init; document.head.appendChild(js);
+  var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  function init() {
+    var L = window.L, map = L.map(el, { scrollWheelZoom: false }).setView([31.25, -97.45], 9);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap contributors" }).addTo(map);
+    var layer = L.layerGroup().addTo(map), seen = {};
+    function draw(fit) {
+      layer.clearLayers(); var pts = []; seen = {};
+      [].forEach.call(document.querySelectorAll(".cm-card[data-ll]"), function (c) {
+        if (c.style.display === "none") return; var id = c.getAttribute("data-id"); if (seen[id]) return; seen[id] = 1;
+        var ll = c.getAttribute("data-ll").split(",").map(Number), st = c.getAttribute("data-st"), ap = c.getAttribute("data-approx");
+        var icon = L.divIcon({ className: "", html: '<div class="cm-pin' + (ap ? " approx" : "") + '" style="background:' + (COL[st] || "#13213c") + ';color:' + (COL[st] || "#13213c") + '"></div>', iconSize: [16, 16], iconAnchor: [8, 8] });
+        L.marker(ll, { icon: icon, title: c.getAttribute("data-n") }).bindPopup('<a href="' + esc(c.getAttribute("data-url")) + '">' + esc(c.getAttribute("data-n")) + '</a><br>' + esc(st) + ' · ' + esc(c.getAttribute("data-city")) + (ap ? '<br><small>Approximate location</small>' : "")).addTo(layer);
+        pts.push(ll);
+      });
+      if (fit && pts.length) map.fitBounds(pts, { padding: [30, 30], maxZoom: 13 });
+    }
+    draw(true);
+    ["cm-city", "cm-type"].forEach(function (id) { var b = document.getElementById(id); if (b) b.addEventListener("click", function () { setTimeout(function () { draw(true); }, 0); }); });
+    var q = document.getElementById("cm-q"); if (q) q.addEventListener("input", function () { setTimeout(function () { draw(false); }, 0); });
+  }
+})();
+
+// Advertise page: pre-select the spot
+document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("[data-adspot]"); if (!b) return; var s = document.getElementById("ad-spot"); if (s) s.value = b.getAttribute("data-adspot"); });
