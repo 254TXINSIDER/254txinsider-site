@@ -97,6 +97,41 @@ function localPros() {
 <form class="pros-form" id="pros-form" name="sponsor" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="sponsor"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
 <h3>Claim a spot or ask about rates</h3><div class="pf-row"><label>Your name <input name="name" required></label><label>Business name <input name="business" required></label><label>Category <select name="category" id="pf-cat">${cats.map(c => `<option>${esc(c)}</option>`).join("")}</select></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label><label>Website <input name="website" placeholder="optional"></label></div><label class="pf-msg">Anything we should know? <textarea name="message" rows="3" placeholder="Areas you serve, what you'd like to promote..."></textarea></label><button class="btn" type="submit">Send, we'll call you</button><p class="hs-note">Sponsored listings are marked "Sponsored." ${NAME} does not endorse any business.</p></form></div>`;
 }
+// ---------- 254 Scoreboard ----------
+const ssb = { window: {} }; try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/scores.js"), "utf8"), ssb); } catch (e) { console.log("scores.js:", e.message); }
+const SC = ssb.window.SCORES || { updated: "", sports: [] };
+const sbDate = d => { const x = new Date(d + "T12:00:00"); return x.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "America/Chicago" }); };
+const STATUS = { playoffs: ["Playoffs", "sb-po"], season: ["In season", "sb-in"], off: ["Off season", "sb-off"] };
+function sbGame(x) {
+  const done = x.s1 !== undefined && x.s1 !== null && x.s1 !== "";
+  const w = done && Number(x.s1) > Number(x.s2), l = done && Number(x.s1) < Number(x.s2);
+  return `<div class="sb-game${done ? (w ? " win" : l ? " loss" : "") : " up"}" data-lv="${esc(x.lv || "HS")}"><div class="sb-meta"><span>${sbDate(x.d)}</span>${x.lv === "College" ? '<span class="sb-lv">College</span>' : ""}${x.note ? `<span>${esc(x.note)}</span>` : ""}</div>
+<div class="sb-line"><b>${esc(x.t1)}</b>${done ? `<span class="sb-s">${esc(x.s1)}</span>` : ""}</div><div class="sb-line"><span>${esc(x.t2)}</span>${done ? `<span class="sb-s">${esc(x.s2)}</span>` : ""}</div>
+${done ? `<div class="sb-res">${w ? "W" : l ? "L" : "T"} · Final</div>` : `<div class="sb-res">${esc(x.time || "Time TBA")}${x.where ? " · " + esc(x.where) : ""}</div>`}</div>`;
+}
+function sbSport(s) {
+  const st = STATUS[s.status] || STATUS.off;
+  const tr = s.tracker;
+  const tracker = tr ? `<div class="sb-tracker"><h4>🏆 Playoff tracker <span>${esc(tr.round || "")}${tr.next ? " · Next: " + esc(tr.next) : ""}</span></h4>
+<div class="sb-cols"><div><h5>Still alive (${tr.alive.length})</h5><ul>${tr.alive.map(a => `<li><b>${esc(a.t)}</b>${a.c ? ` <em>${esc(a.c)}</em>` : ""}${a.r ? ` (${esc(a.r)})` : ""}<span>${esc(a.n)}</span></li>`).join("")}</ul></div>
+<div><h5>Season over</h5><ul class="sb-out">${tr.out.map(a => `<li><b>${esc(a.t)}</b>${a.r ? ` (${esc(a.r)})` : ""}<span>${esc(a.n)}</span></li>`).join("")}</ul></div></div></div>` : "";
+  const games = (s.games || []).slice().sort((a, b) => b.d.localeCompare(a.d)), up = (s.up || []).slice().sort((a, b) => a.d.localeCompare(b.d));
+  const body = s.status === "off" ? `<p class="sb-when">${esc(s.when || "Off season.")}</p>` :
+    `${s.note ? `<p class="sb-note">${esc(s.note)}</p>` : ""}${tracker}${up.length ? `<h5 class="sb-h">Upcoming</h5><div class="sb-grid">${up.map(sbGame).join("")}</div>` : ""}${games.length ? `<h5 class="sb-h">Latest scores</h5><div class="sb-grid">${games.map(sbGame).join("")}</div>` : ""}${!up.length && !games.length && !tr && !s.note ? '<p class="sb-when">Scores will show up here as they come in.</p>' : ""}`;
+  return `<section class="sb-sport ${st[1]}" id="sb-${esc(s.k)}" data-k="${esc(s.k)}" data-g="${esc(s.g)}" data-st="${esc(s.status)}"><div class="sb-head"><h3>${esc(s.n)}</h3><span class="sb-g">${esc(s.g)}</span><span class="sb-badge">${st[0]}</span><span class="sb-season">${esc(s.season)}</span></div>${body}</section>`;
+}
+function scoreboard(compact) {
+  const order = { playoffs: 0, season: 1, off: 2 };
+  const list = SC.sports.slice().sort((a, b) => (order[a.status] ?? 3) - (order[b.status] ?? 3));
+  if (compact) {
+    const live = list.filter(s => s.status !== "off");
+    return `<div class="sb sb-compact"><div class="sb-top"><h2 class="list-head">254 <span>Scoreboard</span></h2><a class="btn" href="/scoreboard/">Full scoreboard &amp; playoff tracker →</a></div>${live.filter(s => s.status === "playoffs" && s.tracker).map(s => `<p class="sb-strip"><b>${esc(s.n)} playoffs:</b> ${s.tracker.alive.length} area teams still alive. ${esc(s.tracker.round || "")}</p>`).join("")}<p class="sb-strip">In season now: ${live.map(s => `<a href="/scoreboard/#sb-${esc(s.k)}">${esc(s.n)}</a>`).join(" · ")}</p></div>`;
+  }
+  return `<div class="sb"><div class="sb-filters"><div class="tdo-chips" id="sb-gender"><button class="chip on" data-v="all">All</button><button class="chip" data-v="Boys">Boys</button><button class="chip" data-v="Girls">Girls</button></div>
+<div class="tdo-chips" id="sb-sport"><button class="chip on" data-v="all">All sports</button><button class="chip" data-v="live">In season</button>${list.map(s => `<button class="chip" data-v="${esc(s.k)}">${esc(s.n)}</button>`).join("")}</div></div>
+<p class="sb-upd">Updated ${SC.updated ? sbDate(SC.updated) : ""}. Covering Bell, McLennan, Coryell and Lampasas county schools plus Baylor, UMHB, Temple College, MCC, CTC and Tarleton. <a href="/contact/?topic=tip">Send us a score</a>.</p>
+${list.map(sbSport).join("")}</div>`;
+}
 // ---------- FAQ + service markup helpers (SEO / AEO) ----------
 const AREAS = ["Bell County, TX", "McLennan County, TX", "Coryell County, TX", "Lampasas County, TX", "Temple, TX", "Killeen, TX", "Waco, TX", "Belton, TX", "Harker Heights, TX", "Copperas Cove, TX"];
 const faqHtml = (title, items) => `<section class="faq"><h2 class="list-head">${title}</h2>${items.map(q => `<details><summary>${esc(q[0])}</summary><p>${q[1]}</p></details>`).join("")}</section>`;
@@ -289,7 +324,7 @@ function footer() {
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
 <div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h4>Company</h4><a href="/about/">About Us</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h4>Follow</h4>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
@@ -411,7 +446,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -470,6 +505,7 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
+simple("scoreboard/index.html", "/scoreboard/", `254 Scoreboard: Central Texas High School and College Scores and Playoff Tracker | ${NAME}`, "Scores, schedules and playoff tracker for Temple, Belton, Killeen, Waco and Central Texas high school and college sports: football, basketball, volleyball, soccer, baseball, softball, track, cross country and UIL band.", `<div class="page-hero"><div class="wrap"><span class="kicker">Sports</span><h1>254 <span>Scoreboard</span></h1><p>Boys and girls, high school and college. Scores, schedules and the playoff tracker for every season in Central Texas.</p></div></div><section class="block"><div class="wrap">${scoreboard(false)}</div></section>`, false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["254 Scoreboard", "/scoreboard/"]])]);
 simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros", [crumbsLd([["Home", "/"], ["254 Home Pros", "/home-pros/"]]), faqLd(HOME_FAQ), serviceLd("254 Home Pros", "Free homeowner requests matched to one local pro per trade: AC and heating, plumbing, electrical, roofing, foundation repair and more.", "/home-pros/", HOME_TRADES.map(t => t[0]))]);
 simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build", [crumbsLd([["Home", "/"], ["254 Build & Facilities", "/build/"]]), faqLd(BUILD_FAQ), serviceLd("254 Build & Facilities", "Commercial project requests matched to vetted local contractors and suppliers, plus a public bid board for Central Texas.", "/build/", TRADES.map(t => t[0]))]);
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
@@ -480,7 +516,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 // ---------- feeds, sitemaps, robots, redirects ----------
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/scoreboard/", latest, "daily", "0.8"], ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
@@ -511,6 +547,7 @@ pages["llms.txt"] = `# ${NAME}
 - [Real Estate](${SITE}/real-estate/): 254 Housing Dashboard (mortgage rates, Killeen-Temple and Waco home prices), payment calculator, property tax and homestead guide
 - [Government](${SITE}/government/) and [We the People](${SITE}/we-the-people/): city, county and school board news and plain-English civic explainers
 - [Sports](${SITE}/sports/): Baylor, UMHB, Temple College, Tarleton and high school sports
+- [254 Scoreboard](${SITE}/scoreboard/): Central Texas high school and college scores, schedules and playoff tracker for boys and girls sports
 - [Things to Do](${SITE}/things-to-do/): weekend events and go-to spots in Temple, Belton, Salado and Waco
 - [254 Home Pros](${SITE}/home-pros/): request a local home service pro (AC, plumbing, roofing, foundation and more)
 - [254 Build & Facilities](${SITE}/build/): commercial project requests, public bid board and facility manager resources
