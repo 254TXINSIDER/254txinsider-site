@@ -143,3 +143,24 @@ document.addEventListener("DOMContentLoaded", function () {
   var h = (location.hash || "").replace("#", ""); if (["kids", "date", "night", "free"].indexOf(h) > -1) { var b = hub.querySelector('#tdo-cat [data-v="' + h + '"]'); if (b) b.click(); }
   apply();
 })();
+
+// 254 Scoreboard filters
+(function () {
+  var g = document.getElementById("sb-gender"), sp = document.getElementById("sb-sport"); if (!g || !sp) return;
+  var gv = "all", sv = "all";
+  function apply() {
+    [].forEach.call(document.querySelectorAll(".sb-sport"), function (el) {
+      var okG = gv === "all" || el.getAttribute("data-g").indexOf(gv) > -1;
+      var okS = sv === "all" || (sv === "live" ? el.getAttribute("data-st") !== "off" : el.getAttribute("data-k") === sv);
+      el.style.display = okG && okS ? "" : "none";
+    });
+  }
+  function wire(box, set) {
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); });
+      b.classList.add("on"); set(b.getAttribute("data-v")); apply();
+    });
+  }
+  wire(g, function (v) { gv = v; }); wire(sp, function (v) { sv = v; });
+})();

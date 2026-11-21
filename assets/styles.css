@@ -503,3 +503,40 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 .faq details { background:#fff; border:1px solid #e3dbcf; border-radius:8px; margin:8px 0; padding:0 14px; }
 .faq summary { cursor:pointer; font-weight:700; padding:12px 0; font-size:16px; color:#13213c; }
 .faq details p { margin:0 0 12px; font-size:15px; line-height:1.55; }
+/* v16 Scoreboard */
+.sb-upd { font-size:13px; color:#666; margin:6px 0 14px; }
+.sb-sport { background:#fff; border:1px solid #e3dbcf; border-radius:10px; padding:14px 16px; margin:14px 0; }
+.sb-sport.sb-po { border-top:5px solid #c75b26; }
+.sb-sport.sb-in { border-top:5px solid #13213c; }
+.sb-sport.sb-off { padding:10px 16px; opacity:.85; }
+.sb-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.sb-head h3 { font-family:"Oswald",sans-serif; text-transform:uppercase; margin:0; font-size:22px; color:#13213c; }
+.sb-g { font-size:12px; font-weight:700; background:#eef0f5; color:#13213c; padding:2px 8px; border-radius:10px; }
+.sb-badge { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:3px 8px; border-radius:4px; background:#999; color:#fff; }
+.sb-po .sb-badge { background:#c75b26; } .sb-in .sb-badge { background:#13213c; }
+.sb-season { font-size:12px; color:#888; margin-left:auto; }
+.sb-note, .sb-when { font-size:14px; color:#555; margin:8px 0; }
+.sb-tracker { background:#fdf6ee; border:1px solid #f0d9c4; border-radius:8px; padding:12px 14px; margin:10px 0; }
+.sb-tracker h4 { margin:0 0 8px; font-family:"Oswald",sans-serif; text-transform:uppercase; font-size:18px; color:#13213c; }
+.sb-tracker h4 span { font-family:inherit; text-transform:none; font-size:13px; color:#a14a1d; font-weight:600; margin-left:6px; }
+.sb-cols { display:grid; grid-template-columns:3fr 2fr; gap:16px; }
+.sb-cols h5, .sb-h { margin:6px 0; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:#a14a1d; }
+.sb-cols ul { list-style:none; margin:0; padding:0; }
+.sb-cols li { padding:6px 0; border-bottom:1px solid #f0e4d6; font-size:14px; }
+.sb-cols li em { font-style:normal; font-size:11px; background:#13213c; color:#fff; padding:1px 6px; border-radius:3px; }
+.sb-cols li span { display:block; font-size:13px; color:#555; }
+.sb-out li { color:#777; } .sb-out li b { color:#555; }
+.sb-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
+.sb-game { border:1px solid #e3dbcf; border-radius:8px; padding:8px 10px; background:#fafafa; }
+.sb-game.win { border-left:4px solid #2e7d32; } .sb-game.loss { border-left:4px solid #b23b2e; } .sb-game.up { border-left:4px solid #13213c; }
+.sb-meta { display:flex; gap:6px; flex-wrap:wrap; font-size:11px; color:#777; margin-bottom:4px; }
+.sb-lv { background:#eef0f5; color:#13213c; font-weight:700; padding:0 5px; border-radius:3px; }
+.sb-line { display:flex; justify-content:space-between; font-size:15px; }
+.sb-s { font-family:"Oswald",sans-serif; font-weight:700; font-size:17px; }
+.sb-res { font-size:12px; color:#666; margin-top:4px; }
+.sb-compact { background:#fff; border:1px solid #e3dbcf; border-top:5px solid #c75b26; border-radius:10px; padding:12px 16px; margin:10px 0 18px; }
+.sb-top { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+.sb-top .list-head { margin:0; }
+.sb-strip { margin:8px 0 0; font-size:15px; }
+@media (max-width:700px) { .sb-cols { grid-template-columns:1fr; } .sb-season { margin-left:0; width:100%; } }
+.sb-filters { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; }
