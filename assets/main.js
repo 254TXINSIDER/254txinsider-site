@@ -300,3 +300,6 @@ document.addEventListener("click", function (e) {
 
 // Advertise page: pre-select the spot
 document.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("[data-adspot]"); if (!b) return; var s = document.getElementById("ad-spot"); if (s) s.value = b.getAttribute("data-adspot"); });
+
+// Breaking banner hides itself once it expires
+(function () { var b = document.querySelector(".br-bar"); if (b && Date.parse(b.getAttribute("data-until")) < Date.now()) b.remove(); })();

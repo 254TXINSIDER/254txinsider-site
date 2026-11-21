@@ -649,3 +649,10 @@ small.up { color:#b3261e; } small.dn { color:#1d7a46; }
 @media (max-width: 860px) { .topbar .socials a.top-traffic, .topbar .socials a.top-wx { display: none; } }
 .cm-src a, .src a, .hs-note a, .prose p a, .body p a { text-decoration: underline; }
 main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
+/* v23 breaking banner */
+.br-bar { background: #b23b2e; color: #fff; font-weight: 700; }
+.br-bar .wrap { display: flex; align-items: center; gap: 12px; padding-top: 9px; padding-bottom: 9px; }
+.br-bar a, .br-bar span { color: #fff; } .br-bar a { text-decoration: underline; }
+.br-tag { background: #fff; color: #b23b2e !important; font-family: var(--head); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; padding: 3px 9px; border-radius: 4px; animation: brpulse 1.6s ease-in-out infinite; white-space: nowrap; }
+@keyframes brpulse { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .br-tag { animation: none; } }
