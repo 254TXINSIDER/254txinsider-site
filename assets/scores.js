@@ -4,31 +4,33 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-20",
+  updated: "2026-11-21",
   sports: [
     {
       k: "football", n: "Football", g: "Boys", season: "August to December", status: "playoffs",
-      note: "UIL area round is Nov. 19-21. Regional round is Nov. 26-28. Times and sites can change, so check with each school.",
+      note: "UIL regional round is Nov. 26-28. Dates, times and sites were still to be announced as of Nov. 21; check with each school. Lorena and Cameron Yoe meet in an all-254 regional.",
       tracker: {
-        round: "Area round (Nov. 19-21)", next: "Regional round, Nov. 26-28",
+        round: "Regional round (Nov. 26-28)", next: "Following round, first week of December",
         alive: [
-          { t: "Bremond", c: "2A-II", r: "12-0", n: "Won area round 71-21 over Three Rivers. Advances to regionals." },
-          { t: "La Vega", c: "4A-II", r: "11-0", n: "Area: vs. Geronimo Navarro, Fri. 7:30 p.m., Crusader Stadium, Belton" },
-          { t: "Robinson", c: "4A-II", r: "9-2", n: "Area: vs. Rockport-Fulton, Fri., Gustafson Stadium, San Antonio" },
-          { t: "China Spring", c: "4A-I", r: "4-7", n: "Area: vs. Stafford, Fri. 7 p.m., Buffalo Stadium, Giddings" },
-          { t: "Lorena", c: "3A-I", r: "9-2", n: "Area: vs. Diboll, Fri. 7:30 p.m., Mustang Stadium, Madisonville" },
-          { t: "Cameron Yoe", c: "", r: "", n: "Area: vs. Orangefield, Fri., Houston" },
-          { t: "Rosebud-Lott", c: "", r: "", n: "Area: vs. Flatonia, Fri., Manor" },
-          { t: "Crawford", c: "", r: "", n: "Area: vs. Wellington, Fri., Graham" },
-          { t: "Goldthwaite", c: "", r: "11-0", n: "Area: vs. Haskell, Fri., San Angelo" },
-          { t: "San Saba", c: "", r: "", n: "Area: vs. Muenster, Fri., Granbury" },
-          { t: "Aquilla", c: "", r: "11-0", n: "Area: vs. Medina, Fri., Priddy" },
-          { t: "Oglesby", c: "", r: "", n: "Area: vs. Union Hill, Fri., Oakwood" },
-          { t: "Mount Calm", c: "", r: "", n: "Area: vs. Runge, Fri., Bartlett" },
-          { t: "Waco Valor Prep", c: "TAPPS 6-Man D-II", r: "8-3", n: "State final: vs. Keller Harvest, Fri. 7 p.m., Rocket Field, Robinson" },
-          { t: "Central Texas Christian (Temple)", c: "TAPPS 11-Man", r: "9-2", n: "State final: vs. Dallas First Baptist (12-0), date and site TBA" }
+          { t: "La Vega", c: "4A-II", r: "12-0", n: "Regional: vs. Wimberley (11-0), date, time and site TBA" },
+          { t: "Robinson", c: "4A-II", r: "10-2", n: "Regional: vs. Brownwood (7-5), date, time and site TBA" },
+          { t: "Stephenville", c: "4A-I", r: "12-0", n: "Regional: vs. Huffman Hargrave, date, time and site TBA" },
+          { t: "Lorena", c: "3A-I", r: "10-2", n: "Regional: vs. Cameron Yoe (11-1), date, time and site TBA" },
+          { t: "Cameron Yoe", c: "3A-I", r: "11-1", n: "Regional: vs. Lorena (10-2), date, time and site TBA" },
+          { t: "Whitney", c: "3A-I", r: "", n: "Regional: vs. Gunter, date, time and site TBA" },
+          { t: "Rosebud-Lott", c: "2A-I", r: "11-1", n: "Regional: vs. Shiner (12-0), date, time and site TBA" },
+          { t: "Goldthwaite", c: "2A-II", r: "12-0", n: "Regional: vs. Santo (11-1), date, time and site TBA" },
+          { t: "Bremond", c: "2A-II", r: "12-0", n: "Regional: vs. Junction, date, time and site TBA" },
+          { t: "Aquilla", c: "6-Man D-I", r: "12-0", n: "Regional: vs. Union Hill (12-0), date, time and site TBA" },
+          { t: "Mount Calm", c: "6-Man D-II", r: "", n: "Regional: vs. Ladonia Fannindel, date, time and site TBA" }
         ],
         out: [
+          { t: "Waco Valor Prep", c: "TAPPS 6-Man D-II", r: "", n: "STATE CHAMPION: beat Keller Harvest 68-44 for a second straight title" },
+          { t: "Central Texas Christian (Temple)", c: "TAPPS 11-Man D-IV", r: "9-3", n: "Lost 55-22 to Dallas First Baptist, state final" },
+          { t: "China Spring", c: "4A-I", r: "4-8", n: "Lost 36-12 to Stafford, area round" },
+          { t: "Crawford", c: "2A-II", r: "", n: "Lost 46-23 to Wellington, area round" },
+          { t: "San Saba", c: "2A-I", r: "", n: "Lost 55-3 to Muenster, area round" },
+          { t: "Oglesby", c: "6-Man D-I", r: "", n: "Lost 100-86 to Union Hill, area round" },
           { t: "Belton", c: "5A-II", r: "8-4", n: "Lost 57-14 to South Oak Cliff, area round" },
           { t: "Axtell", c: "2A-I", r: "", n: "Lost 28-16 to De Leon, area round" },
           { t: "Harker Heights", c: "", r: "", n: "Lost 31-27 to Red Oak, bi-district" },
@@ -37,22 +39,33 @@ window.SCORES = {
         ]
       },
       games: [
-        { d: "2026-11-19", lv: "HS", t1: "Bremond", s1: 71, t2: "Three Rivers", s2: 21, note: "2A-II area round" },
-        { d: "2026-11-19", lv: "HS", t1: "Belton", s1: 14, t2: "South Oak Cliff", s2: 57, note: "5A-II area round", where: "Waco ISD Stadium" },
-        { d: "2026-11-19", lv: "HS", t1: "Axtell", s1: 16, t2: "De Leon", s2: 28, note: "2A-I area round", where: "Dublin" },
-        { d: "2026-11-14", lv: "College", t1: "UMHB", s1: 13, t2: "Hardin-Simmons", s2: 3, note: "Clinched ASC title", where: "Crusader Stadium, Belton" },
-        { d: "2026-11-14", lv: "College", t1: "Baylor", s1: 7, t2: "No. 10 BYU", s2: 28 }
+        { d: "2026-11-20", lv: "HS", t1: "La Vega", s1: 56, t2: "Geronimo Navarro", s2: 7, note: "4A-II area round", where: "Crusader Stadium, Belton" },
+        { d: "2026-11-20", lv: "HS", t1: "Robinson", s1: 31, t2: "Rockport-Fulton", s2: 21, note: "4A-II area round", where: "Gustafson Stadium, San Antonio" },
+        { d: "2026-11-20", lv: "HS", t1: "Lorena", s1: 50, t2: "Diboll", s2: 28, note: "3A-I area round", where: "Madisonville" },
+        { d: "2026-11-20", lv: "HS", t1: "Cameron Yoe", s1: 50, t2: "Orangefield", s2: 48, note: "3A-I area round", where: "Houston" },
+        { d: "2026-11-20", lv: "HS", t1: "China Spring", s1: 12, t2: "Stafford", s2: 36, note: "4A-I area round", where: "Giddings" },
+        { d: "2026-11-20", lv: "HS", t1: "Rosebud-Lott", s1: 67, t2: "Flatonia", s2: 35, note: "2A-I area round", where: "Manor" },
+        { d: "2026-11-20", lv: "HS", t1: "Goldthwaite", s1: 70, t2: "Haskell", s2: 38, note: "2A-II area round", where: "San Angelo" },
+        { d: "2026-11-20", lv: "HS", t1: "Aquilla", s1: 84, t2: "Medina", s2: 72, note: "6-man D-I area round", where: "Priddy" },
+        { d: "2026-11-20", lv: "HS", t1: "Mount Calm", s1: 53, t2: "Runge", s2: 7, note: "6-man D-II area round", where: "Bartlett" },
+        { d: "2026-11-20", lv: "HS", t1: "Waco Valor Prep", s1: 68, t2: "Keller Harvest", s2: 44, note: "TAPPS 6-man D-II state final", where: "Rocket Field, Robinson" },
+        { d: "2026-11-20", lv: "HS", t1: "Central Texas Christian", s1: 22, t2: "Dallas First Baptist", s2: 55, note: "TAPPS D-IV state final", where: "Waco" },
+        { d: "2026-11-19", lv: "HS", t1: "Belton", s1: 14, t2: "South Oak Cliff", s2: 57, note: "5A-II area round", where: "Waco ISD Stadium" }
       ],
       up: [
         { d: "2026-11-21", lv: "College", t1: "Baylor", t2: "Texas Tech", time: "2:30 p.m.", where: "McLane Stadium, Waco", note: "Senior Day" },
-        { d: "2026-11-28", lv: "College", t1: "UMHB", t2: "Trinity", time: "1 p.m.", where: "Crusader Stadium, Belton", note: "NCAA D-III playoffs, 2nd round" },
+        { d: "2026-11-21", lv: "College", t1: "Tarleton State", t2: "North Alabama", time: "3 p.m.", where: "Florence, Ala.", note: "Regular-season finale; FCS playoff field announced Sunday" },
+        { d: "2026-11-28", lv: "College", t1: "UMHB", t2: "Trinity", time: "Check UMHB for time", where: "Site to be confirmed", note: "NCAA D-III playoffs, 2nd round; ESPN+" },
         { d: "2026-11-28", lv: "College", t1: "Baylor", t2: "No. 21 Houston", time: "8:30 p.m.", where: "Houston", note: "ESPN2" }
       ]
     },
     {
       k: "volleyball", n: "Volleyball", g: "Girls", season: "August to November", status: "playoffs",
-      note: "The UIL state tournament is Nov. 19-21 at the Curtis Culwell Center in Garland. 254 results will be added here.",
-      games: [], up: []
+      note: "Clifton won the 3A Division II state title Nov. 20 in Garland, the school's first state title in any team sport. Salado finished 4A Division I state runner-up.",
+      games: [
+        { d: "2026-11-20", lv: "HS", t1: "Clifton", s1: 3, t2: "Wall", s2: 0, note: "3A-II state final: 25-21, 25-23, 25-19. State champion", where: "Curtis Culwell Center, Garland" },
+        { d: "2026-11-20", lv: "HS", t1: "Salado", s1: 0, t2: "Decatur", s2: 3, note: "4A-I state final: 23-25, 21-25, 21-25", where: "Curtis Culwell Center, Garland" }
+      ], up: []
     },
     {
       k: "basketball-boys", n: "Boys Basketball", g: "Boys", season: "November to March", status: "season",
@@ -62,17 +75,19 @@ window.SCORES = {
         { d: "2026-11-15", lv: "College", t1: "Baylor", s1: 72, t2: "No. 7 Texas", s2: 75 }
       ],
       up: [
-        { d: "2026-11-24", lv: "College", t1: "Baylor", t2: "Alabama", time: "", where: "Las Vegas", note: "Players Era 16 Championship" }
+        { d: "2026-11-22", lv: "College", t1: "UMHB", t2: "Aurora", time: "6:45 p.m.", where: "Away" },
+        { d: "2026-11-24", lv: "College", t1: "Baylor", t2: "Alabama", time: "", where: "Las Vegas", note: "Players Era 16 Championship" },
+        { d: "2026-11-24", lv: "College", t1: "UMHB", t2: "UW-Stevens Point", time: "6 p.m.", where: "Away" }
       ]
     },
     {
       k: "basketball-girls", n: "Girls Basketball", g: "Girls", season: "November to March", status: "season",
       note: "High school season is underway. Area scores are added as schools and local media report them.",
       games: [
+        { d: "2026-11-20", lv: "College", t1: "Baylor", s1: 69, t2: "USC", s2: 78, where: "Intuit Dome, Inglewood, Calif." },
         { d: "2026-11-15", lv: "College", t1: "Baylor", s1: 100, t2: "East Texas A&M", s2: 66 }
       ],
       up: [
-        { d: "2026-11-20", lv: "College", t1: "Baylor", t2: "No. 4 USC", time: "10 p.m.", where: "" },
         { d: "2026-11-22", lv: "College", t1: "Baylor", t2: "Northern Kentucky", time: "2 p.m.", where: "Foster Pavilion, Waco" }
       ]
     },

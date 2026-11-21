@@ -21,5 +21,15 @@ window.ART = {
   "mortgage-rates-jump-728-254-payment": { big: "7.28%", label: "Average 30-year mortgage rate, Freddie Mac" },
   "texas-gas-prices-thanksgiving-2026": { big: "$3.20", label: "Texas average for a gallon of regular" },
   "254-housing-market-october-2026": { big: "$275,000", label: "Median list price, Killeen-Temple, October" },
-  "ctc-army-additive-manufacturing-contract": { big: "6 weeks", label: "CTC's new Army 3D-manufacturing course for Fort Hood soldiers" }
+  "ctc-army-additive-manufacturing-contract": { big: "6 weeks", label: "CTC's new Army 3D-manufacturing course for Fort Hood soldiers" },
+  "area-round-friday-la-vega-lorena-yoe-regionals": { big: "56-7", label: "La Vega's area-round win; Lorena vs. Yoe next" },
+  "valor-prep-second-tapps-title-ctcs-falls": { big: "68-44", label: "Valor Prep wins TAPPS six-man D-II title (KWTX)" },
+  "clifton-state-volleyball-title-salado-runner-up": { src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Clifton_water_tower.jpg", page: "https://commons.wikimedia.org/wiki/File:Clifton_water_tower.jpg", by: "Frank Buchalski from Dallas, United States", lic: "CC BY 2.0", licUrl: "https://creativecommons.org/licenses/by/2.0" },
+  "mars-waco-107-million-utility-building": { big: "$107M", label: "Mars Waco utility building, state filing" },
+  "bell-county-filings-belton-warehouse-killeen-fire-station": { big: "$33.5M", label: "New Bell County projects in state filings" },
+  "laynes-waco-di-campli-mcgregor-fairfield-gatesville": { big: "3 new", label: "Waco, McGregor and Gatesville projects filed" },
+  "altair-clear-creek-killeen-apartments-rents": { big: "$1,444", label: "Starting 1-bed rent at Altair at Clear Creek (KDH)" },
+  "bell-county-killeen-annex-opening-nov-30": { src: "https://upload.wikimedia.org/wikipedia/commons/d/d7/City_of_Killeen_Public_Building.JPG", page: "https://commons.wikimedia.org/wiki/File:City_of_Killeen_Public_Building.JPG", by: "Victorenriqueagosto", lic: "CC BY-SA 3.0", licUrl: "https://creativecommons.org/licenses/by-sa/3.0" },
+  "baylor-hrsa-grant-behavioral-health-social-work": { src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Baylor_University_June_2016_13_%28Founders_Mall_and_Pat_Neff_Hall%29.jpg/1920px-Baylor_University_June_2016_13_%28Founders_Mall_and_Pat_Neff_Hall%29.jpg", page: "https://commons.wikimedia.org/wiki/File:Baylor_University_June_2016_13_(Founders_Mall_and_Pat_Neff_Hall).jpg", by: "Michael Barera", lic: "CC BY-SA 4.0", licUrl: "https://creativecommons.org/licenses/by-sa/4.0" },
+  "thanksgiving-weekend-254-2026": { src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Downtown_Waco%2C_Texas_%2847622943371%29.jpg/1920px-Downtown_Waco%2C_Texas_%2847622943371%29.jpg", page: "https://commons.wikimedia.org/wiki/File:Downtown_Waco,_Texas_(47622943371).jpg", by: "Tony Webster", lic: "CC BY 2.0", licUrl: "https://creativecommons.org/licenses/by/2.0" },
 };
