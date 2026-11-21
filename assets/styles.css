@@ -668,3 +668,4 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .wn-i { background: #fff; border: 1px solid #e3dbcf; border-radius: 10px; padding: 14px 16px; } .wn-i h3 { margin: 0; color: #13213c; }
 .wn-row { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding: 6px 0; } .wn-row b.up { color: #1d6b2a; } .wn-row b.down { color: #b23b2e; }
 .wn-ctx li { margin-bottom: 6px; }
+.wn-restaurant { background: #2e5a3c; }
