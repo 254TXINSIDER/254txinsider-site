@@ -164,3 +164,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   wire(g, function (v) { gv = v; }); wire(sp, function (v) { sv = v; });
 })();
+
+// Coming to the 254 filters
+(function () {
+  var q = document.getElementById("cm-q"), cb = document.getElementById("cm-city"), tb = document.getElementById("cm-type"); if (!q || !cb || !tb) return;
+  var city = "all", type = "all";
+  function apply() {
+    var term = q.value.trim().toLowerCase(), shown = 0;
+    [].forEach.call(document.querySelectorAll(".cm-card"), function (el) {
+      var ok = (city === "all" || el.getAttribute("data-city") === city) && (type === "all" || el.getAttribute("data-type") === type) && (!term || el.getAttribute("data-q").indexOf(term) > -1);
+      el.style.display = ok ? "" : "none"; if (ok) shown++;
+    });
+    document.getElementById("cm-none").hidden = shown > 0;
+  }
+  function wire(box, set) { box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); }); b.classList.add("on"); set(b.getAttribute("data-v")); apply(); }); }
+  wire(cb, function (v) { city = v; }); wire(tb, function (v) { type = v; }); q.addEventListener("input", apply);
+  var h = decodeURIComponent(location.hash.slice(1)); if (h) { var b = [].find.call(cb.querySelectorAll("button"), function (x) { return x.getAttribute("data-v").toLowerCase().replace(/\s+/g, "-") === h; }); if (b) b.click(); }
+})();
