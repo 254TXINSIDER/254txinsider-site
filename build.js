@@ -129,7 +129,7 @@ function scoreboard(compact) {
   }
   return `<div class="sb"><div class="sb-filters"><div class="tdo-chips" id="sb-gender"><button class="chip on" data-v="all">All</button><button class="chip" data-v="Boys">Boys</button><button class="chip" data-v="Girls">Girls</button></div>
 <div class="tdo-chips" id="sb-sport"><button class="chip on" data-v="all">All sports</button><button class="chip" data-v="live">In season</button>${list.map(s => `<button class="chip" data-v="${esc(s.k)}">${esc(s.n)}</button>`).join("")}</div></div>
-<p class="sb-upd">Updated ${SC.updated ? sbDate(SC.updated) : ""}. Covering Bell, McLennan, Coryell and Lampasas county schools plus Baylor, UMHB, Temple College, MCC, CTC and Tarleton. <a href="/contact/?topic=tip">Send us a score</a>.</p>
+<p class="sb-upd">Updated ${SC.updated ? sbDate(SC.updated) : ""}. Covering Bell, McLennan, Coryell and Lampasas county schools plus Baylor, UMHB, Tarleton, Temple College, McLennan (MCC), Hill College, Ranger College and Cisco College. <a href="/contact/?topic=tip">Send us a score</a>.</p>
 ${list.map(sbSport).join("")}</div>`;
 }
 // ---------- FAQ + service markup helpers (SEO / AEO) ----------
