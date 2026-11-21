@@ -106,14 +106,14 @@ function sbGame(x) {
   const done = x.s1 !== undefined && x.s1 !== null && x.s1 !== "";
   const w = done && Number(x.s1) > Number(x.s2), l = done && Number(x.s1) < Number(x.s2);
   return `<div class="sb-game${done ? (w ? " win" : l ? " loss" : "") : " up"}" data-lv="${esc(x.lv || "HS")}"><div class="sb-meta"><span>${sbDate(x.d)}</span>${x.lv === "College" ? '<span class="sb-lv">College</span>' : ""}${x.note ? `<span>${esc(x.note)}</span>` : ""}</div>
-<div class="sb-line"><b>${esc(x.t1)}</b>${done ? `<span class="sb-s">${esc(x.s1)}</span>` : ""}</div><div class="sb-line"><span>${esc(x.t2)}</span>${done ? `<span class="sb-s">${esc(x.s2)}</span>` : ""}</div>
+<div class="sb-line"><b>${schoolFor(x.t1) ? `<a href="${schoolFor(x.t1).url}">${esc(x.t1)}</a>` : esc(x.t1)}</b>${done ? `<span class="sb-s">${esc(x.s1)}</span>` : ""}</div><div class="sb-line"><span>${esc(x.t2)}</span>${done ? `<span class="sb-s">${esc(x.s2)}</span>` : ""}</div>
 ${done ? `<div class="sb-res">${w ? "W" : l ? "L" : "T"} · Final</div>` : `<div class="sb-res">${esc(x.time || "Time TBA")}${x.where ? " · " + esc(x.where) : ""}</div>`}</div>`;
 }
 function sbSport(s) {
   const st = STATUS[s.status] || STATUS.off;
   const tr = s.tracker;
   const tracker = tr ? `<div class="sb-tracker"><h4>🏆 Playoff tracker <span>${esc(tr.round || "")}${tr.next ? " · Next: " + esc(tr.next) : ""}</span></h4>
-<div class="sb-cols"><div><h5>Still alive (${tr.alive.length})</h5><ul>${tr.alive.map(a => `<li><b>${esc(a.t)}</b>${a.c ? ` <em>${esc(a.c)}</em>` : ""}${a.r ? ` (${esc(a.r)})` : ""}<span>${esc(a.n)}</span></li>`).join("")}</ul></div>
+<div class="sb-cols"><div><h5>Still alive (${tr.alive.length})</h5><ul>${tr.alive.map(a => `<li><b>${schoolFor(a.t) ? `<a href="${schoolFor(a.t).url}">${esc(a.t)}</a>` : esc(a.t)}</b>${a.c ? ` <em>${esc(a.c)}</em>` : ""}${a.r ? ` (${esc(a.r)})` : ""}<span>${esc(a.n)}</span></li>`).join("")}</ul></div>
 <div><h5>Season over</h5><ul class="sb-out">${tr.out.map(a => `<li><b>${esc(a.t)}</b>${a.r ? ` (${esc(a.r)})` : ""}<span>${esc(a.n)}</span></li>`).join("")}</ul></div></div></div>` : "";
   const games = (s.games || []).slice().sort((a, b) => b.d.localeCompare(a.d)), up = (s.up || []).slice().sort((a, b) => a.d.localeCompare(b.d));
   const body = s.status === "off" ? `<p class="sb-when">${esc(s.when || "Off season.")}</p>` :
@@ -130,8 +130,89 @@ function scoreboard(compact) {
   return `<div class="sb"><div class="sb-filters"><div class="tdo-chips" id="sb-gender"><button class="chip on" data-v="all">All</button><button class="chip" data-v="Boys">Boys</button><button class="chip" data-v="Girls">Girls</button></div>
 <div class="tdo-chips" id="sb-sport"><button class="chip on" data-v="all">All sports</button><button class="chip" data-v="live">In season</button>${list.map(s => `<button class="chip" data-v="${esc(s.k)}">${esc(s.n)}</button>`).join("")}</div></div>
 <p class="sb-upd">Updated ${SC.updated ? sbDate(SC.updated) : ""}. Covering Bell, McLennan, Coryell and Lampasas county schools plus Baylor, UMHB, Tarleton, Temple College, McLennan (MCC), Hill College, Ranger College and Cisco College. <a href="/contact/?topic=tip">Send us a score</a>.</p>
-${list.map(sbSport).join("")}</div>`;
+${SPORTS_SPONSOR("Central Texas", "254 Scoreboard presented by: your business here")}${list.map(sbSport).join("")}${schoolIndex()}${SPORTS_SPONSOR("Central Texas", "Player of the Week presented by: your business here")}</div>`;
 }
+// ---------- School pages + sports sponsor spots ----------
+// [slug, name, city, level, match regex (team names in scores.js and sports story titles)]
+const SCHOOLS = [
+  ["temple", "Temple High School", "Temple", "HS", /^Temple( High)?$/, /\bTemple (High|Wildcats)\b/],
+  ["belton", "Belton High School", "Belton", "HS", /^Belton( High)?$/, /^Belton\b|(?<!Lake )\bBelton (High|Tigers)\b/],
+  ["lake-belton", "Lake Belton High School", "Temple", "HS", /Lake Belton/],
+  ["killeen", "Killeen High School", "Killeen", "HS", /^Killeen( High)?$/, /\bKilleen (High|Kangaroos)\b/],
+  ["shoemaker", "Shoemaker High School", "Killeen", "HS", /Shoemaker/],
+  ["ellison", "Ellison High School", "Killeen", "HS", /Ellison/],
+  ["chaparral", "Chaparral High School", "Killeen", "HS", /Chaparral/],
+  ["harker-heights", "Harker Heights High School", "Harker Heights", "HS", /Harker Heights/],
+  ["copperas-cove", "Copperas Cove High School", "Copperas Cove", "HS", /Copperas Cove/],
+  ["salado", "Salado High School", "Salado", "HS", /Salado/],
+  ["academy", "Academy High School", "Little River-Academy", "HS", /^Academy$|Little River-Academy/],
+  ["holland", "Holland High School", "Holland", "HS", /^Holland$/],
+  ["rogers", "Rogers High School", "Rogers", "HS", /^Rogers$/],
+  ["troy", "Troy High School", "Troy", "HS", /^Troy$/],
+  ["moody", "Moody High School", "Moody", "HS", /^Moody$/],
+  ["gatesville", "Gatesville High School", "Gatesville", "HS", /Gatesville/],
+  ["lampasas", "Lampasas High School", "Lampasas", "HS", /Lampasas/],
+  ["waco", "Waco High School", "Waco", "HS", /^Waco( High)?$/, /\bWaco High\b/],
+  ["university", "University High School", "Waco", "HS", /^(Waco )?University$/],
+  ["midway", "Midway High School", "Woodway", "HS", /Midway/],
+  ["china-spring", "China Spring High School", "China Spring", "HS", /China Spring/],
+  ["la-vega", "La Vega High School", "Bellmead", "HS", /La Vega/],
+  ["robinson", "Robinson High School", "Robinson", "HS", /^Robinson$/],
+  ["lorena", "Lorena High School", "Lorena", "HS", /Lorena/],
+  ["mcgregor", "McGregor High School", "McGregor", "HS", /McGregor/],
+  ["connally", "Connally High School", "Waco", "HS", /Connally/],
+  ["crawford", "Crawford High School", "Crawford", "HS", /^Crawford$/],
+  ["axtell", "Axtell High School", "Axtell", "HS", /Axtell/],
+  ["bremond", "Bremond High School", "Bremond", "HS", /Bremond/],
+  ["rosebud-lott", "Rosebud-Lott High School", "Rosebud", "HS", /Rosebud-Lott/],
+  ["cameron-yoe", "Cameron Yoe High School", "Cameron", "HS", /Cameron Yoe/],
+  ["aquilla", "Aquilla High School", "Aquilla", "HS", /Aquilla/],
+  ["oglesby", "Oglesby High School", "Oglesby", "HS", /Oglesby/],
+  ["mount-calm", "Mount Calm High School", "Mount Calm", "HS", /Mount Calm/],
+  ["valor-prep", "Valor Prep", "Waco", "HS", /Valor/],
+  ["central-texas-christian", "Central Texas Christian School", "Temple", "HS", /Central Texas Christian/],
+  ["baylor", "Baylor University", "Waco", "College", /Baylor/],
+  ["umhb", "Mary Hardin-Baylor (UMHB)", "Belton", "College", /UMHB|Mary Hardin-Baylor/],
+  ["tarleton", "Tarleton State University", "Stephenville", "College", /Tarleton/],
+  ["temple-college", "Temple College", "Temple", "College", /Temple College/],
+  ["mclennan", "McLennan Community College", "Waco", "College", /McLennan|\bMCC\b/],
+  ["hill-college", "Hill College", "Hillsboro", "College", /Hill College/],
+  ["ranger-college", "Ranger College", "Ranger", "College", /Ranger College/],
+  ["cisco-college", "Cisco College", "Cisco", "College", /Cisco College/]
+].map(([slug, name, city, lv, rx, srx]) => ({ slug, name, city, lv, rx, srx: srx || rx, url: "/scoreboard/" + slug + "/" }));
+const schoolFor = t => SCHOOLS.find(s => s.rx.test(t || ""));
+const SPORTS_SPONSOR = (where, label) => `<div class="sp-spot"><span class="sp-tag">Sponsor spot</span><div><b>${label}</b><span>Put your business in front of every family following ${esc(where)} sports. One sponsor per spot.</span></div><a class="btn" href="/sports/#sports-sponsor">Claim this spot</a></div>`;
+const SPORTS_SPONSOR_FORM = `<form class="pros-form" id="sports-sponsor" name="sports-sponsor" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="sports-sponsor"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h3>Sponsor 254 sports</h3><p class="pros-sub">Get your business in front of the parents, grandparents and fans following Central Texas teams every week. Sponsored spots are clearly marked and never affect our coverage.</p>
+<div class="pf-row"><label>Your name <input name="name" required></label><label>Business <input name="business" required></label><label>Interested in <select name="spot"><option>254 Scoreboard presenting sponsor</option><option>A school's page (name the school below)</option><option>Player of the Week sponsor</option><option>Sports &amp; Community section sponsor</option></select></label><label>School (if any) <input name="school" placeholder="Belton, Temple, Lorena..."></label><label>Phone <input name="phone" type="tel"></label><label>Email <input name="email" type="email" required></label></div>
+<label class="pf-msg">Anything else? <textarea name="message" rows="3"></textarea></label><button class="btn" type="submit">Send, we'll call you</button></form>`;
+function schoolData(sc) {
+  const out = [];
+  for (const sp of SC.sports) {
+    const g = (sp.games || []).filter(x => sc.rx.test(x.t1)), u = (sp.up || []).filter(x => sc.rx.test(x.t1));
+    const tr = sp.tracker ? { alive: sp.tracker.alive.filter(a => sc.rx.test(a.t)), out: sp.tracker.out.filter(a => sc.rx.test(a.t)) } : null;
+    if (g.length || u.length || (tr && (tr.alive.length || tr.out.length))) out.push({ sp, g, u, tr });
+  }
+  return out;
+}
+function schoolPage(sc) {
+  const data = schoolData(sc);
+  const SPORTY = /football|basketball|volleyball|soccer|baseball|softball|track|cross country|band|playoff|area round|regional|state|game|season|tournament|score|wins?\b|beat|rout|title|champion|bowl|senior day|coach|season/i;
+  const stories = ALL.filter(s => s.cat === "sports" && sc.srx.test(s.title) && SPORTY.test(s.title + " " + (s.dek || ""))).slice(0, 8);
+  const crumbs = [["Home", "/"], ["Sports", "/sports/"], ["254 Scoreboard", "/scoreboard/"], [sc.name, sc.url]];
+  const sections = data.map(({ sp, g, u, tr }) => {
+    const st = (STATUS[sp.status] || STATUS.off);
+    const po = tr && tr.alive.length ? `<p class="sc-po alive">🏆 Still alive: ${tr.alive.map(a => esc(a.n)).join(" · ")}</p>` : tr && tr.out.length ? `<p class="sc-po">Season over: ${tr.out.map(a => esc(a.n)).join(" · ")}</p>` : "";
+    return `<section class="sb-sport ${st[1]}"><div class="sb-head"><h3>${esc(sp.n)}</h3><span class="sb-g">${esc(sp.g)}</span><span class="sb-badge">${st[0]}</span></div>${po}${u.length ? `<h5 class="sb-h">Upcoming</h5><div class="sb-grid">${u.map(sbGame).join("")}</div>` : ""}${g.length ? `<h5 class="sb-h">Latest scores</h5><div class="sb-grid">${g.map(sbGame).join("")}</div>` : ""}</section>`;
+  }).join("");
+  const live = SC.sports.filter(s => s.status !== "off").map(s => s.n).join(", ");
+  const empty = `<p class="sb-when">No ${esc(sc.name)} results posted yet this season. Scores show up here as they're reported${live ? ` (in season now: ${esc(live)})` : ""}. Coach or parent? <a href="/contact/?topic=tip">Send us a score</a>.</p>`;
+  return { noindex: !data.length && !stories.length, html: `<div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sc.name)} <span>sports</span></h1><p>${esc(sc.city)}, Texas · ${sc.lv === "College" ? "College athletics" : "High school athletics"}. Scores, schedules and playoff status for boys and girls teams.</p></div></div>
+<section class="block"><div class="wrap">${SPORTS_SPONSOR(sc.name, "Proud supporter of " + esc(sc.name) + " athletics: your business here")}${sections || empty}
+${stories.length ? `<h2 class="list-head">${esc(sc.name)} <span>stories</span></h2><div class="rows">${stories.map(s => row(s, false, "side")).join("")}</div>` : ""}
+<p class="src"><a href="/scoreboard/">← All 254 scores and the playoff tracker</a></p></div></section>`, crumbs };
+}
+const schoolIndex = () => `<section class="sc-index"><h2 class="list-head">Find your <span>school</span></h2><h5 class="sb-h">High schools</h5><div class="sc-grid">${SCHOOLS.filter(s => s.lv === "HS").map(s => `<a href="${s.url}">${esc(s.name.replace(/ High School$/, ""))}<span>${esc(s.city)}</span></a>`).join("")}</div><h5 class="sb-h">Colleges</h5><div class="sc-grid">${SCHOOLS.filter(s => s.lv === "College").map(s => `<a href="${s.url}">${esc(s.name)}<span>${esc(s.city)}</span></a>`).join("")}</div></section>`;
 // ---------- FAQ + service markup helpers (SEO / AEO) ----------
 const AREAS = ["Bell County, TX", "McLennan County, TX", "Coryell County, TX", "Lampasas County, TX", "Temple, TX", "Killeen, TX", "Waco, TX", "Belton, TX", "Harker Heights, TX", "Copperas Cove, TX"];
 const faqHtml = (title, items) => `<section class="faq"><h2 class="list-head">${title}</h2>${items.map(q => `<details><summary>${esc(q[0])}</summary><p>${q[1]}</p></details>`).join("")}</section>`;
@@ -446,7 +527,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? `<h2 class="list-head">Mortgage <span>rates</span></h2>${rateCards()}<p class="src"><a href="/real-estate/#housing-dashboard">Full 254 Housing Dashboard →</a></p>` + MARKET_WIDGET : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? BUILD_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
@@ -506,6 +587,7 @@ simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAM
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
 <h2>Contact</h2><p>Questions about privacy? Email <a href="mailto:jake.ruse@254txinsider.com">jake.ruse@254txinsider.com</a>.</p></div></section>`);
 simple("scoreboard/index.html", "/scoreboard/", `254 Scoreboard: Central Texas High School and College Scores and Playoff Tracker | ${NAME}`, "Scores, schedules and playoff tracker for Temple, Belton, Killeen, Waco and Central Texas high school and college sports: football, basketball, volleyball, soccer, baseball, softball, track, cross country and UIL band.", `<div class="page-hero"><div class="wrap"><span class="kicker">Sports</span><h1>254 <span>Scoreboard</span></h1><p>Boys and girls, high school and college. Scores, schedules and the playoff tracker for every season in Central Texas.</p></div></div><section class="block"><div class="wrap">${scoreboard(false)}</div></section>`, false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["254 Scoreboard", "/scoreboard/"]])]);
+for (const sc of SCHOOLS) { const pg = schoolPage(sc); simple("scoreboard/" + sc.slug + "/index.html", sc.url, `${sc.name} Sports: Scores, Schedule and Playoffs | ${NAME}`, `${sc.name} (${sc.city}, Texas) sports scores, schedules and playoff status for boys and girls teams, updated daily by ${NAME}.`, pg.html, pg.noindex, "sports", [crumbsLd(pg.crumbs)]); }
 simple("home-pros/index.html", "/home-pros/", `254 Home Pros: Trusted Local AC, Plumbing, Roofing and Foundation Pros | ${NAME}`, "Find a trusted local pro in Temple, Belton, Killeen, Waco and across Central Texas for AC, plumbing, roofing, foundation repair and more. One pro per trade, no bidding war.", homeHub(), false, "home-pros", [crumbsLd([["Home", "/"], ["254 Home Pros", "/home-pros/"]]), faqLd(HOME_FAQ), serviceLd("254 Home Pros", "Free homeowner requests matched to one local pro per trade: AC and heating, plumbing, electrical, roofing, foundation repair and more.", "/home-pros/", HOME_TRADES.map(t => t[0]))]);
 simple("build/index.html", "/build/", `254 Build & Facilities: Commercial Contractors, Bids and Projects in Central Texas | ${NAME}`, "Find commercial HVAC, plumbing, electrical, roofing and construction pros in Temple, Killeen, Waco and Belton, plus open public bids and new projects in the 254.", buildHub(), false, "build", [crumbsLd([["Home", "/"], ["254 Build & Facilities", "/build/"]]), faqLd(BUILD_FAQ), serviceLd("254 Build & Facilities", "Commercial project requests matched to vetted local contractors and suppliers, plus a public bid board for Central Texas.", "/build/", TRADES.map(t => t[0]))]);
 simple("thanks/index.html", "/thanks/", `Thanks! | ${NAME}`, `Thanks for reaching out to ${NAME}.`,
@@ -516,7 +598,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 // ---------- feeds, sitemaps, robots, redirects ----------
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/scoreboard/", latest, "daily", "0.8"], ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}
