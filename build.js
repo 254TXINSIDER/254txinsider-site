@@ -219,7 +219,7 @@ const CM = csb.window.COMING || { updated: "", items: [] };
 const CM_ORDER = ["Opening soon", "Under construction", "Permit filed", "Announced", "Proposed", "Now open", "Closing", "Closed"];
 const CM_CLS = { "Opening soon": "cm-soon", "Under construction": "cm-build", "Permit filed": "cm-permit", "Announced": "cm-ann", "Proposed": "cm-prop", "Now open": "cm-open", "Closing": "cm-close", "Closed": "cm-close" };
 const cmSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const cmCard = x => `<article class="cm-card" data-city="${esc(x.city)}" data-type="${esc(x.type)}" data-st="${esc(x.status)}" data-q="${esc((x.n + " " + x.type + " " + x.city + " " + (x.where || "")).toLowerCase())}">
+const cmCard = x => `<article class="cm-card" data-id="${esc(x.id || "")}"${x.ll ? ` data-ll="${x.ll.join(",")}"${x.approx ? ' data-approx="1"' : ""}` : ""} data-url="${esc(x.url || "")}" data-n="${esc(x.n)}" data-st="${esc(x.status)}" data-city="${esc(x.city)}" data-type="${esc(x.type)}" data-q="${esc((x.n + " " + x.type + " " + x.city + " " + (x.where || "")).toLowerCase())}">
 <div class="cm-top"><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span><span class="cm-type">${esc(x.type)}</span></div>
 <h3><a href="${x.url}">${esc(x.n)}</a></h3><p class="cm-where">📍 ${esc(x.city)}${x.where && x.where !== x.city ? " · " + esc(x.where) : ""}</p>${x.eta ? `<p class="cm-eta">🗓 ${esc(x.eta)}</p>` : ""}<p class="cm-d">${esc(x.d)}</p>
 <p class="cm-src">Source: <a href="${esc(x.src[1])}" target="_blank" rel="noopener">${esc(x.src[0])}</a>${x.story ? ` · <a href="${esc(x.story)}">Our story</a>` : ""}</p></article>`;
@@ -244,15 +244,50 @@ function comingPage() {
 <div class="cm-stats"><div><b>${upcoming.length}</b><span>on the way</span></div><div><b>${opened.length}</b><span>recently opened</span></div><div><b>${closing.length}</b><span>closing</span></div><div><b>${cities.length}</b><span>cities</span></div></div>
 <div class="sb-filters"><input class="cm-search" id="cm-q" type="search" placeholder="Search: Chick-fil-A, Waco, coffee..."><div class="tdo-chips" id="cm-city"><button class="chip on" data-v="all">All cities</button>${cities.map(c => `<button class="chip" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div><div class="tdo-chips" id="cm-type"><button class="chip on" data-v="all">Everything</button>${types.map(t => `<button class="chip" data-v="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>
 <p class="sb-upd">Updated ${CM.updated ? sbDate(CM.updated) : ""}. "Permit filed" dates come from state construction filings and often change. Know something coming? <a href="/contact/?topic=tip">Send us a tip</a>.</p>
+<div class="cm-map-wrap"><div id="cm-map" class="cm-map" role="region" aria-label="Map of projects"></div><p class="hs-note">Pins follow your search and filters. Hollow pins are approximate (city-level) locations. Map data © OpenStreetMap contributors.</p></div>
 <h2 class="list-head">On the <span>way</span></h2><div class="cm-grid">${upcoming.map(cmCard).join("") || '<p class="sb-when">Nothing listed yet.</p>'}</div>
 <h2 class="list-head">Recently <span>opened</span></h2><div class="cm-grid">${opened.map(cmCard).join("") || '<p class="sb-when">Nothing listed yet.</p>'}</div>
 <h2 class="list-head">Closing <span>&amp; closed</span></h2><div class="cm-grid">${closing.map(cmCard).join("") || '<p class="sb-when">No closings reported right now. Heard about one? <a href="/contact/?topic=tip">Tell us</a>.</p>'}</div>
 <p class="cm-none" id="cm-none" hidden>Nothing matches that search. Try another city or word.</p>
 ${faq.length ? faqHtml("Quick <span>answers</span>", faq) : ""}
-${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business here").replace("sports. One sponsor", "business news. One sponsor").replace("/sports/#sports-sponsor", "/contact/?topic=advertise")}
+${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business here").replace("sports. One sponsor", "business news. One sponsor").replace("/sports/#sports-sponsor", "/advertise/")}
 </div></section>` };
 }
 const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
+// ---------- Navigation groups + Advertise ----------
+const NAV_MAIN = ["latest", "business", "real-estate", "government", "sports", "things-to-do"];
+const NAV_MORE = [["Markets & Crypto", "/markets/"], ["Growth & Development", "/growth/"], ["Education", "/education/"], ["We the People", "/we-the-people/"], ["Podcast", "/podcast/"], ["Coming to the 254", "/coming-to-the-254/"], ["254 Scoreboard", "/scoreboard/"], ["Weather", "/weather/"], ["Traffic", "/traffic/"], ["Find a Home Pro", "/home-pros/"], ["Commercial Projects", "/build/"], ["Search", "/search/"]];
+const AD_SPOTS = [
+  ["Coming to the 254 presenting sponsor", "Your logo and line on the region's openings and development tracker, plus every project page.", "Business owners, developers, real estate, banks"],
+  ["254 Scoreboard presenting sponsor", "Top billing on the Scoreboard, playoff tracker and Sports & Community page all season.", "Parents, grandparents, alumni, fans"],
+  ["School page sponsor", "Own a high school's or college's page: scores, schedules and stories for that school.", "Families in one school community"],
+  ["City page sponsor", "Your business on a city's news page (Temple, Belton, Killeen, Harker Heights, Copperas Cove, Salado or Waco).", "Residents of one city"],
+  ["Weather or Traffic sponsor", "Your name on the 254 Weather Center or 254 Traffic page, checked daily and during every storm.", "Commuters and homeowners"],
+  ["254 Home Pros featured pro", "The only featured pro in your trade (AC, plumbing, roofing and more). Homeowner requests go to you.", "Homeowners ready to hire"],
+  ["Commercial vendor partner", "Featured on 254 Build & Facilities for your commercial trade, in front of facility managers and developers.", "Facility managers, GCs, developers"],
+  ["Newsletter sponsor", "One sponsor line in the weekly Pulse of the 254 email.", "Subscribers who opted in (launching soon)"]
+];
+function advertisePage() {
+  return `<div class="page-hero"><div class="wrap"><span class="kicker">Advertise</span><h1>Reach the <span>254</span></h1><p>Put your business in front of the people following Central Texas business, growth, schools, sports and weather every day, across Temple, Belton, Killeen, Harker Heights, Copperas Cove, Salado and Waco.</p></div></div>
+<section class="block"><div class="wrap">
+<div class="cm-stats"><div><b>${ALL.length}+</b><span>local stories</span></div><div><b>${CM.items.length}</b><span>tracked projects</span></div><div><b>${SCHOOLS.length}</b><span>school pages</span></div><div><b>7</b><span>city pages</span></div></div>
+<h2 class="list-head">Sponsorship <span>options</span></h2>
+<div class="ad-grid">${AD_SPOTS.map(a => `<div class="ad-card"><h3>${esc(a[0])}</h3><p>${esc(a[1])}</p><span class="ad-aud">Reaches: ${esc(a[2])}</span><a class="btn" href="#advertise-form" data-adspot="${esc(a[0])}">Ask about this spot</a></div>`).join("")}</div>
+<div class="city-grid"><div>
+<h2 class="list-head">How it <span>works</span></h2>
+<ul class="ad-list"><li><b>One sponsor per spot.</b> No crowded ad walls. Your business is the only one in that place.</li><li><b>Founding rates.</b> Early sponsors lock in founding pricing. Ask us for current rates.</li><li><b>Month-to-month or seasonal.</b> Sports sponsorships can run a full season or a playoff run.</li><li><b>What we need from you:</b> your logo (PNG or SVG), one line of text (about 60 characters) and the web page or phone number you want people to reach.</li><li><b>Audience numbers:</b> we'll share verified traffic numbers with sponsors once our first full month of data is in.</li></ul>
+<h2 class="list-head">Our <span>promise</span></h2>
+<p>Sponsored spots are always labeled "Sponsor spot." Sponsors never pay for coverage, never see stories before they run, and never change what we report. Read our <a href="/standards/">editorial standards</a>.</p>
+</div><aside>
+<form class="pros-form" id="advertise-form" name="advertise" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/"><input type="hidden" name="form-name" value="advertise"><p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+<h3>Get rates and availability</h3>
+<label>Your name <input name="name" required></label><label>Business <input name="business" required></label><label>Email <input name="email" type="email" required></label><label>Phone <input name="phone" type="tel"></label>
+<label>Interested in <select name="spot" id="ad-spot">${AD_SPOTS.map(a => `<option>${esc(a[0])}</option>`).join("")}<option>Not sure yet</option></select></label>
+<label>Budget per month <select name="budget"><option>Not sure</option><option>Under $250</option><option>$250 to $500</option><option>$500 to $1,000</option><option>$1,000+</option></select></label>
+<label class="pf-msg">Anything else? <textarea name="message" rows="3"></textarea></label><button class="btn" type="submit">Send, we'll reply within one business day</button></form>
+</aside></div>
+</div></section>`;
+}
 // ---------- Weather, markets 2.0, traffic ----------
 const WX_CITIES = [["Temple", 31.0982, -97.3428], ["Belton", 31.0560, -97.4645], ["Killeen", 31.1171, -97.7278], ["Harker Heights", 31.0835, -97.6597], ["Copperas Cove", 31.1241, -97.9031], ["Salado", 30.9471, -97.5386], ["Waco", 31.5493, -97.1467], ["Gatesville", 31.4352, -97.7439], ["Lampasas", 31.0638, -98.1817]];
 const cityChips = (id, first) => `<div class="tdo-chips wx-chips" id="${id}">${WX_CITIES.map((c, i) => `<button type="button" data-city="${c[0]}" data-lat="${c[1]}" data-lon="${c[2]}"${i === first ? ' class="on"' : ""}>${c[0]}</button>`).join("")}</div>`;
@@ -318,6 +353,8 @@ const cityOf = name => CITIES.find(c => c.cm.includes(name) || c.name === name);
 const cityStories = c => ALL.filter(s => c.rx.test([s.city, s.title, s.dek].join(" ")));
 const cmId = x => x.id || cmSlug(x.n + " " + x.city);
 CM.items.forEach(x => { x.id = cmId(x); x.url = "/coming-to-the-254/" + x.id + "/"; x.hist = x.hist && x.hist.length ? x.hist : [[x.added || CM.updated, x.status, "Added to the Coming to the 254 tracker."]]; });
+const CITY_LL = Object.assign({}, ...WX_CITIES.map(c => ({ [c[0]]: [c[1], c[2]] })), { McGregor: [31.4435, -97.4092], Woodway: [31.5063, -97.2295], "Lacy Lakeview": [31.6293, -97.1036], Hewitt: [31.4624, -97.1964], Stephenville: [32.2207, -98.2023], Nolanville: [31.0796, -97.6061], Bellmead: [31.5941, -97.1089], Robinson: [31.4677, -97.1144] });
+CM.items.forEach(x => { if (x.geo) { x.ll = x.geo; x.approx = false; return; } const c = CITY_LL[x.city]; if (!c) return; let h = 0; for (const ch of x.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; x.ll = [+(c[0] + ((h % 100) - 50) / 6000).toFixed(5), +(c[1] + (((h >> 7) % 100) - 50) / 6000).toFixed(5)]; x.approx = true; });
 const cmMap = x => /\d/.test(x.where || "") ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.where.split(",")[0] + ", " + x.city + ", TX")}` : "";
 function projectPage(x) {
   const crumbs = [["Home", "/"], ["Coming to the 254", "/coming-to-the-254/"], [x.n, x.url]];
@@ -547,8 +584,9 @@ ${(o.ld || []).map(ld).join("\n")}
 }
 
 function header(active) {
-  const nav = SECTIONS.map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("");
-  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-wx" id="top-wx" href="/weather/">🌤 Weather</a><a class="top-search" href="/traffic/">🚗 Traffic</a><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
+  const moreOn = !NAV_MAIN.includes(active) && active && active !== "home-pros" && active !== "build";
+  const nav = NAV_MAIN.map(k => SECTIONS.find(x => x[0] === k)).map(s => `<a href="${secUrl(s[0])}"${s[0] === active ? ' class="active" aria-current="page"' : ""}>${s[1]}</a>`).join("") + `<details class="nav-more"><summary${moreOn ? ' class="active"' : ""}>More ▾</summary><div class="nav-drop">${NAV_MORE.map(m => `<a href="${m[1]}">${m[0]}</a>`).join("")}</div></details>`;
+  return `<div class="topbar"><div class="wrap"><span><span id="today">Central Texas</span><span class="tagline"> &nbsp;·&nbsp; </span><span class="top-cities">${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}</span></span><span class="socials"><a class="top-wx" id="top-wx" href="/weather/">🌤 Weather</a><a class="top-search top-traffic" href="/traffic/">🚗 Traffic</a><a class="top-search" href="/search/" aria-label="Search">🔍 Search</a>${social()}</span></div></div>
 <header class="site-header"><div class="wrap"><a class="brand" href="/" aria-label="${NAME} home"><img src="/assets/logo.webp" alt="${NAME} logo" width="64" height="64"><span class="brand-text"><strong>${NAME}</strong><span>${TAG}</span></span></a><span class="hdr-right"><a class="hdr-lead" href="/home-pros/">Find a Home Pro</a><a class="hdr-lead" href="/build/">Commercial Projects</a><a class="hdr-search" href="/search/" aria-label="Search">🔍</a><a class="btn" href="/#newsletter">Subscribe Free</a></span></div></header>
 <div class="wx-banner" id="wx-banner" hidden></div>
 <nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a class="nav-lead${active === "home-pros" ? ' active" aria-current="page' : ""}" href="/home-pros/">Find a Home Pro</a><a class="nav-lead${active === "build" ? ' active" aria-current="page' : ""}" href="/build/">Commercial Projects</a></div></nav>
@@ -558,10 +596,10 @@ function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopene
 function footer() {
   const secs = SECTIONS.map(s => `<a href="${secUrl(s[0])}">${s[2]}</a>`).join("");
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
-<div><h4>${NAME}</h4><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
-<div><h4>Sections</h4>${secs}</div>
-<div><h4>Company</h4><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/weather/">254 Weather</a><a href="/traffic/">254 Traffic</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/contact/?topic=advertise">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
-<div><h4>Cities</h4>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h4 style="margin-top:14px">Follow</h4>${social()}</div>
+<div><h2 class="fh">${NAME}</h2><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
+<div><h2 class="fh">Sections</h2>${secs}</div>
+<div><h2 class="fh">Company</h2><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/weather/">254 Weather</a><a href="/traffic/">254 Traffic</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/advertise/">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
+<div><h2 class="fh">Cities</h2>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h2 class="fh" style="margin-top:14px">Follow</h2>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
 </body>
 </html>
@@ -754,6 +792,7 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
   `<div class="page-hero"><div class="wrap"><h1>Page Not <span>Found</span></h1><p>That page took a wrong exit off I-35.</p><div class="btn-row"><a class="btn" href="/">Back to home</a></div></div></div>`, true);
 
 // ---------- feeds, sitemaps, robots, redirects ----------
+simple("advertise/index.html", "/advertise/", `Advertise With Us: Sponsorships in Temple, Killeen, Waco and Belton | ${NAME}`, `Sponsor Central Texas news, the Coming to the 254 tracker, the 254 Scoreboard, school and city pages, weather and traffic. One sponsor per spot, always labeled.`, advertisePage(), false, null, [crumbsLd([["Home", "/"], ["Advertise", "/advertise/"]])]);
 // weather + traffic pages
 simple("weather/index.html", "/weather/", `Central Texas Weather: Temple, Killeen, Waco, Belton Forecast, Radar and Warnings | ${NAME}`, "Live Central Texas weather: current conditions, hourly and 7-day forecasts, radar and National Weather Service warnings for Temple, Belton, Killeen, Harker Heights, Copperas Cove, Waco and the 254.", weatherPage(), false, null, [crumbsLd([["Home", "/"], ["Weather", "/weather/"]])]);
 simple("traffic/index.html", "/traffic/", `Central Texas Traffic: I-35, I-14 and Road Closures in Temple, Killeen, Belton and Waco | ${NAME}`, "Live Central Texas traffic map, crashes and lane closures on I-35, I-14/US 190, US 84, SH 317 and SH 6, plus road construction news for Temple, Killeen, Belton and Waco.", trafficPage(), false, null, [crumbsLd([["Home", "/"], ["Traffic", "/traffic/"]])]);
@@ -776,7 +815,7 @@ simple("standards/index.html", "/standards/", `Editorial Standards and Correctio
 </div></section>`, false, null);
 const latest = ALL[0].date;
 const urls = [["/", latest, "daily", "1.0"]].concat(SECTIONS.filter(([k]) => k === "latest" || inCat(k).length).map(([k]) => [secUrl(k), (k === "latest" ? ALL : inCat(k))[0].date, "daily", "0.8"]),
-  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/weather/", latest, "daily", "0.9"], ["/traffic/", latest, "daily", "0.8"], ...CITIES.map(c => [c.url, latest, "daily", "0.9"]), ["/coming-to-the-254/", latest, "daily", "0.9"], ...CM.items.map(x => [x.url, x.hist[x.hist.length - 1][0], "weekly", "0.7"]), ["/standards/", latest, "monthly", "0.4"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
+  ALL.map(s => [s.url, s.date, "weekly", "0.9", s]), [["/weather/", latest, "daily", "0.9"], ["/traffic/", latest, "daily", "0.8"], ...CITIES.map(c => [c.url, latest, "daily", "0.9"]), ["/coming-to-the-254/", latest, "daily", "0.9"], ...CM.items.map(x => [x.url, x.hist[x.hist.length - 1][0], "weekly", "0.7"]), ["/standards/", latest, "monthly", "0.4"], ["/advertise/", latest, "monthly", "0.5"], ["/scoreboard/", latest, "daily", "0.8"], ...SCHOOLS.filter(sc => !schoolPage(sc).noindex).map(sc => [sc.url, latest, "daily", "0.6"]), ["/home-pros/", latest, "weekly", "0.7"], ["/build/", latest, "weekly", "0.7"], ["/about/", latest, "monthly", "0.4"], ["/contact/", latest, "monthly", "0.4"]]);
 pages["sitemap.xml"] = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.map(([u, d, f, p, s]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod><changefreq>${f}</changefreq><priority>${p}</priority>${s && s.art ? `<image:image><image:loc>${abs(s.art)}</image:loc></image:image>` : ""}</url>`).join("\n")}

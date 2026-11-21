@@ -8,4 +8,8 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+[[headers]]
+  for = "/assets/art/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
 # Deploys automatically from GitHub main.
