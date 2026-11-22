@@ -167,18 +167,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Coming to the 254 filters
 (function () {
-  var q = document.getElementById("cm-q"), cb = document.getElementById("cm-city"), tb = document.getElementById("cm-type"); if (!q || !cb || !tb) return;
-  var city = "all", type = "all";
+  var q = document.getElementById("cm-q"), cb = document.getElementById("cm-city"), tb = document.getElementById("cm-type"), fb = document.getElementById("cm-feat"); if (!q || !cb || !tb) return;
+  var city = "all", type = "all", feat = "all";
   function apply() {
     var term = q.value.trim().toLowerCase(), shown = 0;
     [].forEach.call(document.querySelectorAll(".cm-card"), function (el) {
-      var ok = (city === "all" || el.getAttribute("data-city") === city) && (type === "all" || el.getAttribute("data-type") === type) && (!term || el.getAttribute("data-q").indexOf(term) > -1);
+      var ok = (city === "all" || el.getAttribute("data-city") === city) && (type === "all" || el.getAttribute("data-type") === type) && (feat === "all" || (" " + (el.getAttribute("data-feat") || "") + " ").indexOf(" " + feat + " ") > -1) && (!term || el.getAttribute("data-q").indexOf(term) > -1);
       el.style.display = ok ? "" : "none"; if (ok) shown++;
     });
     document.getElementById("cm-none").hidden = shown > 0;
   }
   function wire(box, set) { box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.remove("on"); }); b.classList.add("on"); set(b.getAttribute("data-v")); apply(); }); }
-  wire(cb, function (v) { city = v; }); wire(tb, function (v) { type = v; }); q.addEventListener("input", apply);
+  wire(cb, function (v) { city = v; }); wire(tb, function (v) { type = v; }); if (fb) wire(fb, function (v) { feat = v; }); q.addEventListener("input", apply);
   var h = decodeURIComponent(location.hash.slice(1)); if (h) { var b = [].find.call(cb.querySelectorAll("button"), function (x) { return x.getAttribute("data-v").toLowerCase().replace(/\s+/g, "-") === h; }); if (b) b.click(); }
 })();
 
@@ -273,7 +273,7 @@ document.addEventListener("click", function (e) {
 // Tracker map (Leaflet + OpenStreetMap), follows the tracker filters
 (function () {
   var el = document.getElementById("cm-map"); if (!el) return;
-  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e" };
+  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e", "Municipal": "#2e7d32", "Daily fee": "#1b7f8c", "Semi-private": "#6b5b95", "Private": "#5c5c5c", "Military": "#4b5320", "Indoor golf": "#b54c17" };
   var css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
   var js = document.createElement("script"); js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; js.onload = init; document.head.appendChild(js);
   var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
@@ -293,9 +293,40 @@ document.addEventListener("click", function (e) {
       if (fit && pts.length) map.fitBounds(pts, { padding: [30, 30], maxZoom: 13 });
     }
     draw(true);
-    ["cm-city", "cm-type"].forEach(function (id) { var b = document.getElementById(id); if (b) b.addEventListener("click", function () { setTimeout(function () { draw(true); }, 0); }); });
+    ["cm-city", "cm-type", "cm-feat"].forEach(function (id) { var b = document.getElementById(id); if (b) b.addEventListener("click", function () { setTimeout(function () { draw(true); }, 0); }); });
     var q = document.getElementById("cm-q"); if (q) q.addEventListener("input", function () { setTimeout(function () { draw(false); }, 0); });
   }
+})();
+
+// Golf weather check (NWS daytime forecast -> plain rating)
+(function () {
+  var box = document.getElementById("gw-city"), out = document.getElementById("gw-out"); if (!box || !out) return;
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var H = { headers: { Accept: "application/geo+json" } };
+  function j(u) { return fetch(u, H).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function cache(key, ttl, fn) { try { var c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < ttl) return Promise.resolve(c.v); } catch (e) {} return fn().then(function (v) { try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} return v; }); }
+  function rate(p) {
+    var t = p.temperature, w = 0, m = String(p.windSpeed || "").match(/\d+/g); if (m) w = Math.max.apply(null, m.map(Number));
+    var r = p.probabilityOfPrecipitation && p.probabilityOfPrecipitation.value || 0, why = [];
+    if (r >= 60) return ["Stay home", "gw-bad", ["Rain chance " + r + "%"]];
+    if (w >= 20) why.push("windy, up to " + w + " mph"); if (t >= 100) why.push("hot, " + t + "°"); if (t < 45) why.push("cold, " + t + "°"); if (r >= 30) why.push("rain chance " + r + "%");
+    if (why.length) return ["Tough", "gw-meh", why];
+    if (t >= 60 && t <= 90 && w < 12 && r < 20) return ["Great", "gw-great", [t + "°, wind " + (w || "calm") + (w ? " mph" : "") + (r ? ", rain " + r + "%" : "")]];
+    return ["Good", "gw-good", [t + "°, wind up to " + w + " mph" + (r ? ", rain " + r + "%" : "")]];
+  }
+  function load(b) {
+    var lat = b.getAttribute("data-lat"), lon = b.getAttribute("data-lon"), city = b.getAttribute("data-city");
+    out.innerHTML = '<p class="sb-when">Loading ' + esc(city) + '…</p>';
+    cache("wx-pt-" + lat + "," + lon, 24 * 3600e3, function () { return j("https://api.weather.gov/points/" + lat + "," + lon).then(function (d) { return { f: d.properties.forecast, h: d.properties.forecastHourly, s: d.properties.observationStations }; }); })
+      .then(function (p) { return cache("gw-f-" + city, 30 * 60e3, function () { return j(p.f).then(function (d) { return d.properties.periods.filter(function (x) { return x.isDaytime; }).slice(0, 4).map(function (x) { return { name: x.name, temperature: x.temperature, windSpeed: x.windSpeed, probabilityOfPrecipitation: x.probabilityOfPrecipitation, shortForecast: x.shortForecast, icon: x.icon }; }); }); }); })
+      .then(function (days) {
+        out.innerHTML = '<div class="gw-days">' + days.map(function (x) { var r = rate(x); return '<div class="gw-day ' + r[1] + '"><b>' + esc(x.name) + '</b><span class="gw-r">' + r[0] + '</span><img src="' + esc(x.icon) + '" alt="" loading="lazy"><small>' + esc(x.shortForecast) + '</small><small>' + esc(r[2].join(", ")) + '</small></div>'; }).join("") + '</div>';
+      }).catch(function () { out.innerHTML = '<p class="sb-when">Forecast unavailable right now. Try <a href="https://www.weather.gov/fwd/" target="_blank" rel="noopener">weather.gov</a>.</p>'; });
+  }
+  box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.toggle("on", x === b); }); try { localStorage.setItem("gw-city", b.getAttribute("data-city")); } catch (er) {} load(b); });
+  var saved = null; try { saved = localStorage.getItem("gw-city"); } catch (e) {}
+  var start = (saved && [].find.call(box.querySelectorAll("button"), function (x) { return x.getAttribute("data-city") === saved; })) || box.querySelector("button");
+  [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.toggle("on", x === start); }); load(start);
 })();
 
 // Advertise page: pre-select the spot

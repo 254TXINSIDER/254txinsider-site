@@ -669,3 +669,28 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .wn-row { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding: 6px 0; } .wn-row b.up { color: #1d6b2a; } .wn-row b.down { color: #b23b2e; }
 .wn-ctx li { margin-bottom: 6px; }
 .wn-restaurant { background: #2e5a3c; }
+/* v25 Golf in the 254 */
+.gf-hero { background: linear-gradient(135deg, #1d4d2b 0%, #13213c 75%); }
+.gf-municipal { background: #2e7d32; } .gf-daily-fee { background: #1b7f8c; } .gf-semi-private { background: #6b5b95; } .gf-private { background: #5c5c5c; } .gf-military { background: #4b5320; } .gf-indoor-golf { background: #b54c17; }
+.gf-holes { font-size: 13px; font-weight: 700; color: #1d4d2b; margin: 2px 0 6px; }
+.gf-feats span { display: inline-block; font-size: 12px; background: #eef5ef; color: #1d4d2b; border-radius: 999px; padding: 2px 9px; margin: 0 4px 4px 0; }
+.gf-act { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 8px 0 4px; }
+.gf-act .btn { padding: 6px 12px; font-size: 13px; }
+.gf-tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 10px 0 20px; }
+.gf-track { background: #fff; border: 1px solid #e3dbcf; border-top: 4px solid #1d4d2b; border-radius: 10px; padding: 14px 16px; }
+.gf-track h3 { margin: 0 0 4px; color: #13213c; }
+.gf-events { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 10px 0; }
+.gf-ev { background: #fff; border: 1px solid #e3dbcf; border-radius: 10px; padding: 14px 16px; }
+.gf-ev h3 { margin: 4px 0; color: #13213c; font-size: 17px; }
+.gf-when { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #1d4d2b; }
+.gw { background: #f6f8f4; border: 1px solid #dfe7da; border-radius: 12px; padding: 14px 16px; margin: 10px 0 20px; }
+.gw-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 6px; }
+.gw-day { background: #fff; border-radius: 10px; padding: 12px; border-left: 6px solid #8a8a8a; display: flex; flex-direction: column; gap: 4px; }
+.gw-day img { width: 48px; height: 48px; border-radius: 6px; }
+.gw-day small { color: #5c5c5c; font-size: 12px; }
+.gw-r { font-size: 20px; font-weight: 800; }
+.gw-great { border-left-color: #2e7d32; } .gw-great .gw-r { color: #2e7d32; }
+.gw-good { border-left-color: #1b7f8c; } .gw-good .gw-r { color: #1b7f8c; }
+.gw-meh { border-left-color: #b8860b; } .gw-meh .gw-r { color: #8a6500; }
+.gw-bad { border-left-color: #b23b2e; } .gw-bad .gw-r { color: #b23b2e; }
+.gf-spon { margin: 0 0 18px; }
