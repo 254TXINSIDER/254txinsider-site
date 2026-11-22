@@ -781,3 +781,5 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .bb-text{background:#fbf8f2;border:1px solid #e3dbcf;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;line-height:1.65}.bb-text p{margin:0 0 8px}.bb-text sup{color:#b8541c;font-family:inherit;font-weight:700;margin-right:2px}
 .bb-prayer{background:#13213c;color:#fff;border-radius:12px;padding:18px 22px;margin:18px 0}.bb-prayer p{font-family:Georgia,serif;font-size:18px;font-style:italic;margin:6px 0 0;color:#f3efe6}
 .bb-today{border:2px solid #b8541c;border-radius:12px;padding:16px 18px;margin:8px 0 18px}.bb-today h2{margin:4px 0}.bb-today h2 a{color:#13213c}
+
+.gv-news{list-style:none;padding:0;margin:0 0 1rem}.gv-news li{padding:.5rem 0;border-bottom:1px solid var(--line,#e2ddd3)}.gv-news small{color:#5b6676}.gv-card .tr-info small{color:#5b6676}.gv-pick{margin-bottom:10px}.gv-pick .chip.on{background:#c8561b;color:#fff;border-color:#c8561b}
