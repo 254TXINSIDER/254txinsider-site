@@ -694,3 +694,19 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .gw-meh { border-left-color: #b8860b; } .gw-meh .gw-r { color: #8a6500; }
 .gw-bad { border-left-color: #b23b2e; } .gw-bad .gw-r { color: #b23b2e; }
 .gf-spon { margin: 0 0 18px; }
+/* v26 Trails & Hiking */
+.tr-hero { background: linear-gradient(135deg, #5a4a1d 0%, #1d4d2b 55%, #13213c 100%); }
+.tr-easy { background: #2e7d32; } .tr-moderate { background: #b8860b; } .tr-hard { background: #b23b2e; }
+.tr-score { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 8px 0; }
+.tr-score div { background: #f6f8f4; border-radius: 6px; padding: 6px 8px; }
+.tr-score span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #5c5c5c; }
+.tr-score b { font-size: 13px; color: #13213c; }
+.tr-status { background: #fff4e5; border-left: 4px solid #b8860b; padding: 6px 10px; font-size: 13px; border-radius: 4px; }
+.tr-picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 10px 0; }
+.tr-pick { display: block; background: #fff; border: 1px solid #e3dbcf; border-top: 4px solid #1d4d2b; border-radius: 10px; padding: 12px 14px; color: inherit; text-decoration: none; }
+.tr-pick b { display: block; font-size: 17px; color: #13213c; margin: 4px 0 2px; } .tr-pick small { color: #5c5c5c; } .tr-pick p { margin: 6px 0 0; font-size: 14px; }
+.tr-pick:hover { border-color: #1d4d2b; }
+.tr-badge { margin-left: auto; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+.tr-open { background: #e7f4e8; color: #1d6b2a; } .tr-check { background: #fff4e5; color: #8a6500; } .tr-closed { background: #fbe9e7; color: #b23b2e; }
+.tr-info { list-style: none; padding: 0; margin: 8px 0; font-size: 13px; } .tr-info li { margin: 3px 0; }
+.tr-passes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 10px 0 20px; }

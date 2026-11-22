@@ -273,7 +273,7 @@ document.addEventListener("click", function (e) {
 // Tracker map (Leaflet + OpenStreetMap), follows the tracker filters
 (function () {
   var el = document.getElementById("cm-map"); if (!el) return;
-  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e", "Municipal": "#2e7d32", "Daily fee": "#1b7f8c", "Semi-private": "#6b5b95", "Private": "#5c5c5c", "Military": "#4b5320", "Indoor golf": "#b54c17" };
+  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e", "Municipal": "#2e7d32", "Daily fee": "#1b7f8c", "Semi-private": "#6b5b95", "Private": "#5c5c5c", "Military": "#4b5320", "Indoor golf": "#b54c17", "Easy": "#2e7d32", "Moderate": "#b8860b", "Hard": "#b23b2e" };
   var css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
   var js = document.createElement("script"); js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; js.onload = init; document.head.appendChild(js);
   var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
