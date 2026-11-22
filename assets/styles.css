@@ -717,3 +717,12 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .tr-find .tdo-chips a:hover{background:#13213c;color:#fff}
 .tr-find .tdo-chips{flex-wrap:wrap;overflow:visible}
 /* end v27 */
+/* v28 youth sports */
+.ys-hero{background:linear-gradient(120deg,#1d3d6b,#2e7d32)}
+.ys-spot{border:2px solid #b8541c;border-radius:12px;padding:16px 18px;margin:18px 0;background:#fff}
+.ys-spot h2{margin:6px 0 8px;font-size:24px}
+.ys-top{border-color:#b8541c;box-shadow:0 0 0 2px #b8541c inset}
+.ys-sports{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.ys-sports span{background:#13213c;color:#fff;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.gw-pack{display:block;margin-top:6px;font-weight:600}
+.gw-alert{background:#b23b2e;color:#fff;border-radius:8px;padding:8px 12px;margin:0 0 10px}

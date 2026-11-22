@@ -273,7 +273,7 @@ document.addEventListener("click", function (e) {
 // Tracker map (Leaflet + OpenStreetMap), follows the tracker filters
 (function () {
   var el = document.getElementById("cm-map"); if (!el) return;
-  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e", "Municipal": "#2e7d32", "Daily fee": "#1b7f8c", "Semi-private": "#6b5b95", "Private": "#5c5c5c", "Military": "#4b5320", "Indoor golf": "#b54c17", "Easy": "#2e7d32", "Moderate": "#b8860b", "Hard": "#b23b2e" };
+  var COL = { "Opening soon": "#2e7d32", "Under construction": "#c75b26", "Permit filed": "#6b5b95", "Announced": "#13213c", "Proposed": "#8a8a8a", "Now open": "#1b7f8c", "Closing": "#b23b2e", "Closed": "#b23b2e", "Municipal": "#2e7d32", "Daily fee": "#1b7f8c", "Semi-private": "#6b5b95", "Private": "#5c5c5c", "Military": "#4b5320", "Indoor golf": "#b54c17", "Easy": "#2e7d32", "Moderate": "#b8860b", "Hard": "#b23b2e", "Tournament complex": "#b8541c", "City complex": "#13213c", "Soccer complex": "#2e7d32" };
   var css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
   var js = document.createElement("script"); js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; js.onload = init; document.head.appendChild(js);
   var esc = function (s) { return String(s || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
@@ -305,11 +305,12 @@ document.addEventListener("click", function (e) {
   var H = { headers: { Accept: "application/geo+json" } };
   function j(u) { return fetch(u, H).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
   function cache(key, ttl, fn) { try { var c = JSON.parse(sessionStorage.getItem(key) || "null"); if (c && Date.now() - c.t < ttl) return Promise.resolve(c.v); } catch (e) {} return fn().then(function (v) { try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), v: v })); } catch (e) {} return v; }); }
+  var WK = out.getAttribute("data-mode") === "weekend";
   function rate(p) {
     var t = p.temperature, w = 0, m = String(p.windSpeed || "").match(/\d+/g); if (m) w = Math.max.apply(null, m.map(Number));
     var r = p.probabilityOfPrecipitation && p.probabilityOfPrecipitation.value || 0, why = [];
-    if (r >= 60) return ["Stay home", "gw-bad", ["Rain chance " + r + "%"]];
-    if (w >= 20) why.push("windy, up to " + w + " mph"); if (t >= 100) why.push("hot, " + t + "°"); if (t < 45) why.push("cold, " + t + "°"); if (r >= 30) why.push("rain chance " + r + "%");
+    if (r >= 60) return [WK ? "Rainout risk" : "Stay home", "gw-bad", ["Rain chance " + r + "%"]];
+    if (w >= 20) why.push("windy, up to " + w + " mph"); if (t >= (WK ? 95 : 100)) why.push("hot, " + t + "°"); if (t < 45) why.push("cold, " + t + "°"); if (r >= 30) why.push("rain chance " + r + "%");
     if (why.length) return ["Tough", "gw-meh", why];
     if (t >= 60 && t <= 90 && w < 12 && r < 20) return ["Great", "gw-great", [t + "°, wind " + (w || "calm") + (w ? " mph" : "") + (r ? ", rain " + r + "%" : "")]];
     return ["Good", "gw-good", [t + "°, wind up to " + w + " mph" + (r ? ", rain " + r + "%" : "")]];
@@ -318,9 +319,11 @@ document.addEventListener("click", function (e) {
     var lat = b.getAttribute("data-lat"), lon = b.getAttribute("data-lon"), city = b.getAttribute("data-city");
     out.innerHTML = '<p class="sb-when">Loading ' + esc(city) + '…</p>';
     cache("wx-pt-" + lat + "," + lon, 24 * 3600e3, function () { return j("https://api.weather.gov/points/" + lat + "," + lon).then(function (d) { return { f: d.properties.forecast, h: d.properties.forecastHourly, s: d.properties.observationStations }; }); })
-      .then(function (p) { return cache("gw-f-" + city, 30 * 60e3, function () { return j(p.f).then(function (d) { return d.properties.periods.filter(function (x) { return x.isDaytime; }).slice(0, 4).map(function (x) { return { name: x.name, temperature: x.temperature, windSpeed: x.windSpeed, probabilityOfPrecipitation: x.probabilityOfPrecipitation, shortForecast: x.shortForecast, icon: x.icon }; }); }); }); })
+      .then(function (p) { return cache((WK ? "gw-w-" : "gw-f-") + city, 30 * 60e3, function () { return j(p.f).then(function (d) { var ds = d.properties.periods.filter(function (x) { return x.isDaytime; }); if (WK) { var wk = ds.filter(function (x) { var g = new Date(x.startTime).getDay(); return g === 6 || g === 0; }); ds = wk.length > 1 && new Date(wk[0].startTime).getDay() === 6 ? wk.slice(0, 2) : wk.slice(0, 1); } else ds = ds.slice(0, 4); return ds.map(function (x) { return { name: x.name, temperature: x.temperature, windSpeed: x.windSpeed, probabilityOfPrecipitation: x.probabilityOfPrecipitation, shortForecast: x.shortForecast, icon: x.icon }; }); }); }); })
       .then(function (days) {
-        out.innerHTML = '<div class="gw-days">' + days.map(function (x) { var r = rate(x); return '<div class="gw-day ' + r[1] + '"><b>' + esc(x.name) + '</b><span class="gw-r">' + r[0] + '</span><img src="' + esc(x.icon) + '" alt="" loading="lazy"><small>' + esc(x.shortForecast) + '</small><small>' + esc(r[2].join(", ")) + '</small></div>'; }).join("") + '</div>';
+        function pack(x) { var t = x.temperature, r = x.probabilityOfPrecipitation && x.probabilityOfPrecipitation.value || 0, k = []; if (t >= 85) k.push("sunscreen, canopy, extra water"); if (t < 55) k.push("layers, blankets, hand warmers"); if (r >= 30) k.push("rain gear, towels, dry socks"); if (!k.length) k.push("water, sunscreen, chairs"); return "Pack: " + k.join("; "); }
+        out.innerHTML = (days.length ? '<div class="gw-days">' + days.map(function (x) { var r = rate(x); return '<div class="gw-day ' + r[1] + '"><b>' + esc(x.name) + '</b><span class="gw-r">' + r[0] + '</span><img src="' + esc(x.icon) + '" alt="" loading="lazy"><small>' + esc(x.shortForecast) + '</small><small>' + esc(r[2].join(", ")) + '</small>' + (WK ? '<small class="gw-pack">' + esc(pack(x)) + '</small>' : '') + '</div>'; }).join("") + '</div>' : '<p class="sb-when">The weekend forecast isn\'t out yet. Check back closer to Saturday.</p>');
+        if (WK) j("https://api.weather.gov/alerts/active?point=" + lat + "," + lon).then(function (a) { var f = (a.features || []).map(function (x) { return x.properties; }); if (f.length) out.insertAdjacentHTML("afterbegin", f.slice(0, 3).map(function (x) { return '<p class="gw-alert">⚠️ <b>' + esc(x.event) + '</b> ' + esc(x.headline || "") + '</p>'; }).join("")); }).catch(function () {});
       }).catch(function () { out.innerHTML = '<p class="sb-when">Forecast unavailable right now. Try <a href="https://www.weather.gov/fwd/" target="_blank" rel="noopener">weather.gov</a>.</p>'; });
   }
   box.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; [].forEach.call(box.querySelectorAll("button"), function (x) { x.classList.toggle("on", x === b); }); try { localStorage.setItem("gw-city", b.getAttribute("data-city")); } catch (er) {} load(b); });
