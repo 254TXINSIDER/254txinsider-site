@@ -900,7 +900,7 @@ const GUIDES = {
       ["What drive-thru Christmas lights are near Killeen, Temple and Waco?", `Drive-thru displays: ${gList(HL.displays.filter(x => x.feats.includes("drive")).map(x => x.n + " in " + x.city))}.`],
       ["Are there free Christmas light displays in the 254?", `Free options include ${gList(HL.displays.filter(x => x.feats.includes("free")).map(x => x.n))}.`],
       ...(par.length ? [["When are the Christmas parades in Temple, Belton and Salado?", par.map(e => `${e.t}: ${hlDate(e.s)}${e.time ? ", " + e.time : ""}`).join(". ") + "."]] : []),
-      ["Is Nature in Lights at Fort Hood open to the public?", `Yes. Fort Hood MWR lists Nature in Lights at the Belton Lake Outdoor Recreation Area as open to all, not just military families. Check the MWR page for 2026 dates and the per-vehicle price.`]]; } },
+      ["Is Nature in Lights at Fort Hood open to the public?", `Yes. Fort Hood MWR lists Nature in Lights at the Belton Lake Outdoor Recreation Area as open to all, not just military families. ${(n => n && n.confirmed ? `2026 season: ${n.dates.replace(/^Open now: /, "").replace(/\.$/, "")}. Cost: ${n.cost}. You don't need a military ID or visitor pass for the event.` : "Check the MWR page for 2026 dates and the per-vehicle price.")(HL.displays.find(x => x.id === "nature-in-lights"))}`]]; } },
   "visit-waco": { url: "/visit-waco/", name: "Visit Waco", date: () => VW.updated, towns: () => ["Waco"],
     faq: () => { const g = id => VW.places.find(x => x.id === id) || {}; return [
       ["What are the best things to do in Waco, Texas?", `Top picks: ${gList(VW.places.map(x => x.n))}.`],
