@@ -2,7 +2,7 @@
 // diff: Easy | Moderate | Hard. surface: Paved | Natural | Mixed. shade: Lots | Some | Little.
 // feats: paved, natural, water, shade, dogs, kids, restrooms, bikes, fee, seasonal
 window.TRAILS = {
-  updated: "2026-11-21",
+  updated: "2026-11-22",
   trails: [
     { id: "cameron-park", n: "Cameron Park Trails", city: "Waco", where: "Cameron Park, near downtown Waco", len: "About 26 miles of trails", diff: "Hard", surface: "Natural", shade: "Lots",
       water: "Brazos and Bosque rivers", d: "Waco's big one: a National Recreation Trail system with about 26 miles of twisting multi-use trails through dense woods above the Brazos. Expect short, steep climbs, rocky singletrack and lots of intersections, so grab the city's trail map. Hikers share it with mountain bikers.",
@@ -38,7 +38,7 @@ window.TRAILS = {
       src: ["City of Harker Heights", "https://harkerheights.gov/index.php/danapeakparkfaqs"] },
     { id: "mother-neff", n: "Mother Neff State Park", city: "Moody", where: "Off TX-236, about 8 miles west of Moody", len: "About 4 miles of trails", diff: "Easy", surface: "Natural", shade: "Some",
       water: "Leon River", d: "Texas' first official state park. Hiking-only trails wind through prairie, woods and a rocky canyon with a small cave and a stone tower. The 0.6-mile Prairie Loop is an easy one for kids. A daily state park entry fee applies.",
-      feats: ["natural", "kids", "dogs", "fee", "restrooms"], status: "Texas Parks and Wildlife says the lower part of the park is closed for flood damage until further notice.",
+      feats: ["natural", "kids", "dogs", "fee", "restrooms"], status: "Texas Parks and Wildlife says the gate at the south end of the park is closed (alert dated Nov. 18, 2026). Flooding badly damaged the Leon River area, and there are no stairs down to the bank while the park restores it.",
       fee: ["$2 a day per person 13 and older; free with a Texas State Parks Pass", "https://tpwd.texas.gov/state-parks/mother-neff"], book: ["Reserve a day pass", "https://tpwd.texas.gov/state-parks/park-reservation-information/day-pass-faqs"], hours: "Day passes 8 a.m. to 4:30 p.m.", swim: "Swimming is not allowed in the park.", camp: ["Camping in the park", "https://tpwd.texas.gov/state-parks/mother-neff"],
       src: ["Texas Parks and Wildlife", "https://tpwd.texas.gov/state-parks/mother-neff/trails-info"] },
     { id: "pepper-creek", n: "Pepper Creek Hike & Bike Trail", city: "Temple", where: "West Temple, from FM 2305 to McLane Pkwy.", len: "About 5.6 miles", diff: "Easy", surface: "Paved", shade: "Some",
