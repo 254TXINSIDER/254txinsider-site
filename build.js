@@ -291,6 +291,7 @@ ${authorBox(a)}
 <h2 class="list-head">Texas wine by the <span>numbers</span></h2>
 <div class="cm-stats">${WN.texas.stats.map(s => `<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("")}</div>
 <p class="src">Source: <a href="${esc(WN.texas.src[1])}" target="_blank" rel="noopener">${esc(WN.texas.src[0])}</a></p>
+${guideExtras("sip-the-254")}
 ${SPORTS_SPONSOR("Central Texas", "Sip the 254 presented by: your winery or restaurant here").replace("sports. One sponsor", "wine coverage. One sponsor").replace("/sports/#sports-sponsor", "/advertise/")}
 </div></section>`;
 }
@@ -341,6 +342,7 @@ ${GOLF_SPONSOR}
 <h2 class="list-head" id="golf-news">Course <span>news</span></h2>
 ${news.length ? `<div class="rows">${news.slice(0, 8).map(s => row(s, false, "side")).join("")}</div>` : `<p class="sb-when">Course openings, renovations, clinics, junior camps and city golf decisions show up here.</p>`}
 <p class="hs-note">Course managers and pros: email your events, clinics, camps and course updates through our <a href="/contact/?topic=tip">news tip form</a>. We cover news, not sales. For promotions, see <a href="/advertise/">advertising</a>.</p>
+${guideExtras("golf")}
 ${GOLF_SPONSOR}
 </div></section>`;
 }
@@ -557,7 +559,8 @@ ${DC_SPONSOR}
 <div class="sb-filters"><input class="cm-search" id="cm-q" type="search" placeholder="Search: name, street, ZIP, infant, Head Start..."><div class="tdo-chips" id="cm-city"><button class="chip on" data-v="all">All towns</button>${cities.map(c => `<button class="chip" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div><div class="tdo-chips" id="cm-type"><button class="chip on" data-v="all">All centers</button><button class="chip" data-v="Licensed center">Daycare centers (${lc.length})</button><button class="chip" data-v="Head Start">Head Start (${hs.length})</button></div><div class="tdo-chips" id="cm-feat"><button class="chip on" data-v="all">Any need</button>${DC_FEATS.map(f => `<button class="chip" data-v="${f[0]}">${esc(f[1])}</button>`).join("")}</div></div>
 <p class="hs-note"><b>Ages show what each center is licensed to serve, not open spots.</b> Call to check openings and prices. We don't rate daycares, and no center paid to be listed. Tap <b>State inspection record</b> on any card to see its inspections and any violations, straight from the state.</p>
 <div class="cm-map-wrap"><div id="cm-map" class="cm-map" role="region" aria-label="Map of licensed child care centers"></div><p class="hs-note">Pins are placed from each center's address with the U.S. Census geocoder. Faded pins couldn't be matched and sit near the town center, so use the card's Map / Directions button. Map data © OpenStreetMap contributors.</p></div>
-<div class="cm-grid">${lc.map(dcCard).join("")}</div>
+<div class="cm-grid dc-collapsed" id="dc-grid">${lc.map((x, i) => i < 24 ? dcCard(x) : dcCard(x).replace('class="cm-card dc-card"', 'class="cm-card dc-card dc-more"')).join("")}</div>
+<p class="dc-showall" id="dc-showall"><button class="btn" type="button" id="dc-all">Show all ${lc.length} daycare centers</button> <span class="hs-note">or pick a town or need above</span></p>
 <h2 class="list-head" id="head-start">Head <span>Start</span></h2>
 <p>Head Start and Early Head Start are free federally funded programs for young children. Most spots go to families who meet income rules, and children in foster care or experiencing homelessness also qualify. Call the center or the program that runs it to apply.</p>
 <div class="cm-grid">${hs.map(dcCard).join("")}</div>
@@ -574,7 +577,7 @@ ${DC_SPONSOR}
 <p class="hs-note">See also: <a href="/parks/">Parks &amp; Splash Pads</a> and <a href="/youth-sports/">Youth Sports</a>.</p>
 ${guideExtras("child-care")}
 ${DC_SPONSOR}
-<script>document.querySelectorAll(".tr-find [data-pick]").forEach(a=>a.addEventListener("click",function(){var b=document.querySelector('#cm-city [data-v="'+this.dataset.pick+'"]');if(b)b.click();}));</script>
+<script>document.querySelectorAll(".tr-find [data-pick]").forEach(a=>a.addEventListener("click",function(){var b=document.querySelector('#cm-city [data-v="'+this.dataset.pick+'"]');if(b)b.click();}));(function(){var g=document.getElementById("dc-grid"),w=document.getElementById("dc-showall");function open(){if(g)g.classList.remove("dc-collapsed");if(w)w.hidden=true;}document.getElementById("dc-all").addEventListener("click",open);["cm-city","cm-type","cm-feat"].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener("click",open,true);});var q=document.getElementById("cm-q");if(q)q.addEventListener("input",open);if(location.hash&&location.hash.length>1)open();})();</script>
 </div></section>`;
 }
 const DC_PROMO = `<a class="bld-promo" href="/child-care/"><b>Child Care &amp; Daycare in the 254</b><span>Every licensed center with hours, ages, directions and state inspection records, plus help paying for care. →</span></a>`;
@@ -590,6 +593,18 @@ const GUIDES = {
       ["What are easy, family-friendly trails in Temple, Belton and Killeen?", `Easy picks include ${gList(TR.trails.filter(x => x.diff === "Easy" && ["Temple", "Belton", "Killeen"].includes(x.city)).map(x => x.n + " (" + x.city + ")"))}. Most are paved hike-and-bike trails.`],
       ["Do I need a pass to hike Mother Neff State Park?", `Mother Neff charges $2 a day per person 13 and older. A day pass bought ahead guarantees entry on busy days, and the Texas State Parks Pass covers entry at every state park for a year.`],
       ["When is it too hot to hike in Central Texas?", `In summer, hike early in the morning, carry more water than you think you need, and turn back if you feel dizzy or sick. Our trails page has a daily heat check from the National Weather Service forecast.`]] },
+  "golf": { url: "/golf/", name: "Golf in the 254", date: () => GF.updated || "2026-11-20", towns: () => GF.places.map(x => x.city),
+    faq: () => [
+      ["What golf courses are in Central Texas?", `Our guide covers ${GF.places.filter(x => x.type !== "Indoor golf").length} courses. ${gByCity(GF.places.filter(x => x.type !== "Indoor golf"))}.`],
+      ["Which public golf courses are in Temple, Killeen and Waco?", `Public options (city-owned or daily fee) include ${gList(GF.places.filter(x => ["Municipal", "Daily fee"].includes(x.type)).map(x => x.n + " (" + x.city + ")"))}.`],
+      ["Where can I play indoor golf or use a golf simulator in the 254?", `${gList(GF.places.filter(x => x.type === "Indoor golf").map(x => x.n + " in " + x.city))} have simulator bays.`],
+      ["Which golf clubs in the 254 are private?", `${gList(GF.places.filter(x => x.type === "Private").map(x => x.n + " (" + x.city + ")"))} are private clubs. Ask the club about guest play.`]] },
+  "sip-the-254": { url: "/sip-the-254/", name: "Sip the 254", date: () => WN.updated || "2026-11-20", towns: () => WN.places.map(x => x.city),
+    faq: () => { const w = WN.places.filter(x => ["Winery", "Tasting room", "Meadery"].includes(x.type)); return [
+      ["Where are the wineries near Temple, Salado and Waco?", `Our guide lists ${w.length} wineries, tasting rooms and meaderies. ${gByCity(w)}.`],
+      ["Where are the wine bars in Waco, Temple and Killeen?", `Wine bars in our guide: ${gList(WN.places.filter(x => x.type === "Wine bar").map(x => x.n + " (" + x.city + ")"))}.`],
+      ["Is there a meadery in Central Texas?", WN.places.some(x => x.type === "Meadery") ? `Yes: ${gList(WN.places.filter(x => x.type === "Meadery").map(x => x.n + " in " + x.city))}.` : `Not in our guide yet.`],
+      ["Which 254 restaurants are featured in Sip the 254?", `${gList(WN.places.filter(x => x.type === "Restaurant").map(x => x.n + " (" + x.city + ")"))}.`]]; } },
   "youth-sports": { url: "/youth-sports/", name: "Youth Sports in the 254", date: () => "2026-11-20", towns: () => YS.places.map(x => x.city),
     faq: () => { const p = YS.places.find(x => /parsons/i.test(x.n)); return [
       ["Where are the youth sports complexes in Central Texas?", `Our guide lists ${YS.places.length} complexes. ${gByCity(YS.places)}.`],
@@ -922,6 +937,18 @@ const ld = o => '<script type="application/ld+json">' + JSON.stringify(o).replac
 const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.tiktok, SOC.instagram], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/standards/", correctionsPolicy: SITE + "/standards/#corrections", email: "jake.ruse@254txinsider.com" };
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">';
 
+// ---------- Search titles and descriptions: keep within what Google shows ----------
+const TITLE_SHORT = { "/youth-sports/": "Youth Sports Fields & Leagues in Temple, Waco, Killeen", "/parks/": "Splash Pads & Playgrounds in Temple, Belton, Killeen, Waco", "/child-care/": "Daycare & Child Care Centers in Temple, Killeen, Waco", "/stay/": "Hotels in Waco, Temple, Killeen & Salado: Where to Stay", "/trails/": "Best Hiking Trails in Temple, Belton, Waco & Killeen", "/golf/": "Golf Courses in Temple, Killeen, Salado & Waco", "/sip-the-254/": "Wineries & Wine Bars in Salado, Temple & Waco", "/traffic/": "Central Texas Traffic: I-35, I-14 & Road Closures", "/weather/": "Central Texas Weather: Temple, Killeen & Waco Radar", "/build/": "Commercial Contractors & Projects in Central Texas", "/scoreboard/": "254 Scoreboard: Central Texas High School Scores", "/home-pros/": "254 Home Pros: Local AC, Plumbing & Roofing Pros", "/advertise/": "Advertise on 254 Texas Insider: Local Sponsorships", "/about/": "About 254 Texas Insider: Central Texas Local News" };
+const SUFFIX = " | " + NAME;
+const seoTitle = o => { if (TITLE_SHORT[o.url]) return TITLE_SHORT[o.url] + (TITLE_SHORT[o.url].length + SUFFIX.length <= 65 ? SUFFIX : "");
+  let t = String(o.title); if (t.length > 65 && t.endsWith(SUFFIX)) t = t.slice(0, -SUFFIX.length);
+  if (t.length > 65) t = t.replace("Scores, Schedule and Playoffs", "Scores & Schedule");
+  if (t.length > 65 && String(o.url).startsWith("/coming-to-the-254/")) { t = t.replace(", TX: ", ": ").replace(/(: [^,]+),.*$/, "$1"); if (t.length > 65) t = t.split(": ")[0]; if (t.length > 65) t = t.slice(0, t.lastIndexOf(" ", 64)); }
+  return t; };
+const seoDesc = o => { let d = String(o.desc || "").replace(/\s+/g, " ").trim();
+  if (d.length > 160) { const cut = d.slice(0, 160), end = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? ")); d = end > 90 ? cut.slice(0, end + 1) : cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:\s]+$/, "") + "…"; }
+  else if (d.length < 70 && o.type === "article") d = (d ? d.replace(/\.?$/, ". ") : "") + "Central Texas local news from " + NAME + ".";
+  return d; };
 function head(o) {
   const img = o.image ? abs(o.image) : SITE + "/assets/logo.webp";
   return `<!DOCTYPE html>
@@ -929,8 +956,8 @@ function head(o) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(o.title)}</title>
-<meta name="description" content="${esc(o.desc)}">
+<title>${esc(seoTitle(o))}</title>
+<meta name="description" content="${esc(seoDesc(o))}">
 <link rel="canonical" href="${abs(o.url)}">
 <meta name="robots" content="${o.noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}">
 <meta name="theme-color" content="#0f2340">
@@ -1113,7 +1140,7 @@ ALL.forEach(s => {
   const src = (s.sources || []).map(x => `<li><a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a>${x[2] === "record" ? ' <span class="src-tag">Public record</span>' : ""}</li>`).join("");
   const rel = related(s), nx = nextUp(s);
   pages["news/" + s.id + "/index.html"] = head({
-    title: `${s.title} | ${NAME}`, ogTitle: s.title, desc: s.dek, url: s.url, type: "article", image: s.art, preload: s.art,
+    title: `${s.seo || s.title} | ${NAME}`, ogTitle: s.title, desc: s.dek, url: s.url, type: "article", image: s.art, preload: s.art,
     extraMeta: `<meta property="article:published_time" content="${iso(s.date)}">\n<meta property="article:modified_time" content="${iso(s.date)}">\n<meta property="article:section" content="${esc(sec.name)}">\n${tags.map(t => `<meta property="article:tag" content="${esc(t)}">`).join("\n")}\n`,
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "NewsArticle", "@id": abs(s.url) + "#article", mainEntityOfPage: abs(s.url), headline: s.title.slice(0, 110), alternativeHeadline: s.dek, description: s.dek,
       image: s.art ? [abs(s.art)] : [SITE + "/assets/logo.webp"], datePublished: iso(s.date), dateModified: iso(s.date), articleSection: sec.name, keywords: tags.join(", "), wordCount: words, inLanguage: "en-US",
@@ -1172,8 +1199,8 @@ simple("404.html", "/404.html", `Page not found | ${NAME}`, "Page not found.",
 
 // ---------- feeds, sitemaps, robots, redirects ----------
 simple("advertise/index.html", "/advertise/", `Advertise With Us: Sponsorships in Temple, Killeen, Waco and Belton | ${NAME}`, `Sponsor Central Texas news, the Coming to the 254 tracker, the 254 Scoreboard, school and city pages, weather and traffic. One sponsor per spot, always labeled.`, advertisePage(), false, null, [crumbsLd([["Home", "/"], ["Advertise", "/advertise/"]])]);
-simple("sip-the-254/index.html", "/sip-the-254/", `Sip the 254: Wineries, Tasting Rooms and Wine Bars in Salado, Temple, Waco and Lampasas | ${NAME}`, "Jake Ruse's guide to Central Texas wine: wineries, tasting rooms, mead and wine bars in Salado, Temple, Waco, Lampasas and Killeen, plus the fine-wine investment market and Texas wine by the numbers.", winePage(), false, "things-to-do", [crumbsLd([["Home", "/"], ["Things to Do", "/things-to-do/"], ["Sip the 254", "/sip-the-254/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Sip the 254: Central Texas wineries and wine bars", author: { "@type": "Person", name: "Jake Ruse", url: SITE + "/authors/jake-ruse/" }, itemListElement: WN.places.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": x.type === "Wine bar" ? "BarOrPub" : x.type === "Restaurant" ? "Restaurant" : "Winery", name: x.n, address: { "@type": "PostalAddress", streetAddress: x.where, addressLocality: x.city, addressRegion: "TX" } } })) }]);
-simple("golf/index.html", "/golf/", `Golf in the 254: Courses, Tee Times and Tournaments in Temple, Killeen, Salado and Waco | ${NAME}`, "Every golf course in Central Texas, from Sammons and Mill Creek to Stonetree, Cottonwood Creek and Hancock Park, with a golf-weather check, tournament calendar, and tips for beginners and better players.", golfPage(), false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["Golf in the 254", "/golf/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Golf courses in Central Texas", itemListElement: GF.places.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": x.type === "Indoor golf" ? "SportsActivityLocation" : "GolfCourse", name: x.n, address: { "@type": "PostalAddress", streetAddress: x.where, addressLocality: x.city === "Fort Cavazos" ? "Fort Cavazos" : x.city, addressRegion: "TX" } } })) }]);
+simple("sip-the-254/index.html", "/sip-the-254/", `Sip the 254: Wineries, Tasting Rooms and Wine Bars in Salado, Temple, Waco and Lampasas | ${NAME}`, "Jake Ruse's guide to Central Texas wine: wineries, tasting rooms, mead and wine bars in Salado, Temple, Waco, Lampasas and Killeen, plus the fine-wine investment market and Texas wine by the numbers.", winePage(), false, "things-to-do", [crumbsLd([["Home", "/"], ["Things to Do", "/things-to-do/"], ["Sip the 254", "/sip-the-254/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Sip the 254: Central Texas wineries and wine bars", author: { "@type": "Person", name: "Jake Ruse", url: SITE + "/authors/jake-ruse/" }, itemListElement: WN.places.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": x.type === "Wine bar" ? "BarOrPub" : x.type === "Restaurant" ? "Restaurant" : "Winery", name: x.n, address: { "@type": "PostalAddress", streetAddress: x.where, addressLocality: x.city, addressRegion: "TX" } } })) }, ...guideLd("sip-the-254")]);
+simple("golf/index.html", "/golf/", `Golf in the 254: Courses, Tee Times and Tournaments in Temple, Killeen, Salado and Waco | ${NAME}`, "Every golf course in Central Texas, from Sammons and Mill Creek to Stonetree, Cottonwood Creek and Hancock Park, with a golf-weather check, tournament calendar, and tips for beginners and better players.", golfPage(), false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["Golf in the 254", "/golf/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Golf courses in Central Texas", itemListElement: GF.places.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": x.type === "Indoor golf" ? "SportsActivityLocation" : "GolfCourse", name: x.n, address: { "@type": "PostalAddress", streetAddress: x.where, addressLocality: x.city === "Fort Cavazos" ? "Fort Cavazos" : x.city, addressRegion: "TX" } } })) }, ...guideLd("golf")]);
 simple("trails/index.html", "/trails/", `Best Hiking Trails in the 254: Temple, Belton, Waco, Killeen and Harker Heights | ${NAME}`, "The best hiking trails in Central Texas, from Cameron Park and Chalk Ridge Falls to Miller Springs, Dana Peak and Mother Neff State Park, with difficulty, shade, water and dog-friendly scorecards, closures and a heat check.", trailsPage(), false, "things-to-do", [crumbsLd([["Home", "/"], ["Things to Do", "/things-to-do/"], ["Trails & Hiking", "/trails/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Hiking trails in Central Texas", itemListElement: TR.trails.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "Place", name: x.n, url: SITE + "/trails/#" + x.id, address: { "@type": "PostalAddress", addressLocality: x.city, addressRegion: "TX" } } })) }, ...guideLd("trails")]);
 simple("youth-sports/index.html", "/youth-sports/", `Youth Sports Complexes in the 254: Softball, Baseball, Soccer Fields and Leagues in Temple, Waco, Killeen | ${NAME}`, "Where to play youth sports in Central Texas: Parsons Sports Ranch, Crossroads Park, Riverbend Ballpark and more, with league sign-ups, admission rules and a weekend game-day forecast.", youthSportsPage(), false, "sports", [crumbsLd([["Home", "/"], ["Sports", "/sports/"], ["Youth Sports", "/youth-sports/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Youth sports complexes in Central Texas", itemListElement: YS.places.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "SportsActivityLocation", name: x.n, url: SITE + "/youth-sports/#" + x.id, address: { "@type": "PostalAddress", streetAddress: x.where.split(",")[0], addressLocality: x.city, addressRegion: "TX" } } })) }, ...guideLd("youth-sports")]);
 simple("parks/index.html", "/parks/", `Splash Pads and Playgrounds in the 254: Temple, Belton, Killeen, Waco Parks for Kids | ${NAME}`, "Free splash pads and the best kids' playgrounds in Central Texas, with splash pad seasons and hours, covered and toddler-area details, accessible playgrounds and pavilion rentals.", parksPage(), false, "things-to-do", [crumbsLd([["Home", "/"], ["Things to Do", "/things-to-do/"], ["Parks & Splash Pads", "/parks/"]]), { "@context": "https://schema.org", "@type": "ItemList", name: "Splash pads and playgrounds in Central Texas", itemListElement: PK.parks.map((x, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "Park", name: x.n, url: SITE + "/parks/#" + x.id, address: { "@type": "PostalAddress", streetAddress: x.where.split(",")[0], addressLocality: x.city, addressRegion: "TX" } } })) }, ...guideLd("parks")]);
@@ -1284,6 +1311,29 @@ pages["_redirects"] = [
 ].join("\n") + "\n";
 
 pages["google87e94f914aca1841.html"] = "google-site-verification: google87e94f914aca1841.html";
+
+// ---------- SEO / AEO / GEO check: runs on every build ----------
+{ const warn = [], dec = t => t.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  const smUrls = new Set([...pages["sitemap.xml"].matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(SITE, "")));
+  const add = [];
+  for (const [f, h] of Object.entries(pages)) {
+    if (!f.endsWith(".html") || f.startsWith("google") || f === "404.html") continue;
+    if (/name="robots" content="noindex/.test(h)) continue;
+    const url = "/" + f.replace(/index\.html$/, ""), art = /og:type" content="article"/.test(h);
+    const t = dec((h.match(/<title>([^<]*)<\/title>/) || [])[1] || ""), d = dec((h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || "");
+    if (!t) warn.push(url + ": no title"); else if (t.length > 65 && art) warn.push(`${url}: story title ${t.length} chars (add a short seo: field, 65 max)`); else if (t.length > 65) warn.push(`${url}: title ${t.length} chars (add a TITLE_SHORT entry)`);
+    if (d.length < 70 || d.length > 160) warn.push(`${url}: description ${d.length} chars`);
+    if (!h.includes('rel="canonical"')) warn.push(url + ": no canonical");
+    const h1 = (h.match(/<h1[\s>]/g) || []).length; if (h1 !== 1) warn.push(`${url}: ${h1} h1 tags`);
+    for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch (e) { warn.push(url + ": broken JSON-LD"); } }
+    if (/class="cm-grid/.test(h) && !/"FAQPage"/.test(h)) warn.push(url + ": guide page without FAQs (add it to GUIDES)");
+    if (!smUrls.has(url)) add.push(url);
+  }
+  if (add.length) { pages["sitemap.xml"] = pages["sitemap.xml"].replace("</urlset>", add.map(u => `<url><loc>${SITE}${u}</loc><lastmod>${latest}</lastmod></url>`).join("\n") + "\n</urlset>"); console.log("SEO check: added to sitemap:", add.join(", ")); }
+  const llms = pages["llms.txt"] || "";
+  for (const g of Object.values(GUIDES)) if (!llms.includes(SITE + g.url)) warn.push(g.url + ": missing from llms.txt");
+  console.log(`SEO check: ${warn.length ? warn.length + " to fix" : "all pages pass"}`); warn.forEach(w => console.log("  - " + w));
+}
 
 // ---------- write ----------
 fs.rmSync(OUT, { recursive: true, force: true });
