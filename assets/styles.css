@@ -751,3 +751,13 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .dc-collapsed .dc-more{display:none!important}
 .dc-showall{text-align:center;margin:18px 0}
 .dc-card{content-visibility:auto;contain-intrinsic-size:auto 330px}
+/* v33 holiday, visit waco, fort hood, right now */
+.hl-hero{background:linear-gradient(120deg,#8b1e1e,#1f5d3a)}
+.vw-hero{background:linear-gradient(120deg,#1f5d3a,#b8860b)}
+.fh-hero{background:linear-gradient(120deg,#4b5320,#13213c)}
+.rn-hero{background:linear-gradient(120deg,#b23b2e,#13213c)}
+.hl-disp{background:#1f5d3a!important}.hl-parade{background:#8b1e1e!important}.hl-santa{background:#b23b2e!important}.hl-holiday-market{background:#b8860b!important}.hl-show{background:#6b5b95!important}.hl-festival-lights{background:#1b7f8c!important}
+.hl-sub{margin:26px 0 10px;font-size:20px}
+.vw-steps{margin:6px 0 0 18px;padding:0}.vw-steps li{margin:4px 0}
+.rn-links{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 18px}.rn-links a{display:inline-block;padding:8px 12px;border:1px solid #13213c;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px}
+.rn-alerts{margin:8px 0}.rn-alert{border-left:5px solid #b8860b;background:#fff8e6;padding:10px 12px;margin:8px 0;border-radius:6px}.rn-alert p{margin:4px 0 0}.rn-alert.rn-severe,.rn-alert.rn-extreme{border-color:#b23b2e;background:#fdecea}.rn-ok{background:#eaf6ee;border-left:5px solid #2e7d32;padding:10px 12px;border-radius:6px}

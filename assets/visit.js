@@ -1,0 +1,52 @@
+// Waco visitor guide. Hours and prices only from each attraction's official site (or the city's tourism office when noted).
+// Check each source when updating; hours change seasonally and around holidays.
+window.VISIT = {
+  updated: "2026-11-22",
+  places: [
+    { id: "magnolia-silos", n: "Magnolia Market at the Silos", kind: "Shopping & food", where: "601 Webster Ave.",
+      hours: "Mon.-Sat. 9 a.m.-6 p.m.; hours vary around holidays", cost: "Free to visit", feats: ["free", "kids", "food"],
+      d: "Chip and Joanna Gaines' shops, bakery, coffee and food trucks around the old cotton silos downtown. Come near opening or closing for smaller crowds.",
+      tip: "No dedicated parking lot: use the free city lots and garage on Franklin Ave. and walk a few blocks.",
+      src: ["Magnolia: Shops at the Silos", "https://magnolia.com/visit/shops/"] },
+    { id: "waco-mammoth", n: "Waco Mammoth National Monument", kind: "History & science", where: "6220 Steinbeck Bend Dr.",
+      hours: "Daily 9 a.m.-5 p.m.; closed Thanksgiving, Christmas and New Year's Day", cost: "Grounds free; Dig Shelter tour $5 adults, $3 kids 4-12, under 4 free", feats: ["kids", "outdoors"],
+      d: "A National Park site protecting fossils of a nursery herd of Columbian mammoths. The bones are seen on a guided tour of the Dig Shelter.",
+      tip: "National Park passes don't cover the tour fee. Pets aren't allowed on the tour.",
+      src: ["National Park Service: Fees & Passes", "https://home.nps.gov/waco/planyourvisit/fees.htm"] },
+    { id: "dr-pepper-museum", n: "Dr Pepper Museum", kind: "History & science", where: "300 S. 5th St.",
+      hours: "Daily 10 a.m.-5:30 p.m. (last ticket 4:30); closed Easter, Thanksgiving, Christmas Eve, Christmas and New Year's Day", cost: "$12 ages 5+, 4 and under free", feats: ["kids", "food", "rainy"],
+      d: "Three floors of soda history in the 1906 building where Dr Pepper was once bottled, plus an old-fashioned soda fountain. Admission includes a free drink.",
+      tip: "Tickets are sold at the door only. Plan one to two hours.",
+      src: ["Dr Pepper Museum: Plan your visit", "https://drpeppermuseum.com/plan-your-visit/"] },
+    { id: "texas-ranger-museum", n: "Texas Ranger Hall of Fame and Museum", kind: "History & science", where: "100 Texas Ranger Trail",
+      hours: "Daily 9 a.m.-5 p.m.; see the museum's site for holiday closures", cost: "Paid admission; see the museum's site", feats: ["rainy"],
+      d: "The official museum of the Texas Rangers, on the Brazos next to Baylor, with firearms, badges and the Hall of Fame.",
+      tip: "Free on-site parking, except on Baylor football game days.",
+      src: ["Texas Ranger Hall of Fame and Museum", "https://www.texasranger.org/Visit"] },
+    { id: "cameron-park-zoo", n: "Cameron Park Zoo", kind: "Outdoors & family", where: "1701 N. 4th St.",
+      hours: "Mon.-Sat. 9 a.m.-5 p.m., Sun. 11 a.m.-5 p.m.; last entry 4:30; closed Thanksgiving, Christmas and New Year's Day", cost: "$16 adults, $12 kids 3-12, $14 seniors 60+, 2 and under free", feats: ["kids", "outdoors"],
+      d: "A natural-habitat zoo along the Brazos, an easy two to three hours with kids.",
+      tip: "Parking is free. McLennan County residents can ask about the Wednesday resident rate.",
+      src: ["Cameron Park Zoo", "https://cameronparkzoo.com/?p=10"] },
+    { id: "mayborn-museum", n: "Mayborn Museum at Baylor", kind: "History & science", where: "1300 S. University Parks Dr.",
+      hours: "Mon.-Sat. 10 a.m.-5 p.m., Sun. 1-5 p.m.", cost: "$12 adults, $10 kids 2-15; free for active-duty military", feats: ["kids", "rainy"],
+      d: "Baylor's natural science and history museum with hands-on Discovery Rooms for kids and a historic village by the river.",
+      tip: "Free parking out front; overflow at the Ferrell Center.",
+      src: ["Mayborn Museum: Plan your visit", "https://mayborn.web.baylor.edu/visit"] },
+    { id: "cameron-park", n: "Cameron Park trails and overlooks", kind: "Outdoors & family", where: "Cameron Park, north of downtown",
+      hours: "City park hours", cost: "Free", feats: ["free", "outdoors"],
+      d: "Hundreds of wooded acres along the Brazos and Bosque rivers with cliffs, overlooks and miles of hiking and mountain-bike trails.",
+      tip: "See our Trails page for routes and difficulty.",
+      src: ["254 Texas Insider: Trails & Hiking", "/trails/"] },
+    { id: "suspension-bridge", n: "Waco Suspension Bridge and Riverwalk", kind: "Outdoors & family", where: "Indian Spring Park, University Parks Dr.",
+      hours: "Open daily", cost: "Free", feats: ["free", "outdoors", "kids"],
+      d: "The 1870 pedestrian bridge over the Brazos and the riverwalk on both banks, a short walk from downtown and Baylor.",
+      tip: "Pairs well with the Texas Ranger Museum and a walk to the Silos.",
+      src: ["254 Texas Insider: Trails & Hiking", "/trails/"] }
+  ],
+  itineraries: [
+    { n: "One day in Waco", steps: ["Morning: the Silos at opening, then coffee and a bakery stop on the grounds.", "Midday: lunch from the Silos food trucks or downtown, then the Dr Pepper Museum.", "Afternoon: walk the Suspension Bridge and Riverwalk, or tour Waco Mammoth.", "Evening: dinner downtown and a nightcap at a Waco wine bar from Sip the 254."] },
+    { n: "A weekend with kids", steps: ["Day 1: Cameron Park Zoo in the morning, a splash pad or playground after lunch (see Parks), the Mayborn Museum's Discovery Rooms if it's hot or rainy.", "Day 2: the Silos lawn early, Waco Mammoth tour, then the Dr Pepper Museum soda fountain."] },
+    { n: "Free things to do", steps: ["Walk the Silos grounds.", "Waco Suspension Bridge and Riverwalk.", "Cameron Park overlooks and trails.", "Waco Mammoth's grounds and trails (the Dig Shelter tour costs extra).", "City splash pads in season (see Parks)."] }
+  ]
+};
