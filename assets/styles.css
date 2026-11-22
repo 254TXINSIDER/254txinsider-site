@@ -740,3 +740,9 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .ld-tier:hover{background:#13213c}.ld-tier:hover b,.ld-tier:hover span{color:#fff}
 .ld-upscale-boutique{background:#6b5b95!important}.ld-mid-range{background:#1b7f8c!important}.ld-budget-friendly{background:#2e7d32!important}
 @media(max-width:640px){.ld-tiers{grid-template-columns:1fr}}
+/* v31 child care */
+.dc-hero{background:linear-gradient(120deg,#b8541c,#6b5b95)}
+.dc-lc{background:#6b5b95!important}.dc-hs{background:#b8541c!important}
+.dc-act .btn-ghost{background:#fff;color:#13213c;border:1px solid #13213c}
+.dc-act .btn-ghost:hover{background:#13213c;color:#fff}
+.tr-find .chip small{opacity:.7;font-size:11px;margin-left:3px}
