@@ -746,3 +746,4 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .dc-act .btn-ghost{background:#fff;color:#13213c;border:1px solid #13213c}
 .dc-act .btn-ghost:hover{background:#13213c;color:#fff}
 .tr-find .chip small{opacity:.7;font-size:11px;margin-left:3px}
+/* end v31 */
