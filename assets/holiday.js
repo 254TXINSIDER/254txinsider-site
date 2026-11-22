@@ -5,11 +5,11 @@
 window.HOLIDAY = {
   updated: "2026-11-22",
   displays: [
-    { id: "nature-in-lights", n: "Nature in Lights at BLORA", kind: "Drive-thru", city: "Fort Hood", where: "Belton Lake Outdoor Recreation Area, Cottage Rd., Fort Hood",
-      confirmed: false, last: "2025: Nov. 27-30, Dec. 5-7 and nightly Dec. 12-31, 5:30-11 p.m., including Thanksgiving, Christmas Eve and Christmas. $20 per car, minivan or pickup.",
-      d: "The 254's biggest drive-thru light show winds through the lakeside recreation area on Fort Hood, with Santa's Village, train and pony rides on select nights. Open to the public, not just military families.",
-      cost: "Per vehicle", feats: ["drive", "kids", "santa"],
-      src: ["Fort Hood MWR: Nature in Lights", "https://hood.armymwr.com/view-event/nature-lights/7048641/104558"] },
+    { id: "nature-in-lights", n: "Nature in Lights at BLORA", kind: "Drive-thru", city: "Fort Hood", where: "Belton Lake Outdoor Recreation Area (BLORA), Fort Hood, near Belton",
+      confirmed: true, dates: "Open now: nightly Nov. 20, 2026-Jan. 3, 2027, 5:30-11 p.m.",
+      d: "The 254's biggest drive-thru light show, a 5-mile route along Belton Lake. Open to everyone: you don't need a military ID or visitor pass for the event. Santa's Village (Live Oak Pavilion) runs Nov. 26-29, Dec. 4-6 and Dec. 11-24. Santa's Depot and pony rides near the marina run Nov. 26-29, Dec. 4-6, Dec. 11-13, Dec. 18-27 and Dec. 31.",
+      cost: "$25 per car, minivan or pickup ($45 limos, 15-passenger vans and RVs)", feats: ["drive", "kids", "santa"],
+      src: ["Fort Hood Media Center: Nature in Lights 2026", "https://forthoodmediacenter.com/fort-hood-nature-in-lights-returns-nov-20-with-holiday-displays-family-activities/"] },
     { id: "wild-lights", n: "Wild Lights at Cameron Park Zoo", kind: "Walk-thru", city: "Waco", where: "Cameron Park Zoo, 1701 N. 4th St., Waco",
       confirmed: true, dates: "Nov. 27-Dec. 30, 2026, select evenings",
       d: "The zoo's paths light up after dark for a walk-through display. The animals are in for the night, but the lights are the show.",
