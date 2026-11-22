@@ -3,6 +3,24 @@ window.FAITH = {
 "updated": "2026-11-22",
 "churches": [
 {
+"id": "lds-temple-1st-ward",
+"n": "The Church of Jesus Christ of Latter-day Saints, Temple 1st Ward",
+"denom": "Latter-day Saints",
+"city": "Temple",
+"addr": "3909 Ermine Trail, Temple, TX 76504",
+"times": [
+"Sunday service 11:30 a.m."
+],
+"feats": [],
+"note": "Other wards meet in the same building at different times; check the meetinghouse locator.",
+"url": "https://local.churchofjesuschrist.org/en/units/us/tx/temple-1st-ward",
+"sub": "",
+"kids": "",
+"school": "",
+"langs": "",
+"srcname": ""
+},
+{
 "id": "first-baptist-temple",
 "n": "First Baptist Church Temple",
 "denom": "Baptist",
@@ -16,6 +34,88 @@ window.FAITH = {
 "kids": "Children's and preschool ministries; ask about care during worship.",
 "url": "https://www.firsttemple.org/",
 "sub": "",
+"school": "",
+"note": "",
+"langs": "",
+"srcname": ""
+},
+{
+"id": "immanuel-baptist-temple",
+"n": "Immanuel Baptist Church",
+"denom": "Baptist",
+"city": "Temple",
+"addr": "1401 W. Central Ave., Temple, TX 76504",
+"times": [
+"Bible study 9:15 a.m.",
+"Worship 10:30 a.m."
+],
+"feats": [
+"preschool"
+],
+"school": "Child Development Center on site.",
+"url": "https://www.ibctemple.org/",
+"sub": "",
+"kids": "",
+"note": "",
+"langs": "",
+"srcname": ""
+},
+{
+"id": "our-lady-of-guadalupe-temple",
+"n": "Our Lady of Guadalupe Catholic Church",
+"denom": "Catholic",
+"city": "Temple",
+"addr": "707 S. 6th St., Temple, TX 76504",
+"times": [
+"Saturday vigil Mass 5:00 p.m. (Español)",
+"Sunday Mass 8:00 a.m. (Español), 10:00 a.m. (English) and 12:00 p.m. (Español)"
+],
+"feats": [
+"spanish"
+],
+"url": "https://www.olgtemple.org/",
+"sub": "",
+"kids": "",
+"school": "",
+"note": "",
+"langs": "",
+"srcname": ""
+},
+{
+"id": "st-francis-episcopal-temple",
+"n": "St. Francis Episcopal Church",
+"denom": "Episcopal",
+"city": "Temple",
+"addr": "5001 Hickory Rd., Temple, TX 76502",
+"times": [
+"Sunday Holy Eucharist 8:30 and 10:30 a.m."
+],
+"feats": [
+"nursery",
+"preschool"
+],
+"kids": "Nursery ministry.",
+"school": "Preschool program.",
+"url": "https://www.episcopalassetmap.org/node/5738",
+"srcname": "Episcopal Church Asset Map",
+"sub": "",
+"note": "",
+"langs": ""
+},
+{
+"id": "st-luke-catholic-temple",
+"n": "St. Luke Catholic Church",
+"denom": "Catholic",
+"city": "Temple",
+"addr": "2807 Oakdale Dr., Temple, TX 76502",
+"times": [
+"Saturday vigil Mass 5:00 p.m.",
+"Sunday Mass 8:30 a.m., 11:00 a.m. (livestreamed) and 5:00 p.m."
+],
+"feats": [],
+"url": "https://www.slparish.com/mass-times",
+"sub": "",
+"kids": "",
 "school": "",
 "note": "",
 "langs": "",
@@ -43,6 +143,42 @@ window.FAITH = {
 "srcname": ""
 },
 {
+"id": "taylors-valley-baptist-temple",
+"n": "Taylor's Valley Baptist Church",
+"denom": "Baptist",
+"city": "Temple",
+"addr": "2497 W. Hwy 93, Temple, TX 76502",
+"times": [
+"Worship 9:30 and 11:00 a.m. (also online)"
+],
+"feats": [],
+"url": "https://taylorsvalley.church/",
+"sub": "",
+"kids": "",
+"school": "",
+"note": "",
+"langs": "",
+"srcname": ""
+},
+{
+"id": "temple-bible-church",
+"n": "Temple Bible Church",
+"denom": "Other",
+"sub": "Bible church",
+"city": "Temple",
+"addr": "3205 Oakview Dr., Temple, TX 76502",
+"times": [
+"Sunday 9:30 and 11:00 a.m."
+],
+"feats": [],
+"kids": "LaunchPad Kids ministry; ask about care during service.",
+"url": "https://templebiblechurch.org/",
+"school": "",
+"note": "",
+"langs": "",
+"srcname": ""
+},
+{
 "id": "temple-methodist",
 "n": "Temple Methodist Church",
 "denom": "Methodist",
@@ -59,24 +195,6 @@ window.FAITH = {
 "kids": "Children's church during the 11:00 service.",
 "school": "Weekday preschool on site (see the church's site for details).",
 "url": "https://www.templemethodist.org/",
-"note": "",
-"langs": "",
-"srcname": ""
-},
-{
-"id": "taylors-valley-baptist-temple",
-"n": "Taylor's Valley Baptist Church",
-"denom": "Baptist",
-"city": "Temple",
-"addr": "2497 W. Hwy 93, Temple, TX 76502",
-"times": [
-"Worship 9:30 and 11:00 a.m. (also online)"
-],
-"feats": [],
-"url": "https://taylorsvalley.church/",
-"sub": "",
-"kids": "",
-"school": "",
 "note": "",
 "langs": "",
 "srcname": ""
@@ -102,37 +220,39 @@ window.FAITH = {
 "srcname": ""
 },
 {
-"id": "lds-temple-1st-ward",
-"n": "The Church of Jesus Christ of Latter-day Saints, Temple 1st Ward",
-"denom": "Latter-day Saints",
+"id": "vista-community-church-temple",
+"n": "Vista Community Church",
+"denom": "Non-denominational",
 "city": "Temple",
-"addr": "3909 Ermine Trail, Temple, TX 76504",
+"addr": "7051 Stonehollow Dr., Temple, TX 76502",
 "times": [
-"Sunday service 11:30 a.m."
+"Sunday 8:45 a.m., 10:15 a.m. (also online) and 11:30 a.m."
 ],
 "feats": [],
-"note": "Other wards meet in the same building at different times; check the meetinghouse locator.",
-"url": "https://local.churchofjesuschrist.org/en/units/us/tx/temple-1st-ward",
+"kids": "Vista Kids for infants through 5th grade; pre-register online. Middle school meets Sundays at 8:45.",
+"url": "https://thevista.tv/",
 "sub": "",
-"kids": "",
 "school": "",
+"note": "",
 "langs": "",
 "srcname": ""
 },
 {
-"id": "first-baptist-belton",
-"n": "First Baptist Church Belton",
-"denom": "Baptist",
+"id": "belton-first-united-methodist",
+"n": "Belton First United Methodist Church",
+"denom": "Methodist",
+"sub": "United Methodist",
 "city": "Belton",
-"addr": "506 N. Main St., Belton, TX 76513",
+"addr": "205 E. 3rd Ave., Belton, TX 76513",
 "times": [
-"Worship 9:00 and 10:30 a.m."
+"Worship 8:30 and 10:45 a.m. (in person and online)"
 ],
-"feats": [],
-"url": "https://www.firstbelton.org/",
-"sub": "",
+"feats": [
+"preschool"
+],
+"school": "Penelope Street Early Education Center.",
+"url": "https://www.fumcbelton.org/",
 "kids": "",
-"school": "",
 "note": "",
 "langs": "",
 "srcname": ""
@@ -145,15 +265,35 @@ window.FAITH = {
 "addr": "210 E. 24th Ave., Belton, TX 76513",
 "times": [
 "Saturday vigil Mass 5:00 p.m.",
-"Sunday Mass 10:30 a.m.",
-"More Sunday Masses, including Spanish: see the parish"
+"Sunday Mass 8:00 a.m. (Español), 10:30 a.m. and 5:00 p.m."
 ],
-"feats": [],
-"url": "https://ctkbelton.org/",
+"feats": [
+"spanish"
+],
+"url": "https://ctkbelton.org/mass-times",
 "sub": "",
 "kids": "",
 "school": "",
 "note": "",
+"langs": "",
+"srcname": ""
+},
+{
+"id": "first-baptist-belton",
+"n": "First Baptist Church Belton",
+"denom": "Baptist",
+"city": "Belton",
+"addr": "506 N. Main St., Belton, TX 76513",
+"times": [
+"Worship 9:00 and 10:30 a.m.",
+"Connect Groups 8:00, 9:00 and 10:45 a.m."
+],
+"feats": [],
+"note": "A new campus is being built at 1308 W. MLK Jr. Ave. in Belton.",
+"url": "https://www.firstbelton.org/",
+"sub": "",
+"kids": "",
+"school": "",
 "langs": "",
 "srcname": ""
 },
@@ -195,6 +335,28 @@ window.FAITH = {
 "sub": "",
 "note": "",
 "langs": ""
+},
+{
+"id": "st-joseph-catholic-killeen",
+"n": "St. Joseph Catholic Church",
+"denom": "Catholic",
+"city": "Killeen",
+"addr": "2903 E. Rancier Ave., Killeen, TX 76543",
+"times": [
+"Saturday vigil Mass 5:00 p.m. and 7:00 p.m. (Español)",
+"Sunday Mass 7:00 a.m., 8:30 a.m. (Español), 10:30 a.m. and 12:30 p.m."
+],
+"feats": [
+"spanish",
+"school"
+],
+"school": "Saint Joseph Catholic Academy, classical Catholic school.",
+"url": "https://stjosephkilleen.org/",
+"sub": "",
+"kids": "",
+"note": "",
+"langs": "",
+"srcname": ""
 },
 {
 "id": "st-paul-chong-hasang-harker-heights",
