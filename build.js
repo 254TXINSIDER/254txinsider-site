@@ -1374,7 +1374,7 @@ function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopene
 function footer() {
   const secs = SECTIONS.map(s => `<a href="${secUrl(s[0])}">${s[2]}</a>`).join("");
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
-<div><h2 class="fh">${NAME}</h2><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
+<div data-nosnippet><h2 class="fh">${NAME}</h2><p>Central Texas is growing. Stay ahead of what's next. Business, growth, government, schools and Friday nights across Waco, Temple, Killeen and Belton.</p><a class="btn" href="/#newsletter" style="display:inline-block;margin-top:8px;color:#fff">Join free</a></div>
 <div><h2 class="fh">Sections</h2>${secs}</div>
 <div><h2 class="fh">Company</h2><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/weather/">254 Weather</a><a href="/traffic/">254 Traffic</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/advertise/">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h2 class="fh">Cities</h2>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h2 class="fh" style="margin-top:14px">Follow</h2>${social()}</div>
@@ -1427,7 +1427,7 @@ const pages = {};
   }).join("");
   pages["index.html"] = head({
     title: `${NAME} | Waco, Temple, Killeen & Belton News`, ogTitle: `${NAME}: ${TAG}`, desc: DESC, url: "/", preload: lead.art,
-    ld: [{ "@context": "https://schema.org", "@graph": [ORG, { "@type": "WebSite", "@id": SITE + "/#website", url: SITE + "/", name: NAME, description: DESC, publisher: { "@id": SITE + "/#org" }, inLanguage: "en-US" },
+    ld: [{ "@context": "https://schema.org", "@graph": [ORG, { "@type": "WebSite", "@id": SITE + "/#website", url: SITE + "/", name: NAME, alternateName: ["254 TX Insider", "254txinsider.com"], description: DESC, publisher: { "@id": SITE + "/#org" }, inLanguage: "en-US" },
       { "@type": "ItemList", name: "Top stories", itemListElement: ALL.slice(0, 10).map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) }] }]
   }) + header(null) + TICKER + `<main>
 <section class="home-hero"><div class="wrap"><h1>Central Texas Is Growing. <span>Stay Ahead of What's Next.</span></h1>
