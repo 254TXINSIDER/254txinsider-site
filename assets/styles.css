@@ -710,3 +710,9 @@ main p a:not(.btn):not(.more), .wx-ok a { text-decoration: underline; }
 .tr-open { background: #e7f4e8; color: #1d6b2a; } .tr-check { background: #fff4e5; color: #8a6500; } .tr-closed { background: #fbe9e7; color: #b23b2e; }
 .tr-info { list-style: none; padding: 0; margin: 8px 0; font-size: 13px; } .tr-info li { margin: 3px 0; }
 .tr-passes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 10px 0 20px; }
+/* v27 trails: city picker in hero */
+.tr-find{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.tr-find>span{font-weight:700}
+.tr-find .tdo-chips a{flex:none;border:1.5px solid #13213c;background:#fff;color:#13213c;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;text-decoration:none}
+.tr-find .tdo-chips a:hover{background:#13213c;color:#fff}
+.tr-find .tdo-chips{flex-wrap:wrap;overflow:visible}
