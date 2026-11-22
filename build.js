@@ -975,7 +975,8 @@ ${o.image ? '<meta property="og:image:width" content="1200">\n<meta property="og
 <meta name="twitter:title" content="${esc(o.ogTitle || o.title)}">
 <meta name="twitter:description" content="${esc(o.desc)}">
 <meta name="twitter:image" content="${img}">
-${o.extraMeta || ""}<link rel="icon" href="/assets/logo.webp" type="image/webp">
+${o.extraMeta || ""}<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/icon-144.png" type="image/png" sizes="144x144">
 <link rel="apple-touch-icon" href="/assets/logo.webp">
 <link rel="alternate" type="application/rss+xml" title="${NAME}" href="${SITE}/rss.xml">
 ${o.preload ? `<link rel="preload" as="image" href="${o.preload}">\n` : ""}${FONTS}
@@ -1312,6 +1313,10 @@ pages["_redirects"] = [
 
 pages["google87e94f914aca1841.html"] = "google-site-verification: google87e94f914aca1841.html";
 
+// ---------- Favicon + IndexNow ----------
+pages["favicon.ico"] = fs.readFileSync(path.join(ROOT, "assets/favicon.ico"));
+const INDEXNOW_KEY = "19b39877ed65d171633716bf08e1de04";
+pages[INDEXNOW_KEY + ".txt"] = INDEXNOW_KEY;
 // ---------- SEO / AEO / GEO check: runs on every build ----------
 { const warn = [], dec = t => t.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const smUrls = new Set([...pages["sitemap.xml"].matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(SITE, "")));
@@ -1341,3 +1346,10 @@ for (const [f, c] of Object.entries(pages)) { const p = path.join(OUT, f); fs.mk
 fs.cpSync(path.join(ROOT, "assets"), path.join(OUT, "assets"), { recursive: true });
 for (const id of Object.keys(AMAN)) { const f = path.join(ACACHE, id + ".webp"); if (fs.existsSync(f) && !hasArt(id)) fs.copyFileSync(f, path.join(OUT, "assets/art", id + ".webp")); }
 console.log("Built", Object.keys(pages).length, "files,", ALL.length, "stories");
+// Tell Bing and other IndexNow search engines about new and updated pages (Netlify production builds only).
+if (process.env.NETLIFY === "true" && process.env.CONTEXT === "production") {
+  const since = new Date(Date.now() - 2 * 864e5).toISOString().slice(0, 10);
+  const urls = [...new Set(["/", "/latest/", ...ALL.filter(s => s.date >= since).map(s => s.url), ...CM.items.filter(x => (x.hist ? x.hist[x.hist.length - 1][0] : x.added) >= since).map(x => x.url), ...Object.values(GUIDES).map(g => g.url)])].map(u => SITE + u);
+  fetch("https://api.indexnow.org/indexnow", { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify({ host: SITE.replace(/^https?:\/\//, ""), key: INDEXNOW_KEY, keyLocation: SITE + "/" + INDEXNOW_KEY + ".txt", urlList: urls }), signal: AbortSignal.timeout(10000) })
+    .then(r => console.log("IndexNow:", r.status, urls.length, "URLs")).catch(e => console.log("IndexNow skipped:", e.message));
+}
