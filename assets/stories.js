@@ -1,5 +1,5 @@
 window.STORIES = [
-{id:"we-the-people-affordable-senior-housing", cat:"we-the-people", top:1, city:"Central Texas", date:"2026-11-20",
+{id:"we-the-people-affordable-senior-housing", seo:"How to Find Affordable Senior Housing in the 254", cat:"we-the-people", top:1, city:"Central Texas", date:"2026-11-20",
  title:"We the People: How to find affordable senior housing in the 254, even on a fixed income",
  dek:"Rent tied to income, Medicaid help with assisted living and two free agencies that will walk your family through it. Here's how it works.",
  body:[
@@ -13,7 +13,7 @@ window.STORIES = [
   "<strong>Checking out a care facility.</strong> Before choosing an assisted living facility or nursing home, look it up on the Texas Health and Human Services provider search, which shows inspection results and whether it takes Medicaid. Medicare's Care Compare site gives nursing homes star ratings. And visit in person, more than once if you can.",
   "We've put all of these places, phone numbers and search tools in one spot on our <a href=\"/real-estate/#senior-living\">Real Estate page</a>. Know a senior community we missed? Let us know."],
  sources:[["HUD: Section 202 Supportive Housing for the Elderly","https://archives.hud.gov/progdesc/2eldrl14.cfm"],["National Low Income Housing Coalition: Section 202 guide","https://nlihc.org/sites/default/files/AG-2025/4-113_Section-202-Housing-for-the-Elderly.pdf"],["Medicare.gov: Long-term care","https://www.medicare.gov/coverage/long-term-care"],["Texas HHS: STAR+PLUS Handbook","https://www.hhs.texas.gov/handbooks/starplus-handbook"],["Area Agency on Aging of Central Texas","https://ctcog.org/aging/"],["Area Agency on Aging of the Heart of Texas","https://www.hotcogtx.gov/health-and-human-services/area-agency-on-aging"],["HUD Multifamily Assisted and LIHTC property data","https://resources.hud.gov/"],["Affordable Housing Online: Belton Housing Authority","https://affordablehousingonline.com/housing-authority/Texas/Belton-Housing-Authority/TX213"]]},
-{id:"bell-county-grants-bellcad-runoff", cat:"government", top:1, city:"Belton", date:"2026-11-17",
+{id:"bell-county-grants-bellcad-runoff", seo:"Bell County Takes $16.75M in Road Grants, Trims Runoff Cost", cat:"government", top:1, city:"Belton", date:"2026-11-17",
  title:"Bell County accepts $16.75 million in road grants, trims cost of appraisal board runoff",
  dek:"Commissioners also canvassed the Nov. 3 election, which drew 44% of the county's registered voters.",
  body:[
@@ -24,7 +24,7 @@ window.STORIES = [
   "The court meets next on Monday, Dec. 7."],
  sources:[["Killeen Daily Herald / Temple Daily Telegram","https://kdhnews.com/news/region/bell-county-canvasses-november-election-accepts-16-75-million-in-grants/article_fab21c7d-5c44-530b-8b28-c8067084627a.html"]]},
 
-{id:"we-the-people-bellcad-runoff", cat:"we-the-people", top:1, city:"Bell County", date:"2026-11-18",
+{id:"we-the-people-bellcad-runoff", seo:"Bell County Appraisal Board Runoff Dec. 12: What It Does", cat:"we-the-people", top:1, city:"Bell County", date:"2026-11-18",
  title:"We the People: What the Bell County Appraisal District board does, and why it's on your ballot again Dec. 12",
  dek:"The board doesn't set your tax rate, but it oversees the office that decides what your property is worth.",
  body:[
@@ -46,7 +46,7 @@ window.STORIES = [
   "The council scheduled a special meeting for Nov. 17 to canvass and certify the results."],
  sources:[["City of Killeen","https://www.killeentexas.gov/m/newsflash/Home/Detail/3139"]]},
 
-{id:"bell-county-justice-center-annex-price", cat:"growth", city:"Belton", date:"2026-11-17",
+{id:"bell-county-justice-center-annex-price", seo:"Bell County Sets $14.05M Price for Justice Center Annex", cat:"growth", city:"Belton", date:"2026-11-17",
  title:"Bell County locks in $14.05 million construction price for Justice Center Annex",
  dek:"The guaranteed maximum price brings the full project budget to about $16 million.",
  body:[
@@ -55,7 +55,7 @@ window.STORIES = [
   "The vote came during the same meeting in which the court accepted $16.75 million in road grants and certified the November election."],
  sources:[["Killeen Daily Herald / Temple Daily Telegram","https://kdhnews.com/news/region/bell-county-canvasses-november-election-accepts-16-75-million-in-grants/article_fab21c7d-5c44-530b-8b28-c8067084627a.html"]]},
 
-{id:"belton-amity-rose-closure", cat:"growth", top:1, city:"Belton", date:"2026-11-12",
+{id:"belton-amity-rose-closure", seo:"Belton Closes Amity Road and Rose Lane Until February", cat:"growth", top:1, city:"Belton", date:"2026-11-12",
  title:"Belton closes E. Amity Road and Rose Lane intersection until February for 7-Eleven street work",
  dek:"The intersection east of I-35 is shut to all traffic through Feb. 1, 2027.",
  body:[
@@ -65,7 +65,7 @@ window.STORIES = [
   "Questions go to the City of Belton at 254-933-5800."],
  sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1447.php"]]},
 
-{id:"sh6-twin-bridges-closures", cat:"growth", city:"Waco", date:"2026-11-16",
+{id:"sh6-twin-bridges-closures", seo:"SH 6 Twin Bridges Over Lake Waco: Rolling Closures Return", cat:"growth", city:"Waco", date:"2026-11-16",
  title:"Rolling closures return to SH 6 Twin Bridges over Lake Waco this week",
  dek:"TxDOT crews are moving precast bridge caps for the bridge rebuild.",
  body:[
@@ -75,7 +75,7 @@ window.STORIES = [
   "Each rolling closure is expected to last about 20 to 30 minutes. Work earlier in November slipped a day because of weather, so check TxDOT updates before you drive."],
  sources:[["FOX 44 via Yahoo News","https://www.yahoo.com/news/articles/twin-bridges-rolling-closures-resume-214656733.html"]]},
 
-{id:"temple-industrial-park-2026", cat:"business", also:["real-estate"], top:1, city:"Temple", date:"2026-11-18",
+{id:"temple-industrial-park-2026", seo:"Temple Industrial Park: East Penn, Sesajal and SeAH Update", cat:"business", also:["real-estate"], top:1, city:"Temple", date:"2026-11-18",
  title:"Temple's industrial park keeps adding up: where East Penn, Sesajal and SeAH stand",
  dek:"Three manufacturers have committed $250 million and about 200 jobs to Temple since 2024.",
  body:[
@@ -86,7 +86,7 @@ window.STORIES = [
   "For job seekers and suppliers, the takeaway is simple: the park is hiring in waves, and the next two years are when much of this capacity comes online."],
  sources:[["Temple EDC: East Penn","https://templeedc.com/east-penn-manufacturing-chooses-temple-for-major-expansion/"],["Temple EDC: Sesajal","https://templeedc.com/leading-food-manufacturer-selects-temple-texas-for-new-u-s-operations/"],["Killeen Daily Herald: SeAH","https://kdhnews.com/news/region/temple-set-to-be-home-to-110-million-steel-foundry-that-brings-100-new-jobs/article_0e94fab7-0967-5233-8ece-ff1309042163.html"]]},
 
-{id:"lacy-lakeview-data-center-explainer", cat:"growth", city:"Lacy Lakeview", date:"2026-11-18",
+{id:"lacy-lakeview-data-center-explainer", seo:"$10 Billion Data Center Near Lacy Lakeview: What to Know", cat:"growth", city:"Lacy Lakeview", date:"2026-11-18",
  title:"What to know about the $10 billion data center proposed north of Lacy Lakeview",
  dek:"The project needs land, water and Waco's cooperation, and neighbors have organized against it.",
  body:[
@@ -107,7 +107,7 @@ window.STORIES = [
   "Temple's edge comes from volume: it has nearly twice as many active new-home communities as any other city in the county."],
  sources:[["NewHomeSource: Bell County","https://www.newhomesource.com/communities/tx/killeen-area/bell-county"]]},
 
-{id:"killeen-isd-calendar-food-drive", cat:"education", city:"Killeen", date:"2026-11-11",
+{id:"killeen-isd-calendar-food-drive", seo:"Killeen ISD Sets 2027-28 Calendar; Food Drive Through Nov. 19", cat:"education", city:"Killeen", date:"2026-11-11",
  title:"Killeen ISD sets 2027-28 calendar; Food for Families drive runs through Nov. 19",
  dek:"School will start Aug. 17, 2027, and end May 26, 2028.",
  body:[
@@ -125,7 +125,7 @@ window.STORIES = [
   "The college is also teaming up with Texas A&M University–Central Texas on a two-day symphony orchestra concert series this fall."],
  sources:[["Temple College","https://www.templecollege.edu/news/index.html"]]},
 
-{id:"belton-south-oak-cliff-area-round", cat:"sports", top:1, city:"Belton", date:"2026-11-16",
+{id:"belton-south-oak-cliff-area-round", seo:"Belton vs. South Oak Cliff: Area Round at Waco ISD Stadium", cat:"sports", top:1, city:"Belton", date:"2026-11-16",
  title:"Belton draws powerhouse South Oak Cliff in area round Thursday at Waco ISD Stadium",
  dek:"The Tigers survived Ennis 35-33 to reach the second round of the 5A Division II playoffs.",
  body:[
@@ -143,7 +143,7 @@ window.STORIES = [
   "Times and sites can change, so check with each school before you head out. The regional round follows Nov. 26-28."],
  sources:[["KWTX","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"],["Yahoo Sports: statewide area schedule","https://sports.yahoo.com/articles/texas-high-school-football-playoffs-175444973.html"]]},
 
-{id:"valor-ctcs-title-games", cat:"sports", city:"Waco / Temple", date:"2026-11-16",
+{id:"valor-ctcs-title-games", seo:"Valor Prep and Central Texas Christian Play for State Titles", cat:"sports", city:"Waco / Temple", date:"2026-11-16",
  title:"Waco's Valor Prep and Temple's Central Texas Christian play for private-school state titles",
  dek:"Two 254 programs reached TAPPS championship games.",
  body:[
@@ -151,7 +151,7 @@ window.STORIES = [
   "Central Texas Christian (9-2) of Temple also reached a TAPPS 11-man state final after a 36-18 semifinal win over Tyler All Saints. Its opponent is unbeaten Dallas First Baptist (12-0); the date and site had not been announced as of Monday."],
  sources:[["KWTX","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"],["Dallas Morning News","https://www.dallasnews.com/high-school-sports/football/article/texas-high-school-football-scores-week-bi-district-22528533.php"]]},
 
-{id:"belton-christmas-chisholm-trail", cat:"things-to-do", top:1, city:"Belton", date:"2026-11-17",
+{id:"belton-christmas-chisholm-trail", seo:"Belton Christmas on the Chisholm Trail Adds a Ferris Wheel", cat:"things-to-do", top:1, city:"Belton", date:"2026-11-17",
  title:"Belton's Christmas on the Chisholm Trail adds a 60-foot Ferris wheel this year",
  dek:"Free events Dec. 4-5 downtown, then a themed Christmas Village Dec. 7-11. Parade entries are due Friday.",
  body:[
@@ -162,7 +162,7 @@ window.STORIES = [
   "<strong>Belton Christmas Village, Dec. 7-11:</strong> food, crafts and a different theme each night: family games (Dec. 7), Minute to Win It-style games (Dec. 8), comic con night (Dec. 9), Merry Mischief Night (Dec. 10) and Renaissance Night (Dec. 11). Most nights run 5 to 9 p.m.; Renaissance Night runs until 10."],
  sources:[["Killeen Daily Herald","https://kdhnews.com/news/region/christmas-on-the-chisholm-trail-belton-puts-on-free-activities/article_ebd04ef0-ac1d-5ef4-9cbe-3b9caa8e6390.html"]]},
 
-{id:"temple-merry-bright-contest", cat:"things-to-do", city:"Temple", date:"2026-11-11",
+{id:"temple-merry-bright-contest", seo:"Temple Merry & Bright Holiday Lights Contest: Enter by Dec. 2", cat:"things-to-do", city:"Temple", date:"2026-11-11",
  title:"Temple's Merry & Bright holiday lights contest is taking entries through Dec. 2",
  dek:"The city's fifth annual contest opened applications Nov. 11.",
  body:[
@@ -170,7 +170,7 @@ window.STORIES = [
   "For categories, prizes and judging details, contact the City of Temple's public relations office at lspears@templetx.gov."],
  sources:[["City of Temple Newsroom","https://city-of-temple.prowly.com/"]]},
 
-{id:"belton-silver-santa", cat:"sports", city:"Belton", date:"2026-11-13",
+{id:"belton-silver-santa", seo:"Belton Police Silver Santa Gift Drive for Seniors", cat:"sports", city:"Belton", date:"2026-11-13",
  title:"Belton police collecting gifts for seniors in 13th Silver Santa drive",
  dek:"Donations are due Dec. 1 for gift bags delivered to seniors who live alone.",
  body:[
@@ -180,7 +180,7 @@ window.STORIES = [
   "Officers and volunteers will deliver the bags later in December. Seniors can sign up for RU OK at beltontexas.gov/ruok or 254-933-5840."],
  sources:[["City of Belton","https://www.beltontexas.gov/news_detail_T11_R1448.php"]]},
 
-{id:"nasdaq-correction-chip-selloff", cat:"markets", top:1, city:"Wall Street", date:"2026-11-17",
+{id:"nasdaq-correction-chip-selloff", seo:"Nasdaq Slides Into Correction as Chip Stocks Sink", cat:"markets", top:1, city:"Wall Street", date:"2026-11-17",
  title:"Nasdaq slides into correction as chip stocks sink ahead of Nvidia earnings",
  dek:"The tech-heavy index is now more than 10% below its Oct. 6 record.",
  body:[
@@ -191,7 +191,7 @@ window.STORIES = [
   "<strong>Why it matters here:</strong> most 401(k)s and retirement plans hold big tech stocks through index funds, so a correction shows up in Central Texas account balances even if you don't trade."],
  sources:[["Washington Post / AP","https://www.washingtonpost.com/business/2026/11/17/wall-street-stocks-dow-nasdaq/9f975f00-e2cf-11f1-a99e-b3e3805c6b8b_story.html"],["CNBC","https://www.cnbc.com/2026/11/16/stock-market-today-live-updates.html"],["Mint via TradingView","https://www.tradingview.com/news/moodys:c9b294671702c:0-stock-market-outlook-today-17-nov-sensex-nifty-prediction-djia-s-p-nasdaq-gift-nifty-kospi-nikkei-taiwan-cues/"]]},
 
-{id:"fed-december-rate-hike", cat:"markets", top:1, city:"Washington", date:"2026-11-18",
+{id:"fed-december-rate-hike", seo:"Fed Minutes Point to a December Rate Hike", cat:"markets", top:1, city:"Washington", date:"2026-11-18",
  title:"Fed minutes point to a December rate hike, and some officials want a big one",
  dek:"Hot October inflation has markets expecting the Fed to raise rates at its Dec. 8-9 meeting.",
  body:[
@@ -232,7 +232,7 @@ window.STORIES = [
   "The Division III national championship, the Stagg Bowl, is set for Jan. 3 in Salem, Virginia."],
  sources:[["KWTX / UMHB Football","https://www.kwtx.com/2026/11/15/umhb-shuts-down-hardin-simmons-outright-asc-title/"],["Killeen Daily Herald","https://kdhnews.com/kdhpressbox/umhb-embracing-tough-playoff-path/article_eb9ba71f-63ce-4699-b389-6dbe1b691bca.html"],["Southern Athletic Association","https://saa-sports.com/news/2026/11/16/trinity-football-to-play-umhb-in-second-round-of-ncaa-playoffs.aspx"]]},
 
-{id:"baylor-mens-basketball-players-era", cat:"sports", city:"Waco", date:"2026-11-19",
+{id:"baylor-mens-basketball-players-era", seo:"Baylor Men's Basketball Routs Jackson State", cat:"sports", city:"Waco", date:"2026-11-19",
  title:"Baylor men's basketball routs Jackson State, heads to Las Vegas next week",
  dek:"The Bears bounced back from a three-point loss to No. 7 Texas and open the Players Era tournament against Alabama on Nov. 24.",
  body:[
@@ -251,7 +251,7 @@ window.STORIES = [
   "<strong>Also on campus:</strong> Baylor volleyball won a five-set match at Colorado on Nov. 15."],
  sources:[["Baylor Athletics","https://baylorbears.com/"],["Baylor Athletics: Women's Basketball schedule","https://baylorbears.com/sports/womens-basketball/schedule"]]},
 
-{id:"tarleton-state-no1-fcs", cat:"sports", city:"Stephenville", date:"2026-11-19",
+{id:"tarleton-state-no1-fcs", seo:"Tarleton State 11-0, No. 1 in FCS Heading Into Playoffs", cat:"sports", city:"Stephenville", date:"2026-11-19",
  title:"Tarleton State is 11-0 and ranked No. 1 in the FCS heading into the playoffs",
  dek:"The Texans won the United Athletic Conference title in Stephenville, at the west edge of the 254.",
  body:[
@@ -260,7 +260,7 @@ window.STORIES = [
   "Stephenville sits in the 254 area code, making the Texans one of the area's top college football stories this fall."],
  sources:[["Wikipedia: 2026 Tarleton State Texans football","https://en.wikipedia.org/wiki/2026_Tarleton_State_Texans_football_team"]]},
 
-{id:"temple-college-leopards-basketball", cat:"sports", city:"Temple", date:"2026-11-19",
+{id:"temple-college-leopards-basketball", seo:"Temple College Leopards Basketball: Week in Review", cat:"sports", city:"Temple", date:"2026-11-19",
  title:"Temple College Leopards basketball: men split home week, women win in overtime",
  dek:"Both TC teams are on the road this week as nonconference play wraps up before conference play.",
  body:[
@@ -270,7 +270,7 @@ window.STORIES = [
   "Home games stream on the Temple College PlaySight channel."],
  sources:[["Temple College Athletics","https://tcleopards.com/"],["Temple College: Women's basketball season opener","https://www.tcleopards.com/sports/wbkb/2026-27/releases/20261030dw37d8"]]},
 
-{id:"college-theatre-254-season", cat:"things-to-do", city:"Waco", date:"2026-11-19",
+{id:"college-theatre-254-season", seo:"College Theatre in the 254: Baylor and Temple College Shows", cat:"things-to-do", city:"Waco", date:"2026-11-19",
  title:"College theatre in the 254: what's next at Baylor and Temple College",
  dek:"Baylor Theatre just closed Big Love. Next up: a Shakespeare comedy in February and Mean Girls the musical in the spring.",
  body:[
@@ -280,7 +280,7 @@ window.STORIES = [
   "Baylor's School of Music also holds student recitals and ensemble concerts during the semester. Check the Baylor events calendar for dates."],
  sources:[["Baylor Theatre","https://theatre.artsandsciences.baylor.edu/"],["Central Texas Live Theatre: Baylor productions","https://ctxlivetheatre.com/local_theatres/baylor-university-theatre/productions/"],["Baylor events calendar","https://calendar.web.baylor.edu/?category=All"],["Temple College: Musical Theatre Showcase","https://www.templecollege.edu/events/2026/10/musical-theatre-showcase.html"]]},
 
-{id:"waco-business-roundup-nov-2026", cat:"business", top:1, city:"Waco", date:"2026-11-19",
+{id:"waco-business-roundup-nov-2026", seo:"Waco Business Roundup: 7 Brew, The Chateau and More", cat:"business", top:1, city:"Waco", date:"2026-11-19",
  title:"Waco business roundup: 7 Brew, Capitol Bearing, The Chateau and a $169M riverfront build",
  dek:"A busy November of ribbon cuttings across Waco, plus what the Barron's Branch construction means for drivers.",
  body:[
@@ -291,7 +291,7 @@ window.STORIES = [
   "Have a Waco opening, expansion or closing to share? <a href=\"/contact/\">Send us a tip.</a>"],
  sources:[["Greater Waco Chamber: Member calendar","https://business.wacochamber.com/membercalendar"],["Greater Waco Chamber: Calendar","https://business.wacochamber.com/events"],["KWTX","https://www.kwtx.com/"],["Westland: Waco this fall","https://westlandrg.com/blog/fall-in-waco-whats-opened-whats-coming-and-where-to-actually-go-this-season"]]},
 
-{id:"killeen-cove-heights-business-roundup-nov-2026", cat:"business", city:"Killeen", date:"2026-11-19",
+{id:"killeen-cove-heights-business-roundup-nov-2026", seo:"Killeen, Harker Heights, Copperas Cove Business Roundup", cat:"business", city:"Killeen", date:"2026-11-19",
  title:"Killeen, Harker Heights and Copperas Cove business roundup: The Pickle, HOTWORX and big-box buzz",
  dek:"New spots to play, work out and get a haircut in Killeen, while Copperas Cove waits on two possible big-box stores.",
  body:[
@@ -302,7 +302,7 @@ window.STORIES = [
   "Know about a Bell County opening or closing? <a href=\"/contact/\">Send us a tip.</a>"],
  sources:[["Killeen Daily Herald: The Pickle","https://kdhnews.com/business/the-pickle-brings-pickleball-pizza-and-family-entertainment-to-killeen/article_662a9230-e864-49e6-8869-e711ce8e2c03.html"],["Killeen Daily Herald: Business Briefs","https://kdhnews.com/business/business-briefs/article_3de40525-deaa-4212-86d2-e9ee6ee01928.html"],["Killeen Daily Herald: Roses & Razors","https://kdhnews.com/news/local/new-barbershop-opens-in-killeen-area/article_9d72e6b9-6025-4d0b-9fb7-70bbfd79ac2f.html"],["KXXV: Development boom","https://www.kxxv.com/news/local-news/in-your-neighborhood/development-boom-brings-new-businesses-to-killeen-and-harker-heights"],["Killeen Daily Herald: Five Hills","https://kdhnews.com/news/local/cove-eyeing-new-big-box-stores-in-five-hills-shopping-center/article_74b153a2-e2e4-4e17-bfa6-4f4127eb0e98.html"],["Killeen Daily Herald: Sober Sips","https://kdhnews.com/news/local/geared-towards-veterans-a-new-non-alcoholic-bar-will-soon-open-in-copperas-cove/article_00953b5d-dca3-43a4-9a8b-7fc7591e5cac.html"]]},
 
-{id:"copperas-cove-academy-hobby-lobby-confirmed", cat:"business", also:["real-estate"], top:1, city:"Copperas Cove", date:"2026-11-20",
+{id:"copperas-cove-academy-hobby-lobby-confirmed", seo:"Academy and Hobby Lobby Confirmed for Copperas Cove", cat:"business", also:["real-estate"], top:1, city:"Copperas Cove", date:"2026-11-20",
  title:"It's official: Academy Sports and Hobby Lobby are coming to Copperas Cove in a $21.3 million build",
  dek:"The city confirmed both stores for a 12-acre site on Robert Griffin III Boulevard, with openings targeted for fall 2027.",
  body:[
@@ -313,7 +313,7 @@ window.STORIES = [
   "<strong>Why it matters:</strong> Cove shoppers now drive to Killeen or Harker Heights for both chains. The new stores add sales tax revenue on the city's west side and could pull more retail to the open outparcel."],
  sources:[["Killeen Daily Herald","https://kdhnews.com/business/academy-sports-hobby-lobby-coming-to-copperas-cove-as-21-3m-retail-development-moves-forward/article_37f92cac-78eb-46bd-96b3-992119fae124.html"]]},
 
-{id:"killeen-isd-optimization-ellison-town-hall", cat:"education", top:1, city:"Killeen", date:"2026-11-20",
+{id:"killeen-isd-optimization-ellison-town-hall", seo:"Killeen ISD Weighs Closing Ellison High: Town Hall Recap", cat:"education", top:1, city:"Killeen", date:"2026-11-20",
  title:"485 people pack Ellison High as Killeen ISD weighs closing the 48-year-old campus",
  dek:"The district's final Optimization 2.0 town hall drew its biggest crowd yet. Trustees review feedback Dec. 8 and expect to finalize a plan Dec. 15.",
  body:[
@@ -325,7 +325,7 @@ window.STORIES = [
   "<strong>Also in KISD news:</strong> 17 Killeen ISD seniors earned Academic All-State honors from the Texas High School Coaches Association, and Ellison soprano Alaina Corder was chosen to sing with an international honor choir at Carnegie Hall on Feb. 7."],
  sources:[["Killeen Daily Herald","https://kdhnews.com/news/education/killeen-isd-hosts-final-town-hall-on-proposed-optimization-2-0-plan/article_6024e563-5d12-4a85-8fd6-0097d4feee7e.html"],["KWTX: Good News Friday","https://www.kwtx.com/2026/11/20/good-news-friday-11202026/"]]},
 
-{id:"ctc-army-additive-manufacturing-contract", cat:"education", city:"Killeen", date:"2026-11-20",
+{id:"ctc-army-additive-manufacturing-contract", seo:"Central Texas College Wins Army 3D Manufacturing Contract", cat:"education", city:"Killeen", date:"2026-11-20",
  title:"Central Texas College wins Army contract to teach Fort Hood soldiers 3D manufacturing",
  dek:"A six-week, five-course program will train III Armored Corps soldiers with no prior experience in design and additive manufacturing.",
  body:[
@@ -335,7 +335,7 @@ window.STORIES = [
   "<strong>Why it matters:</strong> the ability to print replacement parts in the field can cut repair times, and the skills carry over to civilian manufacturing jobs, a growing sector along the I-14 corridor. The contract's dollar value and start date were not reported."],
  sources:[["Killeen Daily Herald","https://kdhnews.com/news/education/ctc-lands-army-contract-training-soldiers-on-manufacturing-technology/article_f7dadb6c-98bf-48d2-8ca6-0d1054d103b9.html"]]},
 
-{id:"texas-gas-prices-thanksgiving-2026", cat:"markets", city:"Central Texas", date:"2026-11-20",
+{id:"texas-gas-prices-thanksgiving-2026", seo:"Texas Gas Prices for Thanksgiving 2026: Priciest Since 2021", cat:"markets", city:"Central Texas", date:"2026-11-20",
  title:"Gas is falling, but Texas is still headed for its priciest Thanksgiving at the pump since 2021",
  dek:"The Texas average is $3.20 a gallon, about 50 cents more than last Thanksgiving. Nearly 73 million Americans are expected to drive for the holiday.",
  body:[
@@ -346,7 +346,7 @@ window.STORIES = [
   "<strong>For 254 travelers:</strong> AAA projects nearly 73 million people will take road trips over the holiday."],
  sources:[["KAUZ NewsChannel 6 / AAA Texas","https://www.newschannel6now.com/2026/11/19/aaa-texas-reports-gas-prices-continue-falling-thanksgiving-approaches/"],["AAA: Gas prices keep dropping","https://gasprices.aaa.com/gas-prices-keep-dropping-as-thanksgiving-approaches/"]]},
 
-{id:"waco-school-leaders-legislature-wish-list", cat:"government", city:"Waco", date:"2026-11-20",
+{id:"waco-school-leaders-legislature-wish-list", seo:"What Waco, Midway and Connally ISD Want From the Legislature", cat:"government", city:"Waco", date:"2026-11-20",
  title:"What Waco, Midway and Connally ISD want from the Legislature in January",
  dek:"Local school leaders are asking for more state money, funding based on enrollment and more control over local decisions.",
  body:[
@@ -357,7 +357,7 @@ window.STORIES = [
   "<strong>The backdrop:</strong> the basic allotment went unchanged for six years before lawmakers raised it by $55 in 2025, to $6,215 per student. House Democrats have filed a bill to raise it to $7,500 and index it to inflation. Gov.-elect Gina Hinojosa has said she wants to unwind state takeovers of school districts. Any change to the accountability law would also need to pass the Republican-led Senate."],
  sources:[["The Waco Bridge","https://wacobridge.org/2026/11/19/texas-legislature-public-schools-waco-connally-midway/"]]},
 
-{id:"bell-county-councils-roundup-nov-20", cat:"government", city:"Bell County", date:"2026-11-20",
+{id:"bell-county-councils-roundup-nov-20", seo:"Bell County Councils: Killeen, Copperas Cove, Nolanville", cat:"government", city:"Bell County", date:"2026-11-20",
  title:"Bell County council roundup: Killeen holds off on water fees, Cove rejects MUD petition, Nolanville gets a new mayor",
  dek:"A busy week at city halls from Killeen to Copperas Cove, plus a Killeen council seat that will soon need filling.",
  body:[
@@ -369,7 +369,7 @@ window.STORIES = [
   "<strong>Nolanville:</strong> the city honored longtime Mayor Andy Williams and welcomed new Mayor James Bilberry."],
  sources:[["Killeen Daily Herald: Water impact fees","https://kdhnews.com/news/local/killeen-council-tables-water-impact-fees-after-concerns-over-details-and-stakeholder-input/article_475a0a0f-53e0-4dd1-bec9-b9abe89d684e.html"],["Killeen Daily Herald: Gonzalez resignation","https://kdhnews.com/government/gonzalez-turns-in-resignation-intends-to-stay-on-killeen-council-until-replacement-selected/article_0263ac4c-1ad0-4cf3-af25-ef6c69f315eb.html"],["Killeen Daily Herald: Council protocol","https://kdhnews.com/news/local/killeen-council-agrees-to-bring-up-protocol-for-communication-to-council-next-month/article_dcb61d61-7762-4a22-956a-a2c1996119cf.html"],["Killeen Daily Herald: Cove MUD petition","https://kdhnews.com/news/local/copperas-cove-council-rejects-church-mountain-mud-petition-calls-runoff-election/article_7320dc46-881e-400e-960a-3890321afc6f.html"],["Killeen Daily Herald: Cove Place 7","https://kdhnews.com/copperas_cove_herald/cove-council-place-7-seat-set-after-candidate-withdraws/article_b44b22a4-e9cc-4375-abeb-f9a29dccbe6e.html"],["Killeen Daily Herald: Heights rezoning","https://kdhnews.com/news/local/heights-council-turns-down-rezoning-request-that-would-have-allowed-manufactured-homes/article_8741dbeb-46d4-443b-88c1-7cb88c9dfeec.html"],["Killeen Daily Herald: Nolanville mayor","https://kdhnews.com/news/local/nolanville-honors-longtime-mayor-andy-williams-welcomes-new-mayor-james-bilberry/article_428c07ee-fd93-4860-8aa0-dc53022a672f.html"]]},
 
-{id:"baylor-athletics-200-million-fueling-greatness", cat:"sports", city:"Waco", date:"2026-11-20",
+{id:"baylor-athletics-200-million-fueling-greatness", seo:"Baylor Launches $200M Fueling Greatness Athletics Campaign", cat:"sports", city:"Waco", date:"2026-11-20",
  title:"Baylor launches $200 million 'Fueling Greatness' push for athletics",
  dek:"Athletic director Doug McNamee laid out a four-year fundraising initiative covering coaches, scholarships, facilities and faith programs.",
  body:[
@@ -380,7 +380,7 @@ window.STORIES = [
   "<strong>On the field this weekend:</strong> Baylor (6-4) hosts ranked Texas Tech on Senior Day Saturday at McLane Stadium."],
  sources:[["The Baylor Lariat","https://baylorlariat.com/2026/11/20/mcnamee-announces-4-year-200-million-athletics-initiative-in-recent-letter/"],["Fox Sports: Texas Tech at Baylor","https://www.foxsports.com/college-football/texas-tech-red-raiders-vs-baylor-bears-nov-21-2026-game-boxscore-44300"]]},
 
-{id:"area-round-thursday-results-friday-slate", cat:"sports", city:"Central Texas", date:"2026-11-20",
+{id:"area-round-thursday-results-friday-slate", seo:"Belton's Season Ends vs. South Oak Cliff; Bremond Rolls", cat:"sports", city:"Central Texas", date:"2026-11-20",
  title:"Belton's season ends against South Oak Cliff; Bremond rolls 71-21 as area round continues tonight",
  dek:"Thursday's results and every 254 team playing Friday night.",
  body:[
@@ -391,7 +391,7 @@ window.STORIES = [
   "<strong>State title on the line:</strong> Waco's Valor Prep plays Keller Harvest for the TAPPS 6-man Division II championship tonight at 7 at Rocket Field in Robinson."],
  sources:[["Dallas Morning News via Yahoo Sports","https://sports.yahoo.com/articles/photos-south-oak-cliff-rolls-084438695.html"],["High School Football America: area-round scores","https://highschoolfootballamerica.com/final-scores-from-2nd-round-of-uil-texas-high-school-football-playoff-games-played-november-19-21-2026/"],["KWTX: Area round pairings","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"]]},
 
-{id:"bell-county-weekend-nov-20-22", cat:"things-to-do", city:"Bell County", date:"2026-11-20",
+{id:"bell-county-weekend-nov-20-22", seo:"Bell County Weekend: Eli Young Band, Holiday Market, Chili", cat:"things-to-do", city:"Bell County", date:"2026-11-20",
  title:"Weekend in Bell County: Eli Young Band, a holiday market, a chili cook-off and Polar Express pajama night",
  dek:"Plans for Friday through Sunday in Temple, Belton, Killeen and Harker Heights before Thanksgiving week.",
  body:[
@@ -402,7 +402,7 @@ window.STORIES = [
   "Times and prices can change, so check with organizers before you go. Hosting an event? <a href=\"/contact/\">Send it to us.</a>"],
  sources:[["Killeen Daily Herald: Out and About","https://kdhnews.com/news/local/out-and-about-multiple-events-upcoming-in-the-central-texas-area/article_d2b0c076-9522-4922-9e2d-8512a177e9ae.html"]]},
 
-{id:"mortgage-rates-jump-728-254-payment", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
+{id:"mortgage-rates-jump-728-254-payment", seo:"Mortgage Rates Hit 7.28%: What It Means for a 254 Payment", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
  title:"Mortgage rates jump back to 7.28%. Here's what that does to a payment on a typical 254 home",
  dek:"Freddie Mac's weekly average snapped a four-week slide. Daily rates are closer to 7.45%, more than a full point above a year ago.",
  body:[
@@ -413,7 +413,7 @@ window.STORIES = [
   "<strong>Try your own numbers</strong> with the payment calculator on our <a href=\"/real-estate/#housing-dashboard\">254 Housing Dashboard</a>, which tracks rates and local market data and is updated daily."],
  sources:[["Freddie Mac PMMS","https://www.freddiemac.com/pmms"],["Mortgage News Daily: Daily rate index","https://www.mortgagenewsdaily.com/mortgage-rates/mnd"],["Realtor.com via FRED: Killeen-Temple median list price","https://fred.stlouisfed.org/series/MEDLISPRI28660"]]},
 
-{id:"254-housing-market-october-2026", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
+{id:"254-housing-market-october-2026", seo:"254 Housing Report: Prices Slipping, Homes Sitting Longer", cat:"real-estate", top:1, city:"Central Texas", date:"2026-11-20",
  title:"254 housing report: Prices are slipping and homes are sitting longer. What it means for buyers, sellers and owners",
  dek:"October numbers for Killeen-Temple, Waco and the Austin metro next door, plus the national picture.",
  body:[
@@ -427,7 +427,7 @@ window.STORIES = [
   "<strong>If you own:</strong> values have flattened, not crashed. Watch for your 2027 appraisal notice in the spring and compare it with recent nearby sales before deciding whether to protest.",
   "Track rates and these numbers on our <a href=\"/real-estate/#housing-dashboard\">254 Housing Dashboard</a>. This is general information, not financial advice."],
  sources:[["Realtor.com via FRED: Killeen-Temple","https://fred.stlouisfed.org/series/MEDLISPRI28660"],["Realtor.com via FRED: Waco","https://fred.stlouisfed.org/series/MEDLISPRI47380"],["Unlock MLS: October 2026 Central Texas Housing Report","https://www.unlockmls.com/news/october-2026-central-texas-housing-report"],["NAR: October existing-home sales","https://www.nar.realtor/newsroom/existing-home-sales-decreased-5-5-percent-october-nar-report"]]},
-{id:"area-round-friday-la-vega-lorena-yoe-regionals", cat:"sports", top:1, city:"Central Texas", date:"2026-11-21", basis:"summary",
+{id:"area-round-friday-la-vega-lorena-yoe-regionals", seo:"La Vega, Robinson, Lorena, Cameron Yoe Win Area Round", cat:"sports", top:1, city:"Central Texas", date:"2026-11-21", basis:"summary",
  title:"La Vega, Robinson, Lorena and Cameron Yoe win area-round games; Lorena and Yoe meet next in an all-254 regional",
  dek:"La Vega rolled 56-7 to stay perfect, Yoe survived 50-48 and six 254 small schools also advanced Friday night. China Spring, Crawford, San Saba and Oglesby were eliminated.",
  body:[
@@ -439,7 +439,7 @@ window.STORIES = [
   "Regional-round games are Nov. 26-28. Dates, times and sites were still listed as to be determined Saturday morning, and we'll post them as schools announce them. Scores come from High School Football America's statewide scoreboard, and pairings come from the statewide regional bracket. Our earlier recap of Thursday's games is <a href=\"/news/area-round-thursday-results-friday-slate/\">here</a>.",
   "Scores, schedules and the playoff tracker: <a href=\"/scoreboard/\">254 Scoreboard</a>."],
  sources:[["High School Football America: area-round final scores","https://highschoolfootballamerica.com/final-scores-from-2nd-round-of-uil-texas-high-school-football-playoff-games-played-november-19-21-2026/"],["Statewide UIL regional-round pairings","https://sports.yahoo.com/articles/state-wide-uil-regional-round-082321462.html"],["Union Hill vs. Oglesby game story","https://sports.yahoo.com/articles/union-hill-takes-down-oglesby-063348632.html"],["KWTX: area-round pairings and sites","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"]]},
-{id:"valor-prep-second-tapps-title-ctcs-falls", cat:"sports", city:"Waco", date:"2026-11-21", basis:"summary",
+{id:"valor-prep-second-tapps-title-ctcs-falls", seo:"Valor Prep Wins Second Straight TAPPS Six-Man State Title", cat:"sports", city:"Waco", date:"2026-11-21", basis:"summary",
  title:"Waco's Valor Prep wins second straight TAPPS six-man state title; Temple's CTCS falls in Division IV final",
  dek:"Valor beat Keller Harvest 68-44 in Robinson. Central Texas Christian finished 9-3 after a 55-22 loss to four-time champion Dallas First Baptist.",
  body:[
@@ -449,7 +449,7 @@ window.STORIES = [
   "Both titles were the last private-school championships of the fall for 254 teams. UIL playoffs continue next week with the regional round; see our <a href=\"/news/area-round-friday-la-vega-lorena-yoe-regionals/\">Friday area-round recap</a>.",
   "Scores, schedules and the playoff tracker: <a href=\"/scoreboard/\">254 Scoreboard</a>."],
  sources:[["KWTX: Valor Prep wins second straight TAPPS six-man title","https://www.kwtx.com/2026/11/21/valor-prep-wins-second-tapps-6-man-state-championship-row/"],["Dallas Morning News via Yahoo: First Baptist wins fourth straight title","https://sports.yahoo.com/articles/first-baptist-cruises-fourth-straight-032610027.html"],["KWTX: title-game pairings and site","https://www.kwtx.com/2026/11/16/area-rounds-private-school-title-games-this-weeks-2026-central-texas-hsfb-playoff-pairings/"]]},
-{id:"clifton-state-volleyball-title-salado-runner-up", cat:"sports", city:"Clifton", date:"2026-11-21", basis:"records",
+{id:"clifton-state-volleyball-title-salado-runner-up", seo:"Clifton Wins First State Volleyball Title; Salado Runner-Up", cat:"sports", city:"Clifton", date:"2026-11-21", basis:"records",
  title:"Clifton sweeps Wall for its first state volleyball title; Salado finishes as 4A state runner-up",
  dek:"The Cubs won 25-21, 25-23, 25-19 in Garland. Salado fell in three close sets to Decatur in the 4A Division I final.",
  body:[
@@ -459,7 +459,7 @@ window.STORIES = [
   "Volleyball is now done for the fall. High school basketball is underway, and soccer starts in January.",
   "Scores, schedules and the playoff tracker: <a href=\"/scoreboard/\">254 Scoreboard</a>."],
  sources:[["UIL state volleyball tournament results","https://www.uiltexas.org/volleyball/state","record"],["KWTX: Clifton wins 3A-II state volleyball title","https://www.kwtx.com/2026/11/20/clifton-wins-3a-2-state-volleyball-title/"],["Sports Illustrated High School: set scores","https://www.si.com/high-school/texas/texas-high-school-volleyball-uil-state-championship-schedule-nov-19-21-202-01m7ek9qfzsc"]]},
-{id:"mars-waco-107-million-utility-building", cat:"business", top:1, city:"Waco", date:"2026-11-21", basis:"records",
+{id:"mars-waco-107-million-utility-building", seo:"Mars Plans $107 Million Building at Waco Candy Plant", cat:"business", top:1, city:"Waco", date:"2026-11-21", basis:"records",
  title:"Mars files plans for a $107 million building at its Waco candy plant",
  dek:"A state construction filing shows a new 28,154-square-foot central utility building on Texas Central Parkway, with work set for January 2027 through February 2029.",
  body:[
@@ -469,7 +469,7 @@ window.STORIES = [
   "The filing does not say whether the project will add jobs.",
   "Planning a commercial project? Visit <a href=\"/build/\">254 Build & Facilities</a>."],
  sources:[["TDLR filing TABS2027005354","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027005354","record"]]},
-{id:"bell-county-filings-belton-warehouse-killeen-fire-station", cat:"growth", city:"Belton", date:"2026-11-21", basis:"records", also:["real-estate"],
+{id:"bell-county-filings-belton-warehouse-killeen-fire-station", seo:"Belton Warehouse Park, Killeen Fire Station in State Filings", cat:"growth", city:"Belton", date:"2026-11-21", basis:"records", also:["real-estate"],
  title:"$24 million warehouse park in Belton, new Killeen fire station and credit union branch show up in state filings",
  dek:"Three Bell County projects worth $33.5 million were registered with the state this month, with construction set to start in 2027.",
  body:[
@@ -480,7 +480,7 @@ window.STORIES = [
   "State filings are early steps. Plans and dates can change before construction starts. More projects are on our <a href=\"/coming-to-the-254/\">Coming to the 254</a> tracker, including the Bell County <a href=\"/news/bell-county-justice-center-annex-price/\">Justice Center Annex</a>.",
   "Planning a commercial project? Visit <a href=\"/build/\">254 Build & Facilities</a>."],
  sources:[["TDLR filing TABS2027005693 (Belton warehouses)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027005693","record"],["TDLR filing TABS2027006136 (Killeen Fire Station 5)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027006136","record"],["TDLR filing TABS2027005951 (A+ FCU Killeen)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027005951","record"],["Killeen Daily Herald: A+ FCU plans Killeen branch","https://kdhnews.com/business/a-federal-credit-union-plans-2-5-million-killeen-branch/article_c1254620-cef1-4242-8453-22ea6efeff6b.html"]]},
-{id:"laynes-waco-di-campli-mcgregor-fairfield-gatesville", cat:"business", city:"Waco", date:"2026-11-21", basis:"records",
+{id:"laynes-waco-di-campli-mcgregor-fairfield-gatesville", seo:"Layne's to Waco, Di Campli's to McGregor, Gatesville Fairfield", cat:"business", city:"Waco", date:"2026-11-21", basis:"records",
  title:"Layne's Chicken Fingers coming to Waco, Di Campli's heads to McGregor and a Gatesville hotel becomes a Fairfield Inn",
  dek:"State filings show a former Fazoli's on South Sixth Street being remodeled for Layne's, a restaurant in McGregor's old bank building and a Marriott conversion on SH 36.",
  body:[
@@ -489,7 +489,7 @@ window.STORIES = [
   "<strong>Gatesville:</strong> An existing hotel at 111 State Highway 36 is set to be renovated and converted to a Fairfield Inn & Suites by Marriott, according to a Nov. 11 filing. The $1 million project covers new furniture, carpet and bathrooms across 36,784 square feet, from Jan. 15 to Sept. 15, 2027.",
   "See everything opening and closing: <a href=\"/coming-to-the-254/\">Coming to the 254</a>."],
  sources:[["TDLR filing TABS2027006049 (Layne's, Waco)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027006049","record"],["TDLR filing TABS2027005055 (Di Campli's, McGregor)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027005055","record"],["TDLR filing TABS2027005689 (Fairfield Inn, Gatesville)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2027005689","record"],["What Now: Layne's planning Waco site","https://whatnow.com/dallas/restaurants/laynes-chicken-fingers-planning-new-waco-site/"]]},
-{id:"altair-clear-creek-killeen-apartments-rents", cat:"real-estate", city:"Killeen", date:"2026-11-21", basis:"summary",
+{id:"altair-clear-creek-killeen-apartments-rents", seo:"Altair at Clear Creek Killeen Apartments: Units and Rents", cat:"real-estate", city:"Killeen", date:"2026-11-21", basis:"summary",
  title:"New Killeen apartments at Altair at Clear Creek: 182 units, one-bedrooms from about $1,444",
  dek:"The $27 million complex on Clear Creek Road is nearing completion, with two- and three-bedroom units listed at about $1,864 and $2,078.",
  body:[
@@ -499,7 +499,7 @@ window.STORIES = [
   "The original state construction filing, registered in 2024 by OG Central Texas Partners Apts, lists the project at $27 million with a garden-style layout, a clubhouse, pool and mail kiosk. That filing had targeted completion in August 2026, so the project is running later than first planned.",
   "Track home prices and rates on our <a href=\"/real-estate/#housing-dashboard\">254 Housing Dashboard</a>. This is general information, not financial advice."],
  sources:[["Killeen Daily Herald: $27M apartment development nearing completion","https://kdhnews.com/business/27m-apartment-development-nearing-completion-in-killeen-1-444-for-a-one-bedroom/article_905ba03d-ec3b-45df-ac7f-40daaed25011.html"],["TDLR filing TABS2025001582 (Altair at Clear Creek)","https://www.tdlr.texas.gov/TABS/Search/Project/TABS2025001582","record"]]},
-{id:"bell-county-killeen-annex-opening-nov-30", cat:"government", city:"Killeen", date:"2026-11-21", basis:"summary",
+{id:"bell-county-killeen-annex-opening-nov-30", seo:"Bell County Killeen Annex Opens Nov. 30: What You Can Do", cat:"government", city:"Killeen", date:"2026-11-21", basis:"summary",
  title:"Bell County opens its new downtown Killeen annex Nov. 30: what you can do there",
  dek:"Vehicle registration, the appraisal district, veterans services and a justice of the peace court move into 507 N. Gray St. Early voting in the Dec. 12 runoffs starts the same day.",
  body:[
@@ -507,7 +507,7 @@ window.STORIES = [
   "The annex houses the Precinct 4 justice of the peace and constable, vehicle registration, the appraisal district, the Veterans Service Office and the county treasurer, according to the Herald. The building brings those county offices together in downtown Killeen.",
   "The same day, Nov. 30, early voting begins for Texas' Dec. 12 runoff elections and runs through Dec. 8, according to the Texas Secretary of State's election calendar. The deadline to apply for a mail ballot is Dec. 1. Voter registration for the runoff has already closed. Our explainer on the Bell County Appraisal District board race on that ballot is <a href=\"/news/we-the-people-bellcad-runoff/\">here</a>."],
  sources:[["Killeen Daily Herald: Bell County to celebrate opening of new annex","https://kdhnews.com/business/bell-county-to-celebrate-opening-of-new-annex-in-killeen/article_2d4a352f-dac1-41d8-b56d-92c406bb6db6.html"],["Texas Secretary of State: Dec. 12, 2026 runoff election calendar","https://www.sos.state.tx.us/elections/laws/advisory2026-27-dec-12-runoff-election-law-calendar.shtml","record"]]},
-{id:"baylor-hrsa-grant-behavioral-health-social-work", cat:"education", city:"Waco", date:"2026-11-21", basis:"records",
+{id:"baylor-hrsa-grant-behavioral-health-social-work", seo:"Baylor Gets $2.2M Grant for Behavioral Health Social Workers", cat:"education", city:"Waco", date:"2026-11-21", basis:"records",
  title:"Baylor gets $2.2 million federal grant to train more behavioral health social workers",
  dek:"The four-year grant pays $25,000 stipends to 14 master's students a year who train in clinics including Baylor Scott & White, Temple Community Clinic and Waco Family Medicine.",
  body:[
@@ -516,7 +516,7 @@ window.STORIES = [
   "Baylor said 246 of Texas' 254 counties qualify as behavioral health professional shortage areas, and about 90% of Garland School graduates stay in Texas. Partners include Baylor Scott & White, Temple Community Clinic, the Texas Association of Community Health Centers and Waco Family Medicine.",
   "The program also offers free continuing education for behavioral health workers already on the job at partner organizations. Program lead Becky Bell Scott said more than half of the grant money goes directly to students, which means less borrowing for their degrees."],
  sources:[["Baylor University news release, Nov. 18, 2026","https://news.web.baylor.edu/news/story/2026/federal-grant-address-critical-workforce-need-behavioral-health-professionals-texas","record"]]},
-{id:"thanksgiving-weekend-254-2026", cat:"things-to-do", city:"Central Texas", date:"2026-11-21", basis:"summary",
+{id:"thanksgiving-weekend-254-2026", seo:"Thanksgiving Weekend in the 254: Events and Holiday Markets", cat:"things-to-do", city:"Central Texas", date:"2026-11-21", basis:"summary",
  title:"Thanksgiving weekend in the 254: Homestead Fair, Wild Lights, Temple's tree lighting and a Belton holiday market",
  dek:"A turkey trot in Waco, holiday lights opening across the area and Black Friday shopping that isn't at the mall. Here's the plan for Nov. 26-29.",
  body:[
