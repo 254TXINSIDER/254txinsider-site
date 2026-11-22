@@ -1,5 +1,5 @@
 // Local guides: dog parks, swimming, school calendars, jobs. Powers /dog-parks/, /swimming/, /school-calendars/, /jobs/
-// Only list places and dates verified on official sites (city, district, USACE, employer). Write in our own words. Verified Nov. 22, 2026.
+// Only list places and dates verified on official sites (city, district, USACE, employer). Write in our own words. Verified Nov. 22, 2026 (dog parks, pools, school dates, employers).
 window.LOCAL = {
   updated: "2026-11-22",
   dogparks: [
