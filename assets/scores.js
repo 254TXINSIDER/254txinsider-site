@@ -4,7 +4,7 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-21",
+  updated: "2026-11-22",
   sports: [
     {
       k: "football", n: "Football", g: "Boys", season: "August to December", status: "playoffs",
@@ -39,6 +39,8 @@ window.SCORES = {
         ]
       },
       games: [
+        { d: "2026-11-21", lv: "College", t1: "Tarleton State", s1: 31, t2: "North Alabama", s2: 24, note: "Finished 12-0, outright UAC champion; FCS bracket revealed Nov. 22 on ESPNU", where: "Florence, Ala." },
+        { d: "2026-11-21", lv: "College", t1: "Baylor", s1: 10, t2: "No. 12 Texas Tech", s2: 20, note: "Senior Day; Baylor 6-5", where: "McLane Stadium, Waco" },
         { d: "2026-11-20", lv: "HS", t1: "La Vega", s1: 56, t2: "Geronimo Navarro", s2: 7, note: "4A-II area round", where: "Crusader Stadium, Belton" },
         { d: "2026-11-20", lv: "HS", t1: "Robinson", s1: 31, t2: "Rockport-Fulton", s2: 21, note: "4A-II area round", where: "Gustafson Stadium, San Antonio" },
         { d: "2026-11-20", lv: "HS", t1: "Lorena", s1: 50, t2: "Diboll", s2: 28, note: "3A-I area round", where: "Madisonville" },
@@ -53,8 +55,6 @@ window.SCORES = {
         { d: "2026-11-19", lv: "HS", t1: "Belton", s1: 14, t2: "South Oak Cliff", s2: 57, note: "5A-II area round", where: "Waco ISD Stadium" }
       ],
       up: [
-        { d: "2026-11-21", lv: "College", t1: "Baylor", t2: "Texas Tech", time: "2:30 p.m.", where: "McLane Stadium, Waco", note: "Senior Day" },
-        { d: "2026-11-21", lv: "College", t1: "Tarleton State", t2: "North Alabama", time: "3 p.m.", where: "Florence, Ala.", note: "Regular-season finale; FCS playoff field announced Sunday" },
         { d: "2026-11-28", lv: "College", t1: "UMHB", t2: "Trinity", time: "Check UMHB for time", where: "Site to be confirmed", note: "NCAA D-III playoffs, 2nd round; ESPN+" },
         { d: "2026-11-28", lv: "College", t1: "Baylor", t2: "No. 21 Houston", time: "8:30 p.m.", where: "Houston", note: "ESPN2" }
       ]
