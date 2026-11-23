@@ -573,6 +573,53 @@ window.FAITH = {
 "today": "Look at someone today, at work, at school, in the checkout line on Adams Avenue or Valley Mills, and remember that they're made in God's image. And when your own day feels like chaos, Genesis 1 is a reminder that God is good at bringing order out of it.",
 "prayer": "God, you made the heavens and the earth, and you made me. Thank you for light, for this day, and for a world you called good. Help me see your image in every person I meet today, and to treat them that way. Bring order where my life feels empty or out of shape, and help me care well for what you've put in my hands. In Jesus' name, amen.",
 "next": "Genesis 2"
+},
+{
+"id": "genesis-2",
+"book": "Genesis",
+"ch": 2,
+"date": "2026-11-23",
+"title": "Genesis 2: The Garden of Eden and the First Marriage",
+"dek": "Genesis 2 in the King James Version, how God formed Adam, planted Eden and made the first woman, what it means, and a short prayer.",
+"key": "Genesis 2:18",
+"v": [
+"Thus the heavens and the earth were finished, and all the host of them.",
+"And on the seventh day God ended his work which he had made; and he rested on the seventh day from all his work which he had made.",
+"And God blessed the seventh day, and sanctified it: because that in it he had rested from all his work which God created and made.",
+"These are the generations of the heavens and of the earth when they were created, in the day that the LORD God made the earth and the heavens,",
+"And every plant of the field before it was in the earth, and every herb of the field before it grew: for the LORD God had not caused it to rain upon the earth, and there was not a man to till the ground.",
+"But there went up a mist from the earth, and watered the whole face of the ground.",
+"And the LORD God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.",
+"And the LORD God planted a garden eastward in Eden; and there he put the man whom he had formed.",
+"And out of the ground made the LORD God to grow every tree that is pleasant to the sight, and good for food; the tree of life also in the midst of the garden, and the tree of knowledge of good and evil.",
+"And a river went out of Eden to water the garden; and from thence it was parted, and became into four heads.",
+"The name of the first is Pison: that is it which compasseth the whole land of Havilah, where there is gold;",
+"And the gold of that land is good: there is bdellium and the onyx stone.",
+"And the name of the second river is Gihon: the same is it that compasseth the whole land of Ethiopia.",
+"And the name of the third river is Hiddekel: that is it which goeth toward the east of Assyria. And the fourth river is Euphrates.",
+"And the LORD God took the man, and put him into the garden of Eden to dress it and to keep it.",
+"And the LORD God commanded the man, saying, Of every tree of the garden thou mayest freely eat:",
+"But of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die.",
+"And the LORD God said, It is not good that the man should be alone; I will make him an help meet for him.",
+"And out of the ground the LORD God formed every beast of the field, and every fowl of the air; and brought them unto Adam to see what he would call them: and whatsoever Adam called every living creature, that was the name thereof.",
+"And Adam gave names to all cattle, and to the fowl of the air, and to every beast of the field; but for Adam there was not found an help meet for him.",
+"And the LORD God caused a deep sleep to fall upon Adam, and he slept: and he took one of his ribs, and closed up the flesh instead thereof;",
+"And the rib, which the LORD God had taken from man, made he a woman, and brought her unto the man.",
+"And Adam said, This is now bone of my bones, and flesh of my flesh: she shall be called Woman, because she was taken out of Man.",
+"Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.",
+"And they were both naked, the man and his wife, and were not ashamed."
+],
+"sum": "God rests on the seventh day, then the story zooms in on the first man: formed from dust, placed in a garden to work it, given one command, and given a wife.",
+"mean": [
+"The chapter opens by finishing the week. God \"ended his work\" and rested on the seventh day, then blessed it and set it apart. God wasn't tired. His rest shows the work was complete and good. It also sets a pattern of work and rest for people. Christians apply that pattern in different ways, from a Sunday Lord's Day to a Saturday Sabbath to a weekly rhythm of rest, but all see rest as a gift from God.",
+"From verse 4 on, the camera moves in close. Genesis 1 showed the whole universe; Genesis 2 shows one man in one garden. God forms him from the dust of the ground and breathes into his nostrils the breath of life. We are made of ordinary earth, and we live only because God gives us breath. Christians differ on how literally to read some details here, but they agree on that main point.",
+"God plants a garden in Eden, waters it with a river that splits into four (Pison, Gihon, Hiddekel and Euphrates), and puts the man there \"to dress it and to keep it.\" Work is not a punishment. It was part of life before anything went wrong.",
+"God gives freedom and one limit. Adam may eat freely from every tree except one: the tree of the knowledge of good and evil. The warning is serious: eating it brings death. That single command sets up what happens in chapter 3.",
+"Then comes the first thing God calls \"not good\": the man is alone. Adam names the animals, but none of them is a fitting partner. So God puts him to sleep, takes one of his ribs and makes a woman. Adam's response is joy: \"bone of my bones, and flesh of my flesh.\" Verse 24 describes marriage as leaving parents and becoming one flesh, words Jesus later quotes in Matthew 19. The chapter ends in peace: they were naked and not ashamed."
+],
+"today": "God made us for work, for rest and for each other. This week, whether you're on a job site in Temple, a classroom in Killeen or at home in Belton, do your work well, take the rest God gives, and don't try to carry life alone. Call someone, sit with family, show up for a neighbor.",
+"prayer": "Lord God, you formed me from the dust and gave me breath. Thank you for my life, for good work to do, and for the rest you give. Help me tend what you've put in my care and to trust your limits, knowing they are for my good. Thank you for the people you've placed beside me. Keep me from isolating myself, and help me love my family and friends well. In Jesus' name, amen.",
+"next": "Genesis 3"
 }
 ]
 };
