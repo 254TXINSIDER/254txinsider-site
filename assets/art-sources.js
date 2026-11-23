@@ -41,5 +41,13 @@ window.ART = {
   "copperas-cove-place-7-runoff-withdrawal": { src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Copperas_Cove_downtown-2009.JPG/1920px-Copperas_Cove_downtown-2009.JPG", page: "https://commons.wikimedia.org/wiki/File:Copperas_Cove_downtown-2009.JPG", by: "Viceroy Bob", lic: "Public domain", licUrl: "" },
   "temple-fire-station-9-old-waco-road": { big: "$19M+", label: "Planned Temple Fire Station 9 (Temple Daily Telegram)" },
   "mcc-foundation-record-925k-scholarships": { big: "$925K", label: "Record MCC Foundation scholarships, 2026-27 (KXXV)" },
-  "tarleton-texas-am-soarr-rural-student-grant": { big: "$2.1M", label: "Tarleton share of federal SOARR grant (Tarleton)" }
+  "tarleton-texas-am-soarr-rural-student-grant": { big: "$2.1M", label: "Tarleton share of federal SOARR grant (Tarleton)" },
+  "regional-round-254-teams-times-sites-nov-27": {"big":"11 teams","label":"254 teams alive in UIL regionals, Nov. 27"},
+  "tarleton-no2-seed-umhb-hosts-trinity-playoffs": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Tarleton_State_University_August_2017_26_%28Memorial_Stadium%29.jpg/1920px-Tarleton_State_University_August_2017_26_%28Memorial_Stadium%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Tarleton_State_University_August_2017_26_(Memorial_Stadium).jpg","by":"Michael Barera","lic":"CC BY-SA 4.0","licUrl":"https://creativecommons.org/licenses/by-sa/4.0"},
+  "wilsonart-temple-envases-waco-plant-filings": {"big":"$23.5M","label":"Two plant projects, Temple and Waco (TDLR filings)"},
+  "nordstrom-rack-waco-central-texas-marketplace-filing": {"big":"$3M","label":"Nordstrom Rack Waco build-out (TDLR filing)"},
+  "killeen-economic-development-policy-fast-track": {"src":"https://upload.wikimedia.org/wikipedia/commons/d/d7/City_of_Killeen_Public_Building.JPG","page":"https://commons.wikimedia.org/wiki/File:City_of_Killeen_Public_Building.JPG","by":"Victorenriqueagosto","lic":"CC BY-SA 3.0","licUrl":"https://creativecommons.org/licenses/by-sa/3.0"},
+  "temple-council-trail-contract-fire-station-12-land": {"big":"$2.45M","label":"Temple trail contract (City Council)"},
+  "gas-killeen-temple-3-dollars-thanksgiving-travel": {"big":"$3.00","label":"Killeen-Temple regular gas, AAA, Nov. 22"},
+  "belton-isd-legislative-priorities-2027": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/TexasStateCapitol-2010-01.JPG/1920px-TexasStateCapitol-2010-01.JPG","page":"https://commons.wikimedia.org/wiki/File:TexasStateCapitol-2010-01.JPG","by":"LoneStarMike","lic":"CC BY 3.0","licUrl":"https://creativecommons.org/licenses/by/3.0"},
 };
