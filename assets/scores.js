@@ -4,7 +4,7 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-23",
+  updated: "2026-11-24",
   sports: [
     {
       "k": "football",
@@ -12,7 +12,7 @@ window.SCORES = {
       "g": "Boys",
       "season": "August to December",
       "status": "playoffs",
-      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at Salado ISD Stadium (KWTX lists 7:30 p.m., Dave Campbell's 7 p.m.; check with the schools). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28.",
+      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28.",
       "tracker": {
         "round": "Regional round (Friday, Nov. 27)",
         "next": "Following round, first week of December",
@@ -39,13 +39,13 @@ window.SCORES = {
             "t": "Lorena",
             "c": "3A-I",
             "r": "10-2",
-            "n": "Regional: vs. Cameron Yoe (11-1), Fri. Nov. 27, 7 or 7:30 p.m., Salado ISD Stadium"
+            "n": "Regional: vs. Cameron Yoe (11-1), Fri. Nov. 27, 7:30 p.m., Eagle Stadium, Salado"
           },
           {
             "t": "Cameron Yoe",
             "c": "3A-I",
             "r": "11-1",
-            "n": "Regional: vs. Lorena (10-2), Fri. Nov. 27, 7 or 7:30 p.m., Salado ISD Stadium"
+            "n": "Regional: vs. Lorena (10-2), Fri. Nov. 27, 7:30 p.m., Eagle Stadium, Salado"
           },
           {
             "t": "Whitney",
@@ -355,8 +355,8 @@ window.SCORES = {
           "lv": "HS",
           "t1": "Lorena",
           "t2": "Cameron Yoe",
-          "time": "7 or 7:30 p.m. (check with schools)",
-          "where": "Salado ISD Stadium",
+          "time": "7:30 p.m.",
+          "where": "Eagle Stadium, Salado",
           "note": "3A-I regional, all-254"
         },
         {
@@ -400,7 +400,7 @@ window.SCORES = {
           "lv": "College",
           "t1": "UMHB",
           "t2": "Trinity",
-          "time": "Noon",
+          "time": "1 p.m.",
           "where": "Crusader Stadium, Belton",
           "note": "NCAA D-III playoffs, 2nd round; ESPN+"
         },

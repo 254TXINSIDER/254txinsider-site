@@ -2,10 +2,10 @@
 // Rates: Mortgage News Daily (daily index, weekdays) and Freddie Mac PMMS (weekly, Thursdays).
 // Local: Realtor.com metro data via FRED (monthly). Austin: Unlock MLS / Austin Board of REALTORS (monthly). National: NAR (monthly).
 window.MARKET = {
-  updated: "2026-11-23",
+  updated: "2026-11-24",
   rates: {
-    daily: { label: "Daily 30-yr fixed", v: 7.33, chg: -0.12, asOf: "Nov 20, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
-    daily15: { label: "Daily 15-yr fixed", v: 6.89, chg: -0.10, asOf: "Nov 20, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
+    daily: { label: "Daily 30-yr fixed", v: 7.34, chg: 0.01, asOf: "Nov 23, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
+    daily15: { label: "Daily 15-yr fixed", v: 6.89, chg: 0.00, asOf: "Nov 23, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
     weekly: { label: "Freddie Mac 30-yr avg", v: 7.28, prev: 7.11, yearAgo: 6.26, asOf: "Nov 19, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] },
     weekly15: { label: "Freddie Mac 15-yr avg", v: 6.66, prev: 6.45, yearAgo: 5.54, asOf: "Nov 19, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] }
   },
