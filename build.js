@@ -1418,6 +1418,7 @@ function footer() {
 <div><h2 class="fh">Company</h2><a href="/about/">About Us</a><a href="/standards/">Editorial Standards</a><a href="/search/">Search</a><a href="/weather/">254 Weather</a><a href="/traffic/">254 Traffic</a><a href="/coming-to-the-254/">Coming to the 254</a><a href="/scoreboard/">254 Scoreboard</a><a href="/home-pros/">254 Home Pros</a><a href="/build/">Commercial Build &amp; Facilities</a><a href="/advertise/">Advertise With Us</a><a href="/contact/">Contact Us / News Tips</a><a href="/contact/?topic=podcast">Be on the Podcast</a><a href="/privacy/">Privacy Policy</a><a href="/rss.xml">RSS Feed</a><a href="/sitemap.xml">Sitemap</a></div>
 <div><h2 class="fh">Cities</h2>${CITIES.map(c => `<a href="${c.url}">${c.name}</a>`).join("")}<h2 class="fh" style="margin-top:14px">Follow</h2>${social()}</div>
 </div><div class="legal"><span>© ${new Date().getFullYear()} ${NAME}. All rights reserved.</span><span class="site-views" data-site-views hidden></span><span>Our stories credit and link to the original reporting.</span></div></div></footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "26476228705c41e6b5dc9649272e0daa"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
 `;
@@ -1591,9 +1592,10 @@ simple("contact/index.html", "/contact/", `Contact & News Tips | ${NAME}`, `Send
 <label>Topic <select name="topic" id="topic"><option value="tip">News tip</option><option value="podcast">Podcast guest</option><option value="advertise">Advertising</option><option value="other">Something else</option></select></label>
 <label>Message <textarea name="message" required></textarea></label><div><button class="btn" type="submit">Send</button></div></form></div></section>`);
 simple("privacy/index.html", "/privacy/", `Privacy Policy | ${NAME}`, `How ${NAME} handles visitor data, newsletter signups and analytics.`,
-  `<div class="page-hero"><div class="wrap"><span class="kicker">Legal</span><h1>Privacy <span>Policy</span></h1><p>Last updated November 19, 2026.</p></div></div>
+  `<div class="page-hero"><div class="wrap"><span class="kicker">Legal</span><h1>Privacy <span>Policy</span></h1><p>Last updated November 24, 2026.</p></div></div>
 <section class="block"><div class="wrap prose"><h2>What we collect</h2><p>When you sign up for our newsletter or send us a message, we collect what you enter, such as your name and email address. We use it only to send you ${NAME} updates or to reply to you. We do not sell your information.</p>
 <h2>Analytics</h2><p>We use Google Analytics to understand how many people visit the site and which stories they read. Google Analytics uses cookies and collects information such as pages viewed, approximate location and device type. You can learn more at <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google's partner sites policy</a> or opt out with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out add-on</a>.</p>
+<p>We also use Cloudflare Web Analytics to count visits and page views. It does not use cookies and does not track individual visitors. Learn more in <a href="https://www.cloudflare.com/web-analytics/" target="_blank" rel="noopener">Cloudflare's Web Analytics overview</a>.</p>
 <h2>View counts</h2><p>We keep simple, anonymous counts of how many times each page is viewed. These counts do not identify you.</p>
 <h2>Advertising</h2><p>We may show ads from local sponsors. If we add third-party ad networks in the future, we will update this page.</p>
 <h2>Unsubscribing</h2><p>You can unsubscribe from our emails at any time by replying to any email or <a href="/contact/">contacting us</a>.</p>
