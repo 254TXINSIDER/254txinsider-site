@@ -50,4 +50,5 @@ window.ART = {
   "temple-council-trail-contract-fire-station-12-land": {"big":"$2.45M","label":"Temple trail contract (City Council)"},
   "gas-killeen-temple-3-dollars-thanksgiving-travel": {"big":"$3.00","label":"Killeen-Temple regular gas, AAA, Nov. 22"},
   "belton-isd-legislative-priorities-2027": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/TexasStateCapitol-2010-01.JPG/1920px-TexasStateCapitol-2010-01.JPG","page":"https://commons.wikimedia.org/wiki/File:TexasStateCapitol-2010-01.JPG","by":"LoneStarMike","lic":"CC BY 3.0","licUrl":"https://creativecommons.org/licenses/by/3.0"},
+  "wine-basics-thanksgiving-wine": { big: "TURKEY WINE", label: "Sip the 254 with Jake Ruse" },
 };
