@@ -2,7 +2,7 @@
 // diff: Easy | Moderate | Hard. surface: Paved | Natural | Mixed. shade: Lots | Some | Little.
 // feats: paved, natural, water, shade, dogs, kids, restrooms, bikes, fee, seasonal
 window.TRAILS = {
-  updated: "2026-11-22",
+  updated: "2026-11-24",
   trails: [
     { id: "cameron-park", n: "Cameron Park Trails", city: "Waco", where: "Cameron Park, near downtown Waco", len: "About 26 miles of trails", diff: "Hard", surface: "Natural", shade: "Lots",
       water: "Brazos and Bosque rivers", d: "Waco's big one: a National Recreation Trail system with about 26 miles of twisting multi-use trails through dense woods above the Brazos. Expect short, steep climbs, rocky singletrack and lots of intersections, so grab the city's trail map. Hikers share it with mountain bikers.",
@@ -10,7 +10,7 @@ window.TRAILS = {
       src: ["City of Waco", "https://www.waco-texas.com/Departments/Parks-Recreation/Cameron-Park/Cameron-Park-Trail-System-Rules"] },
     { id: "waco-riverwalk", n: "Waco Riverwalk", city: "Waco", where: "Brazos River, Cameron Park to Baylor", len: "About 6.5 miles along both banks", diff: "Easy", surface: "Paved", shade: "Some",
       water: "Brazos River", d: "The easy way to see Cameron Park. A paved path that winds about 6.5 miles along both banks of the Brazos, linking Cameron Park to downtown and Baylor. Good for strollers, runners and a flat evening walk.",
-      feats: ["paved", "water", "kids", "dogs"], status: "",
+      feats: ["paved", "water", "kids", "dogs"], status: "The City of Waco has closed the Riverwalk from Jackson Avenue to the Baylor Law School, around the Texas Ranger Hall of Fame, I-35, Foster Pavilion and the Riverfront Lofts, for construction expected to finish by January 2028 (city notice: waco-texas.com/News/River-Trail-Closure).",
       src: ["TrailLink: Waco walking trails", "https://www.traillink.com/cityactivity/killeen-tx-walking-trails/"] },
     { id: "waco-dam-trail", n: "Waco Lake Dam Hike & Bike Trail", city: "Waco", where: "Waco Lake Dam (Lake Shore, Airport Rd. and Skeet Eason trailheads)", len: "About 2 miles one way", diff: "Easy", surface: "Paved", shade: "Little",
       water: "Lake Waco views", d: "A paved path along the top of the Waco Lake dam with wide-open lake views and three trailheads. It's fully exposed, so it's a cool-morning or sunset walk, not a July noon walk.",
