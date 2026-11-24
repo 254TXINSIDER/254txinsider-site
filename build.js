@@ -4,7 +4,7 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const ROOT = __dirname, OUT = path.join(ROOT, "dist");
 const SITE = "https://254txinsider.com", NAME = "254 Texas Insider", TAG = "The Pulse of the 254";
 const DESC = "Central Texas news for Waco, Temple, Killeen and Belton: business, growth, real estate, markets, government, schools, sports and things to do.";
-const SOC = { tiktok: "https://www.tiktok.com/@254.texas.insider", instagram: "https://www.instagram.com/254texasinsider", facebook: "https://www.facebook.com/profile.php?id=61594348517050" };
+const SOC = { youtube: "https://www.youtube.com/@254txinsider", tiktok: "https://www.tiktok.com/@254.texas.insider", instagram: "https://www.instagram.com/254texasinsider", facebook: "https://www.facebook.com/profile.php?id=61594348517050" };
 const SECTIONS = [
   ["latest", "Latest", "Latest News", "Everything new across the 254: Waco, Temple, Killeen, Belton and the rest of Central Texas."],
   ["business", "Business", "Business & Economic Development", "The business journal for the 254: openings, expansions, jobs, deals and development across Waco, Temple, Killeen, Belton, Harker Heights, Copperas Cove and all of Central Texas."],
@@ -1344,7 +1344,7 @@ const catLabel = k => SEC[k] ? SEC[k].short : k;
 const secUrl = k => "/" + k + "/";
 const abs = u => SITE + u;
 const ld = o => '<script type="application/ld+json">' + JSON.stringify(o).replace(/</g, "\x5cu003c") + "</script>";
-const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.facebook, SOC.instagram, SOC.tiktok], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/standards/", correctionsPolicy: SITE + "/standards/#corrections", email: "jake.ruse@254txinsider.com" };
+const ORG = { "@type": "NewsMediaOrganization", "@id": SITE + "/#org", name: NAME, url: SITE + "/", logo: { "@type": "ImageObject", url: SITE + "/assets/logo.webp", width: 150, height: 150 }, sameAs: [SOC.facebook, SOC.instagram, SOC.youtube, SOC.tiktok], areaServed: ["Waco, TX", "Temple, TX", "Killeen, TX", "Belton, TX", "Bell County, TX", "McLennan County, TX", "Coryell County, TX"], foundingLocation: "Temple, TX", publishingPrinciples: SITE + "/standards/", correctionsPolicy: SITE + "/standards/#corrections", email: "jake.ruse@254txinsider.com" };
 const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">';
 
 // ---------- Search titles and descriptions: keep within what Google shows ----------
@@ -1409,7 +1409,7 @@ ${breakingBar()}<div class="wx-banner" id="wx-banner" hidden></div>
 <nav class="secnav" aria-label="Sections"><div class="wrap">${nav}<a class="nav-lead${active === "home-pros" ? ' active" aria-current="page' : ""}" href="/home-pros/">Find a Home Pro</a><a class="nav-lead${active === "build" ? ' active" aria-current="page' : ""}" href="/build/">Commercial Projects</a></div></nav>
 `;
 }
-function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopener">TikTok</a><a href="${SOC.instagram}" target="_blank" rel="noopener">Instagram</a><a href="${SOC.facebook}" target="_blank" rel="noopener">Facebook</a>`; }
+function social() { return `<a href="${SOC.tiktok}" target="_blank" rel="noopener">TikTok</a><a href="${SOC.instagram}" target="_blank" rel="noopener">Instagram</a><a href="${SOC.facebook}" target="_blank" rel="noopener">Facebook</a><a href="${SOC.youtube}" target="_blank" rel="noopener">YouTube</a>`; }
 function footer() {
   const secs = SECTIONS.map(s => `<a href="${secUrl(s[0])}">${s[2]}</a>`).join("");
   return `<footer class="site-footer"><div class="wrap"><div class="cols">
