@@ -59,4 +59,5 @@ window.ART = {
   "baylor-week-alabama-las-vegas-wbb-volleyball-houston": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Foster_Pavilion.jpg/1920px-Foster_Pavilion.jpg","page":"https://commons.wikimedia.org/wiki/File:Foster_Pavilion.jpg","by":"BearlyHere","lic":"CC BY-SA 4.0","licUrl":"https://creativecommons.org/licenses/by-sa/4.0"},
   "killeen-temple-waco-unemployment-october-2026": {"big":"5.0%","label":"Killeen-Temple jobless rate, October (TWC)"},
   "temple-edc-land-11-acres-fm-3117": {"big":"108.8 ac","label":"Temple EDC land near FM 3117 (city council)"},
+  "golf-which-tees-should-i-play": {"big":"WHICH TEES","label":"Golf in the 254"},
 };
