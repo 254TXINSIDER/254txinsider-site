@@ -61,4 +61,5 @@ window.ART = {
   "temple-edc-land-11-acres-fm-3117": {"big":"108.8 ac","label":"Temple EDC land near FM 3117 (city council)"},
   "golf-which-tees-should-i-play": {"big":"WHICH TEES","label":"Golf in the 254"},
   "hike-pick-first-trail": { big: "First trail", label: "Trails & Hiking" },
+  "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
 };
