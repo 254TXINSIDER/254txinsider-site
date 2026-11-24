@@ -1387,7 +1387,7 @@ ${o.image ? '<meta property="og:image:width" content="1200">\n<meta property="og
 <meta name="twitter:image" content="${img}">
 ${o.extraMeta || ""}<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/icon-144.png" type="image/png" sizes="144x144">
-<link rel="apple-touch-icon" href="/assets/logo.webp">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
 <link rel="alternate" type="application/rss+xml" title="${NAME}" href="${SITE}/rss.xml">
 ${o.preload ? `<link rel="preload" as="image" href="${o.preload}">\n` : ""}${FONTS}
 <link rel="stylesheet" href="/assets/styles.css">
@@ -1752,6 +1752,8 @@ pages["google87e94f914aca1841.html"] = "google-site-verification: google87e94f91
 
 // ---------- Favicon + IndexNow ----------
 pages["favicon.ico"] = fs.readFileSync(path.join(ROOT, "assets/favicon.ico"));
+// iPhones and iPads ask for these two root files by name.
+pages["apple-touch-icon.png"] = pages["apple-touch-icon-precomposed.png"] = fs.readFileSync(path.join(ROOT, "assets/apple-touch-icon.png"));
 pages["downloads/fort-hood-newcomer-checklist.pdf"] = fs.readFileSync(path.join(ROOT, "assets/fort-hood-newcomer-checklist.pdf"));
 const INDEXNOW_KEY = "19b39877ed65d171633716bf08e1de04";
 pages[INDEXNOW_KEY + ".txt"] = INDEXNOW_KEY;
