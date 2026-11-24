@@ -620,6 +620,52 @@ window.FAITH = {
 "today": "God made us for work, for rest and for each other. This week, whether you're on a job site in Temple, a classroom in Killeen or at home in Belton, do your work well, take the rest God gives, and don't try to carry life alone. Call someone, sit with family, show up for a neighbor.",
 "prayer": "Lord God, you formed me from the dust and gave me breath. Thank you for my life, for good work to do, and for the rest you give. Help me tend what you've put in my care and to trust your limits, knowing they are for my good. Thank you for the people you've placed beside me. Keep me from isolating myself, and help me love my family and friends well. In Jesus' name, amen.",
 "next": "Genesis 3"
+},
+{
+"id": "genesis-3",
+"book": "Genesis",
+"ch": 3,
+"date": "2026-11-24",
+"title": "Genesis 3: The Fall and God's First Promise",
+"dek": "Genesis 3 in the King James Version, how sin entered the world in Eden, what it means, and a short prayer.",
+"key": "Genesis 3:15",
+"v": [
+"Now the serpent was more subtil than any beast of the field which the LORD God had made. And he said unto the woman, Yea, hath God said, Ye shall not eat of every tree of the garden?",
+"And the woman said unto the serpent, We may eat of the fruit of the trees of the garden:",
+"But of the fruit of the tree which is in the midst of the garden, God hath said, Ye shall not eat of it, neither shall ye touch it, lest ye die.",
+"And the serpent said unto the woman, Ye shall not surely die:",
+"For God doth know that in the day ye eat thereof, then your eyes shall be opened, and ye shall be as gods, knowing good and evil.",
+"And when the woman saw that the tree was good for food, and that it was pleasant to the eyes, and a tree to be desired to make one wise, she took of the fruit thereof, and did eat, and gave also unto her husband with her; and he did eat.",
+"And the eyes of them both were opened, and they knew that they were naked; and they sewed fig leaves together, and made themselves aprons.",
+"And they heard the voice of the LORD God walking in the garden in the cool of the day: and Adam and his wife hid themselves from the presence of the LORD God amongst the trees of the garden.",
+"And the LORD God called unto Adam, and said unto him, Where art thou?",
+"And he said, I heard thy voice in the garden, and I was afraid, because I was naked; and I hid myself.",
+"And he said, Who told thee that thou wast naked? Hast thou eaten of the tree, whereof I commanded thee that thou shouldest not eat?",
+"And the man said, The woman whom thou gavest to be with me, she gave me of the tree, and I did eat.",
+"And the LORD God said unto the woman, What is this that thou hast done? And the woman said, The serpent beguiled me, and I did eat.",
+"And the LORD God said unto the serpent, Because thou hast done this, thou art cursed above all cattle, and above every beast of the field; upon thy belly shalt thou go, and dust shalt thou eat all the days of thy life:",
+"And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel.",
+"Unto the woman he said, I will greatly multiply thy sorrow and thy conception; in sorrow thou shalt bring forth children; and thy desire shall be to thy husband, and he shall rule over thee.",
+"And unto Adam he said, Because thou hast hearkened unto the voice of thy wife, and hast eaten of the tree, of which I commanded thee, saying, Thou shalt not eat of it: cursed is the ground for thy sake; in sorrow shalt thou eat of it all the days of thy life;",
+"Thorns also and thistles shall it bring forth to thee; and thou shalt eat the herb of the field;",
+"In the sweat of thy face shalt thou eat bread, till thou return unto the ground; for out of it wast thou taken: for dust thou art, and unto dust shalt thou return.",
+"And Adam called his wife’s name Eve; because she was the mother of all living.",
+"Unto Adam also and to his wife did the LORD God make coats of skins, and clothed them.",
+"And the LORD God said, Behold, the man is become as one of us, to know good and evil: and now, lest he put forth his hand, and take also of the tree of life, and eat, and live for ever:",
+"Therefore the LORD God sent him forth from the garden of Eden, to till the ground from whence he was taken.",
+"So he drove out the man; and he placed at the east of the garden of Eden Cherubims, and a flaming sword which turned every way, to keep the way of the tree of life."
+],
+"sum": "The serpent tempts the woman, she and Adam eat from the forbidden tree, and they hide in shame. God confronts them, pronounces judgment, clothes them, promises a coming victory over the serpent, and sends them out of Eden.",
+"mean": [
+"The chapter opens with a question. The serpent asks, \"Yea, hath God said...?\" He doesn't start with an open attack. He plants doubt about what God said and whether God can be trusted. Then he calls God a liar: \"Ye shall not surely die.\" The temptation is to believe God is holding back something good.",
+"The woman sees the fruit is good for food, pleasant to look at and desired to make one wise. She eats and gives some to Adam, who was with her, and he eats too. Their eyes are opened, but not the way they hoped. They feel exposed, sew fig leaves together, and hide from God among the trees. Shame and fear have come in where there was peace.",
+"God comes looking for them and asks, \"Where art thou?\" God already knows. The question is an invitation to come out and be honest. Instead the blame starts. Adam blames the woman, and even hints at God (\"the woman whom thou gavest\"). The woman blames the serpent. Sin breaks trust with God and with each other in the same moment.",
+"God then speaks judgment. The serpent is cursed. The woman will have pain in childbirth and struggle in her marriage. The ground is cursed because of Adam, so work becomes hard and sweaty, and death comes: \"dust thou art, and unto dust shalt thou return.\" Christians describe these effects in different ways, but they agree this chapter explains why the world is broken. Many traditions call it \"the Fall.\"",
+"Even here there is mercy. In verse 15 God says the woman's seed will bruise the serpent's head. Christians have long read this as the first hint of the gospel, pointing to Jesus' victory over evil. God also makes coats of skins to clothe them. He sends them out of Eden and guards the way to the tree of life, but the story doesn't end there. The rest of the Bible is about God making a way back."
+],
+"today": "We all know the pull of \"Did God really say?\" and the urge to hide or blame when we get it wrong. Whether you're at home in Harker Heights or at work in Waco today, God's question still stands: \"Where are you?\" You can stop hiding and come to him honestly.",
+"prayer": "Lord God, I confess that I often doubt your goodness and want my own way. When I fall, I hide and I blame others. Thank you for coming to look for me anyway. Thank you for your promise to crush evil, and for sending Jesus to do it. Cover my shame with your mercy. Help me trust your word, own my mistakes, and walk with you again today. In Jesus' name, amen.",
+"next": "Genesis 4"
 }
 ]
 };
