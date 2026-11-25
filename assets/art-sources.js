@@ -65,4 +65,12 @@ window.ART = {
   "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
   "thanksgiving-2026-trash-pickup-closures-254": { big: "NOV. 26", label: "Thanksgiving trash pickup and closures" },
   "wine-basics-how-long-open-wine-lasts": { big: "OPEN BOTTLE", label: "Sip the 254 with Jake Ruse" },
+  "baylor-beats-alabama-68-63-players-era-gonzaga-next": {"big":"68-63","label":"Baylor over No. 15 Alabama in Las Vegas (ESPN)"},
+  "7-brew-coffee-killeen-fort-hood-street": {"big":"$1.5M","label":"7 Brew drive-thru, Killeen (state filing via KDH)"},
+  "central-national-bank-waco-bosque-blvd-5-8-million": {"big":"$5.8M","label":"Central National Bank build-out, Waco (Intelligence360)"},
+  "first-baptist-temple-14-million-childrens-wing": {"big":"$14M","label":"First Baptist Temple children's wing (state filing)"},
+  "horizon-bank-little-river-academy-branch": {"big":"$1.2M","label":"Horizon Bank branch, Little River-Academy (filing)"},
+  "waco-ale-co-closes-austin-ave-waco-brewing-co-franklin": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Downtown_Waco%2C_Texas_%2847622943371%29.jpg/1920px-Downtown_Waco%2C_Texas_%2847622943371%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Downtown_Waco,_Texas_(47622943371).jpg","by":"Tony Webster","lic":"CC BY 2.0","licUrl":"https://creativecommons.org/licenses/by/2.0"},
+  "baylor-no-3-learning-communities-us-news": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Baylor_University_June_2016_13_%28Founders_Mall_and_Pat_Neff_Hall%29.jpg/1920px-Baylor_University_June_2016_13_%28Founders_Mall_and_Pat_Neff_Hall%29.jpg","page":"https://commons.wikimedia.org/wiki/File:Baylor_University_June_2016_13_(Founders_Mall_and_Pat_Neff_Hall).jpg","by":"Michael Barera","lic":"CC BY-SA 4.0","licUrl":"https://creativecommons.org/licenses/by-sa/4.0"},
+  "killeen-lets-clear-that-up-rumor-program": {"src":"https://upload.wikimedia.org/wikipedia/commons/d/d7/City_of_Killeen_Public_Building.JPG","page":"https://commons.wikimedia.org/wiki/File:City_of_Killeen_Public_Building.JPG","by":"Victorenriqueagosto","lic":"CC BY-SA 3.0","licUrl":"https://creativecommons.org/licenses/by-sa/3.0"},
 };

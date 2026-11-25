@@ -4,7 +4,7 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-24",
+  updated: "2026-11-25",
   sports: [
     {
       "k": "football",
@@ -12,7 +12,7 @@ window.SCORES = {
       "g": "Boys",
       "season": "August to December",
       "status": "playoffs",
-      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28.",
+      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28 at 1 p.m.; Tarleton hosts the Montana-UIW winner Dec. 5 at Memorial Stadium.",
       "tracker": {
         "round": "Regional round (Friday, Nov. 27)",
         "next": "Following round, first week of December",
@@ -476,8 +476,8 @@ window.SCORES = {
           "lv": "College",
           "t1": "Baylor",
           "t2": "Cincinnati",
-          "time": "1 p.m.",
-          "where": "Cincinnati",
+          "time": "2 p.m.",
+          "where": "Fifth Third Arena, Cincinnati",
           "note": "ESPN+; regular-season finale"
         }
       ]
@@ -490,6 +490,35 @@ window.SCORES = {
       "status": "season",
       "note": "High school season is underway. Area scores are added as schools and local media report them.",
       "games": [
+        {
+          "d": "2026-11-24",
+          "lv": "College",
+          "t1": "Baylor",
+          "s1": 68,
+          "t2": "No. 15 Alabama",
+          "s2": 63,
+          "note": "Players Era, Baylor 5-1",
+          "where": "Las Vegas"
+        },
+        {
+          "d": "2026-11-24",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "s1": 87,
+          "t2": "Weber State",
+          "s2": 89,
+          "note": "OT; Tarleton 4-3",
+          "where": "Ogden, Utah"
+        },
+        {
+          "d": "2026-11-24",
+          "lv": "College",
+          "t1": "UMHB",
+          "s1": 62,
+          "t2": "No. 6 UW-Stevens Point",
+          "s2": 79,
+          "where": "Stevens Point, Wis."
+        },
         {
           "d": "2026-11-22",
           "lv": "College",
@@ -529,37 +558,11 @@ window.SCORES = {
       ],
       "up": [
         {
-          "d": "2026-11-24",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "Alabama",
-          "time": "9 p.m.",
-          "where": "Las Vegas",
-          "note": "Players Era"
-        },
-        {
-          "d": "2026-11-24",
-          "lv": "College",
-          "t1": "UMHB",
-          "t2": "UW-Stevens Point",
-          "time": "6 p.m.",
-          "where": "Stevens Point, Wis."
-        },
-        {
-          "d": "2026-11-24",
-          "lv": "College",
-          "t1": "Tarleton State",
-          "t2": "Weber State",
-          "time": "6 p.m.",
-          "where": "Ogden, Utah",
-          "note": "ESPN+"
-        },
-        {
           "d": "2026-11-26",
           "lv": "College",
           "t1": "Baylor",
-          "t2": "Gonzaga or Kansas State",
-          "time": "5 or 10:30 p.m.",
+          "t2": "No. 22 Gonzaga",
+          "time": "TBA (check ESPN)",
           "where": "Las Vegas",
           "note": "Players Era"
         },
@@ -572,12 +575,21 @@ window.SCORES = {
           "where": "Seguin"
         },
         {
+          "d": "2026-11-29",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "t2": "Texas Southern",
+          "time": "3 p.m.",
+          "where": "H&PE Arena, Houston",
+          "note": "ESPN+"
+        },
+        {
           "d": "2026-11-30",
           "lv": "College",
           "t1": "UMHB",
           "t2": "Hendrix",
           "time": "6 p.m.",
-          "where": "Belton"
+          "where": "Mayborn Campus Center, Belton"
         }
       ]
     },
@@ -597,6 +609,16 @@ window.SCORES = {
           "t2": "Northern Kentucky",
           "s2": 42,
           "where": "Foster Pavilion, Waco"
+        },
+        {
+          "d": "2026-11-21",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "s1": 61,
+          "t2": "Nicholls",
+          "s2": 57,
+          "note": "OT",
+          "where": "Thibodaux, La."
         },
         {
           "d": "2026-11-20",
@@ -637,12 +659,36 @@ window.SCORES = {
           "note": "Paradise Jam"
         },
         {
+          "d": "2026-11-27",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "t2": "UT Dallas",
+          "time": "3 p.m.",
+          "where": "EECU Center, Stephenville"
+        },
+        {
           "d": "2026-11-28",
           "lv": "College",
           "t1": "Baylor",
           "t2": "Seton Hall or South Florida",
           "time": "TBA",
           "where": "Paradise Jam"
+        },
+        {
+          "d": "2026-11-30",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "t2": "East Texas A&M",
+          "time": "7 p.m.",
+          "where": "EECU Center, Stephenville"
+        },
+        {
+          "d": "2026-12-02",
+          "lv": "College",
+          "t1": "Baylor",
+          "t2": "North Texas",
+          "time": "TBA",
+          "where": "TBA"
         }
       ]
     },
