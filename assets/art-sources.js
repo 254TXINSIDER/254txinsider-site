@@ -63,4 +63,5 @@ window.ART = {
   "hike-pick-first-trail": { big: "First trail", label: "Trails & Hiking" },
   "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
   "thanksgiving-2026-trash-pickup-closures-254": { big: "NOV. 26", label: "Thanksgiving trash pickup and closures" },
+  "wine-basics-how-long-open-wine-lasts": { big: "OPEN BOTTLE", label: "Sip the 254 with Jake Ruse" },
 };
