@@ -257,7 +257,7 @@ const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming 
 // ---------- Sip the 254 (wine) + authors ----------
 const wsb = { window: {} }; try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/wine.js"), "utf8"), wsb); } catch (e) { console.log("wine.js:", e.message); }
 const WN = wsb.window.WINE || { places: [], market: { idx: [], context: [], src: [] }, texas: { stats: [], src: ["", ""] } };
-const AUTHORS = { "jake-ruse": { name: "Jake Ruse", url: "/authors/jake-ruse/", title: "Wine columnist, Sip the 254", bio: "Jake Ruse writes Sip the 254 for 254 Texas Insider: a plain-spoken guide to wine in Central Texas. Where to drink it, what's worth buying, how to make sense of a wine list, and how the wine business works, with no snobbery." } };
+const AUTHORS = { "jake-ruse": { name: "Jake Ruse", url: "/authors/jake-ruse/", title: "Wine columnist, Sip the 254", bio: "Jake Ruse is a WSET-trained wine pro with years in the wine business. He writes Sip the 254 for 254 Texas Insider: a plain-spoken guide to wine in Central Texas. Where to drink it, what's worth buying, how to make sense of a wine list, and how the wine business works, with no snobbery." } };
 const authorOf = s => AUTHORS[s.author] || null;
 const wineCard = x => { const c = Object.assign({}, x); if (x.geo) { c.ll = x.geo; c.approx = false; } else { const b = CITY_LL[x.city]; if (b) { let h = 0; for (const ch of x.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; c.ll = [+(b[0] + ((h % 100) - 50) / 5000).toFixed(5), +(b[1] + (((h >> 7) % 100) - 50) / 5000).toFixed(5)]; c.approx = true; } }
   const map = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.n + ", " + x.where.split(",")[0] + ", " + x.city + ", TX")}`;
