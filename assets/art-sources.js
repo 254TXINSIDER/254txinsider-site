@@ -62,4 +62,5 @@ window.ART = {
   "golf-which-tees-should-i-play": {"big":"WHICH TEES","label":"Golf in the 254"},
   "hike-pick-first-trail": { big: "First trail", label: "Trails & Hiking" },
   "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
+  "thanksgiving-2026-trash-pickup-closures-254": { big: "NOV. 26", label: "Thanksgiving trash pickup and closures" },
 };
