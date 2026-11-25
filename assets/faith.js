@@ -666,6 +666,54 @@ window.FAITH = {
 "today": "We all know the pull of \"Did God really say?\" and the urge to hide or blame when we get it wrong. Whether you're at home in Harker Heights or at work in Waco today, God's question still stands: \"Where are you?\" You can stop hiding and come to him honestly.",
 "prayer": "Lord God, I confess that I often doubt your goodness and want my own way. When I fall, I hide and I blame others. Thank you for coming to look for me anyway. Thank you for your promise to crush evil, and for sending Jesus to do it. Cover my shame with your mercy. Help me trust your word, own my mistakes, and walk with you again today. In Jesus' name, amen.",
 "next": "Genesis 4"
+},
+{
+"id": "genesis-4",
+"book": "Genesis",
+"ch": 4,
+"date": "2026-11-25",
+"title": "Genesis 4: Cain and Abel",
+"dek": "Genesis 4 in the King James Version, the story of Cain and Abel, what it means for how we handle anger, and a short prayer.",
+"key": "Genesis 4:7",
+"v": [
+"And Adam knew Eve his wife; and she conceived, and bare Cain, and said, I have gotten a man from the LORD.",
+"And she again bare his brother Abel. And Abel was a keeper of sheep, but Cain was a tiller of the ground.",
+"And in process of time it came to pass, that Cain brought of the fruit of the ground an offering unto the LORD.",
+"And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the LORD had respect unto Abel and to his offering:",
+"But unto Cain and to his offering he had not respect. And Cain was very wroth, and his countenance fell.",
+"And the LORD said unto Cain, Why art thou wroth? and why is thy countenance fallen?",
+"If thou doest well, shalt thou not be accepted? and if thou doest not well, sin lieth at the door. And unto thee shall be his desire, and thou shalt rule over him.",
+"And Cain talked with Abel his brother: and it came to pass, when they were in the field, that Cain rose up against Abel his brother, and slew him.",
+"And the LORD said unto Cain, Where is Abel thy brother? And he said, I know not: Am I my brother’s keeper?",
+"And he said, What hast thou done? the voice of thy brother’s blood crieth unto me from the ground.",
+"And now art thou cursed from the earth, which hath opened her mouth to receive thy brother’s blood from thy hand;",
+"When thou tillest the ground, it shall not henceforth yield unto thee her strength; a fugitive and a vagabond shalt thou be in the earth.",
+"And Cain said unto the LORD, My punishment is greater than I can bear.",
+"Behold, thou hast driven me out this day from the face of the earth; and from thy face shall I be hid; and I shall be a fugitive and a vagabond in the earth; and it shall come to pass, that every one that findeth me shall slay me.",
+"And the LORD said unto him, Therefore whosoever slayeth Cain, vengeance shall be taken on him sevenfold. And the LORD set a mark upon Cain, lest any finding him should kill him.",
+"And Cain went out from the presence of the LORD, and dwelt in the land of Nod, on the east of Eden.",
+"And Cain knew his wife; and she conceived, and bare Enoch: and he builded a city, and called the name of the city, after the name of his son, Enoch.",
+"And unto Enoch was born Irad: and Irad begat Mehujael: and Mehujael begat Methusael: and Methusael begat Lamech.",
+"And Lamech took unto him two wives: the name of the one was Adah, and the name of the other Zillah.",
+"And Adah bare Jabal: he was the father of such as dwell in tents, and of such as have cattle.",
+"And his brother’s name was Jubal: he was the father of all such as handle the harp and organ.",
+"And Zillah, she also bare Tubal-cain, an instructer of every artificer in brass and iron: and the sister of Tubal-cain was Naamah.",
+"And Lamech said unto his wives, Adah and Zillah, Hear my voice; ye wives of Lamech, hearken unto my speech: for I have slain a man to my wounding, and a young man to my hurt.",
+"If Cain shall be avenged sevenfold, truly Lamech seventy and sevenfold.",
+"And Adam knew his wife again; and she bare a son, and called his name Seth: For God, said she, hath appointed me another seed instead of Abel, whom Cain slew.",
+"And to Seth, to him also there was born a son; and he called his name Enos: then began men to call upon the name of the LORD."
+],
+"sum": "Adam and Eve's sons Cain and Abel bring offerings to God. God accepts Abel's, Cain grows angry, ignores God's warning, and kills his brother. God judges Cain but also protects him, and the chapter traces Cain's family line before Seth is born and people begin to call on the name of the LORD.",
+"mean": [
+"Outside Eden, life goes on. Eve has two sons. Abel keeps sheep and Cain works the ground. Both bring offerings to God. Abel brings the firstlings of his flock and the fat. God has respect for Abel and his offering, but not for Cain and his. The text doesn't fully explain why. Hebrews 11:4 says Abel offered \"by faith.\" Some readers point to Abel giving the first and best, while others focus on the heart behind each gift. Either way, God was looking at more than the gift itself.",
+"Cain is very angry and his face falls. God doesn't ignore him. He comes to Cain and talks with him: \"If thou doest well, shalt thou not be accepted?\" Then comes a warning. Sin is lying at the door like something waiting to pounce, and it wants to control him, but he must rule over it. God gave Cain a chance to turn back before anything happened.",
+"Cain doesn't listen. He talks with Abel, and out in the field he rises up and kills him. It is the first death in the Bible, and it is a murder between brothers. Just one chapter after the Fall, we see how fast sin grows, from a bitten fruit to a brother's blood on the ground.",
+"God asks Cain, \"Where is Abel thy brother?\" Like the question to Adam, it is a chance to be honest. Cain lies and shrugs it off: \"Am I my brother's keeper?\" God says Abel's blood cries out from the ground. Cain is cursed, the ground will not give him its strength, and he will wander. Yet when Cain fears being killed, God puts a mark on him to protect him. Even in judgment, God shows mercy.",
+"The rest of the chapter follows Cain's family. They build a city, raise livestock, make music and work with brass and iron. Culture grows, but so does violence. Lamech, Cain's descendant, brags to his two wives about killing a man and claims vengeance seventy and sevenfold. Then Adam and Eve have another son, Seth, and Seth has a son named Enos. The chapter ends with hope: \"then began men to call upon the name of the LORD.\""
+],
+"today": "Anger, jealousy and comparison are as real in Copperas Cove and Waco as they were in that first field. When resentment is crouching at your door today, stop and deal with it before it deals with you. And yes, we are our brothers' and sisters' keepers, so check on someone who needs it.",
+"prayer": "Lord God, you see my heart as well as my actions. When I'm angry or jealous, help me hear your warning and turn back before I hurt someone. Give me strength to rule over sin instead of letting it rule me. Thank you for your mercy, even when I've failed. Teach me to care for the people around me as their keeper, and to call on your name every day. In Jesus' name, amen.",
+"next": "Genesis 5"
 }
 ]
 };
