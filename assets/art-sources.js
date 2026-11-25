@@ -60,6 +60,7 @@ window.ART = {
   "killeen-temple-waco-unemployment-october-2026": {"big":"5.0%","label":"Killeen-Temple jobless rate, October (TWC)"},
   "temple-edc-land-11-acres-fm-3117": {"big":"108.8 ac","label":"Temple EDC land near FM 3117 (city council)"},
   "golf-which-tees-should-i-play": {"big":"WHICH TEES","label":"Golf in the 254"},
+  "golf-wedge-clock-system": {"big":"WEDGE CLOCK","label":"Golf in the 254"},
   "hike-pick-first-trail": { big: "First trail", label: "Trails & Hiking" },
   "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
   "thanksgiving-2026-trash-pickup-closures-254": { big: "NOV. 26", label: "Thanksgiving trash pickup and closures" },
