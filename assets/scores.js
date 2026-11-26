@@ -4,7 +4,7 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-25",
+  updated: "2026-11-26",
   sports: [
     {
       "k": "football",
@@ -12,7 +12,7 @@ window.SCORES = {
       "g": "Boys",
       "season": "August to December",
       "status": "playoffs",
-      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28 at 1 p.m.; Tarleton hosts the Montana-UIW winner Dec. 5 at Memorial Stadium.",
+      "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28 (noon or 1 p.m.; sources differ); Tarleton hosts the Montana-UIW winner Dec. 5 at Memorial Stadium.",
       "tracker": {
         "round": "Regional round (Friday, Nov. 27)",
         "next": "Following round, first week of December",
@@ -75,7 +75,7 @@ window.SCORES = {
             "t": "Aquilla",
             "c": "6-Man D-I",
             "r": "12-0",
-            "n": "Regional: vs. Union Hill (12-0), Fri. Nov. 27, 7 p.m., site TBA"
+            "n": "Regional: vs. Union Hill (12-0), Fri. Nov. 27, 6 or 7 p.m. (sources differ), site TBA"
           },
           {
             "t": "Mount Calm",
@@ -382,7 +382,7 @@ window.SCORES = {
           "lv": "HS",
           "t1": "Aquilla",
           "t2": "Union Hill",
-          "time": "7 p.m.",
+          "time": "6 or 7 p.m. (sources differ)",
           "where": "Site TBA",
           "note": "6-man D-I regional"
         },
@@ -400,7 +400,7 @@ window.SCORES = {
           "lv": "College",
           "t1": "UMHB",
           "t2": "Trinity",
-          "time": "1 p.m.",
+          "time": "Noon or 1 p.m. (sources differ; check cruathletics.com)",
           "where": "Crusader Stadium, Belton",
           "note": "NCAA D-III playoffs, 2nd round; ESPN+"
         },
@@ -421,8 +421,18 @@ window.SCORES = {
       "g": "Girls",
       "season": "August to November",
       "status": "season",
-      "note": "UIL season is over: Clifton won the 3A Division II state title Nov. 20 and Salado was 4A Division I runner-up. Baylor (17-9) closes its regular season this week.",
+      "note": "UIL season is over: Clifton won the 3A Division II state title Nov. 20 and Salado was 4A Division I runner-up. No. 20 Baylor (18-9) closes its regular season Friday at Cincinnati; the NCAA bracket follows.",
       "games": [
+        {
+          "d": "2026-11-25",
+          "lv": "College",
+          "t1": "No. 20 Baylor",
+          "s1": 3,
+          "t2": "West Virginia",
+          "s2": 0,
+          "note": "25-22, 25-19, 26-24; Baylor 18-9, 10-7 Big 12",
+          "where": "Hope Coliseum, Morgantown, W.Va."
+        },
         {
           "d": "2026-11-22",
           "lv": "College",
@@ -463,20 +473,11 @@ window.SCORES = {
       ],
       "up": [
         {
-          "d": "2026-11-25",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "West Virginia",
-          "time": "2 p.m.",
-          "where": "Morgantown, W.Va.",
-          "note": "ESPN+"
-        },
-        {
           "d": "2026-11-27",
           "lv": "College",
           "t1": "Baylor",
           "t2": "Cincinnati",
-          "time": "2 p.m.",
+          "time": "1 p.m.",
           "where": "Fifth Third Arena, Cincinnati",
           "note": "ESPN+; regular-season finale"
         }
@@ -562,9 +563,18 @@ window.SCORES = {
           "lv": "College",
           "t1": "Baylor",
           "t2": "No. 22 Gonzaga",
-          "time": "TBA (check ESPN)",
-          "where": "Las Vegas",
-          "note": "Players Era"
+          "time": "10:30 p.m.",
+          "where": "T-Mobile Arena, Las Vegas",
+          "note": "Players Era semifinal; ESPN"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "College",
+          "t1": "Baylor",
+          "t2": "Final (10 p.m., ESPN) or third-place game (2 p.m., ESPN2)",
+          "time": "2 p.m. or 10 p.m.",
+          "where": "T-Mobile Arena, Las Vegas",
+          "note": "Players Era; depends on the Gonzaga result"
         },
         {
           "d": "2026-11-29",
@@ -655,8 +665,8 @@ window.SCORES = {
           "t1": "Baylor",
           "t2": "Penn State",
           "time": "4:30 p.m.",
-          "where": "Paradise Jam",
-          "note": "Paradise Jam"
+          "where": "Paradise Jam, St. Thomas, U.S. Virgin Islands",
+          "note": "ESPN+"
         },
         {
           "d": "2026-11-27",
@@ -671,7 +681,7 @@ window.SCORES = {
           "lv": "College",
           "t1": "Baylor",
           "t2": "Seton Hall or South Florida",
-          "time": "TBA",
+          "time": "TBA (date may be Nov. 27 or 28)",
           "where": "Paradise Jam"
         },
         {

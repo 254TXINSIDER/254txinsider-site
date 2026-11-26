@@ -2,12 +2,12 @@
 // Rates: Mortgage News Daily (daily index, weekdays) and Freddie Mac PMMS (weekly, Thursdays).
 // Local: Realtor.com metro data via FRED (monthly). Austin: Unlock MLS / Austin Board of REALTORS (monthly). National: NAR (monthly).
 window.MARKET = {
-  updated: "2026-11-25",
+  updated: "2026-11-26",
   rates: {
-    daily: { label: "Daily 30-yr fixed", v: 7.32, chg: -0.02, asOf: "Nov 24, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
-    daily15: { label: "Daily 15-yr fixed", v: 6.87, chg: -0.02, asOf: "Nov 24, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
-    weekly: { label: "Freddie Mac 30-yr avg", v: 7.28, prev: 7.11, yearAgo: 6.26, asOf: "Nov 19, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] },
-    weekly15: { label: "Freddie Mac 15-yr avg", v: 6.66, prev: 6.45, yearAgo: 5.54, asOf: "Nov 19, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] }
+    daily: { label: "Daily 30-yr fixed", v: 7.26, chg: -0.06, asOf: "Nov 25, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
+    daily15: { label: "Daily 15-yr fixed", v: 6.82, chg: -0.05, asOf: "Nov 25, 2026", src: ["Mortgage News Daily", "https://www.mortgagenewsdaily.com/mortgage-rates/mnd"] },
+    weekly: { label: "Freddie Mac 30-yr avg", v: 7.21, prev: 7.28, yearAgo: 6.23, asOf: "Nov 25, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] },
+    weekly15: { label: "Freddie Mac 15-yr avg", v: 6.54, prev: 6.66, yearAgo: 5.51, asOf: "Nov 25, 2026", src: ["Freddie Mac PMMS", "https://www.freddiemac.com/pmms"] }
   },
   local: [
     { name: "Killeen-Temple metro", sub: "Bell, Coryell & Lampasas counties", month: "Oct 2026",
@@ -24,7 +24,7 @@ window.MARKET = {
     stats: [["Median existing-home price", 416700, "$", 0.4], ["Annual sales pace", "3.75M", "", -8.8, "lowest since 2010"], ["Months of supply", 5.1, "", null, "1.59M homes for sale"], ["Median days on market", 35, "", null, "33 in September"]],
     src: ["National Association of REALTORS", "https://www.nar.realtor/newsroom/existing-home-sales-decreased-5-5-percent-october-nar-report"] },
   takeaways: {
-    buyers: "Rates are still above 7%, though the daily average slipped to a two-week low of 7.32% on Tuesday. 254 prices are softer than a year ago and homes are sitting 77 to 79 days. That gives buyers room to negotiate on price, repairs and closing costs. Get pre-approved and compare at least three lenders.",
+    buyers: "Rates are still above 7%, but they eased this week: Freddie Mac's average fell to 7.21% and the daily index to 7.26%. 254 prices are softer than a year ago and homes are sitting 77 to 79 days. That gives buyers room to negotiate on price, repairs and closing costs. Get pre-approved and compare at least three lenders.",
     sellers: "More competition and longer market times mean pricing right on day one matters. List prices in Killeen-Temple are down about 7% from a year ago. Expect buyers to ask for concessions.",
     owners: "Values have flattened, not crashed. If you locked a rate under 5%, there is little reason to refinance now. Watch your 2027 appraisal notice in the spring and protest if it's out of line with nearby sales."
   },

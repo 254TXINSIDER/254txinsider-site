@@ -4,7 +4,7 @@
 //   edc: [name, url] (cities; economic development corporation or office), notes (pending changes), src: [[name, url]], asOf: "YYYY-MM-DD" }
 // Names exactly as the city or county spells them. Official contact pages only. No party labels, no ratings.
 window.GOV = {
-  updated: "2026-11-22",
+  updated: "2026-11-26",
   places: [
     { id: "temple", kind: "city", name: "City of Temple", seat: "Temple", county: "Bell", form: "Council-manager (home rule)",
       head: ["Mayor", "Tim Davis"],
@@ -29,8 +29,8 @@ window.GOV = {
       contact: "https://www.killeentexas.gov/153",
       election: "November 2027: Mayor and all council seats (Killeen moved city elections to November of odd years)",
       edc: ["Greater Killeen Chamber economic development", "https://killeenchamber.com/economic-development"],
-      notes: "District 1: the council will appoint a district resident to serve through November 2027 after a two-week application window. Dates had not been set as of Nov. 22, 2026.",
-      src: [["City Council", "https://www.killeentexas.gov/153"], ["Meeting participation", "https://killeentexas.gov/729/City-Council-Meeting-Participation"], ["Killeen Daily Herald: Gonzalez resignation", "https://kdhnews.com/government/gonzalez-turns-in-resignation-intends-to-stay-on-killeen-council-until-replacement-selected/article_0263ac4c-1ad0-4cf3-af25-ef6c69f315eb.html"]], asOf: "2026-11-22" },
+      notes: "District 1: the council will appoint a district resident to serve through November 2027 after a two-week application window. The council is scheduled to set the application and interview timeline at its Dec. 1, 2026 meeting (item RS-26-193). Gonzalez remains in the seat until a successor is sworn in.",
+      src: [["City Council", "https://www.killeentexas.gov/153"], ["Meeting participation", "https://killeentexas.gov/729/City-Council-Meeting-Participation"], ["Killeen Daily Herald: Gonzalez resignation", "https://kdhnews.com/government/gonzalez-turns-in-resignation-intends-to-stay-on-killeen-council-until-replacement-selected/article_0263ac4c-1ad0-4cf3-af25-ef6c69f315eb.html"], ["Council agenda, Dec. 1, 2026", "https://killeen.legistar.com/View.ashx?M=A&ID=1456378&GUID=038C3A2F-1933-44F9-9FBD-3FF9849E5B14"]], asOf: "2026-11-26" },
     { id: "waco", kind: "city", name: "City of Waco", seat: "Waco", county: "McLennan", form: "Council-manager",
       head: ["Mayor", "Jim Holmes"],
       members: [["District One", "Andrea J. Barefield", ""], ["District Two", "Isabel Lozano", ""], ["District Three", "Jed Cole", ""], ["District Four", "Darius Ewing", ""], ["District Five", "George Chase", "Mayor Pro Tem"]],
