@@ -65,6 +65,7 @@ window.ART = {
   "bellcad-runoff-gwendolyn-everett-james-butts": { big: "DEC. 12", label: "Bell County Appraisal District runoff" },
   "thanksgiving-2026-trash-pickup-closures-254": { big: "NOV. 26", label: "Thanksgiving trash pickup and closures" },
   "wine-basics-how-long-open-wine-lasts": { big: "OPEN BOTTLE", label: "Sip the 254 with Jake Ruse" },
+  "wine-basics-texas-vs-for-sale-in-texas": { big: "TEXAS LABEL", label: "Sip the 254 with Jake Ruse" },
   "baylor-beats-alabama-68-63-players-era-gonzaga-next": {"big":"68-63","label":"Baylor over No. 15 Alabama in Las Vegas (ESPN)"},
   "7-brew-coffee-killeen-fort-hood-street": {"big":"$1.5M","label":"7 Brew drive-thru, Killeen (state filing via KDH)"},
   "central-national-bank-waco-bosque-blvd-5-8-million": {"big":"$5.8M","label":"Central National Bank build-out, Waco (Intelligence360)"},
