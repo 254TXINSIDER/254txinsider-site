@@ -3,7 +3,7 @@
 // type: Restaurant | Coffee & Dessert | Retail | Grocery | Fitness | Entertainment | Health | Services | Hotel | Housing | Industrial | Development | Roads | Government
 // status: Now open | Opening soon | Under construction | Permit filed | Announced | Proposed | Closing | Closed
 window.COMING = {
-  updated: "2026-11-26",
+  updated: "2026-11-27",
   items: [
     {"id":"third-space-contrast-therapy-killeen","n":"Third Space","type":"Fitness","city":"Killeen","where":"1200 Lowes Blvd., Suite 108 (Expressway Plaza Shops)","status":"Opening soon","eta":"Next few weeks","d":"A contrast therapy studio with private suites that pair an infrared sauna, a cold plunge and a vitamin C shower.","src":["Killeen Daily Herald","https://kdhnews.com/business/cold-plunge-saunas-vitamin-c-showers-contrast-therapy-studio-to-open-in-killeen/article_ae0b62c3-db78-4821-ab81-a2375cc5d37f.html"],"story":"/news/third-space-contrast-therapy-studio-killeen/","added":"2026-11-26"},
     {"id":"rowan-data-center-aus02-temple","n":"Rowan data center Building 2 (AUS02)","type":"Industrial","city":"Temple","where":"1855 Bob White Road","status":"Permit filed","eta":"Aug. 2027 (filing)","d":"A $780 million, 500,000-square-foot second data center building at Rowan Digital Infrastructure's Temple site, per a state construction filing.","src":["Zabalist: TDLR filing TABS2026026121","https://www.zabalist.com/projects/TABS2026026121"],"story":"/news/rowan-data-center-temple-second-building-780-million/","added":"2026-11-26"},

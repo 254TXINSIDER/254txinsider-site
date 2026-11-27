@@ -4,7 +4,7 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-26",
+  updated: "2026-11-27",
   sports: [
     {
       "k": "football",
@@ -492,6 +492,16 @@ window.SCORES = {
       "note": "High school season is underway. Area scores are added as schools and local media report them.",
       "games": [
         {
+          "d": "2026-11-26",
+          "lv": "College",
+          "t1": "Baylor",
+          "s1": 64,
+          "t2": "No. 22 Gonzaga",
+          "s2": 72,
+          "note": "Players Era semifinal; Baylor 5-2",
+          "where": "T-Mobile Arena, Las Vegas"
+        },
+        {
           "d": "2026-11-24",
           "lv": "College",
           "t1": "Baylor",
@@ -559,22 +569,13 @@ window.SCORES = {
       ],
       "up": [
         {
-          "d": "2026-11-26",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "No. 22 Gonzaga",
-          "time": "10:30 p.m.",
-          "where": "T-Mobile Arena, Las Vegas",
-          "note": "Players Era semifinal; ESPN"
-        },
-        {
           "d": "2026-11-27",
           "lv": "College",
           "t1": "Baylor",
-          "t2": "Final (10 p.m., ESPN) or third-place game (2 p.m., ESPN2)",
-          "time": "2 p.m. or 10 p.m.",
+          "t2": "Players Era third-place game (opponent TBA)",
+          "time": "2 p.m.",
           "where": "T-Mobile Arena, Las Vegas",
-          "note": "Players Era; depends on the Gonzaga result"
+          "note": "ESPN2"
         },
         {
           "d": "2026-11-29",

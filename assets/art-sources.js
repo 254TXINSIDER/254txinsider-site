@@ -82,4 +82,5 @@ window.ART = {
   "hike-steep-climbs-easy-knees": { big: "Steep & smart", label: "Trails & Hiking" },
   "wine-basics-how-to-taste-a-flight": { big: "TASTE LIKE A PRO", label: "Sip the 254 with Jake Ruse" },
   "golf-weekend-cottonwood-creek-waco": { big: "Cottonwood Creek", label: "Golf in the 254" },
+  "baylor-falls-to-gonzaga-72-64-players-era-semifinal": { big: "72-64", label: "No. 22 Gonzaga over Baylor, Players Era semifinal (AP)" },
 };

@@ -1,7 +1,7 @@
 // Things to Do data for Temple, Belton, Salado and Waco. Updated daily.
 // events: s/e = start/end dates (YYYY-MM-DD); cats: kids, date, night, free. Past events hide automatically.
 window.EVENTS = {
-  updated: "2026-11-26",
+  updated: "2026-11-27",
   events: [
     { t: "A Candle Making Experience", city: "Salado", s: "2026-11-28", e: "2026-11-28", time: "Noon", where: "The Wick & Burn Candle Bar, 805 N. Main St.", cats: ["date"], d: "Pour your own scented candle to take home in a hands-on session.", url: "https://www.eventbrite.com/e/a-candle-making-experience-tickets-1991813642222" },
     { t: "Holiday Market in the Hulse Gallery", city: "Waco", s: "2026-11-20", e: "2026-12-19", time: "Tue-Fri 11 a.m.-5 p.m., Sat 10 a.m.-2 p.m.", where: "Art Center Waco, 701 S. 8th St.", cats: ["date"], d: "Local and regional artists sell artwork and handmade gifts in the gallery all season.", url: "https://artcenterwaco.org/event/holiday-market-in-the-hulse-gallery/" },
