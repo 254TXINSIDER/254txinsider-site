@@ -83,4 +83,6 @@ window.ART = {
   "wine-basics-how-to-taste-a-flight": { big: "TASTE LIKE A PRO", label: "Sip the 254 with Jake Ruse" },
   "golf-weekend-cottonwood-creek-waco": { big: "Cottonwood Creek", label: "Golf in the 254" },
   "baylor-falls-to-gonzaga-72-64-players-era-semifinal": { big: "72-64", label: "No. 22 Gonzaga over Baylor, Players Era semifinal (AP)" },
+  "china-spring-cougar-band-bronze-state-marching-2026": { big: "3rd", label: "China Spring band, UIL State Marching (KWTX)" },
+  "waffle-house-waco-south-new-road-2027": { big: "$300K", label: "Waffle House, 2301 S. New Rd., Waco (state filing)" },
 };

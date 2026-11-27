@@ -3,6 +3,7 @@
 window.EVENTS = {
   updated: "2026-11-27",
   events: [
+    {"t": "Karem Shrine Feztival of Trees", "city": "Waco", "s": "2026-11-27", "e": "2026-11-28", "time": "10 a.m.-9 p.m.", "where": "Karem Shrine Center, Waco", "cats": ["kids"], "d": "Decorated tree raffles, free photos with Santa, train rides, a hot cocoa bar and crafts, with $2 admission and kids under 12 free; proceeds go to the Karem Shriners.", "url": ""},
     { t: "A Candle Making Experience", city: "Salado", s: "2026-11-28", e: "2026-11-28", time: "Noon", where: "The Wick & Burn Candle Bar, 805 N. Main St.", cats: ["date"], d: "Pour your own scented candle to take home in a hands-on session.", url: "https://www.eventbrite.com/e/a-candle-making-experience-tickets-1991813642222" },
     { t: "Holiday Market in the Hulse Gallery", city: "Waco", s: "2026-11-20", e: "2026-12-19", time: "Tue-Fri 11 a.m.-5 p.m., Sat 10 a.m.-2 p.m.", where: "Art Center Waco, 701 S. 8th St.", cats: ["date"], d: "Local and regional artists sell artwork and handmade gifts in the gallery all season.", url: "https://artcenterwaco.org/event/holiday-market-in-the-hulse-gallery/" },
     { t: "Up the Chisholm Trail Commemoration", city: "Belton", s: "2026-12-05", e: "2026-12-05", time: "10 a.m.-noon", where: "Bell County Museum, 201 N. Main St.", cats: ["kids"], d: "The county museum marks Belton's cattle-drive history with a morning program on Christmas parade day.", url: "https://www.bellcountymuseum.org/" },
