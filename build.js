@@ -250,9 +250,14 @@ function comingPage() {
 <h2 class="list-head">Closing <span>&amp; closed</span></h2><div class="cm-grid">${closing.map(cmCard).join("") || '<p class="sb-when">No closings reported right now. Heard about one? <a href="/contact/?topic=tip">Tell us</a>.</p>'}</div>
 <p class="cm-none" id="cm-none" hidden>Nothing matches that search. Try another city or word.</p>
 ${faq.length ? faqHtml("Quick <span>answers</span>", faq) : ""}
-${SPORTS_SPONSOR("Central Texas", "Coming to the 254 presented by: your business here").replace("sports. One sponsor", "business news. One sponsor").replace("/sports/#sports-sponsor", "/advertise/")}
+${GROWTH_PARTNER("Bell County", false)}
 </div></section>` };
 }
+// Growth partner (affiliate). Bell County coverage only: Bell County, Temple, Belton, Killeen, Harker Heights, Nolanville, Salado and small towns.
+const GW_URL = "https://centraltexasgrowthwatch.com/254", GR_URL = "https://centraltexasgrowthreport.com/254";
+const BELL_TOWNS = ["Temple", "Belton", "Killeen", "Harker Heights", "Nolanville", "Salado", "Little River-Academy", "Troy", "Holland", "Rogers", "Morgan's Point Resort", "Bartlett", "Bell County"];
+const isBell = city => BELL_TOWNS.includes(city);
+const GROWTH_PARTNER = (where, pro) => `<div class="gp-box"><span class="sp-tag">Partner</span><div class="gp-txt"><b>See every project being approved in ${esc(where)}</b><span>Plats, rezonings and subdivisions from city council, planning and zoning and Bell County Commissioners Court agendas, each linked to the agenda and minutes. Covers Bell County, Temple, Belton, Killeen, Harker Heights, Nolanville, Salado and small towns.</span></div><div class="gp-btns"><a class="btn" href="${pro ? GR_URL : GW_URL}" target="_blank" rel="sponsored noopener">${pro ? "Pros: Growth Report" : "I live here: Growth Watch"}</a><a class="btn alt" href="${pro ? GW_URL : GR_URL}" target="_blank" rel="sponsored noopener">${pro ? "Residents: Growth Watch" : "I build, sell or lend: Pro"}</a></div><p class="gp-note">Central Texas Growth Watch and Growth Report are affiliate partners; ${NAME} may earn a commission. Partners never affect our news coverage.</p></div>`;
 const COMING_PROMO = `<a class="bld-promo" href="/coming-to-the-254/"><b>Coming to the 254</b><span>Every new restaurant, store and project on the way in Temple, Killeen, Waco, Belton and beyond. →</span></a>`;
 // ---------- Sip the 254 (wine) + authors ----------
 const wsb = { window: {} }; try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/wine.js"), "utf8"), wsb); } catch (e) { console.log("wine.js:", e.message); }
@@ -1323,6 +1328,7 @@ function projectPage(x) {
 <h2>Timeline</h2><ol class="pj-hist">${x.hist.slice().reverse().map(h => `<li><time datetime="${h[0]}">${fmt(h[0])}</time><span class="cm-st ${CM_CLS[h[1]] || ""}">${esc(h[1])}</span> ${esc(h[2] || "")}</li>`).join("")}</ol>
 <p class="src">Source: <a href="${esc(x.src[1])}" target="_blank" rel="noopener">${esc(x.src[0])}</a>${story ? ` · Our story: <a href="${story.url}">${esc(story.title)}</a>` : ""}. "Permit filed" dates come from construction filings and often change. Know more? <a href="/contact/?topic=tip">Send us a tip</a>.</p>
 ${more.length ? `<h2>Also coming to ${esc(c ? c.name : x.city)}</h2><div class="cm-grid">${more.map(cmCard).join("")}</div>` : ""}
+${isBell(x.city) ? GROWTH_PARTNER(x.city, false) : ""}
 <p class="src"><a href="/coming-to-the-254/">← Everything coming to the 254</a>${c ? ` · <a href="${c.url}">${esc(c.name)} news</a>` : ""}</p>
 </div></section>`;
   return { html, crumbs, faq: [[q, ans]] };
@@ -1341,6 +1347,7 @@ ${lead ? `<a class="city-lead" href="${lead.url}">${art(lead, "row-top")}<span c
 <div class="rows">${rest.map(s => row(s, false, "side")).join("")}</div>
 </div><aside>
 <div class="module"><h2>Coming to ${esc(c.name)}</h2>${cm.length ? `<ul class="city-list">${cm.slice(0, 10).map(x => `<li><a href="${x.url}">${esc(x.n)}</a><span class="cm-st ${CM_CLS[x.status] || ""}">${esc(x.status)}</span></li>`).join("")}</ul>` : "<p>Nothing announced right now.</p>"}<a class="more" href="/coming-to-the-254/#${c.slug}">Full tracker →</a></div>
+${c.county === "Bell" ? GROWTH_PARTNER(c.name, false) : ""}
 ${ev.length ? `<div class="module"><h2>Things to do</h2><ul class="city-list ev-l">${ev.map(e => `<li><span>${fmtD(e.s)}</span> ${e.url ? `<a href="${e.url}" target="_blank" rel="noopener">${esc(e.t)}</a>` : esc(e.t)}</li>`).join("")}</ul><a class="more" href="/things-to-do/">Weekend guide →</a></div>` : ""}
 ${sch.length ? `<div class="module"><h2>${esc(c.name)} sports</h2><ul class="city-list">${sch.map(s => `<li><a href="${s.url}">${esc(s.name)}</a></li>`).join("")}</ul><a class="more" href="/scoreboard/">254 Scoreboard →</a></div>` : ""}
 <div class="module"><h2>Around the house</h2><p>Need AC, plumbing or roofing help in ${esc(c.name)}?</p><a class="more" href="/home-pros/">254 Home Pros →</a></div>
@@ -1671,7 +1678,7 @@ function buildHub() {
 <li><b>Accessibility (TDLR).</b> Commercial projects of $50,000 or more generally must be registered with the state for accessibility review. <a href="https://www.tdlr.texas.gov/ab/" target="_blank" rel="noopener">TDLR program</a></li>
 <li><b>Planning a replacement?</b> Get at least two quotes, ask for equipment lead times in writing, and budget for the crane, curb adapters and controls, not just the unit.</li></ul></div>
 </aside></div>
-${projects.length ? `<h2 class="list-head">What's being <span>built</span></h2><div class="rows two">${projects.map(s => row(s, false, "side")).join("")}</div><p class="src"><a href="/growth/">All growth news →</a></p>` : ""}
+${projects.length ? `<h2 class="list-head">What's being <span>built</span></h2><div class="rows two">${projects.map(s => row(s, false, "side")).join("")}</div><p class="src"><a href="/growth/">All growth news →</a></p>` : ""}${GROWTH_PARTNER("Bell County", true)}
 ${faqHtml("Common <span>questions</span>", BUILD_FAQ)}
 </div></section>`;
 }
@@ -1686,7 +1693,7 @@ SECTIONS.forEach(([k]) => {
     ld: [crumbsLd(crumbs), { "@context": "https://schema.org", "@type": "CollectionPage", name: sec.name, description: sec.desc, url: abs(url), isPartOf: { "@id": SITE + "/#website" },
       mainEntity: { "@type": "ItemList", itemListElement: list.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(s.url), name: s.title })) } }].concat(k === "real-estate" ? [faqLd(TAX_FAQ)] : [])
   }) + header(k) + (k === "markets" ? TICKER : "") + `<main><div class="page-hero"><div class="wrap">${crumbsHtml(crumbs)}<h1>${esc(sec.name)}</h1><p>${esc(sec.desc)}</p></div></div>
-<section class="block"><div class="wrap narrow">${k === "markets" ? marketsTop() : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "business" || k === "growth" ? COMING_PROMO + BUILD_PROMO : ""}${k === "things-to-do" ? SIP_PROMO : ""}${k === "things-to-do" || k === "sports" ? GOLF_PROMO : ""}${k === "things-to-do" ? TRAILS_PROMO : ""}${k === "sports" || k === "things-to-do" ? YS_PROMO : ""}${k === "things-to-do" ? HOLIDAY_PROMO + HELP_PROMO + SV_PROMO + VISIT_PROMO + ARTS_PROMO + PARKS_PROMO + LOCAL_PROMO + STAY_PROMO + RN_PROMO : ""}${k === "education" ? SCHOOL_PROMO + DC_PROMO + FH_PROMO : ""}${k === "business" ? JOBS_PROMO : ""}${k === "government" || k === "we-the-people" ? GOV_PROMO : ""}${k === "real-estate" ? FH_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? CHURCH_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? COMING_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
+<section class="block"><div class="wrap narrow">${k === "markets" ? marketsTop() : ""}${k === "real-estate" ? marketDash() + faqHtml("Property tax <span>questions</span>", TAX_FAQ) : ""}${k === "things-to-do" ? thingsHub() : ""}${k === "sports" ? scoreboard(true) + SPORTS_SPONSOR("Central Texas", "Sports &amp; Community presented by: your business here") : ""}${k === "growth" ? GROWTH_PARTNER("Bell County", false) : ""}${k === "real-estate" ? GROWTH_PARTNER("Bell County", true) : ""}${k === "business" || k === "growth" ? COMING_PROMO + BUILD_PROMO : ""}${k === "things-to-do" ? SIP_PROMO : ""}${k === "things-to-do" || k === "sports" ? GOLF_PROMO : ""}${k === "things-to-do" ? TRAILS_PROMO : ""}${k === "sports" || k === "things-to-do" ? YS_PROMO : ""}${k === "things-to-do" ? HOLIDAY_PROMO + HELP_PROMO + SV_PROMO + VISIT_PROMO + ARTS_PROMO + PARKS_PROMO + LOCAL_PROMO + STAY_PROMO + RN_PROMO : ""}${k === "education" ? SCHOOL_PROMO + DC_PROMO + FH_PROMO : ""}${k === "business" ? JOBS_PROMO : ""}${k === "government" || k === "we-the-people" ? GOV_PROMO : ""}${k === "real-estate" ? FH_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? CHURCH_PROMO : ""}${k === "things-to-do" || k === "real-estate" ? COMING_PROMO : ""}${k === "real-estate" || k === "things-to-do" ? HOME_PROMO : ""}${body}${k === "sports" ? SPORTS_SPONSOR_FORM : ""}</div></section>
 ${SIGNUP()}</main>
 ` + footer();
 });
