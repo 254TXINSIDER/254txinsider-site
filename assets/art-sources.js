@@ -85,4 +85,9 @@ window.ART = {
   "baylor-falls-to-gonzaga-72-64-players-era-semifinal": { big: "72-64", label: "No. 22 Gonzaga over Baylor, Players Era semifinal (AP)" },
   "china-spring-cougar-band-bronze-state-marching-2026": { big: "3rd", label: "China Spring band, UIL State Marching (KWTX)" },
   "waffle-house-waco-south-new-road-2027": { big: "$300K", label: "Waffle House, 2301 S. New Rd., Waco (state filing)" },
+  "regional-round-robinson-stephenville-lorena-bremond-advance": {"big":"5 alive","label":"254 teams still in the UIL football playoffs"},
+  "baylor-women-beat-penn-state-84-56-men-fall-to-tcu": {"big":"84-56","label":"No. 25 Baylor women over Penn State, Paradise Jam (AP)"},
+  "killeen-council-friends-in-crisis-shelter-400000-dec-1": {"src":"https://upload.wikimedia.org/wikipedia/commons/d/d7/City_of_Killeen_Public_Building.JPG","page":"https://commons.wikimedia.org/wiki/File:City_of_Killeen_Public_Building.JPG","by":"Victorenriqueagosto","lic":"CC BY-SA 3.0","licUrl":"https://creativecommons.org/licenses/by-sa/3.0"},
+  "hilton-waco-first-floor-remodel-state-filing": {"big":"$574K","label":"Hilton Waco first-floor remodel (state filing)"},
+  "christmas-parades-tree-lightings-254-2026": {"src":"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Downtown_Belton%2C_TX_IMG_2408.JPG/1920px-Downtown_Belton%2C_TX_IMG_2408.JPG","page":"https://commons.wikimedia.org/wiki/File:Downtown_Belton,_TX_IMG_2408.JPG","by":"Billy Hathorn","lic":"CC BY-SA 3.0","licUrl":"https://creativecommons.org/licenses/by-sa/3.0"},
 };

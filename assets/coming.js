@@ -3,7 +3,7 @@
 // type: Restaurant | Coffee & Dessert | Retail | Grocery | Fitness | Entertainment | Health | Services | Hotel | Housing | Industrial | Development | Roads | Government
 // status: Now open | Opening soon | Under construction | Permit filed | Announced | Proposed | Closing | Closed
 window.COMING = {
-  updated: "2026-11-27",
+  updated: "2026-11-28",
   items: [
     {"id":"waffle-house-s-7th-st-waco","n":"Waffle House (S. 7th St.)","type":"Restaurant","city":"Waco","where":"722 S. 7th St., near Baylor","status":"Permit filed","eta":"Feb. 2028 (filing)","d":"A second planned Waco Waffle House of about 1,840 square feet, with work expected from September 2027 to February 2028.","src":["B106 (citing KWTX)","https://myb106.com/ixp/513/p/waffle-house-waco-construction-2027/"],"story":"/news/waffle-house-waco-south-new-road-2027/","added":"2026-11-27"},
     {"id":"third-space-contrast-therapy-killeen","n":"Third Space","type":"Fitness","city":"Killeen","where":"1200 Lowes Blvd., Suite 108 (Expressway Plaza Shops)","status":"Opening soon","eta":"Next few weeks","d":"A contrast therapy studio with private suites that pair an infrared sauna, a cold plunge and a vitamin C shower.","src":["Killeen Daily Herald","https://kdhnews.com/business/cold-plunge-saunas-vitamin-c-showers-contrast-therapy-studio-to-open-in-killeen/article_ae0b62c3-db78-4821-ab81-a2375cc5d37f.html"],"story":"/news/third-space-contrast-therapy-studio-killeen/","added":"2026-11-26"},

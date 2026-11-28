@@ -4,8 +4,8 @@
 //   games: [{ d, lv ("HS" | "College"), t1, s1, t2, s2, note, where }]          (finals; t1 = the 254 team)
 //   up:    [{ d, lv, t1, t2, time, where, note }] }                            (upcoming)
 window.SCORES = {
-  updated: "2026-11-27",
-  sports: [
+  "updated": "2026-11-28",
+  "sports": [
     {
       "k": "football",
       "n": "Football",
@@ -14,77 +14,77 @@ window.SCORES = {
       "status": "playoffs",
       "note": "UIL regional games are Friday, Nov. 27. Lorena and Cameron Yoe meet in an all-254 regional at 7:30 p.m. at Eagle Stadium in Salado (per KWTX's Nov. 23 slate). Tarleton State is the No. 2 FCS seed with a bye; UMHB hosts Trinity Nov. 28 (noon or 1 p.m.; sources differ); Tarleton hosts the Montana-UIW winner Dec. 5 at Memorial Stadium.",
       "tracker": {
-        "round": "Regional round (Friday, Nov. 27)",
-        "next": "Following round, first week of December",
+        "round": "Regional semifinals done (Nov. 27); regional finals next",
+        "next": "Regional finals and six-man state semifinals next week; times and sites not yet announced",
         "alive": [
           {
-            "t": "La Vega",
-            "c": "4A-II",
-            "r": "12-0",
-            "n": "Regional: vs. Wimberley (11-0), Fri. Nov. 27, 7 p.m., The Pfield, Pflugerville"
+            "t": "Stephenville",
+            "c": "4A-I",
+            "r": "13-0",
+            "n": "Region III final vs. Stafford (11-2); time and site TBA"
           },
           {
             "t": "Robinson",
             "c": "4A-II",
-            "r": "10-2",
-            "n": "Regional: vs. Brownwood (7-5), Fri. Nov. 27, 7 p.m., Wildcat Stadium, Godley"
-          },
-          {
-            "t": "Stephenville",
-            "c": "4A-I",
-            "r": "12-0",
-            "n": "Regional: vs. Bay City (11-1), Fri. Nov. 27, 2 p.m., Hutto Memorial Stadium (per Dave Campbell's)"
+            "r": "11-2",
+            "n": "Region IV final vs. Wimberley (12-0); time and site TBA"
           },
           {
             "t": "Lorena",
             "c": "3A-I",
-            "r": "10-2",
-            "n": "Regional: vs. Cameron Yoe (11-1), Fri. Nov. 27, 7:30 p.m., Eagle Stadium, Salado"
-          },
-          {
-            "t": "Cameron Yoe",
-            "c": "3A-I",
-            "r": "11-1",
-            "n": "Regional: vs. Lorena (10-2), Fri. Nov. 27, 7:30 p.m., Eagle Stadium, Salado"
-          },
-          {
-            "t": "Whitney",
-            "c": "3A-I",
-            "r": "11-1",
-            "n": "Regional: vs. Gunter (11-1), Fri. Nov. 27, 1 p.m., Pennington Field, Bedford"
-          },
-          {
-            "t": "Rosebud-Lott",
-            "c": "2A-I",
-            "r": "11-1",
-            "n": "Regional: vs. Shiner (12-0), Fri. Nov. 27, 3 p.m., House Park, Austin"
-          },
-          {
-            "t": "Goldthwaite",
-            "c": "2A-II",
-            "r": "12-0",
-            "n": "Regional: vs. Santo, Fri. Nov. 27, 7 p.m., Cervetto Stadium, Dublin"
+            "r": "11-2",
+            "n": "Region III final vs. Columbus (13-0); time and site TBA"
           },
           {
             "t": "Bremond",
             "c": "2A-II",
-            "r": "12-0",
-            "n": "Regional: vs. Junction (10-2), Fri. Nov. 27, 7 p.m., Gupton Stadium, Cedar Park"
-          },
-          {
-            "t": "Aquilla",
-            "c": "6-Man D-I",
-            "r": "12-0",
-            "n": "Regional: vs. Union Hill (12-0), Fri. Nov. 27, 6 or 7 p.m. (sources differ), site TBA"
+            "r": "13-0",
+            "n": "Region IV final vs. La Villa (12-1); time and site TBA"
           },
           {
             "t": "Mount Calm",
             "c": "6-Man D-II",
-            "r": "11-1",
-            "n": "Regional: vs. Ladonia Fannindel (9-2), Fri. Nov. 27, 7 p.m., Coolidge Yellow Jacket Athletic Complex"
+            "r": "12-1",
+            "n": "State semifinal vs. Strawn (11-2); time and site TBA"
           }
         ],
         "out": [
+          {
+            "t": "La Vega",
+            "c": "4A-II",
+            "r": "12-1",
+            "n": "Lost to Wimberley, regional semifinal (published final scores differ)"
+          },
+          {
+            "t": "Cameron Yoe",
+            "c": "3A-I",
+            "r": "11-2",
+            "n": "Lost 62-21 to Lorena, regional semifinal"
+          },
+          {
+            "t": "Whitney",
+            "c": "3A-I",
+            "r": "11-2",
+            "n": "Lost 59-42 to Gunter, regional semifinal"
+          },
+          {
+            "t": "Rosebud-Lott",
+            "c": "2A-I",
+            "r": "11-2",
+            "n": "Lost 48-14 to Shiner, regional semifinal"
+          },
+          {
+            "t": "Goldthwaite",
+            "c": "2A-II",
+            "r": "12-1",
+            "n": "Lost 12-7 to Santo, regional semifinal"
+          },
+          {
+            "t": "Aquilla",
+            "c": "6-Man D-I",
+            "r": "12-1",
+            "n": "Lost 115-90 to Union Hill, state quarterfinal"
+          },
           {
             "t": "Waco Valor Prep",
             "c": "TAPPS 6-Man D-II",
@@ -155,6 +155,96 @@ window.SCORES = {
       },
       "games": [
         {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Stephenville",
+          "s1": 41,
+          "t2": "Bay City",
+          "s2": 16,
+          "note": "4A-I regional semifinal",
+          "where": "Hutto"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Robinson",
+          "s1": 49,
+          "t2": "Brownwood",
+          "s2": 35,
+          "note": "4A-II regional semifinal",
+          "where": "Godley"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Lorena",
+          "s1": 62,
+          "t2": "Cameron Yoe",
+          "s2": 21,
+          "note": "3A-I regional semifinal",
+          "where": "Eagle Stadium, Salado"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Bremond",
+          "s1": 44,
+          "t2": "Junction",
+          "s2": 32,
+          "note": "2A-II regional semifinal",
+          "where": "Cedar Park"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Mount Calm",
+          "s1": 55,
+          "t2": "Ladonia Fannindel",
+          "s2": 6,
+          "note": "Six-man D-II state quarterfinal",
+          "where": ""
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Whitney",
+          "s1": 42,
+          "t2": "Gunter",
+          "s2": 59,
+          "note": "3A-I regional semifinal",
+          "where": "Bedford"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Rosebud-Lott",
+          "s1": 14,
+          "t2": "Shiner",
+          "s2": 48,
+          "note": "2A-I regional semifinal",
+          "where": "House Park, Austin"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Goldthwaite",
+          "s1": 7,
+          "t2": "Santo",
+          "s2": 12,
+          "note": "2A-II regional semifinal",
+          "where": "Dublin"
+        },
+        {
+          "d": "2026-11-27",
+          "lv": "HS",
+          "t1": "Aquilla",
+          "s1": 90,
+          "t2": "Union Hill",
+          "s2": 115,
+          "note": "Six-man D-I state quarterfinal",
+          "where": ""
+        },
+        {
           "d": "2026-11-21",
           "lv": "College",
           "t1": "Tarleton State",
@@ -183,235 +273,35 @@ window.SCORES = {
           "s2": 7,
           "note": "4A-II area round",
           "where": "Crusader Stadium, Belton"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Robinson",
-          "s1": 31,
-          "t2": "Rockport-Fulton",
-          "s2": 21,
-          "note": "4A-II area round",
-          "where": "Gustafson Stadium, San Antonio"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Lorena",
-          "s1": 50,
-          "t2": "Diboll",
-          "s2": 28,
-          "note": "3A-I area round",
-          "where": "Madisonville"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Cameron Yoe",
-          "s1": 50,
-          "t2": "Orangefield",
-          "s2": 48,
-          "note": "3A-I area round",
-          "where": "Houston"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "China Spring",
-          "s1": 12,
-          "t2": "Stafford",
-          "s2": 36,
-          "note": "4A-I area round",
-          "where": "Giddings"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Rosebud-Lott",
-          "s1": 67,
-          "t2": "Flatonia",
-          "s2": 35,
-          "note": "2A-I area round",
-          "where": "Manor"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Goldthwaite",
-          "s1": 70,
-          "t2": "Haskell",
-          "s2": 38,
-          "note": "2A-II area round",
-          "where": "San Angelo"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Aquilla",
-          "s1": 84,
-          "t2": "Medina",
-          "s2": 72,
-          "note": "6-man D-I area round",
-          "where": "Priddy"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Mount Calm",
-          "s1": 53,
-          "t2": "Runge",
-          "s2": 7,
-          "note": "6-man D-II area round",
-          "where": "Bartlett"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Waco Valor Prep",
-          "s1": 68,
-          "t2": "Keller Harvest",
-          "s2": 44,
-          "note": "TAPPS 6-man D-II state final",
-          "where": "Rocket Field, Robinson"
-        },
-        {
-          "d": "2026-11-20",
-          "lv": "HS",
-          "t1": "Central Texas Christian",
-          "s1": 22,
-          "t2": "Dallas First Baptist",
-          "s2": 55,
-          "note": "TAPPS D-IV state final",
-          "where": "Waco"
-        },
-        {
-          "d": "2026-11-19",
-          "lv": "HS",
-          "t1": "Bremond",
-          "s1": 71,
-          "t2": "Three Rivers",
-          "s2": 21,
-          "note": "2A-II area round"
-        },
-        {
-          "d": "2026-11-19",
-          "lv": "HS",
-          "t1": "Belton",
-          "s1": 14,
-          "t2": "South Oak Cliff",
-          "s2": 57,
-          "note": "5A-II area round",
-          "where": "Waco ISD Stadium"
         }
       ],
       "up": [
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Stephenville",
-          "t2": "Bay City",
-          "time": "2 p.m.",
-          "where": "Hutto Memorial Stadium",
-          "note": "4A-I regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Whitney",
-          "t2": "Gunter",
-          "time": "1 p.m.",
-          "where": "Pennington Field, Bedford",
-          "note": "3A-I regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Rosebud-Lott",
-          "t2": "Shiner",
-          "time": "3 p.m.",
-          "where": "House Park, Austin",
-          "note": "2A-I regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "La Vega",
-          "t2": "Wimberley",
-          "time": "7 p.m.",
-          "where": "The Pfield, Pflugerville",
-          "note": "4A-II regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Robinson",
-          "t2": "Brownwood",
-          "time": "7 p.m.",
-          "where": "Wildcat Stadium, Godley",
-          "note": "4A-II regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Lorena",
-          "t2": "Cameron Yoe",
-          "time": "7:30 p.m.",
-          "where": "Eagle Stadium, Salado",
-          "note": "3A-I regional, all-254"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Bremond",
-          "t2": "Junction",
-          "time": "7 p.m.",
-          "where": "Gupton Stadium, Cedar Park",
-          "note": "2A-II regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Goldthwaite",
-          "t2": "Santo",
-          "time": "7 p.m.",
-          "where": "Cervetto Stadium, Dublin",
-          "note": "2A-II regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Aquilla",
-          "t2": "Union Hill",
-          "time": "6 or 7 p.m. (sources differ)",
-          "where": "Site TBA",
-          "note": "6-man D-I regional"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "HS",
-          "t1": "Mount Calm",
-          "t2": "Ladonia Fannindel",
-          "time": "7 p.m.",
-          "where": "Coolidge",
-          "note": "6-man D-II regional"
-        },
         {
           "d": "2026-11-28",
           "lv": "College",
           "t1": "UMHB",
           "t2": "Trinity",
-          "time": "Noon or 1 p.m. (sources differ; check cruathletics.com)",
+          "time": "Noon",
           "where": "Crusader Stadium, Belton",
-          "note": "NCAA D-III playoffs, 2nd round; ESPN+"
+          "note": "NCAA Division III second round"
         },
         {
           "d": "2026-11-28",
           "lv": "College",
           "t1": "Baylor",
-          "t2": "No. 17 Houston",
-          "time": "8:30 p.m.",
+          "t2": "No. 18 Houston",
+          "time": "Night (ESPN2)",
           "where": "TDECU Stadium, Houston",
-          "note": "ESPN2"
+          "note": "Regular-season finale"
+        },
+        {
+          "d": "2026-12-05",
+          "lv": "College",
+          "t1": "Tarleton State",
+          "t2": "UIW or Montana",
+          "time": "TBA (ESPN+)",
+          "where": "Memorial Stadium, Stephenville",
+          "note": "FCS playoffs second round; Tarleton is the No. 2 seed"
         }
       ]
     },
@@ -471,17 +361,7 @@ window.SCORES = {
           "where": "Curtis Culwell Center, Garland"
         }
       ],
-      "up": [
-        {
-          "d": "2026-11-27",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "Cincinnati",
-          "time": "1 p.m.",
-          "where": "Fifth Third Arena, Cincinnati",
-          "note": "ESPN+; regular-season finale"
-        }
-      ]
+      "up": []
     },
     {
       "k": "basketball-boys",
@@ -491,6 +371,16 @@ window.SCORES = {
       "status": "season",
       "note": "High school season is underway. Area scores are added as schools and local media report them.",
       "games": [
+        {
+          "d": "2026-11-27",
+          "lv": "College",
+          "t1": "Baylor",
+          "s1": 69,
+          "t2": "TCU",
+          "s2": 88,
+          "note": "Players Era 16 third-place game; Baylor 5-3",
+          "where": "T-Mobile Arena, Las Vegas"
+        },
         {
           "d": "2026-11-26",
           "lv": "College",
@@ -557,26 +447,9 @@ window.SCORES = {
           "t2": "Jackson State",
           "s2": 55,
           "where": "Foster Pavilion, Waco"
-        },
-        {
-          "d": "2026-11-15",
-          "lv": "College",
-          "t1": "Baylor",
-          "s1": 72,
-          "t2": "No. 7 Texas",
-          "s2": 75
         }
       ],
       "up": [
-        {
-          "d": "2026-11-27",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "Players Era third-place game (opponent TBA)",
-          "time": "2 p.m.",
-          "where": "T-Mobile Arena, Las Vegas",
-          "note": "ESPN2"
-        },
         {
           "d": "2026-11-29",
           "lv": "College",
@@ -612,6 +485,16 @@ window.SCORES = {
       "status": "season",
       "note": "High school season is underway. Area scores are added as schools and local media report them.",
       "games": [
+        {
+          "d": "2026-11-27",
+          "lv": "College",
+          "t1": "No. 25 Baylor",
+          "s1": 84,
+          "t2": "Penn State",
+          "s2": 56,
+          "note": "Paradise Jam; Baylor 7-1",
+          "where": "St. Thomas, U.S. Virgin Islands"
+        },
         {
           "d": "2026-11-22",
           "lv": "College",
@@ -649,41 +532,17 @@ window.SCORES = {
           "s2": 63,
           "where": "Away",
           "note": "Tarleton 2-3"
-        },
-        {
-          "d": "2026-11-15",
-          "lv": "College",
-          "t1": "Baylor",
-          "s1": 100,
-          "t2": "East Texas A&M",
-          "s2": 66
         }
       ],
       "up": [
         {
-          "d": "2026-11-27",
-          "lv": "College",
-          "t1": "Baylor",
-          "t2": "Penn State",
-          "time": "4:30 p.m.",
-          "where": "Paradise Jam, St. Thomas, U.S. Virgin Islands",
-          "note": "ESPN+"
-        },
-        {
-          "d": "2026-11-27",
-          "lv": "College",
-          "t1": "Tarleton State",
-          "t2": "UT Dallas",
-          "time": "3 p.m.",
-          "where": "EECU Center, Stephenville"
-        },
-        {
           "d": "2026-11-28",
           "lv": "College",
-          "t1": "Baylor",
-          "t2": "Seton Hall or South Florida",
-          "time": "TBA (date may be Nov. 27 or 28)",
-          "where": "Paradise Jam"
+          "t1": "No. 25 Baylor",
+          "t2": "South Florida",
+          "time": "7 p.m.",
+          "where": "Paradise Jam, St. Thomas",
+          "note": "Reef Division title game; ESPN+"
         },
         {
           "d": "2026-11-30",
@@ -698,8 +557,9 @@ window.SCORES = {
           "lv": "College",
           "t1": "Baylor",
           "t2": "North Texas",
-          "time": "TBA",
-          "where": "TBA"
+          "time": "6:30 p.m.",
+          "where": "Denton",
+          "note": "ESPN+"
         }
       ]
     },
